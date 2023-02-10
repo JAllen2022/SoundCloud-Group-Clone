@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .likes import likes
 
 
 class User(db.Model, UserMixin):
@@ -12,7 +13,18 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    display_name = db.Column(db.String(30))
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
     hashed_password = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(100))
+    country= db.Column(db.String(100))
+    bio = db.Column(db.String(255))
+    profile_image_url = db.Column(db.String(255))
+    header_image_url = db.Column(db.String(255))
+
+    songs = db.relationship("Song", back_populates="users")
+    user_likes = db.relationship("Song", secondary=likes, back_populates="song_likes", cascade="all, delete")
 
     @property
     def password(self):
@@ -29,5 +41,13 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'display_name': self.display_name,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'city': self.city,
+            'country': self.country,
+            'bio': self.bio,
+            'profile_image_url': self.profile_image_url,
+            'header_image_url': self.header_image_url
         }
