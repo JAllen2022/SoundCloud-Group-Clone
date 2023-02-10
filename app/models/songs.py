@@ -16,7 +16,7 @@ class Song(db.Model):
     length = db.Column(db.Float, nullable=False)
     song_url = db.Column(db.String(255), nullable=False)
     song_image_url = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
     user = db.relationship("User", back_populates = "songs")
     song_likes = db.relationship("User", secondary=likes, back_populates="user_likes", cascade="all, delete")
