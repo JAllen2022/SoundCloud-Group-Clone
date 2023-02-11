@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField
+from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 
 genres = [
@@ -25,7 +25,7 @@ genres = [
     "Reggaeton",
     "Rock",
     "Soundtrack",
-    "Tecno",
+    "Techno",
     "Trance",
     "Trap",
     "Triphop",
@@ -38,3 +38,4 @@ class SongForm(FlaskForm):
     genre = SelectField("Genre", choices=[(g, g) for g in genres])
     description = StringField('Description')
     song_image_url = StringField("Upload Image URL")
+    submit = SubmitField("Submit")

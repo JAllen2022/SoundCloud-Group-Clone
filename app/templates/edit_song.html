@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create a song</h1>
+    <form method="post" action ="/songs">
+        {{ form.csrf_token }}
+        <p>{{ form.title.label }} = {{ form.title }} </p>
+        <p>{{ form.artist.label }} = {{ form.artist }} </p>
+        <p>{{ form.genre.label }} = {{ form.genre }} </p>
+        <p>{{ form.description.label }} = {{ form.description }} </p>
+        <p>{{ form.song_image_url.label }} = {{ form.song_image_url }} </p>
+        <p>{{ form.submit }} </p>
+    </form>
+</body>
+</html>
