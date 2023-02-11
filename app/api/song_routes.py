@@ -6,6 +6,7 @@ from app.forms import SongForm
 
 song_routes = Blueprint('songs', __name__)
 
+# get all songs for our feed page
 @song_routes.route('/')
 def songs():
     """
@@ -15,7 +16,7 @@ def songs():
     return {"Songs":[song.to_dict() for song in songs]}
     #~~~~~~~~~~~~~~~~~~~~~~ We need a .to_dict() method for all our models ~~~~~~~~~~~~
 
-@song_routes.route('/new_song', methods=['POST'])
+@song_routes.route('/', methods=['POST'])
 @login_required
 def create_song():
     form = SongForm()
@@ -35,16 +36,16 @@ def create_song():
         db.session.add(new_song)
         db.session.commit()
 
-        return redirect(f'/api/songs/{new_song.id}')
+        song = Song.query.filter(Song.id == new_song.id).first()
+        return {"song": song.to_dict()}
 
     if form.errors:
         return {"errors":form.errors}, 400
 
-    return render_template('create_song.html', form=form)
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def edit_song():
+def edit_song(id):
     song = Song.query.get(id)
 
     if not song:
@@ -63,14 +64,16 @@ def edit_song():
 
         db.session.add(song)
         db.session.commit()
-        return redirect(f'/api/songs/{song.id}')
+        
+        return {"Updated Song": song.to_dict()}
+
 
     if form.errors:
         return {"errors": form.errors}
 
 @song_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
-def delete_song():
+def delete_song(id):
     song = Song.query.get(id)
 
     if not song:
