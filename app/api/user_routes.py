@@ -40,7 +40,7 @@ def get_user_comments(id):
         return {"Error": "No Comments Found"}
 
 
-@user.routes.route("/<int:id>/likes")
+@user_routes.route("/<int:id>/likes")
 def get_user_likes(id):
     """
       Query for all likes by userId
