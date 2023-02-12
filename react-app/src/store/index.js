@@ -4,8 +4,8 @@ import sessionReducer from './session';
 import songReducer from './songs';
 
 const rootReducer = combineReducers({
-  sessionReducer,
-  songReducer,
+  session: sessionReducer,
+  Songs: songReducer,
 });
 
 
