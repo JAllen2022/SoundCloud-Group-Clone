@@ -5,8 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import AllSongs from "./components/Songs/AllSongs"
-import SongItem from "./components/Songs/SongItem"
+import AllSongs from "./components/Songs/AllSongs/AllSongs.js";
+import SongItem from "./components/Songs/SongItem/SongItem.js";
 
 function App() {
   const dispatch = useDispatch();

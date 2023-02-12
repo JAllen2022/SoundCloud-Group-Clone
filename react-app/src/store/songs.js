@@ -64,7 +64,7 @@ export const createSongThunk = (songDetails) => async (dispatch) => {
     })
 
     if (res.ok) {
-        const createdSong = await response.json()
+        const createdSong = await res.json()
         dispatch(createSong(createdSong))
         return createdSong
     }
@@ -72,12 +72,12 @@ export const createSongThunk = (songDetails) => async (dispatch) => {
 
 // Edit Song
 export const editSongThunk = (song) => async (dispatch) => {
-    const res = await fetch(`/api/songs/${songId}`, {
+    const res = await fetch(`/api/songs/${song.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(song) //hep me
+        body: JSON.stringify(song)
     })
     if (res.ok) {
         const song = await res.json()
@@ -108,6 +108,7 @@ const songsReducer = (state = initialState, action) => {
 
         // Get All Songs
         case GET_SONGS:
+            newState = { allSongs: {}, singleSong: {} };
             action.songs.Songs.forEach(song => (
                 newState.allSongs[song.id] = song
             ))

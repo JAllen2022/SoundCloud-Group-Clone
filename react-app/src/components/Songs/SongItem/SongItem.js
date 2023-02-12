@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import playButton from "../../assets/orange-play-btn.png";
-import commentBox from "../../assets/icons8-comments-30.png";
+import playButton from "../../../assets/orange-play-btn.png";
+import commentBox from '../../../assets/icons8-comments-30.png';
 
 // --------------------------------------- WARNING!!!!!!!!!!! -----------------------------------
 // -------------------------------add user to song to_dict() method -----------------------------
@@ -41,13 +41,13 @@ const SongItem = ({ song }) => {
                             <i className="fa-solid fa-heart"></i>
                         </button>
                         <div className="likes-count">
-                            <p>likes count</p>
+                            <p>{song.like_count}</p>
                         </div>
                     </div>
                     <div className="comment-button-container">
                         <Link className="comment-link" to={`/songs/${song.id}`}>
                             <img src={commentBox} className="comment-box" alt=""/>
-                            <p>comments count</p>
+                            <p>{song.comment_count}</p>
                         </Link>
                     </div>
                 </div>

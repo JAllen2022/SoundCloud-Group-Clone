@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongsThunk } from "../../../store/songs";
 import SongItem from "../SongItem/SongItem";
-import "./allSongs.css";
+import "./AllSongs.css";
 
 
 
