@@ -12,9 +12,9 @@ const loadSongs = (songs) => ({
     songs
 })
 
-const loadSong = (songId) => ({
+const loadSong = (song) => ({
     type: GET_SONG,
-    songId
+    song
 })
 
 const createSong = (song) => ({
@@ -48,9 +48,14 @@ export const getSongsThunk = () => async (dispatch) => {
 
 // Get song
 export const getSongThunk = (songId) => async (dispatch) => {
+    console.log("checking get song thunk 1")
     const res = await fetch(`/api/songs/${songId}`);
+    console.log("checking get song thunk 2", res)
+
     if (res.ok) {
+        console.log("checking get song thunk 3")
         const song = await res.json()
+        console.log("checking song", song)
         dispatch(loadSong(song))
         return song
     }

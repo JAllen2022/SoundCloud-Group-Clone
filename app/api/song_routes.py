@@ -16,6 +16,18 @@ def songs():
     return {"Songs":[song.to_dict() for song in songs]}
     #~~~~~~~~~~~~~~~~~~~~~~ We need a .to_dict() method for all our models ~~~~~~~~~~~~
 
+
+@song_routes.route("/<int:id>")
+@login_required
+def get_song(id):
+    song = Song.query.get(id)
+
+    if not song:
+        return {"Error": "Song not found"}
+
+    return song.to_dict()
+
+
 @song_routes.route('/', methods=['POST'])
 @login_required
 def create_song():
@@ -64,7 +76,7 @@ def edit_song(id):
 
         db.session.add(song)
         db.session.commit()
-        
+
         return {"Updated Song": song.to_dict()}
 
 
