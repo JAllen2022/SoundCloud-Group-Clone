@@ -2,7 +2,7 @@ import "./SongCommentItem.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import profPic from "../../../assets/profPic.jpeg";
-import { deleteCommentThunk, editCommentThunk } from "../../../store/comments";
+import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
 
 const SongCommentItem = ({ comment, song }) => {
@@ -32,7 +32,6 @@ const SongCommentItem = ({ comment, song }) => {
             {currentUser && currentUser.id == comment.user_id && (
             <div className="edit-delete-container">
                     <div className="edit-comment-container">
-                        {/* dispatch(editCommentThunk(comment.id) */}
                     <button onClick={(e) => setEditing(prev=>!prev)} className="edit-comment-button"><i className="fa-regular fa-pen-to-square"></i></button>
                 </div>
                 <div className="delete-comment-container">

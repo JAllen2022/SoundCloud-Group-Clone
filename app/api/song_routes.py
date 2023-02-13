@@ -30,19 +30,20 @@ def get_song(id):
 
 
 @song_routes.route('/', methods=['POST'])
-@login_required
+# @login_required
 def create_song():
+    print("what is going on in miami")
     form = SongForm()
+    # if 'csrf_token' in request.cookies:
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if "song" not in request.files:
-        return {"errors": "image required"}
+    song = form.data["song"]
 
-    song = request.files["song"]
+    if not song:
+        return {"errors": "song required"}, 400
 
     if not allowed_file(song.filename):
         return {"errors": "file type not permitted"}, 400
-
 
     song.filename = get_unique_filename(song.filename)
 
@@ -55,6 +56,14 @@ def create_song():
         return {"errors": upload }, 400
 
     url = upload["url"]
+
+    print("what is going on in miami 2")
+
+    print("what is going on in miami 3")
+
+    print("what is going on in miami 4")
+
+
 
     if form.validate_on_submit():
         new_song = Song(
@@ -70,10 +79,10 @@ def create_song():
 
         db.session.add(new_song)
         db.session.commit()
+        # song = Song.query.filter(Song.id == new_song.id).first()
+        return new_song.to_dict()
 
-        song = Song.query.filter(Song.id == new_song.id).first()
-        return song.to_dict()
-
+    # print(new_song)
     if form.errors:
         return {"errors":form.errors}, 400
 

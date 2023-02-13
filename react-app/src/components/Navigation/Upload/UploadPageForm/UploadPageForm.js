@@ -1,6 +1,3 @@
-import { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import "./UploadPageForm.css";
 
 const genres = [
@@ -54,7 +51,7 @@ const UploadPageForm = ({
                 <div className="song-details-container">
                     <div className="song-artist-container">
                         <label
-                            for="song-artist"
+                            htmlFor="song-artist"
                             className="form-song-artist label-description"
                         >
                             Artist
@@ -69,7 +66,7 @@ const UploadPageForm = ({
                     </div>
                     <div className="song-title-container">
                         <label
-                            for="song-title"
+                            htmlFor="song-title"
                             className="form-song-title label-description"
                         >
                             Title
@@ -83,7 +80,7 @@ const UploadPageForm = ({
                         />
                     </div>
                     <div className="genre-container">
-                        <label for="genre" className="label-description">
+                        <label htmlFor="genre" className="label-description">
                             Genre
                         </label>
                         <select
@@ -100,7 +97,7 @@ const UploadPageForm = ({
                     </div>
                     <div className="description-container">
                         <lable
-                            for="song-description"
+                            htmlFor="song-description"
                             className="label-description"
                         >
                             Description

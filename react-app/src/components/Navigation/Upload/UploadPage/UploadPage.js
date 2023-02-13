@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
@@ -32,6 +32,15 @@ const UploadPage = () => {
         e.preventDefault();
 
         setErrors([]);
+        // const data = new FormData();
+        // data.append("song", song)
+        // data.append("user_id", currentUser.id)
+        // data.append("length", length)
+        // data.append("title", title)
+        // data.append("artist", artist)
+        // data.append("genre", genre)
+        // data.append("description", description)
+        // data.append("song_image_url", songImage)
 
         const newSongData = {
             // Need these fields:
@@ -47,13 +56,16 @@ const UploadPage = () => {
         };
         // ********* Set song loading in here somewhere ************
         dispatch(createSongThunk(newSongData /*previewImage*/))
-            .then((res) => history.push(`/songs/${res.id}`))
+            .then((res) => {
+                console.log("also res", res)
+                history.push(`/songs/${res.id}`)
+            })
             .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                console.log("what is res", res)
+                // const data = await res.json();
+                // if (data && data.errors) setErrors(data.errors);
             });
     };
-
 
     return (
         <div className="upload-page-container">
@@ -123,7 +135,7 @@ function UploadSong({ setSong, setUploadedSong, setLength }) {
     return (
         <>
             <p>Upload Your Song Here</p>
-            <label for="upload-song-file">Click Here To Choose A File</label>
+            <label htmlFor="upload-song-file">Click Here To Choose A File</label>
             <input
                 required
                 id="upload-song-file"
