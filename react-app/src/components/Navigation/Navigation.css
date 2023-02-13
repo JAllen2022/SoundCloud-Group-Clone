@@ -1,7 +1,68 @@
 .profile-dropdown {
-  position: absolute;
+    position: absolute;
 }
 
 .hidden {
-  display: none;
+    display: none;
+}
+.nav-page-container {
+    background: #333;
+    font-family: Interstate, Lucida Grande, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 1.5;
+    height: 46px;
+    width: 100%;
+}
+
+body {
+    overflow: scroll;
+    margin: 0;
+}
+
+.nav-bar {
+    display: flex;
+    padding: 0;
+    height: 46px;
+}
+
+.header-left {
+    display: block;
+    padding: 12px 0;
+    height: 46px;
+    box-sizing: border-box;
+    text-align: center;
+    width: 104px;
+    border-right: 1px solid #111;
+    float: left;
+    position: relative;
+}
+
+.header-right {
+    display: block;
+    flex: 1;
+}
+
+.upload-button-container {
+    float: left;
+    padding: 12px 10px;
+}
+
+.upload-button-container:hover {
+    background: #111;
+}
+
+.upload-button {
+    color: #ccc;
+}
+
+.profile-button-container {
+    box-sizing: border-box;
+    float: left;
+    padding: 12px 28px 12px 10px;
+    position: relative;
+}
+
+.profile-button-container:hover {
+    background-color: #111;
 }
