@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSongs from "./components/Songs/AllSongs/AllSongs.js";
 import SongShow from "./components/Songs/SongShow/SongShow.js";
-import UploadPage from "./components/Navigation/Upload/UploadPage.js"
+import UploadPage from "./components/Navigation/Upload/UploadPage/UploadPage.js"
 
 function App() {
   const dispatch = useDispatch();

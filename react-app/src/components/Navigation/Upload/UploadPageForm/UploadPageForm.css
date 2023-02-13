@@ -1,0 +1,38 @@
+.upload-page-form-container {
+    display: block;
+}
+
+.basic-info-tab {
+    border-color: #f50;
+    color: #f50;
+    padding: 0;
+}
+
+.form-container {
+    position: relative;
+    padding-left: 270px;
+}
+
+.song-image-container {
+    left: 0;
+    position: absolute;
+}
+
+body {
+    font: 12px/1.4 Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda,
+        Verdana, Tahoma, sans-serif;
+    color: #333;
+}
+
+.label-description {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.song-input-field {
+    position: relative;
+    width: 100%;
+    font-weight: 100%;
+    font-size: 14px;
+}

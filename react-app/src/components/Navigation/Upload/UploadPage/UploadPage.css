@@ -1,0 +1,9 @@
+.upload-page-container {
+    margin: -30px auto 0;
+}
+
+.upload-form-container {
+    border-radius: 2px;
+    margin: 0 0 5px;
+    background-color: #fff;
+}

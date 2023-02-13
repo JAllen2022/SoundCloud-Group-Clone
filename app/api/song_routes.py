@@ -2,6 +2,8 @@ from flask import Blueprint, request, redirect, render_template
 from app.models import Song, User, db
 from flask_login import login_required, current_user
 from app.forms import SongForm
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 
 song_routes = Blueprint('songs', __name__)
@@ -33,15 +35,37 @@ def create_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    if "song" not in request.files:
+        return {"errors": "image required"}
+
+    song = request.files["song"]
+
+    if not allowed_file(song.filename):
+        return {"errors": "file type not permitted"}, 400
+
+
+    song.filename = get_unique_filename(song.filename)
+
+    upload = upload_file_to_s3(song)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return {"errors": upload }, 400
+
+    url = upload["url"]
+
     if form.validate_on_submit():
         new_song = Song(
             user_id = current_user.id,
             title = form.data["title"],
             artist = form.data["artist"],
             genre = form.data["genre"],
-            # length = 3.50,
+            length = form.data["length"],
             description = form.data["description"],
-            song_image_url = form.data["song_image_url"]
+            song_image_url = form.data["song_image_url"],
+            song_url = url
         )
 
         db.session.add(new_song)
