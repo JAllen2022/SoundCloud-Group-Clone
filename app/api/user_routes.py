@@ -35,7 +35,7 @@ def get_user_comments(id):
     comments = Comment.query.filter(Comment.user_id == user.id).order_by(Comment.created_at).all()
 
     if comments:
-        return { "comments": [comment.todict() for comment in comments] }
+        return { "comments": [comment.to_dict() for comment in comments] }
     else:
         return {"Error": "No Comments Found"}
 

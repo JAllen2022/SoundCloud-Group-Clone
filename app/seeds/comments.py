@@ -5,7 +5,7 @@ def seed_comments():
     roysas_comment = Comment(song_id=3, user_id = 2, body = "Ryan sniffs his poopy diapers")
     jasons_comment = Comment(song_id=2,user_id=3, body="Demo sniffs toes")
     ryans_comment = Comment(song_id = 5, user_id=4, body="I sniff poopy diapers")
-    lillyanns_comment = Comment(song_id=1,user_id=3, body="Swagtastic song")
+    lillyanns_comment = Comment(song_id=1, user_id=3, body="Swagtastic song")
 
     db.session.add(demo_comment)
     db.session.add(roysas_comment)

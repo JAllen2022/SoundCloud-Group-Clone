@@ -13,8 +13,7 @@ def songs():
       Query for all songs and returns them in a list of song dictionaries
     """
     songs = Song.query.all()
-    return {"Songs":[song.to_dict() for song in songs]}
-    #~~~~~~~~~~~~~~~~~~~~~~ We need a .to_dict() method for all our models ~~~~~~~~~~~~
+    return [song.to_dict() for song in songs]
 
 
 @song_routes.route("/<int:id>")
@@ -49,7 +48,7 @@ def create_song():
         db.session.commit()
 
         song = Song.query.filter(Song.id == new_song.id).first()
-        return {"song": song.to_dict()}
+        return song.to_dict()
 
     if form.errors:
         return {"errors":form.errors}, 400
@@ -77,7 +76,7 @@ def edit_song(id):
         db.session.add(song)
         db.session.commit()
 
-        return {"Updated Song": song.to_dict()}
+        return song.to_dict()
 
 
     if form.errors:

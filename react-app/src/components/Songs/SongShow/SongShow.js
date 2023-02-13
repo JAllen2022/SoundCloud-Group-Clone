@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk } from "../../../store/songs";
 import { Link } from "react-router-dom";
-// import SongComments from "../Comments/SongComments";
-// import SongCommentForm from "../Comments/SongCommentForm";
+import CreateComment from "../../Comments/CreateComment/CreateComment";
+import SongPageComments from "../../Comments/SongPageComments/SongPageComments";
 // import AllLikes from "../Likes/AllLikes";
 
 import "./SongShow.css";
@@ -42,7 +42,7 @@ const SongShow = () => {
         else display_time = `${Math.floor(hours/24)} days ago`
     }
 
-    // if (!song) return null
+    if (!song) return null
 
     return (
         <div className="song-show-page">
@@ -72,16 +72,16 @@ const SongShow = () => {
                 </div>
                 <div className="right-header-container">
                     <div className="show-song-image-container">
-                        <img className="show-song-image" src={song.song_image_url} />
+                        <img alt='' className="show-song-image" src={song.song_image_url} />
                     </div>
                 </div>
             </div>
             <div className="under-header-container">
                 <div className="left-under-container">
                     <div className="song-interact-container">
-                        {/* <div className="add-comment-form">
-                        <SongCommentForm />
-                        </div> */}
+                        <div className="add-comment-form">
+                            <CreateComment />
+                        </div>
                         <div className="show-likes-count">
                             <button className="show-like-button">
                                 <i className="fa-solid fa-heart"></i>
@@ -98,7 +98,7 @@ const SongShow = () => {
                         <div className="left-user-container">
                             <div className="user-pic-display-name">
                                 <div className="user-pic">
-                                    <img />
+                                    {/* <img alt='' /> */}
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@ const SongShow = () => {
 
                             </div>
                             <div className="show-comments-container">
-
+                                <SongPageComments />
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from .song_routes import song_routes
 from app.forms import SongForm, CommentForm
 import datetime
+import json
 
 comment_routes = Blueprint("comments", __name__)
 
@@ -16,7 +17,8 @@ def song_comments(id):
     comments = Comment.query.filter(Comment.song_id == id).order_by(Comment.created_at).all()
 
     if comments:
-        return { "comments": [comment.todict() for comment in comments] }
+        # return [json.dumps(comment.to_dict() for comment in comments)]
+        return [comment.to_dict() for comment in comments]
     else:
         return {"Error": "No Comments Found"}
 
@@ -32,13 +34,14 @@ def create_comment(id):
             body = form.data["body"],
             user_id = current_user.id,
             song_id = id,
-            time = form.data["time"],
-            created_at = datetime.now()
+            time = 1.20,
+            created_at = datetime.datetime.now()
         )
         db.session.add(comment)
         db.session.commit()
-        comments = Comment.query.all()
-        return { "comments": [comment.todict() for comment in comments] }
+        # comments = Comment.query.filter(Comment.song_id == id).all()
+        # return [comment.to_dict() for comment in comments]
+        return comment.to_dict()
     return {"Error": "Could not create comment"}
 
 
@@ -59,7 +62,7 @@ def edit_comment(id):
         db.session.add(comment)
         db.session.commit()
         comments = Comment.query.filter(Comment.song_id == comment.song_id).order_by(Comment.created_at).all()
-        return { "comments": [comment.todict() for comment in comments] }
+        return [comment.to_dict() for comment in comments]
     else:
         return { "Error": 'Could not edit comment'}
 
@@ -69,7 +72,7 @@ def edit_comment(id):
 def delete_comment(id):
     comment = Comment.query.get(id)
     if not comment:
-        return{"Error": "Comment not found"}
+        return {"Error": "Comment not found"}
 
     db.session.delete(comment)
     db.session.commit()

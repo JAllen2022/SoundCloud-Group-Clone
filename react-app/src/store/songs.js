@@ -44,28 +44,28 @@ export const getSongsThunk = () => async (dispatch) => {
     } else {
         return res.errors
     }
+
 }
 
 // Get song
 export const getSongThunk = (songId) => async (dispatch) => {
-    console.log("checking get song thunk 1")
     const res = await fetch(`/api/songs/${songId}`);
-    console.log("checking get song thunk 2", res)
 
     if (res.ok) {
-        console.log("checking get song thunk 3")
         const song = await res.json()
-        console.log("checking song", song)
         dispatch(loadSong(song))
         return song
     }
+        // else {
+    //     return res.Error
+    // }
 }
 
 // Create Song
-export const createSongThunk = (songDetails) => async (dispatch) => {
+export const createSongThunk = (newSongData, previewImage) => async (dispatch) => {
     const res = await fetch(`/api/songs`, {
         method: "POST",
-        body: songDetails
+        body: newSongData
     })
 
     if (res.ok) {
@@ -73,6 +73,9 @@ export const createSongThunk = (songDetails) => async (dispatch) => {
         dispatch(createSong(createdSong))
         return createdSong
     }
+        // else {
+    //     return res.Error
+    // }
 }
 
 // Edit Song
@@ -89,6 +92,9 @@ export const editSongThunk = (song) => async (dispatch) => {
         dispatch(editSong(song))
         return song
     }
+        // else {
+    //     return res.Error
+    // }
 }
 
 
@@ -102,6 +108,9 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
         dispatch(deleteSong(songId))
         return deletedSong
     }
+    // else {
+    //     return res.Error
+    // }
 }
 
 // Reducer
@@ -113,8 +122,8 @@ const songsReducer = (state = initialState, action) => {
 
         // Get All Songs
         case GET_SONGS:
-            newState = { allSongs: {}, singleSong: {} };
-            action.songs.Songs.forEach(song => (
+            newState = { allSongs: {}, singleSong: {}};
+            action.songs.forEach(song => (
                 newState.allSongs[song.id] = song
             ))
             return newState

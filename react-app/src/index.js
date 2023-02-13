@@ -7,6 +7,8 @@ import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as songActions from "./store/songs";
+import * as commentActions from "./store/comments";
+
 import App from "./App";
 
 import "./index.css";
@@ -17,6 +19,7 @@ if (process.env.NODE_ENV !== "production") {
 	window.store = store;
 	window.sessionActions = sessionActions;
 	window.songActions = songActions;
+	window.commentActions = commentActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component
