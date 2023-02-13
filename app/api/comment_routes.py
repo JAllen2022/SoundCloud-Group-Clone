@@ -61,8 +61,7 @@ def edit_comment(id):
 
         db.session.add(comment)
         db.session.commit()
-        comments = Comment.query.filter(Comment.song_id == comment.song_id).order_by(Comment.created_at).all()
-        return [comment.to_dict() for comment in comments]
+        return comment.to_dict()
     else:
         return { "Error": 'Could not edit comment'}
 

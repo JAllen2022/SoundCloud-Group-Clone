@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { createCommentThunk } from "../../../store/comments";
+import { createCommentThunk, editCommentThunk } from "../../../store/comments";
 import "./CreateComment.css";
 
-const CreateComment = () => {
+const CreateComment = ({ currentComment, setEditing }) => {
     const dispatch = useDispatch();
 
-    const [body, setBody] = useState('')
+    const [body, setBody] = useState(currentComment?.body || '')
     const [errors, setErrors] = useState([]);
     const currentUser = useSelector(state => state.session.user);
     const song = useSelector(state => state.Songs.singleSong);
@@ -29,11 +29,18 @@ const CreateComment = () => {
             body
         };
 
-        dispatch(createCommentThunk(songId, newComment))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(Object.values(data.errors))
-            });
+        if(currentComment){
+            // dispatch update thunk
+            currentComment.body = body;
+            dispatch(editCommentThunk(currentComment))
+            setEditing(false)
+        } else {
+            dispatch(createCommentThunk(songId, newComment))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(Object.values(data.errors))
+                });
+        }
 
         setBody("")
     }

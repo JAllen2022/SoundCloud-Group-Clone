@@ -111,7 +111,7 @@ export const editCommentThunk = (comment) => async (dispatch) => {
 
 // DELETE COMMENT
 export const deleteCommentThunk = (commentId) => async (dispatch) => {
-    const res = await fetch(`api/comments/${commentId}`, {
+    const res = await fetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     });
 
@@ -133,15 +133,17 @@ const initialState = {
 // Reducer
 
 export default function commentsReducer(state = initialState, action) {
-    let newState = {...state}
-    switch(action.type) {
+    let newState = { ...state }
+    switch (action.type) {
 
         // Load Song Comments
         case LOAD_SONG_COMMENTS:
             newState = { song: {}, user: {} };
-            action.comments.forEach(comment => {
-                newState.song[comment.id] = comment
-            })
+            if (Array.isArray(action.comments)) {
+                action.comments.forEach(comment => {
+                    newState.song[comment.id] = comment
+                })
+            }
             return newState;
 
         // Load User Comments
@@ -154,16 +156,20 @@ export default function commentsReducer(state = initialState, action) {
 
         // Create Comment
         case CREATE_COMMENT:
-            newState.song = { ...state.song, [action.comment.id]: action.comment}
+            newState.song = { ...state.song, [action.comment.id]: action.comment }
             return newState;
 
         // Edit Comment
         case EDIT_COMMENT:
-            return { ...state, song: action.comment };
+            return { ...state, [action.comment.id]: action.comment };
+            // newState.song = {...state.song}
+            // newState.song[action.comment.id] = action.comment
+            // return newState;
+
 
         // Delete Comment
         case DELETE_COMMENT:
-            newState.song = {...state.song}
+            newState.song = { ...state.song }
             delete newState.song[action.commentId]
             return newState;
 

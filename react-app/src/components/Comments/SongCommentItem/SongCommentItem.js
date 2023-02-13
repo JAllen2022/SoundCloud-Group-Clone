@@ -1,10 +1,15 @@
 import "./SongCommentItem.css";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import profPic from "../../../assets/profPic.jpeg";
+import { deleteCommentThunk, editCommentThunk } from "../../../store/comments";
+import CreateComment from "../CreateComment/CreateComment";
+
 const SongCommentItem = ({ comment, song }) => {
     const dispatch = useDispatch();
 
     const currentUser = useSelector(state => state.session.user);
+    const [editing, setEditing] = useState(false);
 
     return (
         <div className='song-comment-item-container'>
@@ -14,7 +19,7 @@ const SongCommentItem = ({ comment, song }) => {
             <div className="username-time-body-created-at">
                 <div className="username-time">
                     <div className="creator-name">
-                        {comment.user.username} at {comment?.time}
+                        {comment.user?.username} at {comment?.time}
                     </div>
                 </div>
                 <div className="comment-created-at">
@@ -22,10 +27,21 @@ const SongCommentItem = ({ comment, song }) => {
                 </div>
             </div>
             <div className="comment-body">
-                {comment?.body}
+                {editing ? <CreateComment currentComment={comment} setEditing={setEditing} /> : comment?.body}
             </div>
+            {currentUser && currentUser.id == comment.user_id && (
+            <div className="edit-delete-container">
+                    <div className="edit-comment-container">
+                        {/* dispatch(editCommentThunk(comment.id) */}
+                    <button onClick={(e) => setEditing(prev=>!prev)} className="edit-comment-button"><i className="fa-regular fa-pen-to-square"></i></button>
+                </div>
+                <div className="delete-comment-container">
+                    <button onClick={() => dispatch(deleteCommentThunk(comment.id))} className="delete-comment-button"><i className="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            )}
         </div>
     )
-}
+};
 
 export default SongCommentItem;

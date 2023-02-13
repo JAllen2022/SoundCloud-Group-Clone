@@ -47,7 +47,7 @@ const SongItem = ({ song }) => {
                     <div className="comment-button-container">
                         <Link className="comment-link" to={`/songs/${song.id}`}>
                             <img src={commentBox} className="comment-box" alt=""/>
-                            <p>{song.comment_count}</p>
+                            <p>{song.comment_count} comments</p>
                         </Link>
                     </div>
                 </div>
