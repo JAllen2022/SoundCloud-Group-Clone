@@ -29,7 +29,7 @@ const SongItem = ({ song }) => {
                             {/* {song.user.display_name} this seems like it doesnt work but
                             we just have to add display names to our seeders */}
                             {/* {song.user.username} */}
-                            <p className="displayName link">{song.user.username}</p>
+                            <p className="displayName link">{song.user.display_name}</p>
                         </Link>
                         <Link className="title-link link" to={`/songs/${song.id}`}>
                             <p className="artist-title">{song.artist} - {song.title}</p>
