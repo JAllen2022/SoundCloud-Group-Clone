@@ -1,4 +1,5 @@
 .songs-container {
-    border:1px red solid;
-    width: 72%;
+    /* border:1px red solid; */
+    width: 80%;
+    margin-left: 30px;
 }

@@ -20,7 +20,7 @@ const UploadPage = () => {
   const [description, setDescription] = useState("");
   const [song, setSong] = useState("");
   const [songImage, setSongImage] = useState(
-    "https://www.shutterstock.com/image-photo/businessman-holding-paper-say-no-260nw-105617738.jpg"
+    "https://e.snmc.io/i/600/s/ac97d7c5534074d5257fb4c79837b6c6/5477289/j-cole-2014-forest-hills-drive-cover-art.jpg"
   );
   const [length, setLength] = useState("");
   const [songLoading, setSongLoading] = useState(false);

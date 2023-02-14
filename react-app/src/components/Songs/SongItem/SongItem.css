@@ -1,72 +1,153 @@
 .song-item-container {
-    border:1px blue solid;
-    display:flex;
-    margin: 20px 0;
-    height: 125px;
+    /* border: 1px blue solid; */
+    display: flex;
+    margin: 40px 5px;
+    height: 160px;
+    width: 100%;
+    justify-content: space-evenly;
+    position: relative;
+}
+
+.song-image-container {
+    /* border:1px red solid; */
+    height: 160px;
+    min-width: 163px;
+    margin-right: 15px;
+    position: fixed
+
 }
 
 .song-image {
-    border:1px red solid;
-    width: 25%;
+    /* border:1px red solid; */
+    height: 100%;
+    width: 163px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+
+.right-item-info-container {
+    /* border:1px red solid; */
+    width: 70%;
+    margin-left: 185px;
 }
 
 .play-displayName-title {
-    border:1px orange solid;
+    /* border:1px orange solid; */
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
-    padding: 5px;
-}
-
-.displayName-title{
-    margin-left:.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.right-item-info-container {
-    border:1px red solid;
-    width: 100%;
-}
-
-.bottom-right-container {
-    border: 1px red solid;
-    display:flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 20px;
-    align-items: center;
-}
-
-.like-button-container, .comment-link{
-    border: 1px red solid;
-    display:flex;
+    padding: 10px 0;
+    height: 30px;
 }
 
 .play {
-    border: 1px solid red;
-    width: 40px;
-    height: 40px;
+    display: inline-block;
+    width: 37px;
+    height: 37px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0;
+    /* border: 1px solid black; */
 }
 
 .play-button-image {
-    border-radius: 50%;
-
-    border: 1px solid blue;
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
+    margin-left: -2px;
+    margin-top: -2px;
     object-fit: cover;
+    opacity: .87;
 }
+
+.play-button-image:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.displayName-title{
+    margin-left: .5rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 40px;
+}
+
+.displayName, .displayName.link {
+    margin: 0;
+    font-size: 12px;
+    opacity: .5;
+    width: fit-content;
+
+}
+
+.artist-title {
+    margin: 0;
+    font-size: 15px;
+
+}
+
+.link, .link:visited {
+    color: inherit
+}
+
+.bottom-right-container {
+    /* border: 1px red solid; */
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    height: 30px;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.like-button-container, .comment-link{
+    /* border: 1px red solid; */
+    display:flex;
+    height: 25px;
+    width: 40px;
+}
+
+
+.like-button {
+    display:flex;
+    flex-direction: row;
+    height: 25px;
+    width: fit-content;
+    padding: 5px 5px;
+    background: none;
+    border: 1px solid rgba(211, 211, 211, 65%);
+    border-radius: 3px;
+}
+
+
+.like-button:hover {
+    cursor: pointer;
+    border: 1px solid rgba(211, 211, 211, 100%);
+}
+
+.fa-solid.fa-heart {
+    font-size: 12px;
+    margin-right: 8px;
+}
+
 
 .comment-box-container {
     display: flex;
     align-items: center;
+    opacity: .5;
+}
+
+.comment-box-container:hover,
+.displayName:hover {
+    opacity: .8;
 }
 
 .comment-box {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
 }
 
 a {

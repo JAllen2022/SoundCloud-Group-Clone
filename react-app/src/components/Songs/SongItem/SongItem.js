@@ -14,9 +14,9 @@ const SongItem = ({ song }) => {
 
     return (
         <div className="song-item-container">
-            <div className="song-image">
+            <div className="song-image-container">
                 <Link className="image-link" to={`/songs/${song.id}`}>
-                    <img src={song.song_image_url} alt={song.title} className="song_image" />
+                    <img src={song.song_image_url} alt={song.title} className="song-image" />
                 </Link>
             </div>
             <div className="right-item-info-container">
@@ -25,13 +25,14 @@ const SongItem = ({ song }) => {
                         <img className='play-button-image' src='https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg' alt='orange play button' />
                     </div>
                     <div className="displayName-title">
-                        <Link className="displayName-link" to={`/users/${song.user.id}`}>
-                            Display Name
-                            {/* <p className="displayName">{song.user.display_name}</p> */}
+                        <Link className="displayName-link link" to={`/users/${song.user.id}`}>
+                            {/* {song.user.display_name} this seems like it doesnt work but
+                            we just have to add display names to our seeders */}
+                            {/* {song.user.username} */}
+                            <p className="displayName link">{song.user.username}</p>
                         </Link>
-                        <Link className="title-link" to={`/songs/${song.id}`}>
-                            Title
-                            {/* <p className="artist-title">{song.artist} - {song.title}</p> */}
+                        <Link className="title-link link" to={`/songs/${song.id}`}>
+                            <p className="artist-title">{song.artist} - {song.title}</p>
                         </Link>
                     </div>
                 </div>
@@ -39,17 +40,19 @@ const SongItem = ({ song }) => {
                     <div className="like-button-container">
                         <button className="like-button">
                             <i className="fa-solid fa-heart"></i>
+                            {song.like_count}
                         </button>
-                        <div className="likes-count">
-                            <p className="bottom-right-container-p">{song.like_count}</p>
-                        </div>
+                        {/* <div className="likes-count">
+                            <p className="bottom-right-container-p"></p>
+                        </div> */}
                     </div>
                     <div className="comment-button-container">
-                        <Link className="comment-link" to={`/songs/${song.id}`}>
+                        <Link className="comment-link link" to={`/songs/${song.id}`}>
                             <div className="comment-box-container">
                                 <img src={commentBox} className="comment-box" alt=""/>
+                                {song.comment_count}
                             </div>
-                            <p className="bottom-right-container-p">{song.comment_count}</p>
+                            {/* <p className="bottom-right-container-p link"></p> */}
                         </Link>
                     </div>
                 </div>
