@@ -12,13 +12,13 @@ function Navigation({ isLoaded }) {
         <div className="nav-page-container">
             <div className="nav-bar">
                 <div className="header-left">
-                    <NavLink exact to="/">
+                    <NavLink className="home-link" exact to="/">
                         Home
                     </NavLink>
                 </div>
                 <div className="header-right">
                     {isLoaded && (
-                        <li>
+                        <div className="upload-prof-pic">
                             {/* <NavLink exact to="/">Home</NavLink> */}
                             <div className="upload-button-container">
                                 <NavLink
@@ -32,7 +32,7 @@ function Navigation({ isLoaded }) {
                             <div className="profile-button-container">
                                 <ProfileButton user={sessionUser} />
                             </div>
-                        </li>
+                        </div>
                     )}
                 </div>
             </div>
