@@ -119,6 +119,8 @@
     background: none;
     border: 1px solid rgba(211, 211, 211, 65%);
     border-radius: 3px;
+    align-items: center;
+    font-weight: 50;
 }
 
 
@@ -128,8 +130,8 @@
 }
 
 .fa-solid.fa-heart {
-    font-size: 12px;
-    margin-right: 8px;
+    font-size: 11px;
+    margin-right: 6px;
 }
 
 

@@ -22,7 +22,7 @@ const AllSongs = () => {
 
     return (
         <>
-        <h1> All Songs </h1>
+        <p className="all-songs-header"> Here are the lastest songs </p>
         <div className="songs-container">
             <ul className="songs-wrapper">{songItems}</ul>
         </div>
