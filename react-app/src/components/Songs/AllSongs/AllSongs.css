@@ -1,0 +1,9 @@
+.songs-container {
+    /* border:1px red solid; */
+    width: 80%;
+    margin-left: 30px;
+}
+
+.all-songs-header {
+    font-weight: 100;
+}

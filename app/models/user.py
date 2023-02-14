@@ -25,7 +25,8 @@ class User(db.Model, UserMixin):
 
     songs = db.relationship("Song", back_populates="user")
     user_likes = db.relationship("Song", secondary=likes, back_populates="song_likes", cascade="all, delete")
-
+    comments = db.relationship("Comment", back_populates="user")
+    
     @property
     def password(self):
         return self.hashed_password
