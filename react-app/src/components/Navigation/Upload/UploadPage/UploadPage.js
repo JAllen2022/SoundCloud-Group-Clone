@@ -53,7 +53,6 @@ const UploadPage = () => {
         setSongLoading(false);
         console.log("error with uploading song");
       });
-
   };
 
   return (
