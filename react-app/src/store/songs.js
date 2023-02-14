@@ -62,18 +62,14 @@ export const getSongThunk = (songId) => async (dispatch) => {
 
 // Create Song
 export const createSongThunk =
-  (newSongData) => async (dispatch) => {
+  (data) => async (dispatch) => {
     const res = await fetch(`/api/songs/`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newSongData),
+      body: data
     });
-    console.log("res ", res);
+
     if (res.ok) {
       const createdSong = await res.json();
-      console.log("new song ", createdSong);
       dispatch(createSong(createdSong));
       return createdSong;
     } else {
