@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import AllSongs from "./components/Songs/AllSongs/AllSongs.js";
 import SongShow from "./components/Songs/SongShow/SongShow.js";
 import UploadPage from "./components/Navigation/Upload/UploadPage/UploadPage.js"
+import UserPage from "./components/UserPage/UserPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/upload">
             <UploadPage />
+          </Route>
+          <Route path="/users/:userId">
+            <UserPage />
           </Route>
         </Switch>
       )}

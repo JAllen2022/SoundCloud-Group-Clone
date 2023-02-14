@@ -35,7 +35,7 @@ def get_user_comments(id):
     comments = Comment.query.filter(Comment.user_id == user.id).order_by(Comment.created_at).all()
 
     if comments:
-        return { "comments": [comment.to_dict() for comment in comments] }
+        return [comment.to_dict() for comment in comments]
     else:
         return {"Error": "No Comments Found"}
 
@@ -47,5 +47,15 @@ def get_user_likes(id):
     """
 
     user = User.query.get(id)
-    likes = user.user_likes.query.all()
-    return {"likes": [like.to_dict() for like in likes]}
+    likes = user.user_likes
+    return [like.to_dict() for like in likes]
+
+
+@user_routes.route("/<int:id>/songs")
+def get_user_songs(id):
+    """
+      Query for all songs by userId
+    """
+    user = User.query.get(id)
+    songs = user.songs
+    return [song.to_dict() for song in songs]

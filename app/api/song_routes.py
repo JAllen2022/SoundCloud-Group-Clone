@@ -3,7 +3,7 @@ from app.models import Song, User, db
 from flask_login import login_required, current_user
 from app.forms import SongForm
 from app.s3_helpers import (
-    upload_file_to_s3, allowed_file, get_unique_filename)
+    upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
 
 song_routes = Blueprint('songs', __name__)
@@ -73,13 +73,43 @@ def upload_song():
     if "song" not in request.files:
         return {"errors":"song required"}, 400
 
+    form_data = request.form
+
+    print("checking our request files", request.files)
+
+    url_image = "https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg"
+
+    if "picture" in request.files:
+        print("we're in here in pictures")
+        picture = request.files["picture"]
+
+        if not image_file(picture.filename):
+            print("file type not permitted")
+            return {"errors": "file type not permitted"}, 400
+
+        picture.filename = get_unique_filename(picture.filename)
+
+        upload_image = upload_image_file_to_s3(picture)
+
+        if "url" not in upload_image:
+            print("error upload")
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return {"errors": upload_image }, 400
+
+        url_image = upload_image["url"]
+
+    print("we're here 1")
     song = request.files['song']
+    print("checking song", song)
 
-    formData = request.form
-
-    if not allowed_file(song.filename):
+    if not audio_file(song.filename):
         print("file type not permitted")
         return {"errors": "file type not permitted"}, 400
+
+    print("we're here 2")
+
 
     song.filename = get_unique_filename(song.filename)
 
@@ -92,18 +122,22 @@ def upload_song():
         # so we send back that error message
         return {"errors": upload }, 400
 
-    url = upload["url"]
+
+    song_url = upload["url"]
+    print("successfully uploaded song", song_url)
 
     new_song = Song(
             user_id = current_user.id,
-            title = formData["title"],
-            artist = formData["artist"],
-            genre = formData["genre"],
-            length = formData["length"],
-            description = formData["description"],
-            song_image_url = formData["song_image_url"],
-            song_url = url
+            title = form_data["title"],
+            artist = form_data["artist"],
+            genre = form_data["genre"],
+            length = form_data["length"],
+            description = form_data["description"],
+            song_image_url = url_image,
+            song_url = song_url
         )
+
+    print("checking new song", new_song)
 
     db.session.add(new_song)
     db.session.commit()

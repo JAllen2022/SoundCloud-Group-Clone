@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import playButton from "../../../assets/orange-play-btn.png";
+import { useParams } from "react-router-dom";
 import commentBox from '../../../assets/icons8-comments-30.png';
+import OpenModalButton from "../../OpenModalButton";
 import './SongItem.css'
-// --------------------------------------- WARNING!!!!!!!!!!! -----------------------------------
-// -------------------------------add user to song to_dict() method -----------------------------
+import UploadPageForm from "../../Navigation/Upload/UploadPageForm/UploadPageForm";
+import { useSelector } from "react-redux";
 // add likes_count method
 
 // songLikes = song.song_likes
@@ -11,6 +13,10 @@ import './SongItem.css'
 // numLikes = songLikesArr.length
 
 const SongItem = ({ song }) => {
+
+    const currentUser = useSelector((state) => state.session.user);
+    const user = useSelector(state => state.UserPage.userProfile);
+    const { userId } = useParams;
 
     return (
         <div className="song-item-container">
@@ -42,6 +48,15 @@ const SongItem = ({ song }) => {
                             <i className="fa-solid fa-heart"></i>
                             {song.like_count}
                         </button>
+                        {currentUser && currentUser.id == song.user_id ?
+                        <div className="edit-song-button">
+                            <OpenModalButton
+                                className="edit-user-modal-button"
+                                modalComponent={<UploadPageForm />}
+                                buttonText={<i className="fa-regular fa-pen-to-square"></i>}
+                            />
+                        </div> : ""
+                    }
                         {/* <div className="likes-count">
                             <p className="bottom-right-container-p"></p>
                         </div> */}

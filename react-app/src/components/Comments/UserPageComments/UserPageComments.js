@@ -10,18 +10,18 @@ import UserCommentItem from '../UserCommentItem/userCommentItem';
 const UserPageComments = () => {
     const dispatch = useDispatch();
     const userComments = useSelector(state => state.Comments.user);
-    const user = useSelector(state => state.session.user);
+    const user = useSelector(state => state.UserPage.userProfile);
 
     let userCommentsArr;
     if (userComments) userCommentsArr = Object.values(userComments);
 
     const { userId } = useParams;
 
-    useEffect(() => {
-        dispatch(loadUserCommentsThunk(userId))
-    }, [dispatch, userId])
+    // useEffect(() => {
+    //     dispatch(loadUserCommentsThunk(userId))
+    // }, [dispatch, userId])
 
-    if (!userComments) return null;
+    // if (!userComments) return null;
 
     const userCommentItems = userCommentsArr.map((comment) => {
         return <UserCommentItem key={comment.id} comment={comment} />

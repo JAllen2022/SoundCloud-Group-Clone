@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
+// let jsmediatags = require("jsmediatags");
 
 import { createSongThunk } from "../../../../store/songs";
 
@@ -19,9 +20,8 @@ const UploadPage = () => {
   const [artist, setArtist] = useState("");
   const [description, setDescription] = useState("");
   const [song, setSong] = useState("");
-  const [songImage, setSongImage] = useState(
-    "https://e.snmc.io/i/600/s/ac97d7c5534074d5257fb4c79837b6c6/5477289/j-cole-2014-forest-hills-drive-cover-art.jpg"
-  );
+  const [songImage, setSongImage] = useState('');
+
   const [length, setLength] = useState("");
   const [songLoading, setSongLoading] = useState(false);
   const [uploadedSong, setUploadedSong] = useState(false);
@@ -40,7 +40,10 @@ const UploadPage = () => {
     data.append("genre", genre);
     data.append("length", length);
     data.append("description", description);
-    data.append("song_image_url", songImage);
+    data.append("picture", songImage);
+
+    console.log("checking song image", songImage)
+    console.log("checking our package", data)
 
     setSongLoading(true);
 
@@ -90,19 +93,34 @@ const UploadPage = () => {
   );
 };
 
-function UploadSong({ setSong, setUploadedSong, setLength }) {
+function UploadSong({ setSong, setUploadedSong, setLength}) {
   const toMinutes = (length) => {
     const minutes = length / 60;
     return minutes.toFixed(2);
     // return +`${Math.floor(minutes.toFixed(2))}:${Math.ceil((minutes.toFixed(2)%1)*60)}`;
   };
 
+
+  // const populateImagePreview = (e) => {
+  //   const file = e.target.files[0]
+
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = function (e) {
+  //       imagePreview.current.src = e.target.result;
+  //     }
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
+
+// npm install jsmediatags --save
+
   const updateSong = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     const audio = document.createElement("audio");
     if (e.target.files && file) {
-      console.log("we here");
+      console.log("checking our file", file);
       reader.onload = function (e) {
         audio.src = e.target.result;
         audio.addEventListener(
@@ -119,6 +137,35 @@ function UploadSong({ setSong, setUploadedSong, setLength }) {
       };
       reader.readAsDataURL(file);
     }
+
+  // new jsmediatags.Reader(file)
+  //       .setTagsToRead(["title", "artist","picture"]).read({
+  //         onSuccess: function (tag) {
+
+  //           console.log("this is what tag is", tag)
+  //           let tags = tag.tags;
+
+  //           console.log("this is what tag.tags is", tags)
+
+  //         let base64String = "";
+
+  //         for (let i = 0; i < tags.picture.data.length; i++) {
+  //           base64String += String.fromCharCode(tags.picture.data[i]);
+  //         }
+
+  //         console.log("base64string is", base64String)
+  //         let dataUrl = "data:" + tags.picture.format + ";base64," +window.btoa(base64String);
+
+  //         console.log("this is what dataUrl is", dataUrl)
+
+  //       //   document.getElementById('cover').setAttribute('src',dataUrl);
+  //       //     },
+  //       //     onError: function(error) {
+  //       //       console.log(':(', error.type, error.info);
+  //       }
+  //     });
+
+
     setSong(file);
     setUploadedSong(true);
   };

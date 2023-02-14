@@ -41,12 +41,28 @@ const UploadPageForm = ({
     setDescription,
     setSongImage,
 }) => {
+
+    const updateImage = (e) => {
+        console.log("updating image")
+        const file = e.target.files[0];
+        console.log("checking image file", file)
+        setSongImage(file);
+    }
+
     return (
         <div className="upload-page-form-container">
             <h1 className="basic-info-tab">Basic Info</h1>
             <div className="form-container">
                 <div className="song-image-container">
-                    <img className="song-image" alt="" src="" />
+                    <label htmlFor="upload-song-image">Click Here To Choose A File</label>
+                    {/* <img src="https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg" alt="preview image"/> */}
+                    <input
+                            id="upload-song-image-file"
+                            name="upload-song-image-file"
+                            type="file"
+                            accept="image/*"
+                            onChange={updateImage}
+                        />
                 </div>
                 <div className="song-details-container">
                     <div className="song-artist-container">
