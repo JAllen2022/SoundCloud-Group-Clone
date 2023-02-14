@@ -29,63 +29,61 @@ def get_song(id):
     return song.to_dict()
 
 
+# @song_routes.route('/', methods=['POST'])
+# # @login_required
+# def create_song():
+#     print("what is going on in miami")
+#     form = SongForm()
+#     print("what is my form", list(form))
+#     # if 'csrf_token' in request.cookies:
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     print('csrf w.e', form['csrf_token'].data)
+
+#     if form.validate_on_submit():
+
+#         print("what is going on in miami 3")
+
+#         print("form data", form.data)
+#         new_song = Song(
+#             user_id = current_user.id,
+#             title = form.data["title"],
+#             artist = form.data["artist"],
+#             genre = form.data["genre"],
+#             length = form.data["length"],
+#             description = form.data["description"],
+#             song_image_url = form.data["song_image_url"],
+#             song_url = form.data["song_url"]
+#         )
+
+#         print("new_song check", new_song)
+
+#         db.session.add(new_song)
+#         db.session.commit()
+#         # song = Song.query.filter(Song.id == new_song.id).first()
+#         return new_song.to_dict()
+
+#     print("outside of if statement - headed for failure")
+#     # print(new_song)
+#     if form.errors:
+#         return {"errors":form.errors}, 400
+
 @song_routes.route('/', methods=['POST'])
-# @login_required
-def create_song():
-    print("what is going on in miami")
-    form = SongForm()
-    print("what is my form", list(form))
-    # if 'csrf_token' in request.cookies:
-    form['csrf_token'].data = request.cookies['csrf_token']
-    print('csrf w.e', form['csrf_token'].data)
-
-    if form.validate_on_submit():
-
-        print("what is going on in miami 3")
-
-        print("form data", form.data)
-        new_song = Song(
-            user_id = current_user.id,
-            title = form.data["title"],
-            artist = form.data["artist"],
-            genre = form.data["genre"],
-            length = form.data["length"],
-            description = form.data["description"],
-            song_image_url = form.data["song_image_url"],
-            song_url = form.data["song_url"]
-        )
-
-        print("new_song check", new_song)
-
-        db.session.add(new_song)
-        db.session.commit()
-        # song = Song.query.filter(Song.id == new_song.id).first()
-        return new_song.to_dict()
-
-    print("outside of if statement - headed for failure")
-    # print(new_song)
-    if form.errors:
-        return {"errors":form.errors}, 400
-
-@song_routes.route('/upload-song', methods=['POST'])
-# @login_required
+@login_required
 def upload_song():
     if "song" not in request.files:
         return {"errors":"song required"}, 400
 
-    print("is the song wrong")
     song = request.files['song']
-    print('song thing', song)
+
+    formData = request.form
 
     if not allowed_file(song.filename):
         print("file type not permitted")
         return {"errors": "file type not permitted"}, 400
 
-    print("what is going on in miami 2")
     song.filename = get_unique_filename(song.filename)
 
     upload = upload_file_to_s3(song)
-    print('upload', upload)
 
     if "url" not in upload:
         print("error upload")
@@ -95,8 +93,21 @@ def upload_song():
         return {"errors": upload }, 400
 
     url = upload["url"]
-    print('url', url)
-    return {"url": url}
+
+    new_song = Song(
+            user_id = current_user.id,
+            title = formData["title"],
+            artist = formData["artist"],
+            genre = formData["genre"],
+            length = formData["length"],
+            description = formData["description"],
+            song_image_url = formData["song_image_url"],
+            song_url = url
+        )
+
+    db.session.add(new_song)
+    db.session.commit()
+    return new_song.to_dict()
 
 
 @song_routes.route('/<int:id>', methods=['PUT'])
@@ -111,7 +122,6 @@ def edit_song(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-
         song.title = form.data["title"]
         song.artist = form.data["artist"]
         song.genre = form.data["genre"]
@@ -122,7 +132,6 @@ def edit_song(id):
         db.session.commit()
 
         return song.to_dict()
-
 
     if form.errors:
         return {"errors": form.errors}
