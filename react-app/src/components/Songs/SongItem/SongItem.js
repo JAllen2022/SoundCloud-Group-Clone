@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import playButton from "../../../assets/orange-play-btn.png";
 import commentBox from '../../../assets/icons8-comments-30.png';
-
+import './SongItem.css'
 // --------------------------------------- WARNING!!!!!!!!!!! -----------------------------------
 // -------------------------------add user to song to_dict() method -----------------------------
 // add likes_count method
@@ -20,18 +20,18 @@ const SongItem = ({ song }) => {
                 </Link>
             </div>
             <div className="right-item-info-container">
-                <div className="play-dislayName-title">
+                <div className="play-displayName-title">
                     <div className="play">
-                        <button className="play-button" type="button">
-                            <img className='play-button-image' src={playButton} alt='orange play button' />
-                        </button>
+                        <img className='play-button-image' src='https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg' alt='orange play button' />
                     </div>
                     <div className="displayName-title">
                         <Link className="displayName-link" to={`/users/${song.user.id}`}>
-                            <p className="displayName">{song.user.display_name}</p>
+                            Display Name
+                            {/* <p className="displayName">{song.user.display_name}</p> */}
                         </Link>
                         <Link className="title-link" to={`/songs/${song.id}`}>
-                            <p className="artist-title">{song.artist} - {song.title}</p>
+                            Title
+                            {/* <p className="artist-title">{song.artist} - {song.title}</p> */}
                         </Link>
                     </div>
                 </div>
@@ -41,13 +41,15 @@ const SongItem = ({ song }) => {
                             <i className="fa-solid fa-heart"></i>
                         </button>
                         <div className="likes-count">
-                            <p>{song.like_count}</p>
+                            <p className="bottom-right-container-p">{song.like_count}</p>
                         </div>
                     </div>
                     <div className="comment-button-container">
                         <Link className="comment-link" to={`/songs/${song.id}`}>
-                            <img src={commentBox} className="comment-box" alt=""/>
-                            <p>{song.comment_count} comments</p>
+                            <div className="comment-box-container">
+                                <img src={commentBox} className="comment-box" alt=""/>
+                            </div>
+                            <p className="bottom-right-container-p">{song.comment_count}</p>
                         </Link>
                     </div>
                 </div>

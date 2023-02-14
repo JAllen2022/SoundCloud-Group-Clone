@@ -21,10 +21,12 @@ const AllSongs = () => {
     });
 
     return (
+        <>
+        <h1> All Songs </h1>
         <div className="songs-container">
-            <h1> All Songs </h1>
             <ul className="songs-wrapper">{songItems}</ul>
         </div>
+        </>
     );
 };
 
