@@ -46,6 +46,7 @@ const UploadPageForm = ({
         console.log("updating image")
         const file = e.target.files[0];
         console.log("checking image file", file)
+        console.log("checking type of image file", typeof file)
         setSongImage(file);
     }
 
