@@ -9,6 +9,7 @@ import AllSongs from "./components/Songs/AllSongs/AllSongs.js";
 import SongShow from "./components/Songs/SongShow/SongShow.js";
 import UploadPage from "./components/Navigation/Upload/UploadPage/UploadPage.js"
 import UserPage from "./components/UserPage/UserPage";
+import SplashPage from "./components/SplashPage/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+              <SplashPage />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
