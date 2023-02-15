@@ -16,7 +16,8 @@ const SongItem = ({ song }) => {
 
     const currentUser = useSelector((state) => state.session.user);
     const user = useSelector(state => state.UserPage.userProfile);
-    const { userId } = useParams;
+    // const userSongs = useSelector(state => state.Songs.userSongs);
+    // const { userId } = useParams();
 
     return (
         <div className="song-item-container">
@@ -31,11 +32,11 @@ const SongItem = ({ song }) => {
                         <img className='play-button-image' src='https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg' alt='orange play button' />
                     </div>
                     <div className="displayName-title">
-                        <Link className="displayName-link link" to={`/users/${song.user.id}`}>
+                        <Link className="displayName-link link" to={`/users/${song.user_id}`}>
                             {/* {song.user.display_name} this seems like it doesnt work but
                             we just have to add display names to our seeders */}
                             {/* {song.user.username} */}
-                            <p className="displayName link">{song.user.display_name}</p>
+                            <p className="displayName link">{currentUser.id == song.user_id ? currentUser.display_name : song.user.display_name}</p>
                         </Link>
                         <Link className="title-link link" to={`/songs/${song.id}`}>
                             <p className="artist-title">{song.artist} - {song.title}</p>

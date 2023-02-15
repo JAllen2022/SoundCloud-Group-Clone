@@ -7,6 +7,7 @@ import EditUserPageForm from "./EditUserPageForm/EditUserPageForm";
 import { useEffect } from "react";
 import { loadUserThunk } from "../../store/userPage";
 import UserSongs from "./UserSongs/UserSongs";
+import { getUserSongsThunk } from "../../store/songs";
 
 const UserPage = () => {
     const { userId } = useParams();
@@ -14,6 +15,7 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user);
     const user = useSelector(state => state.UserPage.userProfile);
+
     // console.log(user)
 
     // useEffect(() => {

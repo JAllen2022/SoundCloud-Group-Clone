@@ -4,7 +4,7 @@
 const LOAD_USER = "userPage/SET_USER";
 
 // Action Creators
-const loadUser = (user) => ({
+export const loadUser = (user) => ({
     type: LOAD_USER,
     user
 });

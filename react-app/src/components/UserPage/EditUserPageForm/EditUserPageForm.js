@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../../context/Modal';
 import { editUserThunk } from '../../../store/session';
+import { loadUser } from '../../../store/userPage';
 
 const EditUserPageForm = () => {
     const dispatch = useDispatch();
@@ -30,10 +31,10 @@ const EditUserPageForm = () => {
     //     return null;
     // }
 
-    const [profilePic, setProfilePic] = useState(currentUser?.profile_image_url);
-    const [displayName, setDisplayName] = useState(currentUser?.display_name);
-    const [firstName, setFirstName] = useState(currentUser?.first_name);
-    const [lastName, setLastName] = useState(currentUser?.last_name);
+    const [profilePic, setProfilePic] = useState(currentUser?.profile_image_url || "");
+    const [displayName, setDisplayName] = useState(currentUser?.display_name || "");
+    const [firstName, setFirstName] = useState(currentUser?.first_name || "");
+    const [lastName, setLastName] = useState(currentUser?.last_name || "");
     const [city, setCity] = useState(currentUser?.city || "");
     const [country, setCountry] = useState(currentUser?.country || "");
     const [bio, setBio] = useState(currentUser?.bio || "");
@@ -51,10 +52,10 @@ const EditUserPageForm = () => {
         e.preventDefault();
 
         const editedUser = {
-            profilePic,
-            displayName,
-            firstName,
-            lastName,
+            profile_image_url:profilePic,
+            display_name:displayName,
+            first_name:firstName,
+            last_name:lastName,
             city,
             country,
             bio,
@@ -62,7 +63,10 @@ const EditUserPageForm = () => {
         }
 
         dispatch(editUserThunk(editedUser))
-            .then(()=>closeModal)
+            .then((user) => {
+                dispatch(loadUser(user))
+                closeModal()
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
@@ -83,10 +87,10 @@ const EditUserPageForm = () => {
             <form className="edit-user-page-form" method="POST" onSubmit={handleSubmit} >
                 <div className="edit-user-page-body">
                     <div className="edit-user-page-body-left">
-                        <div>
+                        {/* <div>
                             <label htmlFor="profile-pic-file">Update image</label>
                             <input name="profile-pic-file" type="file" accept="image/*" />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="edit-user-page-body-right">
                             <ul className='user-page-errors'>
@@ -122,7 +126,7 @@ const EditUserPageForm = () => {
                             </div>
                         </div>
                     <div className="edit-user-page-footer">
-                        <button className="edit-user-page-cancel" onClick={()=>closeModal()}>Cancel</button>
+                        <div className="edit-user-page-cancel" onClick={()=>closeModal()}>Cancel</div>
                         <button className="edit-user-page-save-changes"> Save Changes </button>
                     </div>
                 </div>

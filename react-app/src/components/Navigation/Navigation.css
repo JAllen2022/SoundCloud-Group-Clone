@@ -13,7 +13,7 @@
     background-color: rgb(0, 0, 0, 0.78);
     font-family: Interstate, Lucida Grande, Arial, sans-serif;
     font-weight: 100;
-    height: 42px;
+    height: 43px;
     width: 100%;
     margin-bottom: 30px;
 }
@@ -28,6 +28,7 @@ body {
     flex-direction: row;
     align-items: center;
     width: 100%;
+
     justify-content: space-between;
 }
 
@@ -49,6 +50,7 @@ body {
     border-left: 1px solid #111;
 }
 
+
 .upload-prof-pic {
     display: flex;
     align-items: center;
@@ -68,6 +70,19 @@ body {
     text-decoration: none;
 }
 
+.prof-pic-and-displayName {
+    display: flex;
+    /* border: 1px solid red; */
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.navbar-display-name {
+    color: #ccc;
+    margin-left: 7px;
+    margin-bottom: 2px;
+}
+
 .profile-pic-button {
     background-color: transparent;
     border: none;
@@ -78,9 +93,15 @@ i.fas.fa-user-circle {
     background-color: transparent;
     size: 20px;
 }
+
+.fas.fa-user-circle:hover {
+    cursor: pointer;
+}
+
 .profile-button-container {
     margin: 0px;
     padding: 12px 28px;
+    width: fit-content;
 }
 
 .profile-button-container:active {

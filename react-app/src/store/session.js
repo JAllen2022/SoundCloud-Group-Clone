@@ -18,8 +18,6 @@ const editUser = (user) => ({
 	user
 })
 
-const initialState = { user: null };
-
 // ~~~~~~~~~~~~~~~~~~~~~~ User Session Thunks ~~~~~~~~~~~~~~~~~~~~~~
 
 export const authenticate = () => async (dispatch) => {
@@ -112,12 +110,15 @@ export const editUserThunk = (user) => async (dispatch) => {
 		body: JSON.stringify(user),
 	})
 	if (res.ok) {
-		const user = await res.json();
-		dispatch(editUser(user));
+		const editedUser = await res.json();
+		dispatch(editUser(editedUser));
+		return editedUser;
 	} else {
 		return res
 	}
 }
+
+const initialState = { user: null };
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
@@ -126,7 +127,7 @@ export default function reducer(state = initialState, action) {
 		case REMOVE_USER:
 			return { user: null };
 		case EDIT_USER:
-			return { ...state, ...action.user }
+			return { ...state, user: action.user }
 		default:
 			return state;
 	}

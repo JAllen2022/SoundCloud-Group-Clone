@@ -8,7 +8,7 @@ import "./UserSongs.css";
 const UserSongs = () => {
     const dispatch = useDispatch();
     const userSongs = useSelector(state => state.Songs.userSongs);
-    console.log("userSongs :", userSongs);
+    // console.log("userSongs :", userSongs);
     const user = useSelector(state => state.UserPage.userProfile);
     const { userId } = useParams();
 
@@ -20,7 +20,7 @@ const UserSongs = () => {
             return <SongItem key={song.id} song={song} />
         })
     }
-    console.log("userSongArr :", userSongsArr)
+    // console.log("userSongArr :", userSongsArr)
 
     useEffect(() => {
         dispatch(getUserSongsThunk(userId))
