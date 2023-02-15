@@ -79,7 +79,7 @@ export const getSongThunk = (songId) => async (dispatch) => {
 // Create Song
 export const createSongThunk =
   (data) => async (dispatch) => {
-    const res = await fetch(`/api/songs/`, {
+    const res = await fetch("/api/songs", {
       method: "POST",
       body: data
     });
