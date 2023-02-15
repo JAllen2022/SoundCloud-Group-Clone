@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     songs = db.relationship("Song", back_populates="user")
     user_likes = db.relationship("Song", secondary=likes, back_populates="song_likes", cascade="all, delete")
     comments = db.relationship("Comment", back_populates="user")
-    
+
     @property
     def password(self):
         return self.hashed_password
@@ -50,5 +50,6 @@ class User(db.Model, UserMixin):
             'country': self.country,
             'bio': self.bio,
             'profile_image_url': self.profile_image_url,
-            'header_image_url': self.header_image_url
+            'header_image_url': self.header_image_url,
+            'user_likes': [like.to_dict() for like in self.user_likes]
         }

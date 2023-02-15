@@ -6,6 +6,8 @@ const GET_SONG = "songs/GET_SONG";
 const CREATE_SONG = "songs/CREATE_SONG";
 const EDIT_SONG = "songs/EDIT_SONG";
 const DELETE_SONG = "songs/DELETE_SONG";
+const ADD_LIKE = "songs/ADD_LIKE";
+const DELETE_LIKE = "songs/DELETE_LIKE";
 
 // Action Creators
 const loadSongs = (songs) => ({
@@ -35,6 +37,16 @@ const editSong = (song) => ({
 
 const deleteSong = (songId) => ({
   type: DELETE_SONG,
+  songId,
+});
+
+const addLike = (songId) => ({
+  type: ADD_LIKE,
+  songId,
+});
+
+const deleteLike = (songId) => ({
+  type: DELETE_LIKE,
   songId,
 });
 
@@ -123,6 +135,24 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
   // }
 };
 
+// Add Like
+export const addLikeThunk = (songId) => async (dispatch) => {
+  const res = await fetch(`/api/songs/${songId}/likes`, {
+    method: "POST",
+  });
+  if (res.ok) {
+    dispatch(addLike(songId));
+  }
+};
+
+// Delete Like
+export const deleteLikeThunk = (songId) => async (dispatch) => {
+  const res = await fetch(`/api/songs/${songId}/likes`, { method: "DELETE" });
+  if (res.ok) {
+    dispatch(deleteLike(songId));
+  }
+};
+
 // Reducer
 const initialState = { allSongs: {}, singleSong: {}, userSongs: {} };
 
@@ -165,6 +195,15 @@ const songsReducer = (state = initialState, action) => {
       delete newState.allSongs[action.songId];
       return newState;
 
+    case ADD_LIKE:
+      newState.allSongs = { ...state.allSongs, [action.songId]: {...state.allSongs[action.songId]}}
+      newState.allSongs[action.songId].like_count++;
+      
+      return newState;
+    case DELETE_LIKE:
+      newState.singleSong = { ...state.singleSong }
+      delete newState.singleSong[action.]
+      return newState
     // Default
     default:
       return state;
