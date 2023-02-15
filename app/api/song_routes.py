@@ -73,7 +73,6 @@ def upload_song():
     if "song" not in request.files:
         return {"errors":"song required"}, 400
 
-    form_data = request.form
 
     url_image = "https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg"
 
@@ -116,6 +115,7 @@ def upload_song():
 
 
     song_url = upload["url"]
+    form_data = request.form.to_dict()
 
     new_song = Song(
             user_id = current_user.id,
@@ -141,7 +141,6 @@ def edit_song(id):
     if not song:
         return {"Error":"Song not found"}
 
-    form_data = request.form
     image_url = song.song_image_url
 
     if "picture" in request.files:
@@ -168,6 +167,8 @@ def edit_song(id):
             return {"errors": upload_image }, 400
 
         image_url = upload_image["url"]
+
+    form_data = request.form.to_dict()
 
     song.title = form_data["title"]
     song.artist = form_data["artist"]
