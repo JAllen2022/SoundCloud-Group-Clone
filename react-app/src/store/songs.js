@@ -94,13 +94,10 @@ export const createSongThunk =
   };
 
 // Edit Song
-export const editSongThunk = (song) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${song.id}`, {
+export const editSongThunk = (song, songId) => async (dispatch) => {
+  const res = await fetch(`/api/songs/${songId}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(song),
+    body: song,
   });
   if (res.ok) {
     const song = await res.json();

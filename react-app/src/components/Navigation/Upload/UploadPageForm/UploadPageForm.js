@@ -112,12 +112,12 @@ const UploadPageForm = ({
                         </select>
                     </div>
                     <div className="description-container">
-                        <lable
+                        <label
                             htmlFor="song-description"
                             className="label-description"
                         >
                             Description
-                        </lable>
+                        </label>
                         <textarea
                             className="song-input-field"
                             placeholder="Describe your track"

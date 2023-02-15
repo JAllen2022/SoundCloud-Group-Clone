@@ -2,60 +2,99 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
+import { editSongThunk, getSongThunk } from "../../../../store/songs";
+import { useModal } from "../../../../context/Modal.js";
 // let jsmediatags = require("jsmediatags");
 
 import { createSongThunk } from "../../../../store/songs";
 
-const UploadPage = () => {
+const UploadPage = ({ editSong = false, songId}) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const currentSong = useSelector(state => state.Songs.singleSong)
+  console.log("currentSong :", currentSong)
+  const { closeModal } = useModal();
 
   //     const [previewImage, setPreviewImage] = useState("");
 
   //     const [audioSource, setAudioSource] = useState("");
   //     const [length, setLength] = useState(0);
 
-  const [title, setTitle] = useState("");
-  const [genre, setGenre] = useState("None");
-  const [artist, setArtist] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(currentSong?.title || "");
+  const [genre, setGenre] = useState(currentSong?.genre || "");
+  const [artist, setArtist] = useState(currentSong?.artist || "");
+  const [description, setDescription] = useState(currentSong?.description  || "" );
   const [song, setSong] = useState("");
-  const [songImage, setSongImage] = useState('');
+  const [songImage, setSongImage] = useState(currentSong?.song_url_image || "");
 
-  const [length, setLength] = useState("");
+  const [length, setLength] = useState(currentSong?.length || "");
   const [songLoading, setSongLoading] = useState(false);
-  const [uploadedSong, setUploadedSong] = useState(false);
+  const [uploadedSong, setUploadedSong] = useState(editSong ? true : false);
   const [errors, setErrors] = useState([]);
 
   const currentUser = useSelector((state) => state.session.user);
+
+
+  useEffect(() => {
+    if(songId) dispatch(getSongThunk(songId))
+  }, [dispatch])
+
+  useEffect(() => {
+    if (Object.values(currentSong).length) {
+      setTitle(currentSong?.title)
+      setArtist(currentSong?.artist)
+      setDescription(currentSong?.description)
+      setGenre(currentSong?.genre)
+      setLength(currentSong?.length)
+      setSong(currentSong?.song)
+      setSongImage(currentSong?.song_url_image)
+    }
+  },[currentSong])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrors([]);
     const data = new FormData();
-    data.append("song", song);
+
+    // If we are creating a new song, add the song file to the FormData object
+    if (!editSong) data.append("song", song);
+    // If the user uploaded a new image file, add the image file to the FormData object
+    if(songImage) data.append("picture", songImage);
     data.append("title", title);
     data.append("artist", artist);
     data.append("genre", genre);
     data.append("length", length);
     data.append("description", description);
-    data.append("picture", songImage);
 
     console.log("checking song image", songImage)
     console.log("checking our package", data)
 
     setSongLoading(true);
 
-    dispatch(createSongThunk(data))
-      .then(async (res) => {
-        setSongLoading(false);
-        history.push(`/songs/${res.id}`);
-      })
-      .catch(() => {
-        setSongLoading(false);
-        console.log("error with uploading song");
-      });
+    if (editSong) {
+      // If we are editing an existing song, dispatch the EDIT song thunk
+      dispatch(editSongThunk(data, currentSong.id))
+        .then((res) => {
+          closeModal()
+          setSongLoading(false);
+          history.push(`/songs/${res.id}`)})
+        .catch(() => {
+          setSongLoading(false);
+          console.log("error with uploading song");
+        });
+    } else {
+      // If we are creating a new song, dispatch the CREATE song thunk
+      dispatch(createSongThunk(data))
+        .then(async (res) => {
+          setSongLoading(false);
+          history.push(`/songs/${res.id}`);
+        })
+        .catch(() => {
+          setSongLoading(false);
+          console.log("error with uploading song");
+        });
+    }
   };
 
   return (

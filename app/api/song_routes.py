@@ -2,8 +2,8 @@ from flask import Blueprint, request, redirect, render_template
 from app.models import Song, User, db
 from flask_login import login_required, current_user
 from app.forms import SongForm
-from app.s3_helpers import (
-    upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
+import app.s3_helpers as s3
+# ( upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
 
 song_routes = Blueprint('songs', __name__)
@@ -75,21 +75,18 @@ def upload_song():
 
     form_data = request.form
 
-    print("checking our request files", request.files)
-
     url_image = "https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg"
 
     if "picture" in request.files:
-        print("we're in here in pictures")
         picture = request.files["picture"]
 
-        if not image_file(picture.filename):
+        if not s3.image_file(picture.filename):
             print("file type not permitted")
             return {"errors": "file type not permitted"}, 400
 
-        picture.filename = get_unique_filename(picture.filename)
+        picture.filename = s3.get_unique_filename(picture.filename)
 
-        upload_image = upload_image_file_to_s3(picture)
+        upload_image = s3.upload_image_file_to_s3(picture)
 
         if "url" not in upload_image:
             print("error upload")
@@ -100,20 +97,15 @@ def upload_song():
 
         url_image = upload_image["url"]
 
-    print("we're here 1")
     song = request.files['song']
-    print("checking song", song)
 
-    if not audio_file(song.filename):
+    if not s3.audio_file(song.filename):
         print("file type not permitted")
         return {"errors": "file type not permitted"}, 400
 
-    print("we're here 2")
+    song.filename = s3.get_unique_filename(song.filename)
 
-
-    song.filename = get_unique_filename(song.filename)
-
-    upload = upload_file_to_s3(song)
+    upload = s3.upload_file_to_s3(song)
 
     if "url" not in upload:
         print("error upload")
@@ -124,7 +116,6 @@ def upload_song():
 
 
     song_url = upload["url"]
-    print("successfully uploaded song", song_url)
 
     new_song = Song(
             user_id = current_user.id,
@@ -136,8 +127,6 @@ def upload_song():
             song_image_url = url_image,
             song_url = song_url
         )
-
-    print("checking new song", new_song)
 
     db.session.add(new_song)
     db.session.commit()
@@ -152,23 +141,45 @@ def edit_song(id):
     if not song:
         return {"Error":"Song not found"}
 
-    form = SongForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form_data = request.form
+    image_url = song.song_image_url
 
-    if form.validate_on_submit():
-        song.title = form.data["title"]
-        song.artist = form.data["artist"]
-        song.genre = form.data["genre"]
-        song.description = form.data["description"]
-        song.song_image_url = form.data["song_image_url"]
+    if "picture" in request.files:
+        # We need to first delete the existing image in the database for the song
+        imageKey = song.song_image_url.rsplit('/')[-1]
+        s3.remove_image_file_from_s3(imageKey)
 
-        db.session.add(song)
-        db.session.commit()
+        # Next, upload the image to AWS
+        picture = request.files["picture"]
 
-        return song.to_dict()
+        if not s3.image_file(picture.filename):
+            print("file type not permitted")
+            return {"errors": "file type not permitted"}, 400
 
-    if form.errors:
-        return {"errors": form.errors}
+        picture.filename = s3.get_unique_filename(picture.filename)
+
+        upload_image = s3.upload_image_file_to_s3(picture)
+
+        if "url" not in upload_image:
+            print("error upload")
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return {"errors": upload_image }, 400
+
+        image_url = upload_image["url"]
+
+    song.title = form_data["title"]
+    song.artist = form_data["artist"]
+    song.genre = form_data["genre"]
+    song.description = form_data["description"]
+    song.song_image_url = image_url
+
+    db.session.add(song)
+    db.session.commit()
+
+    return song.to_dict()
+
 
 @song_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
@@ -177,6 +188,12 @@ def delete_song(id):
 
     if not song:
         return {"Error": "Song not found"}
+
+    songKey = song.song_url.rsplit('/')[-1]
+    imageKey = song.song_image_url.rsplit('/')[-1]
+
+    s3.remove_file_from_s3(songKey)
+    s3.remove_image_file_from_s3(imageKey)
 
     db.session.delete(song)
     db.session.commit()
