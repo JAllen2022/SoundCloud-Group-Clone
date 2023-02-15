@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongThunk } from "../../../store/songs";
+import {
+  getSongThunk,
+  addLikeThunk,
+  deleteLikeThunk,
+} from "../../../store/songs";
 import { Link } from "react-router-dom";
 import CreateComment from "../../Comments/CreateComment/CreateComment";
 import SongPageComments from "../../Comments/SongPageComments/SongPageComments";
@@ -47,6 +51,19 @@ const SongShow = () => {
         else display_time = `${Math.floor(hours/24)} days ago`
     }
 
+    const clickToLike = () => {
+        const song_likes = song.song_likes;
+        console.log("what is song_likes", song_likes);
+        console.log("conditional", song_likes[currentUser.id]);
+
+        if (song_likes[currentUser.id]) {
+          dispatch(deleteLikeThunk(song.id, currentUser));
+        } else {
+          dispatch(addLikeThunk(song.id, currentUser));
+        }
+      };
+
+
     if (!song) return null
 
     return (
@@ -88,7 +105,7 @@ const SongShow = () => {
                             <CreateComment />
                         </div>
                         <div className="show-likes-count">
-                            <button className="show-like-button">
+                            <button className="show-like-button" onClick={clickToLike}>
                                 <i className="fa-solid fa-heart"></i>
                             </button>
                             <div className="show-likes-count">

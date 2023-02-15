@@ -57,5 +57,5 @@ class Song(db.Model):
             "like_count":len(self.song_likes), # [ <User1>, <User2>, <User3> ]
             "comment_count":len(self.comments), # [ <User1>, <User2>, <User3> ]
             "comments": [com.to_dict() for com in self.comments],
-            "song_likes": [user.to_dict() for user in self.song_likes]
+            "song_likes": {user.id:user.to_dict() for user in self.song_likes}
         }

@@ -10,14 +10,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { deleteSongThunk } from "../../../store/songs";
 import { useModal } from "../../../context/Modal";
-import { getSongThunk } from "../../../store/songs";
+import {
+  getSongThunk,
+  addLikeThunk,
+  deleteLikeThunk,
+} from "../../../store/songs";
 
 // add likes_count method
 
 // songLikes = song.song_likes
 // songLikesArr = Object.values(songLikes)
 // numLikes = songLikesArr.length
-
 const SongItem = ({ song }) => {
   const currentUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.UserPage.userProfile);
@@ -26,6 +29,18 @@ const SongItem = ({ song }) => {
   const { closeModal } = useModal();
   // const userSongs = useSelector(state => state.Songs.userSongs);
   // const { userId } = useParams();
+
+  const clickToLike = () => {
+    const song_likes = song.song_likes;
+    console.log("what is song_likes", song_likes);
+    console.log("conditional", song_likes[currentUser.id]);
+
+    if (song_likes[currentUser.id]) {
+      dispatch(deleteLikeThunk(song.id, currentUser));
+    } else {
+      dispatch(addLikeThunk(song.id, currentUser));
+    }
+  };
 
   return (
     <div className="song-item-container">
@@ -70,7 +85,7 @@ const SongItem = ({ song }) => {
         </div>
         <div className="bottom-right-container">
           <div className="like-button-container">
-            <button className="like-button">
+            <button className="like-button" onClick={clickToLike}>
               <i className="fa-solid fa-heart"></i>
               {song.like_count}
             </button>

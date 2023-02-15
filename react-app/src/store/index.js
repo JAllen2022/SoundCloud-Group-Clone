@@ -4,7 +4,6 @@ import commentsReducer from './comments';
 import sessionReducer from './session';
 import songsReducer from './songs';
 import userPageReducer from './userPage'
-import likeReducer from './likes'
 
 const rootReducer = combineReducers({
   session: sessionReducer,

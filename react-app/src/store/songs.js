@@ -40,14 +40,14 @@ const deleteSong = (songId) => ({
   songId,
 });
 
-const addLike = (songId) => ({
+const addLike = (songId, current_user) => ({
   type: ADD_LIKE,
-  songId,
+  payload: { songId, current_user },
 });
 
-const deleteLike = (songId) => ({
+const deleteLike = (songId, current_user) => ({
   type: DELETE_LIKE,
-  songId,
+  payload: { songId, current_user },
 });
 
 // Thunk Action Creators
@@ -136,20 +136,20 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
 };
 
 // Add Like
-export const addLikeThunk = (songId) => async (dispatch) => {
+export const addLikeThunk = (songId, current_user) => async (dispatch) => {
   const res = await fetch(`/api/songs/${songId}/likes`, {
     method: "POST",
   });
   if (res.ok) {
-    dispatch(addLike(songId));
+    dispatch(addLike(songId, current_user));
   }
 };
 
 // Delete Like
-export const deleteLikeThunk = (songId) => async (dispatch) => {
+export const deleteLikeThunk = (songId, current_user) => async (dispatch) => {
   const res = await fetch(`/api/songs/${songId}/likes`, { method: "DELETE" });
   if (res.ok) {
-    dispatch(deleteLike(songId));
+    dispatch(deleteLike(songId, current_user));
   }
 };
 
@@ -195,15 +195,46 @@ const songsReducer = (state = initialState, action) => {
       delete newState.allSongs[action.songId];
       return newState;
 
-    case ADD_LIKE:
-      newState.allSongs = { ...state.allSongs, [action.songId]: {...state.allSongs[action.songId]}}
-      newState.allSongs[action.songId].like_count++;
-      
+    case ADD_LIKE: {
+      const { songId, current_user } = action.payload;
+      if (Object.values(newState.allSongs).length) {
+        newState.allSongs = { ...state.allSongs };
+        newState.allSongs[songId] = { ...state.allSongs[songId] };
+        newState.allSongs[songId].song_likes = {
+          ...state.allSongs[songId].song_likes,
+        };
+        newState.allSongs[songId].song_likes[current_user.id] = current_user;
+        newState.allSongs[songId].like_count++;
+      }
+      if (Object.values(newState.singleSong).length) {
+        newState.singleSong = { ...state.singleSong };
+        newState.singleSong.like_count++;
+        newState.singleSong.song_likes = { ...state.singleSong.song_likes };
+        newState.singleSong.song_likes[current_user.id] = current_user;
+      }
       return newState;
-    case DELETE_LIKE:
-      newState.singleSong = { ...state.singleSong }
-      delete newState.singleSong[action.]
-      return newState
+    }
+    case DELETE_LIKE: {
+      const { songId, current_user } = action.payload;
+      if (Object.values(newState.allSongs).length) {
+        newState.allSongs = { ...state.allSongs };
+        newState.allSongs[songId] = { ...state.allSongs[songId] };
+        newState.allSongs[songId].song_likes = {
+          ...state.allSongs[songId].song_likes,
+        };
+        delete newState.allSongs[songId].song_likes[current_user.id];
+        newState.allSongs[songId].like_count--;
+      }
+      if (Object.values(newState.singleSong).length) {
+        newState.singleSong = { ...state.singleSong };
+        newState.singleSong.like_count--;
+        newState.singleSong.song_likes = { ...state.singleSong.song_likes };
+        delete newState.singleSong.song_likes[current_user.id];
+      }
+      // newState.singleSong = { ...state.singleSong };
+      // newState.singleSong[action.songId].like_count--;
+      return newState;
+    }
     // Default
     default:
       return state;

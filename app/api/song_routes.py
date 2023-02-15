@@ -15,7 +15,7 @@ def songs():
       Query for all songs and returns them in a list of song dictionaries
     """
     songs = Song.query.all()
-    return [song.to_dict() for song in songs]
+    return [song.to_dict_single_song() for song in songs]
 
 
 @song_routes.route("/<int:id>")
@@ -171,6 +171,10 @@ def add_like(songId):
     song = Song.query.get(songId)
     print("song likes is this :", song.song_likes)
     song.song_likes.append(current_user)
+    print("song likes is this :", song.song_likes)
+
+    db.session.add(song)
+    db.session.commit()
 
     return {"message":"Like Successful"}
 
@@ -178,13 +182,11 @@ def add_like(songId):
 @song_routes.route('/<int:songId>/likes', methods=['DELETE'])
 @login_required
 def remove_like(songId):
-    like = likes.query.filter(likes.songs == songId).filter(likes.users == current_user.id).get()
+    song = Song.query.get(songId)
+    print("song likes is this :", song.song_likes)
+    song.song_likes.remove(current_user)
+    print("song likes is this :", song.song_likes)
 
-    print("checking our like object", like)
-
-    if not like:
-        return {"errors": "like not found"}, 404
-
-    db.session.delete(like)
+    db.session.add(song)
     db.session.commit()
     return {"message": "Delete successful"}
