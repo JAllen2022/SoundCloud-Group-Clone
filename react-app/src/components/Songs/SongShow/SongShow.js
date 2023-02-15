@@ -1,10 +1,13 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk } from "../../../store/songs";
 import { Link } from "react-router-dom";
 import CreateComment from "../../Comments/CreateComment/CreateComment";
 import SongPageComments from "../../Comments/SongPageComments/SongPageComments";
+import OpenModalButton from "../../OpenModalButton";
+import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
+import { deleteSongThunk } from "../../../store/songs";
 // import AllLikes from "../Likes/AllLikes";
 
 import "./SongShow.css";
@@ -12,9 +15,11 @@ import "./SongShow.css";
 
 const SongShow = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { songId } = useParams();
     const song = useSelector(state => state.Songs.singleSong);
-    // const currentUser = useSelector(state => state.session.user);
+    const currentUser = useSelector(state => state.session.user);
+
 
     useEffect(() => {
         dispatch(getSongThunk(songId))
@@ -93,6 +98,20 @@ const SongShow = () => {
                                 </Link>
                             </div>
                         </div>
+                        {currentUser && currentUser.id == song.user_id ?
+                        <div className="edit-song-button">
+                            <OpenModalButton
+                                className="edit-user-modal-button"
+                                modalComponent={<UploadPage editSong={true} />}
+                                buttonText={<i className="fa-regular fa-pen-to-square"></i>}
+                            />
+                        </div> : ""
+                        }
+                        {currentUser && currentUser.id == song.user_id ?
+                        <div className="delete-song-button-container">
+                            <button onClick={() => dispatch(deleteSongThunk(song.id)).then(() => history.push('/songs'))} className="delete-song-button"><i className="fa-solid fa-trash"></i></button>
+                        </div> : ""
+                        }
                     </div>
                     <div className="user-info-comments-container">
                         <div className="left-user-container">

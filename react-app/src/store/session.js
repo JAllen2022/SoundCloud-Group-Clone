@@ -1,7 +1,9 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const EDIT_USER = "session/EDIT_USER";
 
+// ~~~~~~~~~~~~~~~~~~~~~~ Action Creators ~~~~~~~~~~~~~~~~~~~~~~
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -11,7 +13,12 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null };
+const editUser = (user) => ({
+	type: EDIT_USER,
+	user
+})
+
+// ~~~~~~~~~~~~~~~~~~~~~~ User Session Thunks ~~~~~~~~~~~~~~~~~~~~~~
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -94,12 +101,33 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const editUserThunk = (user) => async (dispatch) => {
+	const res = await fetch(`/api/users/${user.id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(user),
+	})
+	if (res.ok) {
+		const editedUser = await res.json();
+		dispatch(editUser(editedUser));
+		return editedUser;
+	} else {
+		return res
+	}
+}
+
+const initialState = { user: null };
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case EDIT_USER:
+			return { ...state, user: action.user }
 		default:
 			return state;
 	}

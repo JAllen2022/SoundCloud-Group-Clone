@@ -1,6 +1,7 @@
 // constants
 
 const GET_SONGS = "songs/GET_SONGS";
+const GET_USER_SONGS = "songs/GET_USER_SONGS";
 const GET_SONG = "songs/GET_SONG";
 const CREATE_SONG = "songs/CREATE_SONG";
 const EDIT_SONG = "songs/EDIT_SONG";
@@ -10,6 +11,11 @@ const DELETE_SONG = "songs/DELETE_SONG";
 const loadSongs = (songs) => ({
   type: GET_SONGS,
   songs,
+});
+
+const loadUserSongs = (songs) => ({
+  type: GET_USER_SONGS,
+  songs
 });
 
 const loadSong = (song) => ({
@@ -46,6 +52,16 @@ export const getSongsThunk = () => async (dispatch) => {
   }
 };
 
+// Get User Songs
+export const getUserSongsThunk = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/users/${userId}/songs`);
+
+  if (res.ok) {
+    const songs = await res.json();
+    dispatch(loadUserSongs(songs))
+    return songs
+  }
+}
 // Get song
 export const getSongThunk = (songId) => async (dispatch) => {
   const res = await fetch(`/api/songs/${songId}`);
@@ -78,13 +94,10 @@ export const createSongThunk =
   };
 
 // Edit Song
-export const editSongThunk = (song) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${song.id}`, {
+export const editSongThunk = (song, songId) => async (dispatch) => {
+  const res = await fetch(`/api/songs/${songId}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(song),
+    body: song,
   });
   if (res.ok) {
     const song = await res.json();
@@ -112,7 +125,7 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
 };
 
 // Reducer
-const initialState = { allSongs: {}, singleSong: {} };
+const initialState = { allSongs: {}, singleSong: {}, userSongs: {} };
 
 const songsReducer = (state = initialState, action) => {
   let newState = { ...state };
@@ -121,6 +134,12 @@ const songsReducer = (state = initialState, action) => {
     case GET_SONGS:
       newState = { allSongs: {}, singleSong: {} };
       action.songs.forEach((song) => (newState.allSongs[song.id] = song));
+      return newState;
+
+    // Get All User Songs
+    case GET_USER_SONGS:
+      newState = { allSongs: {}, singleSong: {}, userSongs: {} };
+      action.songs.forEach((song) => (newState.userSongs[song.id] = song));
       return newState;
 
     // Get Song

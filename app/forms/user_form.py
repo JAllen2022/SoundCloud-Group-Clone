@@ -3,7 +3,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Length
 
 class UserForm(FlaskForm):
-    email=StringField('Email', validators=[DataRequired()])
+    email=StringField('Email')
     display_name=StringField('Display Name')
     first_name=StringField('First Name')
     last_name=StringField('Last Name')

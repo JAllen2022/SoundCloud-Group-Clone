@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
         <div className="nav-page-container">
             <div className="nav-bar">
                 <div className="header-left">
-                    <NavLink className="home-link" exact to="/">
+                    <NavLink className="home-link" exact to="/songs">
                         Home
                     </NavLink>
                 </div>

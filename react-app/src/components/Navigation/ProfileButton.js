@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,9 +40,14 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    <div className="prof-pic-and-displayName">
       <button className="profile-pic-button" onClick={openMenu}>
         <i className="fas fa-user-circle fa-lg" />
       </button>
+      <div className="navbar-display-name">
+        {user.display_name}
+      </div>
+    </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
