@@ -12,7 +12,7 @@ const UploadPage = ({ editSong = false, songId}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentSong = useSelector(state => state.Songs.singleSong)
-  console.log("currentSong :", currentSong)
+  // console.log("currentSong :", currentSong)
   const { closeModal } = useModal();
 
   //     const [previewImage, setPreviewImage] = useState("");
@@ -60,7 +60,7 @@ const UploadPage = ({ editSong = false, songId}) => {
     // If we are creating a new song, add the song file to the FormData object
     if (!editSong) data.append("song", song);
     // If the user uploaded a new image file, add the image file to the FormData object
-    if(songImage) data.append("picture", songImage);
+    if(typeof songImage === "object") data.append("picture", songImage);
     data.append("title", title);
     data.append("artist", artist);
     data.append("genre", genre);
@@ -173,6 +173,15 @@ function UploadSong({ setSong, setUploadedSong, setLength}) {
           },
           false
         );
+        // Remove event listener
+        audio.removeEventListener("loadedmetadata",  function () {
+            const duration = toMinutes(audio.duration);
+            console.log(
+              "The duration of the song is of: " + duration + " seconds"
+            );
+            setLength(duration);
+          },
+          false)
       };
       reader.readAsDataURL(file);
     }
