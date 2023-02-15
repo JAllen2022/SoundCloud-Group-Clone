@@ -15,7 +15,7 @@ const loadSongs = (songs) => ({
 
 const loadUserSongs = (songs) => ({
   type: GET_USER_SONGS,
-  songs
+  songs,
 });
 
 const loadSong = (song) => ({
@@ -58,10 +58,10 @@ export const getUserSongsThunk = (userId) => async (dispatch) => {
 
   if (res.ok) {
     const songs = await res.json();
-    dispatch(loadUserSongs(songs))
-    return songs
+    dispatch(loadUserSongs(songs));
+    return songs;
   }
-}
+};
 // Get song
 export const getSongThunk = (songId) => async (dispatch) => {
   const res = await fetch(`/api/songs/${songId}`);
@@ -77,21 +77,20 @@ export const getSongThunk = (songId) => async (dispatch) => {
 };
 
 // Create Song
-export const createSongThunk =
-  (data) => async (dispatch) => {
-    const res = await fetch("/api/songs", {
-      method: "POST",
-      body: data
-    });
+export const createSongThunk = (data) => async (dispatch) => {
+  const res = await fetch("/api/songs", {
+    method: "POST",
+    body: data,
+  });
 
-    if (res.ok) {
-      const createdSong = await res.json();
-      dispatch(createSong(createdSong));
-      return createdSong;
-    } else {
-      return res;
-    }
-  };
+  if (res.ok) {
+    const createdSong = await res.json();
+    dispatch(createSong(createdSong));
+    return createdSong;
+  } else {
+    return res;
+  }
+};
 
 // Edit Song
 export const editSongThunk = (song, songId) => async (dispatch) => {

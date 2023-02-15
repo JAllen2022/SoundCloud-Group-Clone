@@ -8,10 +8,11 @@ import { useModal } from "../../../../context/Modal.js";
 
 import { createSongThunk } from "../../../../store/songs";
 
-const UploadPage = ({ editSong = false, songId}) => {
+const UploadPage = ({ editSong = false, songEdit }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const currentSong = useSelector(state => state.Songs.singleSong)
+  let currentSong = useSelector((state) => state.Songs.singleSong);
+  if (songEdit) currentSong = songEdit;
   // console.log("currentSong :", currentSong)
   const { closeModal } = useModal();
 
@@ -23,7 +24,9 @@ const UploadPage = ({ editSong = false, songId}) => {
   const [title, setTitle] = useState(currentSong?.title || "");
   const [genre, setGenre] = useState(currentSong?.genre || "");
   const [artist, setArtist] = useState(currentSong?.artist || "");
-  const [description, setDescription] = useState(currentSong?.description  || "" );
+  const [description, setDescription] = useState(
+    currentSong?.description || ""
+  );
   const [song, setSong] = useState("");
   const [songImage, setSongImage] = useState(currentSong?.song_url_image || "");
 
@@ -34,23 +37,6 @@ const UploadPage = ({ editSong = false, songId}) => {
 
   const currentUser = useSelector((state) => state.session.user);
 
-
-  useEffect(() => {
-    if(songId) dispatch(getSongThunk(songId))
-  }, [dispatch])
-
-  useEffect(() => {
-    if (Object.values(currentSong).length) {
-      setTitle(currentSong?.title)
-      setArtist(currentSong?.artist)
-      setDescription(currentSong?.description)
-      setGenre(currentSong?.genre)
-      setLength(currentSong?.length)
-      setSong(currentSong?.song)
-      setSongImage(currentSong?.song_url_image)
-    }
-  },[currentSong])
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,15 +46,15 @@ const UploadPage = ({ editSong = false, songId}) => {
     // If we are creating a new song, add the song file to the FormData object
     if (!editSong) data.append("song", song);
     // If the user uploaded a new image file, add the image file to the FormData object
-    if(typeof songImage === "object") data.append("picture", songImage);
+    if (typeof songImage === "object") data.append("picture", songImage);
     data.append("title", title);
     data.append("artist", artist);
     data.append("genre", genre);
     data.append("length", length);
     data.append("description", description);
 
-    console.log("checking song image", songImage)
-    console.log("checking our package", data)
+    console.log("checking song image", songImage);
+    console.log("checking our package", data);
 
     setSongLoading(true);
 
@@ -76,9 +62,10 @@ const UploadPage = ({ editSong = false, songId}) => {
       // If we are editing an existing song, dispatch the EDIT song thunk
       dispatch(editSongThunk(data, currentSong.id))
         .then((res) => {
-          closeModal()
+          closeModal();
           setSongLoading(false);
-          history.push(`/songs/${res.id}`)})
+          history.push(`/songs/${res.id}`);
+        })
         .catch(() => {
           setSongLoading(false);
           console.log("error with uploading song");
@@ -132,13 +119,12 @@ const UploadPage = ({ editSong = false, songId}) => {
   );
 };
 
-function UploadSong({ setSong, setUploadedSong, setLength}) {
+function UploadSong({ setSong, setUploadedSong, setLength }) {
   const toMinutes = (length) => {
     const minutes = length / 60;
     return minutes.toFixed(2);
     // return +`${Math.floor(minutes.toFixed(2))}:${Math.ceil((minutes.toFixed(2)%1)*60)}`;
   };
-
 
   // const populateImagePreview = (e) => {
   //   const file = e.target.files[0]
@@ -152,7 +138,7 @@ function UploadSong({ setSong, setUploadedSong, setLength}) {
   //   }
   // };
 
-// npm install jsmediatags --save
+  // npm install jsmediatags --save
 
   const updateSong = (e) => {
     const file = e.target.files[0];
@@ -174,45 +160,47 @@ function UploadSong({ setSong, setUploadedSong, setLength}) {
           false
         );
         // Remove event listener
-        audio.removeEventListener("loadedmetadata",  function () {
+        audio.removeEventListener(
+          "loadedmetadata",
+          function () {
             const duration = toMinutes(audio.duration);
             console.log(
               "The duration of the song is of: " + duration + " seconds"
             );
             setLength(duration);
           },
-          false)
+          false
+        );
       };
       reader.readAsDataURL(file);
     }
 
-  // new jsmediatags.Reader(file)
-  //       .setTagsToRead(["title", "artist","picture"]).read({
-  //         onSuccess: function (tag) {
+    // new jsmediatags.Reader(file)
+    //       .setTagsToRead(["title", "artist","picture"]).read({
+    //         onSuccess: function (tag) {
 
-  //           console.log("this is what tag is", tag)
-  //           let tags = tag.tags;
+    //           console.log("this is what tag is", tag)
+    //           let tags = tag.tags;
 
-  //           console.log("this is what tag.tags is", tags)
+    //           console.log("this is what tag.tags is", tags)
 
-  //         let base64String = "";
+    //         let base64String = "";
 
-  //         for (let i = 0; i < tags.picture.data.length; i++) {
-  //           base64String += String.fromCharCode(tags.picture.data[i]);
-  //         }
+    //         for (let i = 0; i < tags.picture.data.length; i++) {
+    //           base64String += String.fromCharCode(tags.picture.data[i]);
+    //         }
 
-  //         console.log("base64string is", base64String)
-  //         let dataUrl = "data:" + tags.picture.format + ";base64," +window.btoa(base64String);
+    //         console.log("base64string is", base64String)
+    //         let dataUrl = "data:" + tags.picture.format + ";base64," +window.btoa(base64String);
 
-  //         console.log("this is what dataUrl is", dataUrl)
+    //         console.log("this is what dataUrl is", dataUrl)
 
-  //       //   document.getElementById('cover').setAttribute('src',dataUrl);
-  //       //     },
-  //       //     onError: function(error) {
-  //       //       console.log(':(', error.type, error.info);
-  //       }
-  //     });
-
+    //       //   document.getElementById('cover').setAttribute('src',dataUrl);
+    //       //     },
+    //       //     onError: function(error) {
+    //       //       console.log(':(', error.type, error.info);
+    //       }
+    //     });
 
     setSong(file);
     setUploadedSong(true);

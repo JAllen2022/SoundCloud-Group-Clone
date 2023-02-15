@@ -9,7 +9,7 @@ import app.s3_helpers as s3
 song_routes = Blueprint('songs', __name__)
 
 # get all songs for our feed page
-@song_routes.route('/')
+@song_routes.route('')
 def songs():
     """
       Query for all songs and returns them in a list of song dictionaries
@@ -67,7 +67,7 @@ def get_song(id):
 #     if form.errors:
 #         return {"errors":form.errors}, 400
 
-@song_routes.route('/', methods=['POST'])
+@song_routes.route('', methods=['POST'])
 @login_required
 def upload_song():
     if "song" not in request.files:
