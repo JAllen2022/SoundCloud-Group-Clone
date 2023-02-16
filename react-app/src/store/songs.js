@@ -8,6 +8,7 @@ const EDIT_SONG = "songs/EDIT_SONG";
 const DELETE_SONG = "songs/DELETE_SONG";
 const ADD_LIKE = "songs/ADD_LIKE";
 const DELETE_LIKE = "songs/DELETE_LIKE";
+const PLAY_SONG = "songs/PLAY_SONG";
 
 // Action Creators
 const loadSongs = (songs) => ({
@@ -49,6 +50,11 @@ const deleteLike = (songId, current_user) => ({
   type: DELETE_LIKE,
   payload: { songId, current_user },
 });
+
+export const playSong = (song) => ({
+  type: PLAY_SONG,
+  song
+})
 
 // Thunk Action Creators
 
@@ -154,7 +160,7 @@ export const deleteLikeThunk = (songId, current_user) => async (dispatch) => {
 };
 
 // Reducer
-const initialState = { allSongs: {}, singleSong: {}, userSongs: {} };
+const initialState = { allSongs: {}, singleSong: {}, userSongs: {}, playSong:{} };
 
 const songsReducer = (state = initialState, action) => {
   let newState = { ...state };
@@ -195,6 +201,7 @@ const songsReducer = (state = initialState, action) => {
       delete newState.allSongs[action.songId];
       return newState;
 
+    // Add Like
     case ADD_LIKE: {
       const { songId, current_user } = action.payload;
       if (Object.values(newState.allSongs).length) {
@@ -214,6 +221,8 @@ const songsReducer = (state = initialState, action) => {
       }
       return newState;
     }
+
+    // Delete Like
     case DELETE_LIKE: {
       const { songId, current_user } = action.payload;
       if (Object.values(newState.allSongs).length) {
@@ -235,6 +244,11 @@ const songsReducer = (state = initialState, action) => {
       // newState.singleSong[action.songId].like_count--;
       return newState;
     }
+
+    // Play Selected Song
+    case PLAY_SONG:
+      return { ...state, playSong: action.song };
+
     // Default
     default:
       return state;

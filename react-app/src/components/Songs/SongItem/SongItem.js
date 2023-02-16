@@ -8,7 +8,7 @@ import "./SongItem.css";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { deleteSongThunk } from "../../../store/songs";
+import { deleteSongThunk, playSong } from "../../../store/songs";
 import { useModal } from "../../../context/Modal";
 import {
   getSongThunk,
@@ -55,7 +55,7 @@ const SongItem = ({ song }) => {
       </div>
       <div className="right-item-info-container">
         <div className="play-displayName-title">
-          <div className="play">
+          <div className="play" onClick={()=> dispatch( playSong(song))}>
             <img
               className="play-button-image"
               src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"

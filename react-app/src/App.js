@@ -10,6 +10,7 @@ import SongShow from "./components/Songs/SongShow/SongShow.js";
 import UploadPage from "./components/Navigation/Upload/UploadPage/UploadPage.js"
 import UserPage from "./components/UserPage/UserPage";
 import SplashPage from "./components/SplashPage/SplashPage";
+import SongPlayer from "./components/SongPlayer/SongPlayer";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,8 @@ function App() {
           </Route>
         </Switch>
       )}
+      <SongPlayer />
+
     </>
   );
 }
