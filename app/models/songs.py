@@ -20,8 +20,8 @@ class Song(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
     user = db.relationship("User", back_populates = "songs")
-    song_likes = db.relationship("User", secondary=likes, back_populates="user_likes", cascade="all, delete")
-    comments = db.relationship("Comment", back_populates="song")
+    song_likes = db.relationship("User", secondary=likes, back_populates="user_likes")
+    comments = db.relationship("Comment", back_populates="song", cascade="all, delete")
 
     def to_dict(self):
         return {

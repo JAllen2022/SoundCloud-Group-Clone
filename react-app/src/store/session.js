@@ -2,6 +2,7 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const EDIT_USER = "session/EDIT_USER";
+const SET_HEADER = "session/SET_HEADER";
 
 // ~~~~~~~~~~~~~~~~~~~~~~ Action Creators ~~~~~~~~~~~~~~~~~~~~~~
 const setUser = (user) => ({
@@ -17,6 +18,11 @@ const editUser = (user) => ({
 	type: EDIT_USER,
 	user
 })
+
+const setHeader = (image) => ({
+  type: SET_HEADER,
+  image,
+});
 
 // ~~~~~~~~~~~~~~~~~~~~~~ User Session Thunks ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -101,20 +107,31 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
-export const editUserThunk = (user) => async (dispatch) => {
-	const res = await fetch(`/api/users/${user.id}`, {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(user),
-	})
+export const editUserThunk = (user, userId) => async (dispatch) => {
+	const res = await fetch(`/api/users/${userId}`, {
+    method: "PUT",
+    body: user,
+  });
 	if (res.ok) {
 		const editedUser = await res.json();
 		dispatch(editUser(editedUser));
 		return editedUser;
 	} else {
 		return res
+	}
+}
+
+export const setHeaderImageThunk = (data, userId) => async (dispatch) => {
+	const res = await fetch(`/api/users/${userId}/header-image`, {
+		method: "POST",
+		body: data,
+	});
+	if (res.ok) {
+		const user = await res.json();
+		dispatch(setHeader(user.header_image_url));
+		return user.header_image_url;
+	} else {
+		return res;
 	}
 }
 
@@ -128,6 +145,10 @@ export default function reducer(state = initialState, action) {
 			return { user: null };
 		case EDIT_USER:
 			return { ...state, user: action.user }
+		case SET_HEADER:
+			const newState = { ...state, user: { ...state.user } };
+			newState.header_image_url = action.image
+			return newState;
 		default:
 			return state;
 	}

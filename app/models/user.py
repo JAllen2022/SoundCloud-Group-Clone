@@ -23,9 +23,9 @@ class User(db.Model, UserMixin):
     profile_image_url = db.Column(db.String(255))
     header_image_url = db.Column(db.String(255))
 
-    songs = db.relationship("Song", back_populates="user")
+    songs = db.relationship("Song", back_populates="user", cascade="all, delete")
     user_likes = db.relationship("Song", secondary=likes, back_populates="song_likes", cascade="all, delete")
-    comments = db.relationship("Comment", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
