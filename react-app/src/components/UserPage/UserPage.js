@@ -80,9 +80,10 @@ const UserPage = () => {
   //
   // };
 
+
   return (
     <div className="user-page-container">
-      <div className="user-page-header">
+      <div className={user.header_image_url ? '' : 'user-page-header'}>
         <div className="header-image-container">
           <img
             src={user.header_image_url ? user.header_image_url : ""}
@@ -92,6 +93,7 @@ const UserPage = () => {
         <div className="prof-pic-info">
           <div className="user-prof-pic">
             <img
+              className="user-prof-img"
               src={user?.profile_image_url ? user.profile_image_url : profPic}
               alt="profile picture"
             />
@@ -105,13 +107,6 @@ const UserPage = () => {
             <div className="user-country">{user?.country}</div>
           </div>
           {currentUser.id == userId && (
-            //             <form id="form" action="http://example.com">
-            //                  <input type="file" id="file">
-            //              </form>
-            //              document.getElementById("file").onchange = function() {
-            //               document.getElementById("form").submit();
-            // }
-            // <form
             //   id="submit-header-image"
             //   onSubmit={handleSubmit}
             //   action={`/user/${currentUser.id}`}

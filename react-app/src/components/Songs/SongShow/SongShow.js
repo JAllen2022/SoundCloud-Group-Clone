@@ -69,18 +69,24 @@ const SongShow = () => {
         <div className="left-header-container">
           <div className="play-artist-title-name-created">
             <div className="play-artist-title-name">
-              <div className="show-play">
-                <button
+              <div className="show-play play" onClick={() => dispatch(playSong(song))}>
+                {/* <button
                   className="show-play-button"
                   onClick={() => dispatch(playSong(song))}
-                >
-                  Play Button
-                </button>
+                > */}
+                  <img
+                    className="show-play-button-image"
+                    src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
+                    alt="orange play button"
+                  />
+                {/* </button> */}
               </div>
-              <div className="show-artist-title">
-                {song.artist} - {song.title}
+              <div className="show-artist-title-name">
+                <div className="show-artist-title">
+                  {song.artist} - {song.title}
+                </div>
+                <div className="show-name">{song.user?.display_name}</div>
               </div>
-              <div className="show-name">{song.user?.display_name}</div>
             </div>
             <div className="created">{display_time}</div>
           </div>
@@ -94,10 +100,10 @@ const SongShow = () => {
       </div>
       <div className="under-header-container">
         <div className="left-under-container">
+          <div className="add-comment-form">
+            <CreateComment />
+          </div>
           <div className="song-interact-container">
-            <div className="add-comment-form">
-              <CreateComment />
-            </div>
             <div className="show-likes-count">
               <button className="show-like-button" onClick={clickToLike}>
                 <i className="fa-solid fa-heart"></i>

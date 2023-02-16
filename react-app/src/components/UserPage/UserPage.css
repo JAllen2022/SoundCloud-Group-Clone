@@ -1,0 +1,9 @@
+.user-page-header {
+  background: linear-gradient(to right, rgb(71, 184, 222), lightgreen);
+}
+
+.user-prof-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}

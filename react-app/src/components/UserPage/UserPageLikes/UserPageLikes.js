@@ -65,7 +65,7 @@ const UserPageLikeItem = ({ song }) => {
     return (
         <div className="up-likes-song-item-container">
             <div className="up-likes-song-image-play-container">
-                <Link className="up-image-link" to={`/songs/${song.id}`}>
+                <Link className="up-image link" to={`/songs/${song.id}`}>
                     <img
                         src={song.song_image_url}
                         alt={song.title}

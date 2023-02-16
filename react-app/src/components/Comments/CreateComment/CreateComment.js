@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { createCommentThunk, editCommentThunk } from "../../../store/comments";
+// import profPic from "../../../assets/profPic.jpeg";
 import "./CreateComment.css";
 
 const CreateComment = ({ currentComment, setEditing }) => {
@@ -45,11 +46,20 @@ const CreateComment = ({ currentComment, setEditing }) => {
         setBody("")
     }
 
-
+    let defaultCommentPic = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     return (
-        <>
+        <div className="create-comment-container">
             <div className="create-comment-user-container">
-                <img className="create-comment-user-image" src={currentUser.profile_image_url} alt={currentUser.display_name} />
+                <img
+                className="create-comment-user-image"
+                src={
+                    currentUser.profile_image_url
+                    ? currentUser.profile_image_url
+                    : defaultCommentPic
+                }
+                alt={currentUser.display_name}
+                />
+                {/* <img className="create-comment-user-image" src={currentUser.profile_image_url} alt={currentUser.display_name} /> */}
             </div>
             <form className="comment-form" onSubmit={handleSubmit} type='submit'>
                 <ul className="errors-comment">
@@ -64,11 +74,11 @@ const CreateComment = ({ currentComment, setEditing }) => {
                             value={body}
                             onChange={(e)=> setBody(e.target.value)}
                         />
-                        <input type="submit" style={{ display: 'none' }}  />
                     </div>
+                        <input type="submit" style={{ display: 'none' }}  />
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 
