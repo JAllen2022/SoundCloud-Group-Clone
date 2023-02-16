@@ -61,3 +61,8 @@ class Song(db.Model):
             "comments": [com.to_dict() for com in self.comments],
             "song_likes": {user.id:user.to_dict() for user in self.song_likes}
         }
+
+    def get_song_likes(self):
+        return {
+            "song_likes": {user.id:user.to_dict() for user in self.song_likes}
+        }

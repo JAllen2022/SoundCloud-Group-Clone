@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import playButton from "../../../assets/orange-play-btn.png";
 import { useParams } from "react-router-dom";
-
 import commentBox from "../../../assets/icons8-comments-30.png";
 import OpenModalButton from "../../OpenModalButton";
 import "./SongItem.css";
@@ -15,6 +14,7 @@ import {
   addLikeThunk,
   deleteLikeThunk,
 } from "../../../store/songs";
+import { deleteUserLike } from "../../../store/userPage";
 
 // add likes_count method
 
@@ -27,6 +27,9 @@ const SongItem = ({ song }) => {
   const dispatch = useDispatch();
   // const currentSong = useSelector(state => state.Songs.singleSong)
   const { closeModal } = useModal();
+  const { userId } = useParams();
+
+
   // const userSongs = useSelector(state => state.Songs.userSongs);
   // const { userId } = useParams();
 
@@ -36,9 +39,13 @@ const SongItem = ({ song }) => {
     console.log("conditional", song_likes[currentUser.id]);
 
     if (song_likes[currentUser.id]) {
-      dispatch(deleteLikeThunk(song.id, currentUser));
+      dispatch(deleteLikeThunk(song.id, currentUser, userId));
+      // Update user page state as well
+      // if(Object.values(user).length) dispatch(deleteUserLike(song.id,currentUser.id))
     } else {
       dispatch(addLikeThunk(song.id, currentUser));
+      // Update user page state as well
+      // if(Object.values(user).length) dispatch(addUserLike(song.id,currentUser.id))
     }
   };
 

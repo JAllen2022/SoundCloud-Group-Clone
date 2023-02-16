@@ -51,5 +51,5 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_image_url': self.profile_image_url,
             'header_image_url': self.header_image_url,
-            'user_likes': [song.to_dict() for song in self.user_likes]
+            'num_user_likes': len(self.user_likes)
         }

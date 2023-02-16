@@ -14,7 +14,7 @@ const UserSongs = () => {
 
     let userSongsArr;
     let userSongItems;
-    if (userSongs) {
+    if (Object.values(userSongs).length) {
         userSongsArr = Object.values(userSongs);
         userSongItems = userSongsArr.map((song) => {
             return <SongItem key={song.id} song={song} />
@@ -27,7 +27,7 @@ const UserSongs = () => {
     }, [dispatch, userId])
 
 
-    if (!user || !userSongs) return null;
+    if (!Object.values(user).length) return null;
 
     return (
         <div className="user-songs-header">

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { loadUserThunk, headerUserPage } from "../../store/userPage";
 import UserSongs from "./UserSongs/UserSongs";
 import profPic from "../../assets/profPic.jpeg";
-import { getUserSongsThunk } from "../../store/songs";
+import { getUserSongsThunk, getUserLikedSongsThunk } from "../../store/songs";
 import { setHeaderImageThunk } from "../../store/session";
 import UserPageLikes from "./UserPageLikes/UserPageLikes";
 
@@ -18,6 +18,9 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.UserPage.userProfile);
+  // const userLikedSongs = useSelector((state) => state.Songs.userLikedSongs);
+  // const userSongs = useSelector((state) => state.Songs.userSongs);
+
   const [headerImage, setHeaderImage] = useState("");
   // console.log(user)
 
@@ -57,7 +60,11 @@ const UserPage = () => {
   //   }, [headerImage]);
 
   useEffect(() => {
+    // Get User information, User Uploaded Songs, and User Liked Songs
     dispatch(loadUserThunk(userId));
+    dispatch(getUserSongsThunk(userId));
+    dispatch(getUserLikedSongsThunk(userId));
+    // ******** Get User comments ********
   }, [dispatch, userId]);
 
   const updateHeaderImage = (e) => {

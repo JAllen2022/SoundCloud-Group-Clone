@@ -27,6 +27,7 @@ def user(id):
     return user.to_dict()
 
 
+
 # Get all comments by user id
 @user_routes.route("/<int:userId>/comments")
 def get_user_comments(id):
@@ -45,12 +46,11 @@ def get_user_comments(id):
 @user_routes.route("/<int:id>/likes")
 def get_user_likes(id):
     """
-      Query for all likes by userId
+      Query for all liked songs by userId
     """
-
     user = User.query.get(id)
-    likes = user.user_likes
-    return [like.to_dict() for like in likes]
+    songs = user.user_likes
+    return {song.id:song.to_dict_single_song() for song in songs}
 
 
 @user_routes.route("/<int:id>/songs")
@@ -60,7 +60,7 @@ def get_user_songs(id):
     """
     user = User.query.get(id)
     songs = user.songs
-    return [song.to_dict() for song in songs]
+    return {song.id:song.to_dict_single_song() for song in songs}
 
 
 

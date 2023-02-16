@@ -7,22 +7,35 @@ import { playSong } from "../../../store/songs";
 import "./UserPageLikes.css";
 import { Link } from "react-router-dom";
 import commentBox from "../../../assets/icons8-comments-30.png";
+import { getUserLikedSongsThunk } from "../../../store/songs";
+import { loadUserThunk } from "../../../store/userPage";
 
 const UserPageLikes = () => {
     const { userId } = useParams();
+    const dispatch = useDispatch()
     // const userLikes = useSelector(state => state.UserPage.userProfile.user_likes);
 
     const user = useSelector(state => state.UserPage.userProfile);
+    const userLikedSongs = useSelector((state) => state.Songs.userLikedSongs);
+    // console.log(userLikedSongs);
 
     let userLikesArray;
-    if (user.user_likes) {
+    if (Object.values(userLikedSongs).length) {
         // Only show the first 7 songs the user has liked
-        const tempArray = user.user_likes.slice(0,7)
-        console.log('we here', tempArray)
+        const tempArray = Object.values(userLikedSongs).slice(0,7)
         userLikesArray = tempArray.map(song => (
-            <UserPageLikeItem song={song} />
-        ))
+            <UserPageLikeItem key={song.id} song={song} />
+            ))
     }
+
+    useEffect(() => {
+        // If the User Liked Songs is an empty object
+        if (Object.values(userLikedSongs).length) {
+            // Get User information, User Uploaded Songs, and User Liked Songs
+            dispatch(loadUserThunk(userId));
+            dispatch(getUserLikedSongsThunk(userId));
+        }
+    }, [dispatch, userId]);
 
     // <div className="likes-count">
     //     <i className="fa-solid fa-heart"></i>
@@ -41,7 +54,7 @@ const UserPageLikes = () => {
                     <div className="user-likes-view-all">
                         <div className="user-likes-likes">
                             <i className="fa-solid fa-heart"></i>
-                            <p>{user.user_likes?.length} likes</p>
+                            <p>{user.num_user_likes} likes</p>
                         </div>
                         <div className="show-view-all">
                             <p>View all</p>

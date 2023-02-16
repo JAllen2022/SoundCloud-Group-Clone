@@ -15,7 +15,7 @@ def songs():
       Query for all songs and returns them in a list of song dictionaries
     """
     songs = Song.query.all()
-    return [song.to_dict_single_song() for song in songs]
+    return {song.id:song.to_dict_single_song() for song in songs}
 
 
 @song_routes.route("/<int:id>")
