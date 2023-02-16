@@ -35,7 +35,8 @@ class Song(db.Model):
             "song_url": self.song_url,
             "song_image_url": self.song_image_url,
             "created_at": self.created_at,
-            "user": self.user.to_dict(),
+            # "user": self.user.to_dict(),
+            "user_display_name":self.user.display_name,
             "like_count":len(self.song_likes), # [ <User1>, <User2>, <User3> ]
             "comment_count":len(self.comments), # [ <User1>, <User2>, <User3> ]
             # "comments": [com.to_dict() for com in self.comments]
@@ -54,6 +55,7 @@ class Song(db.Model):
             "song_image_url": self.song_image_url,
             "created_at": self.created_at,
             "user": self.user.to_dict(),
+            "user_display_name":self.user.display_name,
             "like_count":len(self.song_likes), # [ <User1>, <User2>, <User3> ]
             "comment_count":len(self.comments), # [ <User1>, <User2>, <User3> ]
             "comments": [com.to_dict() for com in self.comments],

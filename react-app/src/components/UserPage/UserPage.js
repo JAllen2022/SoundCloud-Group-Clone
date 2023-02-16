@@ -10,6 +10,7 @@ import UserSongs from "./UserSongs/UserSongs";
 import profPic from "../../assets/profPic.jpeg";
 import { getUserSongsThunk } from "../../store/songs";
 import { setHeaderImageThunk } from "../../store/session";
+import UserPageLikes from "./UserPageLikes/UserPageLikes";
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -152,6 +153,9 @@ const UserPage = () => {
       <div className="user-page-body-container">
         <div className="left-user-page-body-container">
           <UserSongs />
+        </div>
+        <div className="right-user-page-body-container">
+          <UserPageLikes />
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ import UploadPage from "./components/Navigation/Upload/UploadPage/UploadPage.js"
 import UserPage from "./components/UserPage/UserPage";
 import SplashPage from "./components/SplashPage/SplashPage";
 import SongPlayer from "./components/SongPlayer/SongPlayer";
+import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/upload">
             <UploadPage />
+          </Route>
+          <Route path="/users/:userId/likes">
+            <AllUserLikes />
           </Route>
           <Route path="/users/:userId">
             <UserPage />

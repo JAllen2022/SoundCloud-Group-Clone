@@ -73,7 +73,7 @@ const SongItem = ({ song }) => {
               <p className="displayName link">
                 {currentUser.id == song.user_id
                   ? currentUser.display_name
-                  : song.user.display_name}
+                  : song.user_display_name}
               </p>
             </Link>
             <Link className="title-link link" to={`/songs/${song.id}`}>
