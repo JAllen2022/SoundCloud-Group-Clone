@@ -123,6 +123,15 @@
     font-weight: 50;
 }
 
+.liked {
+    color: #ff5500;  
+}
+
+.liked:focus,
+.liked:hover {
+    border-color: #ff5500;
+
+}
 
 .like-button:hover {
     cursor: pointer;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,6 +23,10 @@ const SongShow = () => {
   const { songId } = useParams();
   const song = useSelector((state) => state.Songs.singleSong);
   const currentUser = useSelector((state) => state.session.user);
+  console.log('song', song)
+  console.log('song likes', song.song_likes)
+  console.log('curr user', currentUser)
+  // const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id])
 
   useEffect(() => {
     dispatch(getSongThunk(songId));
@@ -51,17 +55,17 @@ const SongShow = () => {
 
   const clickToLike = () => {
     const song_likes = song.song_likes;
-    console.log("what is song_likes", song_likes);
-    console.log("conditional", song_likes[currentUser.id]);
 
     if (song_likes[currentUser.id]) {
       dispatch(deleteLikeThunk(song.id, currentUser));
+      // setIsLiked(false)
     } else {
       dispatch(addLikeThunk(song.id, currentUser));
+      // setIsLiked(true)
     }
   };
 
-  if (!song) return null;
+  if (!Object.values(song).length) return null;
 
   return (
     <div className="song-show-page">
@@ -104,13 +108,13 @@ const SongShow = () => {
             <CreateComment />
           </div>
           <div className="song-interact-container">
-            <div className="show-likes-count">
-              <button className="show-like-button" onClick={clickToLike}>
+            <div className="show-likes-count link">
+              <button className={song.song_likes[currentUser?.id] ? "liked show-like-button" : "show-like-button" } onClick={clickToLike}>
                 <i className="fa-solid fa-heart"></i>
               </button>
-              <div className="show-likes-count">
-                <Link className="show-likes-link" to={`/songs/${songId}/likes`}>
-                  <i className="fa-solid fa-heart"></i>
+              <div className="show-likes-count link">
+                <Link className="show-likes-link link" to={`/songs/${songId}/likes`}>
+                  <i className="fa-solid fa-heart link"></i>
                   <p>{song.like_count}</p>
                 </Link>
               </div>
@@ -160,7 +164,7 @@ const SongShow = () => {
         <div className="right-under-container">
           <div className="show-song-likes-container">
             <div className="song-likes-header">
-              <Link className="show-likes-link" to={`/songs/${songId}/likes`}>
+              <Link className="show-likes-link link" to={`/songs/${song.id}/likes`}>
                 <div className="show-likes-view-all">
                   <div className="show-likes-likes">
                     <i className="fa-solid fa-heart"></i>

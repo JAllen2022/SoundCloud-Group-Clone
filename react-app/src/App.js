@@ -13,7 +13,7 @@ import SplashPage from "./components/SplashPage/SplashPage";
 import SongPlayer from "./components/SongPlayer/SongPlayer";
 import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
 import AllUserPageComments from "./components/Comments/AllUserPageComments/AllUserPageComments";
-
+import AllSongLikes from './components/Songs/AllSongLikes/AllSongLikes'
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +36,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/songs/:songId/likes">
+            <AllSongLikes />
           </Route>
           <Route path="/songs/:songId">
             <SongShow />

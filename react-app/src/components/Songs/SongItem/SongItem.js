@@ -6,7 +6,7 @@ import OpenModalButton from "../../OpenModalButton";
 import "./SongItem.css";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { deleteSongThunk, playSong } from "../../../store/songs";
 import { useModal } from "../../../context/Modal";
 import {
@@ -16,34 +16,26 @@ import {
 } from "../../../store/songs";
 import { deleteUserLike } from "../../../store/userPage";
 
-// add likes_count method
-
-// songLikes = song.song_likes
-// songLikesArr = Object.values(songLikes)
-// numLikes = songLikesArr.length
 const SongItem = ({ song }) => {
   const currentUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.UserPage.userProfile);
   const dispatch = useDispatch();
-  // const currentSong = useSelector(state => state.Songs.singleSong)
-  const { closeModal } = useModal();
   const { userId } = useParams();
-
-
-  // const userSongs = useSelector(state => state.Songs.userSongs);
-  // const { userId } = useParams();
+  const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id])
 
   const clickToLike = () => {
     const song_likes = song.song_likes;
-    console.log("what is song_likes", song_likes);
-    console.log("conditional", song_likes[currentUser.id]);
+    // console.log("what is song_likes", song_likes);
+    // console.log("conditional", song_likes[currentUser.id]);
 
     if (song_likes[currentUser.id]) {
       dispatch(deleteLikeThunk(song.id, currentUser, userId));
+      setIsLiked(false)
       // Update user page state as well
       // if(Object.values(user).length) dispatch(deleteUserLike(song.id,currentUser.id))
     } else {
       dispatch(addLikeThunk(song.id, currentUser));
+      setIsLiked(true)
       // Update user page state as well
       // if(Object.values(user).length) dispatch(addUserLike(song.id,currentUser.id))
     }
@@ -92,7 +84,7 @@ const SongItem = ({ song }) => {
         </div>
         <div className="bottom-right-container">
           <div className="like-button-container">
-            <button className="like-button" onClick={clickToLike}>
+            <button className={isLiked ? "liked like-button" : "not-liked like-button"} onClick={clickToLike}>
               <i className="fa-solid fa-heart"></i>
               {song.like_count}
             </button>
