@@ -45,9 +45,9 @@ const deleteSong = (songId) => ({
   songId,
 });
 
-const addLike = (songId, current_user) => ({
+const addLike = (songId, current_user, song) => ({
   type: ADD_LIKE,
-  payload: { songId, current_user },
+  payload: { songId, current_user, song }
 });
 
 const deleteLike = (songId, current_user, userId) => ({
@@ -185,7 +185,8 @@ export const addLikeThunk = (songId, current_user) => async (dispatch) => {
     method: "POST",
   });
   if (res.ok) {
-    dispatch(addLike(songId, current_user));
+    const song = await res.json();
+    dispatch(addLike(songId, current_user, song));
   }
 };
 
@@ -220,7 +221,7 @@ const songsReducer = (state = initialState, action) => {
     case GET_USER_SONGS:
       newState = { ...state };
       // action.songs.forEach((song) => (newState.userSongs[song.id] = song));
-      newState.userSongs = { ...state.userSongs, ...action.songs };
+      newState.userSongs = { ...action.songs };
       return newState;
 
     // Get Song
@@ -257,7 +258,7 @@ const songsReducer = (state = initialState, action) => {
 
     // Add Like
     case ADD_LIKE: {
-      const { songId, current_user } = action.payload;
+      const { songId, current_user, song } = action.payload;
       if (Object.values(newState.allSongs).length) {
         // console.log("newState.allSongs", newState.allSongs)
         newState.allSongs = { ...state.allSongs };
@@ -298,6 +299,8 @@ const songsReducer = (state = initialState, action) => {
           newState.userLikedSongs[songId].like_count++;
           newState.userLikedSongs[songId].song_likes[current_user.id] =
             current_user;
+        } else {
+            newState.userLikedSongs[songId] = song
         }
       }
 

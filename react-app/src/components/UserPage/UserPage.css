@@ -1,3 +1,35 @@
+.h-pink {
+  background: linear-gradient(to right, #fe8dc6, #fed1c7);
+}
+
+.h-purple {
+  background: linear-gradient(to right, #7f00ff, #e100ff);
+}
+
+.h-yellow {
+  background: linear-gradient(to right, #fbb040, #f9ed32);
+}
+
+.h-bluegreen {
+  background: linear-gradient(to right, #00a1ff, #00ff8f);
+}
+
+.h-hotpink {
+  background: linear-gradient(to right, #ee2a7b, #ff7db8);
+}
+
+.h-purpleblue {
+  background: linear-gradient(to right, #ff00d4, #00ddff);
+}
+
+.h-orange {
+  background: linear-gradient(to right, #ef4136, #fbb040);
+}
+
+.h-darkblue {
+  background: linear-gradient(to right, #2d388a, #00aeef);
+}
+
 .user-page-outer-container {
   width: 100%;
   background-color: rgb(237, 234, 234);

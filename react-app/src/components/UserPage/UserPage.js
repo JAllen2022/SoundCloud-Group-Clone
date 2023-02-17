@@ -54,6 +54,13 @@ const UserPage = () => {
     });
   };
 
+  const colorPicker = () => {
+    let colors = ['h-pink', 'h-purple', 'h-yellow', 'h-bluegreen', 'h-hotpink', 'h-purpleblue', 'h-orange', 'h-darkblue']
+    for (let i in colors) {
+      // Math.random()
+    }
+  }
+
   //   useEffect(() => {
   //     if (headerImage) {
   //       console.log("we are submitting header");

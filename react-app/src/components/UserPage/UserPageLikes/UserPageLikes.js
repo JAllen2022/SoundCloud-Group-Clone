@@ -54,7 +54,7 @@ const UserPageLikes = () => {
                     <div className="user-likes-view-all">
                         <div className="user-likes-likes">
                             <i className="fa-solid fa-heart"></i>
-                            <p>{user.num_user_likes} likes</p>
+                            <p>{Object.values(userLikedSongs).length} likes</p>
                         </div>
                         <div className="show-view-all">
                             <p>View all</p>
