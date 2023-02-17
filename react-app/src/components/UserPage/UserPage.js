@@ -97,7 +97,7 @@ const UserPage = () => {
           <div className="header-image-container">
             <img
               className="user-page-header-image"
-              src={user.header_image_url ? user.header_image_url : ""}
+              src={user?.header_image_url ? user.header_image_url : ""}
               alt="header image"
             />
           </div>
@@ -117,13 +117,12 @@ const UserPage = () => {
               </div>
               <div className="user-page-profile-header-name-details-inner-container">
                 <h3 className="user-page-profile-header-subtext">
-                  {/* {user?.first_name} {user?.last_name} */}
-                  First Name, Last Name
+                  {user?.first_name} {user?.last_name}
                 </h3>
               </div>
               <div className="user-page-profile-header-name-details-inner-container">
                 <h3 className="user-page-profile-header-subtext">
-                  City, Country {user?.city} {user?.country}
+                  {user?.city} {user?.country}
                 </h3>
               </div>
             </div>

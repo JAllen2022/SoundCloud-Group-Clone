@@ -46,9 +46,9 @@ const UploadPageForm = ({
   const updateImage = (e) => {
     console.log("updating image");
     const file = e.target.files[0];
-    if (file.size > 750000) {
+    if (file.size > 1000000) {
       const newError = { ...errors };
-      newError["ImageSize"] = "File size too large";
+      newError["ImageSize"] = "File size too large. Maximum image size: 1MB.";
       setErrors(newError);
       e.target.value = "";
       return;

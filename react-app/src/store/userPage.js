@@ -59,6 +59,7 @@ export default function userPageReducer(state = initialState, action) {
         // Load User
         case LOAD_USER:
             newState = { ...state }
+            newState = { ...state.userProfile };
             newState.userProfile = action.user;
             return newState;
 

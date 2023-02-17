@@ -37,7 +37,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-
+    console.log("what is happening", data)
     dispatch(setUser(data));
   }
 };
@@ -108,7 +108,6 @@ export const signUp = (username, email, password) => async (dispatch) => {
 };
 
 export const editUserThunk = (user, userId) => async (dispatch) => {
-  console.log("what is this");
   const res = await fetch(`/api/users/${userId}`, {
     method: "PUT",
     body: user,
@@ -117,6 +116,7 @@ export const editUserThunk = (user, userId) => async (dispatch) => {
   console.log("what is res and why is it ok", res.ok, res);
   if (res.ok) {
     const editedUser = await res.json();
+    console.log("checking edited user", editedUser);
     dispatch(editUser(editedUser));
     return editedUser;
   } else {
@@ -149,8 +149,11 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload };
     case REMOVE_USER:
       return { user: null };
-    case EDIT_USER:
-      return { ...state, user: action.user };
+    case EDIT_USER: {
+      const newState = { ...state };
+      newState.user = { ...state.user, ...action.user };
+      return newState;
+    }
     case SET_HEADER:
       const newState = { ...state, user: { ...state.user } };
       newState.header_image_url = action.image;

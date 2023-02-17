@@ -68,13 +68,13 @@ const EditUserPageForm = () => {
     data.append("bio", bio);
 
     const res = await dispatch(editUserThunk(data, currentUser.id));
-    
+
     if (res.errors) {
       const newErrors = { ...errors, ...res };
       setErrors(newErrors);
       return;
     } else {
-      dispatch(loadUser(user));
+      dispatch(loadUser(res));
       closeModal();
       setErrors({});
     }
@@ -82,9 +82,9 @@ const EditUserPageForm = () => {
 
   const updateProfileImage = (e) => {
     const file = e.target.files[0];
-    if (file.size > 400000) {
+    if (file?.size > 1000000) {
       const newError = { ...errors };
-      newError["ImageSize"] = "File size too large";
+      newError["ImageSize"] = "File size too large. Maximum image size: 1MB.";
       setErrors(newError);
       console.log("checking errors", newError, errors);
       e.target.value = "";
