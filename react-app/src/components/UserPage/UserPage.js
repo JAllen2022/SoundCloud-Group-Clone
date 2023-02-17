@@ -90,79 +90,90 @@ const UserPage = () => {
   // };
 
   return (
-    <div className="user-page-container">
-      <div className={user.header_image_url ? "" : "user-page-header"}>
-        <div className="header-image-container">
-          <img
-            src={user.header_image_url ? user.header_image_url : ""}
-            alt="header image"
-          />
-        </div>
-        <div className="prof-pic-info">
-          <div className="user-prof-pic">
+    <div className="user-page-outer-container">
+      <div className="user-page-container">
+        {/* <div className={user.header_image_url ? "" : "user-page-header"}> */}
+        <div className="user-page-header">
+          <div className="header-image-container">
             <img
-              className="user-prof-img"
-              src={user?.profile_image_url ? user.profile_image_url : profPic}
-              alt="profile picture"
+              className="user-page-header-image"
+              src={user.header_image_url ? user.header_image_url : ""}
+              alt="header image"
             />
           </div>
-          <div className="user-info">
-            <div className="user-page-display-name">{user?.display_name}</div>
-            <div className="user-first-last">
-              {user?.first_name} {user?.last_name}
-            </div>
-            <div className="user-city">{user?.city}</div>
-            <div className="user-country">{user?.country}</div>
-          </div>
-          {currentUser.id == userId && (
-            //   id="submit-header-image"
-            //   onSubmit={handleSubmit}
-            //   action={`/user/${currentUser.id}`}
-            // >
-            <div>
-              <label htmlFor="header-pic-file">Update Header Image</label>
-              <input
-                name="header-pic-file"
-                type="file"
-                accept="image/*"
-                onChange={updateHeaderImage}
+          <div className="user-page-profile-header-info-container">
+            <div className="user-page-profile-header-info-left">
+              <img
+                className="user-prof-img"
+                src={user?.profile_image_url ? user.profile_image_url : profPic}
+                alt="profile picture"
               />
             </div>
-            // </form>
-          )}
-        </div>
-      </div>
-      <div className="user-page-nav-container">
-        <div className="user-page-nav">
-          <Link className="user-page-nav-links">Tracks</Link>
-          <Link className="user-page-nav-links">
-            Playlist
-            {/* this is a future feature - will pop-up modal that shows "Feature Pending" */}
-          </Link>
-          {currentUser && currentUser.id == userId ? (
-            <div className="edit-user-profile-button">
-              <OpenModalButton
-                className="edit-user-modal-button"
-                modalComponent={<EditUserPageForm />}
-                buttonText={<i className="fa-regular fa-pen-to-square"></i>}
-              />
+            <div className="user-page-profile-header-name-details-container">
+              <div className="user-page-profile-header-name-details-inner-container">
+                <h1 className="user-page-profile-header-text">
+                  {user?.display_name}
+                </h1>
+              </div>
+              <div className="user-page-profile-header-name-details-inner-container">
+                <h3 className="user-page-profile-header-subtext">
+                  {/* {user?.first_name} {user?.last_name} */}
+                  First Name, Last Name
+                </h3>
+              </div>
+              <div className="user-page-profile-header-name-details-inner-container">
+                <h3 className="user-page-profile-header-subtext">
+                  City, Country {user?.city} {user?.country}
+                </h3>
+              </div>
             </div>
-          ) : (
-            ""
-          )}
-          <div className="edit-user-page-"></div>
-        </div>
-      </div>
-      <div className="user-page-body-container">
-        <div className="left-user-page-body-container">
-          <UserSongs />
-        </div>
-        <div className="right-user-page-body-container">
-          <div className="UserPageLikes-component">
-            <UserPageLikes />
+            {currentUser.id == userId && (
+              <div className="user-page-header-upload-container">
+                <label htmlFor="header-pic-file">Update Header Image</label>
+                <input
+                  name="header-pic-file"
+                  type="file"
+                  accept="image/*"
+                  onChange={updateHeaderImage}
+                />
+              </div>
+            )}
           </div>
-          <div className="userPagecomments-component">
-            <UserPageComments />
+        </div>
+        <div className="user-page-nav-body-container">
+          <div className="user-page-nav-container">
+            <div className="user-page-nav">
+              <Link className="user-page-nav-links">Tracks</Link>
+              <Link className="user-page-nav-links">
+                Playlist
+                {/* this is a future feature - will pop-up modal that shows "Feature Pending" */}
+              </Link>
+              {currentUser && currentUser.id == userId ? (
+                <div className="edit-user-profile-button">
+                  <OpenModalButton
+                    className="edit-user-modal-button"
+                    modalComponent={<EditUserPageForm />}
+                    buttonText={<i className="fa-regular fa-pen-to-square"></i>}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="edit-user-page-"></div>
+            </div>
+          </div>
+          <div className="user-page-body-container">
+            <div className="left-user-page-body-container">
+              <UserSongs />
+            </div>
+            <div className="right-user-page-body-container">
+              <div className="UserPageLikes-component">
+                <UserPageLikes />
+              </div>
+              <div className="userPagecomments-component">
+                <UserPageComments />
+              </div>
+            </div>
           </div>
         </div>
       </div>

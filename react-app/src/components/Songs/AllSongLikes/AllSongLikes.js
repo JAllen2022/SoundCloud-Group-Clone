@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk } from "../../../store/songs";
 import './AllSongLikes.css'
@@ -21,12 +21,14 @@ const AllSongLikes = () => {
         const songLikesArr = Object.values(songLikes);
         songLikeItems = songLikesArr.map((user) => (
             <div className="song-likes-user-prof-container">
-                <div className="asl-user-pic">
-                    <img className='asl-user-image' alt={user?.display_name} src={user?.profile_image_url}/>
-                </div>
-                <div className="asl-user-display-name">
-                    {user?.display_name}
-                </div>
+                <Link to={`/users/${user.id}`}>
+                    <div className="asl-user-pic">
+                        <img className='asl-user-image' alt={user?.display_name} src={user?.profile_image_url}/>
+                    </div>
+                    <div className="asl-user-display-name">
+                        <p className='asl-display-name'>{user?.display_name}</p>
+                    </div>
+                </Link>
             </div>
         ))
     }
@@ -37,15 +39,20 @@ const AllSongLikes = () => {
     return (
         <div className="asl-page">
             <div className="asl-header">
-                <div className="asl-image-container">
-                    <img className="asl-song-image" src={song?.song_image_url} alt={song?.title} />
+                <Link to={`songs/${song.id}`}>
+                    <div className="asl-image-title-container">
+                        <img className="asl-song-image" src={song?.song_image_url} alt={song?.title} />
+                        <h1 className="asl-title">{song?.title}</h1>
+                    </div>
+                </Link >
+                <div className="asl-tab-container">
+                    <h2 className='asl-tab-title'>Likes</h2>
                 </div>
-                {/* <div className="asl-title-container"> */}
-                  <h1 className="asl-title">{song?.title}</h1>
-                {/* </div> */}
             </div>
-            <div className="asl-body">
-                {songLikeItems}
+            <div className='asl-main-title'>
+                <div className="asl-body">
+                    {songLikeItems}
+                </div>
             </div>
 
         </div>
