@@ -30,20 +30,26 @@ const CreateComment = ({ currentComment, setEditing }) => {
             body
         };
 
-        if(currentComment){
-            // dispatch update thunk
-            currentComment.body = body;
-            dispatch(editCommentThunk(currentComment))
-            setEditing(false)
-        } else {
-            dispatch(createCommentThunk(songId, newComment))
-                .catch(async (res) => {
-                    const data = await res.json();
-                    if (data && data.errors) setErrors(Object.values(data.errors))
-                });
+        if (body.length) {
+            console.log("what is the comment", body)
+            if (currentComment) {
+                // dispatch update thunk
+                currentComment.body = body;
+                dispatch(editCommentThunk(currentComment))
+                setEditing(false)
+                console.log("we dispatched the comment")
+
+            } else {
+                dispatch(createCommentThunk(songId, newComment))
+                    .catch(async (res) => {
+                        const data = await res.json();
+                        if (data && data.errors) setErrors(Object.values(data.errors))
+                    });
+                console.log("we dispatched the comment")
+            }
+            setBody("")
         }
 
-        setBody("")
     }
 
     let defaultCommentPic = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
@@ -51,13 +57,13 @@ const CreateComment = ({ currentComment, setEditing }) => {
         <div className="create-comment-container">
             <div className="create-comment-user-container">
                 <img
-                className="create-comment-user-image"
-                src={
-                    currentUser.profile_image_url
-                    ? currentUser.profile_image_url
-                    : defaultCommentPic
-                }
-                alt={currentUser.display_name}
+                    className="create-comment-user-image"
+                    src={
+                        currentUser.profile_image_url
+                            ? currentUser.profile_image_url
+                            : defaultCommentPic
+                    }
+                    alt={currentUser.display_name}
                 />
                 {/* <img className="create-comment-user-image" src={currentUser.profile_image_url} alt={currentUser.display_name} /> */}
             </div>
@@ -71,11 +77,12 @@ const CreateComment = ({ currentComment, setEditing }) => {
                             className="create-comment-input-field"
                             placeholder="Write a comment"
                             type="text"
+                            maxlength="100"
                             value={body}
-                            onChange={(e)=> setBody(e.target.value)}
+                            onChange={(e) => setBody(e.target.value)}
                         />
                     </div>
-                        <input type="submit" style={{ display: 'none' }}  />
+                    <input type="submit" style={{ display: 'none' }} />
                 </div>
             </form>
         </div>

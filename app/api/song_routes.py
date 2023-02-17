@@ -172,7 +172,7 @@ def add_like(songId):
     db.session.add(song)
     db.session.commit()
 
-    return {"message":"Like Successful"}
+    return song.to_dict_single_song()
 
 
 @song_routes.route('/<int:songId>/likes', methods=['DELETE'])
