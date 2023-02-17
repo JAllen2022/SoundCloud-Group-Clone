@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
-import "./userCommentItem.css";
+import "./UserCommentItem.css";
 
 
 const UserCommentItem = ({ comment }) => {
@@ -15,7 +15,7 @@ const UserCommentItem = ({ comment }) => {
         <div className='user-comment-item-container'>
             <div className="on-song-created-at">
                 <div className="comments-post">
-                    on {comment.song}
+                    on {comment?.song.title}
                 </div>
                 <div className="comment-created-at">
                     {comment?.created_at}

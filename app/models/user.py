@@ -51,5 +51,6 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_image_url': self.profile_image_url,
             'header_image_url': self.header_image_url,
-            'num_user_likes': len(self.user_likes)
+            'num_user_likes': len(self.user_likes),
+            # "comments": [com.to_dict() for com in self.comments]
         }

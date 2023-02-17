@@ -11,6 +11,8 @@ import profPic from "../../assets/profPic.jpeg";
 import { getUserSongsThunk, getUserLikedSongsThunk } from "../../store/songs";
 import { setHeaderImageThunk } from "../../store/session";
 import UserPageLikes from "./UserPageLikes/UserPageLikes";
+import UserPageComments from "../Comments/UserPageComments/UserPageComments";
+import { loadUserCommentsThunk } from "../../store/comments";
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -64,7 +66,7 @@ const UserPage = () => {
     dispatch(loadUserThunk(userId));
     dispatch(getUserSongsThunk(userId));
     dispatch(getUserLikedSongsThunk(userId));
-    // ******** Get User comments ********
+    dispatch(loadUserCommentsThunk(userId));
   }, [dispatch, userId]);
 
   const updateHeaderImage = (e) => {
@@ -87,10 +89,9 @@ const UserPage = () => {
   //
   // };
 
-
   return (
     <div className="user-page-container">
-      <div className={user.header_image_url ? '' : 'user-page-header'}>
+      <div className={user.header_image_url ? "" : "user-page-header"}>
         <div className="header-image-container">
           <img
             src={user.header_image_url ? user.header_image_url : ""}
@@ -157,7 +158,13 @@ const UserPage = () => {
           <UserSongs />
         </div>
         <div className="right-user-page-body-container">
-          <UserPageLikes />
+          <div className="UserPageLikes-component">
+            <UserPageLikes />
+          </div>
+          <div className="userPagecomments-component">
+            hi Im a comment
+            <UserPageComments />
+          </div>
         </div>
       </div>
     </div>

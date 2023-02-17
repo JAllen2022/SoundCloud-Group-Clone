@@ -69,8 +69,11 @@ export const loadSongCommentsThunk = (songId) => async (dispatch) => {
 export const loadUserCommentsThunk = (userId) => async (dispatch) => {
     const res = await fetch(`/api/users/${userId}/comments`);
 
+    console.log("checking whats going on", res)
     if (res.ok) {
+        console.log("checking res", res)
         const comments = await res.json();
+        console.log("checking comments",comments)
         dispatch(loadUserComments(comments))
         return comments
     }
@@ -138,7 +141,6 @@ export default function commentsReducer(state = initialState, action) {
 
         // Load Song Comments
         case LOAD_SONG_COMMENTS:
-            newState = { song: {}, user: {} };
             if (Array.isArray(action.comments)) {
                 action.comments.forEach(comment => {
                     newState.song[comment.id] = comment
@@ -148,10 +150,14 @@ export default function commentsReducer(state = initialState, action) {
 
         // Load User Comments
         case LOAD_USER_COMMENTS:
-            newState = { song: {}, user: {} };
-            action.comments.forEach(comment => {
+            // newState.user = action.comments;
+            console.log("checking user comments", action.comments)
+            // newState.user=
+            Object.values(action.comments).forEach(comment => {
                 newState.user[comment.id] = comment
             })
+
+
             return newState;
 
         // Create Comment

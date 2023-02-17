@@ -12,6 +12,8 @@ import UserPage from "./components/UserPage/UserPage";
 import SplashPage from "./components/SplashPage/SplashPage";
 import SongPlayer from "./components/SongPlayer/SongPlayer";
 import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
+import AllUserPageComments from "./components/Comments/AllUserPageComments/AllUserPageComments";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +48,9 @@ function App() {
           </Route>
           <Route path="/users/:userId/likes">
             <AllUserLikes />
+          </Route>
+          <Route path="/users/:userId/comments">
+            <AllUserPageComments />
           </Route>
           <Route path="/users/:userId">
             <UserPage />

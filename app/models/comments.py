@@ -25,7 +25,8 @@ class Comment(db.Model):
             "song_id":self.song_id,
             "time": self.time,
             "created_at": self.created_at,
-            "user": self.user.to_dict()
+            "user": self.user.to_dict(),
+            "song": self.song.to_dict()
         }
 
 

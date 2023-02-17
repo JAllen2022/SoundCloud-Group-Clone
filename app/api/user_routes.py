@@ -29,18 +29,17 @@ def user(id):
 
 
 # Get all comments by user id
-@user_routes.route("/<int:userId>/comments")
+@user_routes.route("/<int:id>/comments")
 def get_user_comments(id):
     """
       Query for all comments by userId
     """
     user = User.query.get(id)
-    comments = Comment.query.filter(Comment.user_id == user.id).order_by(Comment.created_at).all()
 
-    if comments:
-        return [comment.to_dict() for comment in comments]
-    else:
-        return {"Error": "No Comments Found"}
+    # if user.comments:
+    return {comment.id:comment.to_dict() for comment in user.comments}
+    # else:
+    #     return {"Error": "No Comments Found"}
 
 
 @user_routes.route("/<int:id>/likes")
