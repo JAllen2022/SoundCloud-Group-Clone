@@ -41,13 +41,13 @@ const EditUserPageForm = () => {
   const [city, setCity] = useState(currentUser?.city || "");
   const [country, setCountry] = useState(currentUser?.country || "");
   const [bio, setBio] = useState(currentUser?.bio || "");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const errors = [];
-    if (displayName?.length === 0) errors.push("Please enter a display name.");
-
-    setErrors(errors);
+    const newErrors = { ...errors };
+    if (displayName?.length === 0)
+      newErrors["DisplayName"] = "Please enter a display name.";
+    setErrors(newErrors);
   }, [displayName]);
 
   const handleSubmit = async (e) => {
@@ -67,19 +67,40 @@ const EditUserPageForm = () => {
     data.append("country", country);
     data.append("bio", bio);
 
-    dispatch(editUserThunk(data, currentUser.id))
-      .then((user) => {
-        dispatch(loadUser(user));
-        closeModal();
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+    const res = await dispatch(editUserThunk(data, currentUser.id));
+    console.log("we checking res", res);
+    if (res.errors) {
+      const newErrors = { ...errors, ...res };
+      setErrors(newErrors);
+      return;
+    } else {
+      dispatch(loadUser(user));
+      closeModal();
+      setErrors({});
+    }
   };
 
   const updateProfileImage = (e) => {
     const file = e.target.files[0];
+    if (file.size > 400000) {
+      const newError = { ...errors };
+      newError["ImageSize"] = "File size too large";
+      setErrors(newError);
+      console.log("checking errors", newError, errors);
+      e.target.value = "";
+      return;
+    }
+    // If we have a file size error, remove it when a appropriate file is added
+    if (errors.ImageSize) {
+      const newErrors = { ...errors };
+      delete newErrors.ImageSize;
+      setErrors(newErrors);
+    }
+    if (errors.errors) {
+      const newErrors = { ...errors };
+      delete newErrors.errors;
+      setErrors(newErrors);
+    }
     setProfileImage(file);
   };
 
@@ -93,6 +114,13 @@ const EditUserPageForm = () => {
       <div className="edit-user-page-header">
         <h2>Edit your Profile</h2>
       </div>
+      {errors.errors && (
+        <ul>
+          <li style={{ color: "red" }} className="upload-page-errors">
+            {errors.errors}
+          </li>
+        </ul>
+      )}
       <form
         className="edit-user-page-form"
         method="POST"
@@ -110,21 +138,25 @@ const EditUserPageForm = () => {
               />
             </div>
           </div>
+          {errors.ImageSize && (
+            <p style={{ color: "red" }}>{errors.ImageSize}</p>
+          )}
           <div className="edit-user-page-body-right">
-            <ul className="user-page-errors">
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
-            </ul>
             <div className="edit-user-page-displayname-container">
               <label htmlFor="edit-user-page-displayname">Display name</label>
               <input
                 name="edit-user-page-displayname"
                 type="text"
                 required
+                maxLength="15"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
               />
+            </div>
+            <div>
+              {errors.DisplayName && (
+                <p style={{ color: "red" }}>{errors.DisplayName}</p>
+              )}
             </div>
             <div className="edit-user-page-name-container">
               <div className="edit-user-page-grid-field">
@@ -133,6 +165,7 @@ const EditUserPageForm = () => {
                   name="first_name"
                   type="text"
                   value={firstName}
+                  maxLength="15"
                   onChange={(e) => setFirstName(e.target.value)}
                 ></input>
               </div>
@@ -142,6 +175,7 @@ const EditUserPageForm = () => {
                   name="first_name"
                   type="text"
                   value={lastName}
+                  maxLength="15"
                   onChange={(e) => setLastName(e.target.value)}
                 ></input>
               </div>
@@ -153,6 +187,7 @@ const EditUserPageForm = () => {
                   name="city"
                   type="text"
                   value={city}
+                  maxLength="15"
                   onChange={(e) => setCity(e.target.value)}
                 ></input>
               </div>
@@ -161,6 +196,7 @@ const EditUserPageForm = () => {
                 <input
                   name="country"
                   type="text"
+                  maxLength="15"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                 ></input>
@@ -172,6 +208,7 @@ const EditUserPageForm = () => {
                 name="biography"
                 placeholder="Tell the world a little bit about yourself. The shorter the better."
                 value={bio}
+                maxLength="200"
                 onChange={(e) => setBio(e.target.value)}
               ></textarea>
             </div>

@@ -137,6 +137,7 @@ const UploadPageForm = ({
               placeholder="Describe your track"
               name="song-description"
               value={description}
+              maxLength="200"
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
