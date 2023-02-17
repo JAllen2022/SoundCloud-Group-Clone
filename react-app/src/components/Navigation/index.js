@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
     <div className="nav-page-container">
       <div className="nav-bar">
         <div className="header-left">
-          <NavLink className="home-link" exact to="/songs">
+          <NavLink className="home-link" exact to={sessionUser ? "/songs" : "/"}>
             Home
           </NavLink>
         </div>
