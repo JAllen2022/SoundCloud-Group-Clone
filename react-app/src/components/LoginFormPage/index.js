@@ -23,7 +23,7 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Log In</h1>
+      <h1>Log In To Start Uploading</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -49,7 +49,18 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button
+            // id="modal-btns"
+            type="submit"
+            onClick={(e) => {
+              setEmail("demo@aa.io");
+              setPassword("password");
+            }}
+          >
+            Demo User
+          </button>
       </form>
+
     </>
   );
 }

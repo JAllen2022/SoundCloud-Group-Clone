@@ -1,3 +1,203 @@
 .song-show-page {
     margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* width: 1000px; */
+    /* max-width: 1024px; */
+}
+
+.song-header-container {
+    background-image: linear-gradient(to right, gray, rgb(51,51,51));
+    margin-top: 40px;
+    padding: 30px 25px;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    min-width: 1000px;
+    /* position: relative; */
+
+}
+
+.play-artist-title-name-created {
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: space-between;
+    width: 700px;
+}
+
+.play-artist-title-name {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* margin-right: ; */
+}
+
+.show-play {
+    width: 63px;
+    height: 63px;
+    /* border: 1px solid black */
+}
+
+.show-play-button-image {
+    width: 79px;
+    height: 79px;
+    margin-left: -8px;
+    margin-top: -8px;
+    object-fit: cover;
+    opacity: .87;
+}
+
+.show-play-button-image:hover {
+    cursor: pointer;
+}
+
+.show-artist-title-name {
+    margin-left: 6px;
+    /* border: 1px solid red; */
+
+}
+
+.show-artist-title {
+    font-size: 24px;
+    margin-bottom: 4px;
+    color: white;
+
+}
+
+.show-name {
+    font-size: 15px;
+    margin-top: 4px;
+    color: #CCCCCC;
+
+}
+
+.show-artist-title, .show-name {
+    background-color: black;
+    width: fit-content;
+    padding: 2px 7px;
+}
+
+.created {
+    font-size: 15px;
+    color: white;
+    width: fit-content;
+}
+
+/* .show-song-image-container {
+    border: 1px solid red;
+    margin-left: 20px;
+} */
+
+.show-song-image {
+    height: 340px;
+    width: 340px;
+}
+
+.under-header-container {
+    width: 1034px;
+    padding: 18px 27px;
+    display: flex;
+    /* justify-content: space-between; */
+    border: 1px solid rgb(0, 0, 0, 0.08);
+}
+
+.left-under-container {
+    /* border: 1px solid red; */
+    width: 70%;
+    padding-right: 25px;
+    border-right: 1px solid rgb(0, 0, 0, 0.06)
+}
+
+.add-comment-form {
+    margin-bottom: 12px;
+}
+.song-interact-container {
+    /* border: 1px solid red; */
+    /* background-color: red; */
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -7px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.06)
+}
+
+
+.right-under-container {
+    width: 30%;
+    padding-left: 25px;
+}
+
+.show-like-button {
+    display:flex;
+    flex-direction: row;
+    height: 25px;
+    width: 29px;
+    padding: 5px 3px 5px 8px;
+    background: none;
+    border: 1px solid rgba(211, 211, 211, 65%);
+    border-radius: 3px;
+    align-items: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.show-likes-count.link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    /* border: 1px solid blue; */
+    width: fit-content;
+    opacity: .5;
+}
+
+.show-likes-link {
+    display: flex;
+}
+
+.fa-heart.link {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.user-pic-disName {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-page-disName {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 7px;
+}
+.user-pic img {
+    height: 120px;
+    width: 120px;
+    margin-left: -14px;
+}
+
+.user-info-comments-container {
+    display: flex;
+}
+
+.right-info-comments-container {
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.song-comments-header {
+    display: flex;
+    align-items: center;
 }

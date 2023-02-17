@@ -10,6 +10,10 @@ import SongShow from "./components/Songs/SongShow/SongShow.js";
 import UploadPage from "./components/Navigation/Upload/UploadPage/UploadPage.js"
 import UserPage from "./components/UserPage/UserPage";
 import SplashPage from "./components/SplashPage/SplashPage";
+import SongPlayer from "./components/SongPlayer/SongPlayer";
+import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
+import AllUserPageComments from "./components/Comments/AllUserPageComments/AllUserPageComments";
+import AllSongLikes from './components/Songs/AllSongLikes/AllSongLikes'
 
 function App() {
   const dispatch = useDispatch();
@@ -32,20 +36,30 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/upload">
+            <UploadPage />
+          </Route>
+          <Route path="/songs/:songId/likes">
+            <AllSongLikes />
+          </Route>
           <Route path="/songs/:songId">
             <SongShow />
           </Route>
           <Route path="/songs">
             <AllSongs />
           </Route>
-          <Route path="/upload">
-            <UploadPage />
+          <Route path="/users/:userId/likes">
+            <AllUserLikes />
+          </Route>
+          <Route path="/users/:userId/comments">
+            <AllUserPageComments />
           </Route>
           <Route path="/users/:userId">
             <UserPage />
           </Route>
         </Switch>
       )}
+      <SongPlayer />
     </>
   );
 }

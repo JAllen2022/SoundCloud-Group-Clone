@@ -23,10 +23,10 @@ class User(db.Model, UserMixin):
     profile_image_url = db.Column(db.String(255))
     header_image_url = db.Column(db.String(255))
 
-    songs = db.relationship("Song", back_populates="user")
+    songs = db.relationship("Song", back_populates="user", cascade="all, delete")
     user_likes = db.relationship("Song", secondary=likes, back_populates="song_likes", cascade="all, delete")
-    comments = db.relationship("Comment", back_populates="user")
-    
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete")
+
     @property
     def password(self):
         return self.hashed_password
@@ -50,5 +50,7 @@ class User(db.Model, UserMixin):
             'country': self.country,
             'bio': self.bio,
             'profile_image_url': self.profile_image_url,
-            'header_image_url': self.header_image_url
+            'header_image_url': self.header_image_url,
+            'num_user_likes': len(self.user_likes),
+            # "comments": [com.to_dict() for com in self.comments]
         }

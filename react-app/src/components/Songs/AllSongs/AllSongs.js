@@ -5,29 +5,33 @@ import SongItem from "../SongItem/SongItem";
 import "./AllSongs.css";
 
 const AllSongs = () => {
-    const dispatch = useDispatch();
-    const allSongs = useSelector((state) => state.Songs.allSongs);
-    const allSongsArr = Object.values(allSongs);
-    // console.log(allSongsArr)
+  const dispatch = useDispatch();
+  const allSongs = useSelector((state) => state.Songs.allSongs);
+  const allSongsArr = Object.values(allSongs);
+  // console.log(allSongsArr)
 
-    useEffect(() => {
-        dispatch(getSongsThunk());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getSongsThunk());
+  }, [dispatch]);
 
-    if (!allSongs) return null;
-
-    const songItems = allSongsArr.map((song) => {
-        return <SongItem key={song.id} song={song} />;
+  let songItems;
+  if (Object.values(allSongs).length) {
+    songItems = allSongsArr.map((song) => {
+      return <SongItem key={song.id} song={song} />;
     });
+  }
 
-    return (
-        <>
-        <p className="all-songs-header"> Here are the lastest songs </p>
-        <div className="songs-container">
-            <ul className="songs-wrapper">{songItems}</ul>
-        </div>
-        </>
-    );
+  console.log("checking song items", allSongsArr);
+
+  if (!Object.values(allSongs).length) return null;
+  return (
+    <>
+      <h2 className="all-songs-header"> Here are the lastest songs: </h2>
+      <div className="songs-container">
+        <ul className="songs-wrapper">{songItems}</ul>
+      </div>
+    </>
+  );
 };
 
 export default AllSongs;

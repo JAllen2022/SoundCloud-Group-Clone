@@ -1,1 +1,36 @@
 /* TODO Add site wide styles */
+* {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 300;
+}
+
+html {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  /* font-family: Interstate, 'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Garuda ,Verdana,Tahoma,sans-serif; */
+}
+
+/* body {
+  margin-top: 40px;
+  margin-bottom: 80px;
+} */
+
+.nav-page-container {
+  /* border: 1px solid red; */
+  position: fixed;
+  top: 0;
+  /* right: 0; */
+  /* left:0; */
+  z-index: 100;
+  /* left: 0; */
+  /* right: 0; */
+}
+
+
+.song-player {
+  /* border: 1px solid red; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

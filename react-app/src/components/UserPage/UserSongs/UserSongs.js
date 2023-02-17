@@ -6,36 +6,34 @@ import SongItem from "../../Songs/SongItem/SongItem";
 import "./UserSongs.css";
 
 const UserSongs = () => {
-    const dispatch = useDispatch();
-    const userSongs = useSelector(state => state.Songs.userSongs);
-    // console.log("userSongs :", userSongs);
-    const user = useSelector(state => state.UserPage.userProfile);
-    const { userId } = useParams();
+  const dispatch = useDispatch();
+  const userSongs = useSelector((state) => state.Songs.userSongs);
+  // console.log("userSongs :", userSongs);
+  const user = useSelector((state) => state.UserPage.userProfile);
+  const { userId } = useParams();
 
-    let userSongsArr;
-    let userSongItems;
-    if (userSongs) {
-        userSongsArr = Object.values(userSongs);
-        userSongItems = userSongsArr.map((song) => {
-            return <SongItem key={song.id} song={song} />
-        })
-    }
-    // console.log("userSongArr :", userSongsArr)
+  let userSongsArr;
+  let userSongItems;
+  if (Object.values(userSongs).length) {
+    userSongsArr = Object.values(userSongs);
+    userSongItems = userSongsArr.map((song) => {
+      return <SongItem key={song.id} song={song} />;
+    });
+  }
+  // console.log("userSongArr :", userSongsArr)
 
-    useEffect(() => {
-        dispatch(getUserSongsThunk(userId))
-    }, [dispatch, userId])
+  useEffect(() => {
+    dispatch(getUserSongsThunk(userId));
+  }, [dispatch, userId]);
 
+  console.log("what is user", user, userSongs);
+  if (!Object.values(user).length) return null;
 
-    if (!user || !userSongs) return null;
-
-    return (
-        <div className="user-songs-header">
-            <div className="user-songs-container">
-                {userSongItems}
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="user-songs-header">
+      <div className="user-songs-container">{userSongItems}</div>
+    </div>
+  );
+};
 
 export default UserSongs;

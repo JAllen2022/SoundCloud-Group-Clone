@@ -1,124 +1,191 @@
+
+.isFocused {
+
+}
+
 .profile-dropdown {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    list-style: none;
-    right: 80;
-    top: 80;
-    /* top: 80px;
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px; */
-    border: solid 1px red;
-    /* border: solid 1px rgba(0, 0, 0, 0.15); */
-    border-radius: 15px;
-    height: auto;
-    width: 75px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  text-align: left;
+  background-color: white;
+  list-style: none;
+  position: absolute;
+  right: 80;
+  /* top: 50; */
+  border: solid 1px #ccc;
+  /* border: solid 1px rgba(0, 0, 0, 0.15); */
+  border-radius: 3px;
+  height: auto;
+  width: 75px;
+  padding-top: 7px;
+}
+
+ul.profile-dropdown {
+  /* border: none; */
+  background-color: white;
+  margin-left: -80px;
+
+}
+
+.profile-dropdown.logged-out {
+  margin-left: -70px;
+  margin-top: -7px;
+  width: 143px;
+
+}
+
+.profile-dropdown.logged-out > button {
+  background-color: white;
+  border: none;
+  margin: 7px;
+  font-weight: 600;
+  font-size: 13px;
+  text-align: left;
+}
+
+.profile-dropdown-link,
+.profile-dropdown-username,
+.profile-dropdown-email,
+.profile-dropdown-logout {
+  margin-left: -25px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.profile-dropdown-link {
+  margin-bottom: 0;
+  color: black;
+}
+
+.profile-dropdown-username {
+  margin-top: 13px;
+}
+
+.profile-dropdown-email {
+  margin-top: 0;
+
+}
+
+.profile-dropdown-logout {
+  margin-top: 0;
+
+}
+.profile-dropdown-link:hover,
+.profile-dropdown-logout:hover,
+.profile-dropdown.logged-out > button:hover {
+  /* margin-top: 0; */
+  color: #ff5500;
+  cursor: pointer;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .nav-page-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: rgb(0, 0, 0, 0.78);
-    font-family: Interstate, Lucida Grande, Arial, sans-serif;
-    font-weight: 100;
-    height: 43px;
-    width: 100%;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #383838;
+  /* font-family: Interstate, Lucida Grande, Arial, sans-serif; */
+  font-weight: 100;
+  height: 43px;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 body {
-    overflow: scroll;
-    margin: 0;
+  overflow: scroll;
+  margin: 0;
 }
 
 .nav-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .home-link {
-    text-decoration: none;
-    color: #ccc;
+  text-decoration: none;
+  color: #ccc;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .header-left {
-    display: flex;
-    padding: 12px 28px;
-    border-right: 1px solid #111;
+  display: flex;
+  padding: 12px 28px;
+  border-right: 1px solid #111;
 }
 
 .header-right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-left: 1px solid #111;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-left: 1px solid #111;
 }
 
-
 .upload-prof-pic {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .upload-button-container {
-    margin: 0px;
-    padding: 12px 28px;
+  margin: 0px;
+  padding: 12px 28px;
 }
 
 .upload-button-container:active {
-    background: #111;
+  background: #111;
 }
 
 .upload-button {
-    color: #ccc;
-    text-decoration: none;
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .prof-pic-and-displayName {
-    display: flex;
-    /* border: 1px solid red; */
-    width: 100%;
-    justify-content: space-evenly;
+  display: flex;
+  /* border: 1px solid red; */
+  width: 100%;
+  justify-content: space-evenly;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .navbar-display-name {
-    color: #ccc;
-    margin-left: 7px;
-    margin-bottom: 2px;
+  color: #ccc;
+  margin-left: 7px;
+  margin-bottom: 2px;
 }
 
 .profile-pic-button {
-    background-color: transparent;
-    border: none;
-    padding: 0
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 i.fas.fa-user-circle {
-    background-color: transparent;
-    size: 20px;
+  background-color: transparent;
+  size: 20px;
 }
 
 .fas.fa-user-circle:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .profile-button-container {
-    margin: 0px;
-    padding: 12px 28px;
-    width: fit-content;
+  margin: 0px;
+  padding: 12px 28px;
+  width: fit-content;
 }
 
 .profile-button-container:active {
-    background-color: #111;
+  background-color: #111;
 }

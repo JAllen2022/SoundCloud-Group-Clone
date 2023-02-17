@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, render_template
-from app.models import Song, User, db
+from app.models import Song, User, db,likes
 from flask_login import login_required, current_user
 from app.forms import SongForm
 import app.s3_helpers as s3
@@ -9,13 +9,13 @@ import app.s3_helpers as s3
 song_routes = Blueprint('songs', __name__)
 
 # get all songs for our feed page
-@song_routes.route('/')
+@song_routes.route('')
 def songs():
     """
       Query for all songs and returns them in a list of song dictionaries
     """
     songs = Song.query.all()
-    return [song.to_dict() for song in songs]
+    return {song.id:song.to_dict_single_song() for song in songs}
 
 
 @song_routes.route("/<int:id>")
@@ -24,50 +24,12 @@ def get_song(id):
     song = Song.query.get(id)
 
     if not song:
-        return {"Error": "Song not found"}
+        return {"errors": "Song not found"}, 404
 
-    return song.to_dict()
+    return song.to_dict_single_song()
 
 
-# @song_routes.route('/', methods=['POST'])
-# # @login_required
-# def create_song():
-#     print("what is going on in miami")
-#     form = SongForm()
-#     print("what is my form", list(form))
-#     # if 'csrf_token' in request.cookies:
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     print('csrf w.e', form['csrf_token'].data)
-
-#     if form.validate_on_submit():
-
-#         print("what is going on in miami 3")
-
-#         print("form data", form.data)
-#         new_song = Song(
-#             user_id = current_user.id,
-#             title = form.data["title"],
-#             artist = form.data["artist"],
-#             genre = form.data["genre"],
-#             length = form.data["length"],
-#             description = form.data["description"],
-#             song_image_url = form.data["song_image_url"],
-#             song_url = form.data["song_url"]
-#         )
-
-#         print("new_song check", new_song)
-
-#         db.session.add(new_song)
-#         db.session.commit()
-#         # song = Song.query.filter(Song.id == new_song.id).first()
-#         return new_song.to_dict()
-
-#     print("outside of if statement - headed for failure")
-#     # print(new_song)
-#     if form.errors:
-#         return {"errors":form.errors}, 400
-
-@song_routes.route('/', methods=['POST'])
+@song_routes.route('', methods=['POST'])
 @login_required
 def upload_song():
     if "song" not in request.files:
@@ -80,7 +42,6 @@ def upload_song():
         picture = request.files["picture"]
 
         if not s3.image_file(picture.filename):
-            print("file type not permitted")
             return {"errors": "file type not permitted"}, 400
 
         picture.filename = s3.get_unique_filename(picture.filename)
@@ -88,7 +49,6 @@ def upload_song():
         upload_image = s3.upload_image_file_to_s3(picture)
 
         if "url" not in upload_image:
-            print("error upload")
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
@@ -130,7 +90,7 @@ def upload_song():
 
     db.session.add(new_song)
     db.session.commit()
-    return new_song.to_dict()
+    return new_song.to_dict_single_song()
 
 
 @song_routes.route('/<int:id>', methods=['PUT'])
@@ -139,7 +99,7 @@ def edit_song(id):
     song = Song.query.get(id)
 
     if not song:
-        return {"Error":"Song not found"}
+        return {"errors":"Song not found"}, 404
 
     image_url = song.song_image_url
 
@@ -152,7 +112,6 @@ def edit_song(id):
         picture = request.files["picture"]
 
         if not s3.image_file(picture.filename):
-            print("file type not permitted")
             return {"errors": "file type not permitted"}, 400
 
         picture.filename = s3.get_unique_filename(picture.filename)
@@ -160,7 +119,6 @@ def edit_song(id):
         upload_image = s3.upload_image_file_to_s3(picture)
 
         if "url" not in upload_image:
-            print("error upload")
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
@@ -179,7 +137,7 @@ def edit_song(id):
     db.session.add(song)
     db.session.commit()
 
-    return song.to_dict()
+    return song.to_dict_single_song()
 
 
 @song_routes.route("/<int:id>", methods=["DELETE"])
@@ -188,7 +146,7 @@ def delete_song(id):
     song = Song.query.get(id)
 
     if not song:
-        return {"Error": "Song not found"}
+        return {"errors": "Song not found"}
 
     songKey = song.song_url.rsplit('/')[-1]
     imageKey = song.song_image_url.rsplit('/')[-1]
@@ -197,5 +155,34 @@ def delete_song(id):
     s3.remove_image_file_from_s3(imageKey)
 
     db.session.delete(song)
+    db.session.commit()
+    return {"message": "Delete successful"}
+
+
+############################################### like_routes ########################################################
+
+@song_routes.route("/<int:songId>/likes",methods=["POST"])
+@login_required
+def add_like(songId):
+    song = Song.query.get(songId)
+    print("song likes is this :", song.song_likes)
+    song.song_likes.append(current_user)
+    print("song likes is this :", song.song_likes)
+
+    db.session.add(song)
+    db.session.commit()
+
+    return {"message":"Like Successful"}
+
+
+@song_routes.route('/<int:songId>/likes', methods=['DELETE'])
+@login_required
+def remove_like(songId):
+    song = Song.query.get(songId)
+    print("song likes is this :", song.song_likes)
+    song.song_likes.remove(current_user)
+    print("song likes is this :", song.song_likes)
+
+    db.session.add(song)
     db.session.commit()
     return {"message": "Delete successful"}

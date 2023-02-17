@@ -9,6 +9,7 @@ export default function SplashPage() {
     return (
         <div className="splash-page-container">
             <h1>Welcome to Tune Space </h1>
+            <h2>hello</h2>
         </div>
     )
 }

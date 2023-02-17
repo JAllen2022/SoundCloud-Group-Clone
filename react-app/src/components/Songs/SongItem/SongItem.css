@@ -75,15 +75,15 @@
 
 .displayName, .displayName.link {
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     opacity: .5;
     width: fit-content;
-
+    /* font-weight: 400; */
 }
 
 .artist-title {
     margin: 0;
-    font-size: 15px;
+    font-size: 16px;
 
 }
 
@@ -110,7 +110,7 @@
 }
 
 
-.like-button {
+.like-button, .delete-song-button, div.edit-song-button > button {
     display:flex;
     flex-direction: row;
     height: 25px;
@@ -120,9 +120,19 @@
     border: 1px solid rgba(211, 211, 211, 65%);
     border-radius: 3px;
     align-items: center;
-    font-weight: 50;
+    font-weight: 100;
+    margin-right: 5px;
 }
 
+.liked {
+    color: #ff5500;
+}
+
+.liked:focus,
+.liked:hover {
+    border-color: #ff5500;
+
+}
 
 .like-button:hover {
     cursor: pointer;
