@@ -33,7 +33,8 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   const [length, setLength] = useState(currentSong?.length || "");
   const [songLoading, setSongLoading] = useState(false);
   const [uploadedSong, setUploadedSong] = useState(editSong ? true : false);
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
+  console.log("checking errors", errors);
 
   const currentUser = useSelector((state) => state.session.user);
 
@@ -87,6 +88,17 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   return (
     <div className="upload-page-container">
       <div className="upload-form-container">
+        <ul>
+          {Object.keys(errors).map((error) => (
+            <li
+              style={{ color: "red" }}
+              key={error}
+              className="upload-page-errors"
+            >
+              {error}:{errors[error]}
+            </li>
+          ))}
+        </ul>
         {songLoading ? (
           "Song Loading"
         ) : (
@@ -103,6 +115,8 @@ const UploadPage = ({ editSong = false, songEdit }) => {
                   description={description}
                   setDescription={setDescription}
                   setSongImage={setSongImage}
+                  errors={errors}
+                  setErrors={setErrors}
                 />
               </>
             ) : (
@@ -110,6 +124,8 @@ const UploadPage = ({ editSong = false, songEdit }) => {
                 setSong={setSong}
                 setUploadedSong={setUploadedSong}
                 setLength={setLength}
+                errors={errors}
+                setErrors={setErrors}
               />
             )}
           </form>
@@ -119,7 +135,13 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   );
 };
 
-function UploadSong({ setSong, setUploadedSong, setLength }) {
+function UploadSong({
+  setSong,
+  setUploadedSong,
+  setLength,
+  errors,
+  setErrors,
+}) {
   const toMinutes = (length) => {
     const minutes = length / 60;
     return minutes.toFixed(2);
@@ -142,6 +164,14 @@ function UploadSong({ setSong, setUploadedSong, setLength }) {
 
   const updateSong = (e) => {
     const file = e.target.files[0];
+    console.log("checking file size", file.size);
+
+    // File size validation. Add error if bytes is bigger than 6million
+    if (file.size > 6000000) {
+      setErrors({ FileSize: "File size too large" });
+      e.target.value = "";
+      return;
+    }
     const reader = new FileReader();
     const audio = document.createElement("audio");
     if (e.target.files && file) {
@@ -175,33 +205,12 @@ function UploadSong({ setSong, setUploadedSong, setLength }) {
       reader.readAsDataURL(file);
     }
 
-    // new jsmediatags.Reader(file)
-    //       .setTagsToRead(["title", "artist","picture"]).read({
-    //         onSuccess: function (tag) {
-
-    //           console.log("this is what tag is", tag)
-    //           let tags = tag.tags;
-
-    //           console.log("this is what tag.tags is", tags)
-
-    //         let base64String = "";
-
-    //         for (let i = 0; i < tags.picture.data.length; i++) {
-    //           base64String += String.fromCharCode(tags.picture.data[i]);
-    //         }
-
-    //         console.log("base64string is", base64String)
-    //         let dataUrl = "data:" + tags.picture.format + ";base64," +window.btoa(base64String);
-
-    //         console.log("this is what dataUrl is", dataUrl)
-
-    //       //   document.getElementById('cover').setAttribute('src',dataUrl);
-    //       //     },
-    //       //     onError: function(error) {
-    //       //       console.log(':(', error.type, error.info);
-    //       }
-    //     });
-
+    // If we have a file size error, remove it when a appropriate file is added
+    if (errors.FileSize) {
+      const newErrors = { ...errors };
+      delete newErrors.FileSize;
+      setErrors(newErrors);
+    }
     setSong(file);
     setUploadedSong(true);
   };

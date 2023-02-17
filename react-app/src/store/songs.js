@@ -8,10 +8,11 @@ const DELETE_SONG = "songs/DELETE_SONG";
 const ADD_LIKE = "songs/ADD_LIKE";
 const DELETE_LIKE = "songs/DELETE_LIKE";
 const PLAY_SONG = "songs/PLAY_SONG";
+const RESET_SINGLE_SONG = "songs/RESET_SINGLE_SONG";
 
 // Constants for the User Page
 const GET_USER_SONGS = "songs/GET_USER_SONGS";
-const GET_USER_LIKED_SONGS ="songs/GET_USER_LIKED_SONGS"
+const GET_USER_LIKED_SONGS = "songs/GET_USER_LIKED_SONGS";
 
 // Action Creators
 const loadSongs = (songs) => ({
@@ -56,13 +57,17 @@ const deleteLike = (songId, current_user, userId) => ({
 
 export const playSong = (song) => ({
   type: PLAY_SONG,
-  song
-})
+  song,
+});
 
 export const getUserLikedSongs = (songs) => ({
   type: GET_USER_LIKED_SONGS,
-  songs
-})
+  songs,
+});
+
+export const resetSingleSong = () => ({
+  type: RESET_SINGLE_SONG,
+});
 
 // Thunk Action Creators
 
@@ -74,7 +79,7 @@ export const getSongsThunk = () => async (dispatch) => {
     dispatch(loadSongs(songs));
     return songs;
   } else {
-    return res.errors;
+    return res;
   }
 };
 
@@ -86,19 +91,23 @@ export const getUserSongsThunk = (userId) => async (dispatch) => {
     const songs = await res.json();
     dispatch(loadUserSongs(songs));
     return songs;
+  } else {
+    return res;
   }
 };
 
 // Get User Liked Songs
 export const getUserLikedSongsThunk = (userId) => async (dispatch) => {
-  const res = await fetch (`/api/users/${userId}/likes`);
+  const res = await fetch(`/api/users/${userId}/likes`);
 
   if (res.ok) {
     const likedSongs = await res.json();
-    dispatch(getUserLikedSongs(likedSongs))
-    return likedSongs
+    dispatch(getUserLikedSongs(likedSongs));
+    return likedSongs;
+  } else {
+    return res;
   }
-}
+};
 
 // Get song
 export const getSongThunk = (songId) => async (dispatch) => {
@@ -108,10 +117,9 @@ export const getSongThunk = (songId) => async (dispatch) => {
     const song = await res.json();
     dispatch(loadSong(song));
     return song;
+  } else {
+    return res;
   }
-  // else {
-  //     return res.Error
-  // }
 };
 
 // Create Song
@@ -140,10 +148,9 @@ export const editSongThunk = (song, songId) => async (dispatch) => {
     const song = await res.json();
     dispatch(editSong(song));
     return song;
+  } else {
+    return res;
   }
-  // else {
-  //     return res.Error
-  // }
 };
 
 // Delete Song
@@ -155,10 +162,9 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
     const deletedSong = await res.json();
     dispatch(deleteSong(songId));
     return deletedSong;
+  } else {
+    return res;
   }
-  // else {
-  //     return res.Error
-  // }
 };
 
 // Add Like
@@ -172,30 +178,37 @@ export const addLikeThunk = (songId, current_user) => async (dispatch) => {
 };
 
 // Delete Like
-export const deleteLikeThunk = (songId, current_user, userId) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${songId}/likes`, { method: "DELETE" });
-  if (res.ok) {
-    dispatch(deleteLike(songId, current_user, userId));
-  }
-};
+export const deleteLikeThunk =
+  (songId, current_user, userId) => async (dispatch) => {
+    const res = await fetch(`/api/songs/${songId}/likes`, { method: "DELETE" });
+    if (res.ok) {
+      dispatch(deleteLike(songId, current_user, userId));
+    }
+  };
 
 // Reducer
-const initialState = { allSongs: {}, singleSong: {}, userSongs: {}, userLikedSongs: {}, playSong: {} };
+const initialState = {
+  allSongs: {},
+  singleSong: {},
+  userSongs: {},
+  userLikedSongs: {},
+  playSong: {},
+};
 
 const songsReducer = (state = initialState, action) => {
   let newState = { ...state };
   switch (action.type) {
     // Get All Songs
     case GET_SONGS:
-      newState = { ...state};
-      newState.allSongs = action.songs
+      newState = { ...state };
+      newState.allSongs = action.songs;
       return newState;
 
     // Get All User Songs
     case GET_USER_SONGS:
       newState = { ...state };
       // action.songs.forEach((song) => (newState.userSongs[song.id] = song));
-      newState.userSongs = { ...state.userSongs, ...action.songs}
+      newState.userSongs = { ...state.userSongs, ...action.songs };
       return newState;
 
     // Get Song
@@ -238,7 +251,7 @@ const songsReducer = (state = initialState, action) => {
         newState.allSongs = { ...state.allSongs };
         // console.log("newState.allSongs pt2", newState.allSongs)
 
-        newState.allSongs[songId] = { ...state.allSongs[songId]};
+        newState.allSongs[songId] = { ...state.allSongs[songId] };
         // console.log("newState.allSongs pt3", newState.allSongs)
 
         newState.allSongs[songId].song_likes = {
@@ -250,7 +263,7 @@ const songsReducer = (state = initialState, action) => {
         newState.allSongs[songId].like_count++;
       }
       if (Object.values(newState.singleSong).length) {
-        console.log("newState.singleSongs", newState.singleSong)
+        console.log("newState.singleSongs", newState.singleSong);
         newState.singleSong = { ...state.singleSong };
         if (newState.singleSong.id == songId) {
           newState.singleSong.like_count++;
@@ -271,7 +284,8 @@ const songsReducer = (state = initialState, action) => {
         if (newState.userLikedSongs[songId]) {
           newState.userLikedSongs[songId] = { ...state.userLikedSongs[songId] };
           newState.userLikedSongs[songId].like_count++;
-          newState.userLikedSongs[songId].song_likes[current_user.id] = current_user;
+          newState.userLikedSongs[songId].song_likes[current_user.id] =
+            current_user;
         }
       }
 
@@ -303,23 +317,23 @@ const songsReducer = (state = initialState, action) => {
       if (Object.values(newState.userSongs).length) {
         newState.userSongs = { ...state.userSongs };
         if (newState.userSongs[songId]) {
-          console.log("newState.userSongs", newState.userSongs)
+          console.log("newState.userSongs", newState.userSongs);
           newState.userSongs[songId] = { ...state.userSongs[songId] };
           newState.userSongs[songId].like_count--;
           delete newState.userSongs[songId].song_likes[current_user.id];
-         }
+        }
       }
       if (Object.values(newState.userLikedSongs).length) {
-        console.log("newState.userSongs", newState.userLikedSongs)
+        console.log("newState.userSongs", newState.userLikedSongs);
         newState.userLikedSongs = { ...state.userLikedSongs };
         if (newState.userLikedSongs[songId]) {
           newState.userLikedSongs[songId] = { ...state.userLikedSongs[songId] };
-          console.log("current user id vs user id", current_user.id, userId)
+          console.log("current user id vs user id", current_user.id, userId);
           if (current_user.id == userId) delete newState.userLikedSongs[songId];
           else {
             newState.userLikedSongs[songId].like_count--;
-            delete newState.userLikedSongs[songId].song_likes[current_user.id]
-          };
+            delete newState.userLikedSongs[songId].song_likes[current_user.id];
+          }
         }
       }
       return newState;
@@ -328,6 +342,9 @@ const songsReducer = (state = initialState, action) => {
     // Play Selected Song
     case PLAY_SONG:
       return { ...state, playSong: action.song };
+
+    case RESET_SINGLE_SONG:
+      return { ...state, singleSong: {} };
 
     // Default
     default:

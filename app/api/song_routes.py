@@ -42,7 +42,6 @@ def upload_song():
         picture = request.files["picture"]
 
         if not s3.image_file(picture.filename):
-            print("file type not permitted")
             return {"errors": "file type not permitted"}, 400
 
         picture.filename = s3.get_unique_filename(picture.filename)
@@ -50,7 +49,6 @@ def upload_song():
         upload_image = s3.upload_image_file_to_s3(picture)
 
         if "url" not in upload_image:
-            print("error upload")
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
@@ -114,7 +112,6 @@ def edit_song(id):
         picture = request.files["picture"]
 
         if not s3.image_file(picture.filename):
-            print("file type not permitted")
             return {"errors": "file type not permitted"}, 400
 
         picture.filename = s3.get_unique_filename(picture.filename)
@@ -122,7 +119,6 @@ def edit_song(id):
         upload_image = s3.upload_image_file_to_s3(picture)
 
         if "url" not in upload_image:
-            print("error upload")
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
