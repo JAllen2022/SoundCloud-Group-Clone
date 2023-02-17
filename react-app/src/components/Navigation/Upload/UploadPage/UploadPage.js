@@ -67,9 +67,9 @@ const UploadPage = ({ editSong = false, songEdit }) => {
           setSongLoading(false);
           history.push(`/songs/${res.id}`);
         })
-        .catch(() => {
+        .catch((res) => {
           setSongLoading(false);
-          console.log("error with uploading song");
+          setErrors(res)
         });
     } else {
       // If we are creating a new song, dispatch the CREATE song thunk
@@ -78,9 +78,9 @@ const UploadPage = ({ editSong = false, songEdit }) => {
           setSongLoading(false);
           history.push(`/songs/${res.id}`);
         })
-        .catch(() => {
+        .catch((res) => {
           setSongLoading(false);
-          console.log("error with uploading song");
+          setErrors(res);
         });
     }
   };
