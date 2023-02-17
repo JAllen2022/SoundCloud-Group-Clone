@@ -13,12 +13,11 @@ const AllUserPageComments = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const user = useSelector((state) => state.UserPage.userProfile);
-
   const userComments = useSelector((state) => state.Comments.user);
 
   let userCommentItems;
   if (Object.values(userComments).length) {
-    const tempArray = Object.values(userComments).slice(0, 7);
+    const tempArray = Object.values(userComments);
     userCommentItems = tempArray.map((comment) => (
       <UserCommentItem key={comment.id} comment={comment} />
     ));
@@ -26,7 +25,8 @@ const AllUserPageComments = () => {
 
   useEffect(() => {
     if (!Object.values(user).length) dispatch(loadUserThunk(userId));
-    if (Object.values(userComments).length) dispatch(loadUserCommentsThunk(userId));
+    if (!Object.values(userComments).length)
+      dispatch(loadUserCommentsThunk(userId));
   }, [dispatch, userId]);
 
   return (
@@ -39,11 +39,9 @@ const AllUserPageComments = () => {
             alt=""
           />
         </div>
-        <div className="comments-by">Comments by {}</div>
+        <div className="comments-by">Comments by {user?.display_name}</div>
       </div>
-      <div className="all-user-comments">
-        <UserPageComments />
-      </div>
+      <div className="all-user-comments">{userCommentItems}</div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const SongCommentItem = ({ comment, song }) => {
           <img
             className="prof-pic"
             src={
-              comment.user.profile_image_url
+              comment.user?.profile_image_url
                 ? comment.user.profile_image_url
                 : profPic
             }

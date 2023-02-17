@@ -23,13 +23,12 @@ const SongPageComments = () => {
         dispatch(loadSongCommentsThunk(songId))
     }, [dispatch, songId])
 
-    if (!songComments) return null;
 
     const commentItems = songCommentsArr.map((comment) => {
         return <SongCommentItem key={comment.id} comment={comment} song={song}/>
     })
 
-    if (!song) return null;
+    if (!Object.values(songComments).length || !Object.values(song).length) return null;
 
     return (
         <div className='song-comments-container'>

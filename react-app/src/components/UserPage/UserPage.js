@@ -162,7 +162,6 @@ const UserPage = () => {
             <UserPageLikes />
           </div>
           <div className="userPagecomments-component">
-            hi Im a comment
             <UserPageComments />
           </div>
         </div>

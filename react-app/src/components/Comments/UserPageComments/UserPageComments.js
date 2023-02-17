@@ -11,7 +11,6 @@ import "./UserPageComment.css";
 const UserPageComments = () => {
   const dispatch = useDispatch();
   const userComments = useSelector((state) => state.Comments.user);
-  console.log("userComments:", userComments);
   const user = useSelector((state) => state.UserPage.userProfile);
   const { userId } = useParams;
 
