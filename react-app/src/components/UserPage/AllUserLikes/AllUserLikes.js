@@ -26,9 +26,9 @@ const AllUserLikes = () => {
 
     useEffect(() => {
         // If User is not loaded into state, dispatch for it
-        if (!Object.values(user).length) dispatch(loadUserThunk(userId))
+        dispatch(loadUserThunk(userId))
         // If User Liked Songs is not loaded into state, dispatch for it
-        if(!Object.values(userLikedSongs).length) dispatch(getUserLikedSongsThunk(userId));
+        dispatch(getUserLikedSongsThunk(userId));
     },[dispatch, userId])
 
 

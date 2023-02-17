@@ -56,10 +56,14 @@ const UserPage = () => {
 
   const colorPicker = () => {
     let colors = ['h-pink', 'h-purple', 'h-yellow', 'h-bluegreen', 'h-hotpink', 'h-purpleblue', 'h-orange', 'h-darkblue']
-    for (let i in colors) {
-      // Math.random()
-    }
+    let randoNum;
+    // for (let i in colors) {
+      randoNum = Math.floor(Math.random() * 9)
+    // }
+    console.log(randoNum)
+    return colors[randoNum]
   }
+  console.log('colors', colorPicker())
 
   //   useEffect(() => {
   //     if (headerImage) {
@@ -100,14 +104,15 @@ const UserPage = () => {
     <div className="user-page-outer-container">
       <div className="user-page-container">
         {/* <div className={user.header_image_url ? "" : "user-page-header"}> */}
-        <div className="user-page-header">
-          <div className="header-image-container">
+        <div className={user?.header_image_url ?
+          "user-page-header" : `${colorPicker()} user-page-header`}>
+          {user?.header_image_url && (<div className="header-image-container">
             <img
               className="user-page-header-image"
-              src={user?.header_image_url ? user.header_image_url : ""}
+              src={user?.header_image_url}
               alt="header image"
             />
-          </div>
+          </div>)}
           <div className="user-page-profile-header-info-container">
             <div className="user-page-profile-header-info-left">
               <img
