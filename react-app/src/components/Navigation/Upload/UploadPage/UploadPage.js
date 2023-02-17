@@ -115,6 +115,8 @@ const UploadPage = ({ editSong = false, songEdit }) => {
                   description={description}
                   setDescription={setDescription}
                   setSongImage={setSongImage}
+                  errors={errors}
+                  setErrors={setErrors}
                 />
               </>
             ) : (
@@ -133,7 +135,13 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   );
 };
 
-function UploadSong({ setSong, setUploadedSong, setLength, errors, setErrors }) {
+function UploadSong({
+  setSong,
+  setUploadedSong,
+  setLength,
+  errors,
+  setErrors,
+}) {
   const toMinutes = (length) => {
     const minutes = length / 60;
     return minutes.toFixed(2);
@@ -199,9 +207,9 @@ function UploadSong({ setSong, setUploadedSong, setLength, errors, setErrors }) 
 
     // If we have a file size error, remove it when a appropriate file is added
     if (errors.FileSize) {
-      const newErrors = {...errors};
-      delete newErrors.FileSize
-      setErrors(newErrors)
+      const newErrors = { ...errors };
+      delete newErrors.FileSize;
+      setErrors(newErrors);
     }
     setSong(file);
     setUploadedSong(true);
