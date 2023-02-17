@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -54,16 +54,15 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <p>Profile</p>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <Link className="link" to={`/users/${user?.id}`} ><p className='profile-dropdown-link link'>Profile</p></Link>
+            <Link className="link" to={`/users/${user?.id}/likes`} ><p className='profile-dropdown-link link'>Likes</p></Link>
+            <Link className="link" to={`/users/${user?.id}/songs`} ><p className='profile-dropdown-link link'>Tracks</p></Link>
+            <p className='profile-dropdown-username'>{user.username}</p>
+            <p className='profile-dropdown-email'>{user.email}</p>
+            <p className='profile-dropdown-logout' onClick={handleLogout}>Log Out</p>
           </>
         ) : (
-          <>
+          <div className="profile-dropdown logged-out">
             <OpenModalButton
               buttonText="Log In"
               onItemClick={closeMenu}
@@ -75,7 +74,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
       </ul>
     </>

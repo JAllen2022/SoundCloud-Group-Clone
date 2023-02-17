@@ -26,7 +26,7 @@ const AllSongs = () => {
   if (!Object.values(allSongs).length) return null;
   return (
     <>
-      <p className="all-songs-header"> Here are the lastest songs </p>
+      <h2 className="all-songs-header"> Here are the lastest songs: </h2>
       <div className="songs-container">
         <ul className="songs-wrapper">{songItems}</ul>
       </div>
