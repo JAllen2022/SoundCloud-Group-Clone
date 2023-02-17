@@ -7,6 +7,7 @@ import {
   deleteLikeThunk,
   playSong,
 } from "../../../store/songs";
+import profPic from "../../../assets/profPic.jpeg";
 import { Link } from "react-router-dom";
 import CreateComment from "../../Comments/CreateComment/CreateComment";
 import SongPageComments from "../../Comments/SongPageComments/SongPageComments";
@@ -23,6 +24,7 @@ const SongShow = () => {
   const { songId } = useParams();
   const song = useSelector((state) => state.Songs.singleSong);
   const currentUser = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.UserPage.userProfile);
   console.log('song', song)
   console.log('song likes', song.song_likes)
   console.log('curr user', currentUser)
@@ -78,11 +80,11 @@ const SongShow = () => {
                   className="show-play-button"
                   onClick={() => dispatch(playSong(song))}
                 > */}
-                  <img
-                    className="show-play-button-image"
-                    src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
-                    alt="orange play button"
-                  />
+                <img
+                  className="show-play-button-image"
+                  src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
+                  alt="orange play button"
+                />
                 {/* </button> */}
               </div>
               <div className="show-artist-title-name">
@@ -108,16 +110,14 @@ const SongShow = () => {
             <CreateComment />
           </div>
           <div className="song-interact-container">
+            <button className={song.song_likes[currentUser?.id] ? "liked show-like-button" : "show-like-button"} onClick={clickToLike}>
+              <i className="fa-solid fa-heart"></i>
+            </button>
             <div className="show-likes-count link">
-              <button className={song.song_likes[currentUser?.id] ? "liked show-like-button" : "show-like-button" } onClick={clickToLike}>
-                <i className="fa-solid fa-heart"></i>
-              </button>
-              <div className="show-likes-count link">
-                <Link className="show-likes-link link" to={`/songs/${songId}/likes`}>
-                  <i className="fa-solid fa-heart link"></i>
-                  <p>{song.like_count}</p>
-                </Link>
-              </div>
+              <Link className="show-likes-link link" to={`/songs/${songId}/likes`}>
+                <i className="fa-solid fa-heart link"></i>
+                <p>{song.like_count}</p>
+              </Link>
             </div>
             {currentUser && currentUser.id == song.user_id ? (
               <div className="edit-song-button">
@@ -150,7 +150,12 @@ const SongShow = () => {
           <div className="user-info-comments-container">
             <div className="left-user-container">
               <div className="user-pic-display-name">
-                <div className="user-pic">{/* <img alt='' /> */}</div>
+                <div className="user-pic">
+                  <img src={user?.profile_image_url ? user.profile_image_url : profPic} alt="profile picture"/>
+                </div>
+                <div className="user-page-disName">
+                  {user?.display_name ? user.display_name : "No display name"}
+                </div>
               </div>
             </div>
             <div className="right-info-comments-container">

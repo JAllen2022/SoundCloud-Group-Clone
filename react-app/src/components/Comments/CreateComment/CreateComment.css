@@ -6,14 +6,14 @@
 }
 
 .create-comment-user-container {
-  width: 43px;
-  height: 43px;
+  width: 38px;
+  height: 38px;
   /* border: 1px solid red; */
 }
 
 .create-comment-user-image {
-  width: 43px;
-  height: 43px;
+  width: 40px;
+  height: 42px;
 }
 
 .comment-form {
@@ -21,7 +21,7 @@
   /* margin: 0; */
 
   position: relative;
-  padding-right: 5px;
+  padding-right: 12px;
 
   border: 1px solid rgba(230, 230, 230, 0.79);
   border-left-color: transparent;
@@ -29,7 +29,7 @@
 }
 
 .create-comment-container {
-  width: 99%;
+  width: 100%;
 
 }
 .create-comment-input-container {
@@ -40,7 +40,10 @@
   width: 98%;
   margin-left: 8px;
   margin-top: -5px;
+  /* margin-right: 8px; */
+  margin-bottom: 7px;
   padding: 4px;
+  padding-left: 9px;
   border: 1px solid lightgray;
   border-radius: 3px;
 }

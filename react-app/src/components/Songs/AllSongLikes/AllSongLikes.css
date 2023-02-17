@@ -1,0 +1,74 @@
+/* * {
+  font-family: Interstate, 'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Garuda ,Verdana,Tahoma,sans-serif;
+
+} */
+
+.asl-header {
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+    height: 100%;
+    align-items: flex-start;
+    /* border: 1px solid red; */
+
+}
+
+.asl-image-container {
+    /* border: 1px solid red; */
+    width: 110px;
+    height: 110px;
+    margin-right: 20px;
+}
+
+.asl-song-image {
+    width: 105px;
+    height: 105px;
+
+}
+
+/* .asl-title-container {
+    border: 1px solid red;
+
+} */
+
+.asl-title {
+    /* border: 1px solid red; */
+    font-size: 32px;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.asl-body {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+  margin: 30px;
+}
+
+.song-likes-user-prof-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.asl-user-pic {
+  width: 150px;
+  height: 150px;
+  /* border-radius: 50%; */
+  border: 1px solid red;
+
+}
+
+.asl-user-image{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* border: 1px solid red; */
+  object-fit: cover;
+}
+
+.asl-display-name {
+  text-align: center;
+}

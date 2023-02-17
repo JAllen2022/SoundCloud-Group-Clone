@@ -101,17 +101,18 @@
 }
 
 .under-header-container {
-    width: 1013px;
-    padding: 20px 25px;
+    width: 1034px;
+    padding: 18px 27px;
     display: flex;
     /* justify-content: space-between; */
-    /* border: 1px solid red; */
+    border: 1px solid rgb(0, 0, 0, 0.08);
 }
 
 .left-under-container {
     /* border: 1px solid red; */
-    width: 75%;
-    margin-right: 30px;
+    width: 70%;
+    padding-right: 25px;
+    border-right: 1px solid rgb(0, 0, 0, 0.06)
 }
 
 .add-comment-form {
@@ -121,10 +122,17 @@
     /* border: 1px solid red; */
     /* background-color: red; */
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -7px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.06)
 }
 
+
 .right-under-container {
-    width: 25%;
+    width: 30%;
+    padding-left: 25px;
 }
 
 .show-like-button {
@@ -141,4 +149,55 @@
 
 button:hover {
     cursor: pointer;
+}
+
+.show-likes-count.link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    /* border: 1px solid blue; */
+    width: fit-content;
+    opacity: .5;
+}
+
+.show-likes-link {
+    display: flex;
+}
+
+.fa-heart.link {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.user-pic-disName {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-page-disName {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 7px;
+}
+.user-pic img {
+    height: 120px;
+    width: 120px;
+    margin-left: -14px;
+}
+
+.user-info-comments-container {
+    display: flex;
+}
+
+.right-info-comments-container {
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.song-comments-header {
+    display: flex;
+    align-items: center;
 }
