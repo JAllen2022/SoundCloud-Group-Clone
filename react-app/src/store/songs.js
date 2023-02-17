@@ -79,7 +79,7 @@ export const getSongsThunk = () => async (dispatch) => {
     dispatch(loadSongs(songs));
     return songs;
   } else {
-    return res.errors;
+    return res;
   }
 };
 
@@ -91,6 +91,8 @@ export const getUserSongsThunk = (userId) => async (dispatch) => {
     const songs = await res.json();
     dispatch(loadUserSongs(songs));
     return songs;
+  } else {
+    return res;
   }
 };
 
@@ -102,6 +104,8 @@ export const getUserLikedSongsThunk = (userId) => async (dispatch) => {
     const likedSongs = await res.json();
     dispatch(getUserLikedSongs(likedSongs));
     return likedSongs;
+  } else {
+    return res;
   }
 };
 
@@ -113,10 +117,9 @@ export const getSongThunk = (songId) => async (dispatch) => {
     const song = await res.json();
     dispatch(loadSong(song));
     return song;
+  } else {
+    return res;
   }
-  // else {
-  //     return res.Error
-  // }
 };
 
 // Create Song
@@ -145,10 +148,9 @@ export const editSongThunk = (song, songId) => async (dispatch) => {
     const song = await res.json();
     dispatch(editSong(song));
     return song;
+  } else {
+    return res;
   }
-  // else {
-  //     return res.Error
-  // }
 };
 
 // Delete Song
@@ -160,10 +162,9 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
     const deletedSong = await res.json();
     dispatch(deleteSong(songId));
     return deletedSong;
+  } else {
+    return res;
   }
-  // else {
-  //     return res.Error
-  // }
 };
 
 // Add Like
