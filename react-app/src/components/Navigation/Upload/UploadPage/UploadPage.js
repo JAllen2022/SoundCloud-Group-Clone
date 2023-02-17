@@ -165,7 +165,7 @@ function UploadSong({
     const file = e.target.files[0];
     console.log("checking file size", file.size);
 
-    // File size validation. Add error if bytes is bigger than 6million
+    // File size validation. Add error if bytes is bigger than 6mb
     if (file.size > 6000000) {
       setErrors({ FileSize: "File size too large" });
       e.target.value = "";
