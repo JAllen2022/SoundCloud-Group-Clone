@@ -153,11 +153,10 @@ export default function commentsReducer(state = initialState, action) {
             // newState.user = action.comments;
             console.log("checking user comments", action.comments)
             // newState.user=
+            newState.user = {...state.user}
             Object.values(action.comments).forEach(comment => {
                 newState.user[comment.id] = comment
             })
-
-
             return newState;
 
         // Create Comment

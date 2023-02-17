@@ -24,10 +24,11 @@ const UserPageComments = () => {
   }
 
   useEffect(() => {
-    if (Object.values(userComments).length) {
-      dispatch(loadUserThunk(userId));
-      dispatch(loadUserCommentsThunk(userId));
-    }
+    // if (Object.values(userComments).length) {
+        dispatch(loadUserThunk(userId));
+        dispatch(loadUserCommentsThunk(userId));
+        console.log('here')
+    // }
   }, [dispatch, userId]);
 
   if (!Object.values(userComments).length) return null;
