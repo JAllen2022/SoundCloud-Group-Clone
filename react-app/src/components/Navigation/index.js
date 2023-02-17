@@ -14,9 +14,14 @@ function Navigation({ isLoaded }) {
     <div className="nav-page-container">
       <div className="nav-bar">
         <div className="header-left">
-          <NavLink className="home-link" exact to={sessionUser ? "/songs" : "/"}>
-            Home
-          </NavLink>
+          <div className="logo">
+            <i className="fa-brands fa-soundcloud fa-3x "></i>
+          </div>
+          <div className="home-tab">
+            <NavLink className="home-link" exact to={sessionUser ? "/songs" : "/"}>
+              Home
+            </NavLink>
+          </div>
         </div>
         <div className="header-right">
           {isLoaded && (

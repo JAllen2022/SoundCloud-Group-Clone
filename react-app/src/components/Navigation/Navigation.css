@@ -1,7 +1,4 @@
 
-.isFocused {
-
-}
 
 .profile-dropdown {
   display: flex;
@@ -18,13 +15,16 @@
   border-radius: 3px;
   height: auto;
   width: 75px;
-  padding-top: 7px;
+  padding: 7px;
 }
 
 ul.profile-dropdown {
   /* border: none; */
   background-color: white;
-  margin-left: -80px;
+  /* margin-left: -80px; */
+  border: 1px solid red;
+  padding: 3px;
+  width: 83px;
 
 }
 
@@ -32,7 +32,6 @@ ul.profile-dropdown {
   margin-left: -70px;
   margin-top: -7px;
   width: 143px;
-
 }
 
 .profile-dropdown.logged-out > button {
@@ -48,27 +47,32 @@ ul.profile-dropdown {
 .profile-dropdown-username,
 .profile-dropdown-email,
 .profile-dropdown-logout {
-  margin-left: -25px;
+  /* margin-left: -25px; */
   font-weight: 600;
-  font-size: 13px;
+  font-size: 11.5px;
 }
 
 .profile-dropdown-link {
   margin-bottom: 0;
   color: black;
+  margin-top: 0;
 }
 
-.profile-dropdown-username {
+a.link {
+  margin: 5px;
+}
+
+/* .profile-dropdown-username {
   margin-top: 13px;
-}
+} */
 
-.profile-dropdown-email {
+/* .profile-dropdown-email {
   margin-top: 0;
 
-}
+} */
 
 .profile-dropdown-logout {
-  margin-top: 0;
+  margin: 5px;
 
 }
 .profile-dropdown-link:hover,
@@ -105,8 +109,14 @@ body {
   flex-direction: row;
   align-items: center;
   width: 100%;
-
+  height: 43px;
   justify-content: space-between;
+}
+
+
+.fa-soundcloud {
+  color: white;
+  padding-right: 28px;
 }
 
 .home-link {
@@ -118,8 +128,13 @@ body {
 
 .header-left {
   display: flex;
-  padding: 12px 28px;
+  padding: 0px 28px;
   border-right: 1px solid #111;
+  align-items: center;
+}
+
+.home-tab {
+  margin: 0px;
 }
 
 .header-right {
@@ -136,7 +151,7 @@ body {
 
 .upload-button-container {
   margin: 0px;
-  padding: 12px 28px;
+  padding: 11px 28px;
 }
 
 .upload-button-container:active {
@@ -182,7 +197,7 @@ i.fas.fa-user-circle {
 
 .profile-button-container {
   margin: 0px;
-  padding: 12px 28px;
+  padding: 11px 28px;
   width: fit-content;
 }
 
