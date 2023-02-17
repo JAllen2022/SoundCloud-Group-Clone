@@ -118,7 +118,10 @@ export const getSongThunk = (songId) => async (dispatch) => {
     dispatch(loadSong(song));
     return song;
   } else {
-    return res;
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
   }
 };
 
@@ -134,7 +137,10 @@ export const createSongThunk = (data) => async (dispatch) => {
     dispatch(createSong(createdSong));
     return createdSong;
   } else {
-    return res;
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
   }
 };
 
@@ -149,7 +155,10 @@ export const editSongThunk = (song, songId) => async (dispatch) => {
     dispatch(editSong(song));
     return song;
   } else {
-    return res;
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
   }
 };
 
@@ -163,7 +172,10 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
     dispatch(deleteSong(songId));
     return deletedSong;
   } else {
-    return res;
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
   }
 };
 
