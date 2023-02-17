@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 // import UploadPage from './Upload/UploadPage';
@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
               <div className="upload-button-container">
                 <NavLink
                   exact
-                  to="/upload"
+                  to={sessionUser ? '/upload' : '/login'}
                   className="upload-button"
                   onClick={() => dispatch(resetSingleSong())}
                 >
