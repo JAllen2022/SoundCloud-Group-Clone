@@ -120,9 +120,7 @@ export const editUserThunk = (user, userId) => async (dispatch) => {
     dispatch(editUser(editedUser));
     return editedUser;
   } else {
-    console.log("we here in the else");
-	  const data = await res.json();
-	  console.log("checking data", data)
+    const data = await res.json();
     if (data.errors) {
       return data;
     }

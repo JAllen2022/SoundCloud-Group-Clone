@@ -24,7 +24,7 @@ def get_song(id):
     song = Song.query.get(id)
 
     if not song:
-        return {"errors": "Song not found"}
+        return {"errors": "Song not found"}, 404
 
     return song.to_dict_single_song()
 
@@ -99,7 +99,7 @@ def edit_song(id):
     song = Song.query.get(id)
 
     if not song:
-        return {"errors":"Song not found"}
+        return {"errors":"Song not found"}, 404
 
     image_url = song.song_image_url
 

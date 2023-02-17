@@ -68,7 +68,7 @@ const EditUserPageForm = () => {
     data.append("bio", bio);
 
     const res = await dispatch(editUserThunk(data, currentUser.id));
-    console.log("we checking res", res);
+    
     if (res.errors) {
       const newErrors = { ...errors, ...res };
       setErrors(newErrors);

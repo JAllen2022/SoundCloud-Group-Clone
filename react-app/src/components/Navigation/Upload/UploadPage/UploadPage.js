@@ -59,29 +59,28 @@ const UploadPage = ({ editSong = false, songEdit }) => {
 
     setSongLoading(true);
 
+    let res;
     if (editSong) {
       // If we are editing an existing song, dispatch the EDIT song thunk
-      dispatch(editSongThunk(data, currentSong.id))
-        .then((res) => {
-          closeModal();
-          setSongLoading(false);
-          history.push(`/songs/${res.id}`);
-        })
-        .catch((res) => {
-          setSongLoading(false);
-          setErrors(res)
-        });
+      res = await dispatch(editSongThunk(data, currentSong.id));
+      if (res.errors) {
+        setSongLoading(false);
+        setErrors(res);
+      } else {
+        closeModal();
+        setSongLoading(false);
+        history.push(`/songs/${res.id}`);
+      }
     } else {
       // If we are creating a new song, dispatch the CREATE song thunk
-      dispatch(createSongThunk(data))
-        .then(async (res) => {
-          setSongLoading(false);
-          history.push(`/songs/${res.id}`);
-        })
-        .catch((res) => {
-          setSongLoading(false);
-          setErrors(res);
-        });
+      res = await dispatch(createSongThunk(data));
+      if (res.errors) {
+        setSongLoading(false);
+        setErrors(res);
+      } else {
+        setSongLoading(false);
+        history.push(`/songs/${res.id}`);
+      }
     }
   };
 
@@ -95,7 +94,7 @@ const UploadPage = ({ editSong = false, songEdit }) => {
               key={error}
               className="upload-page-errors"
             >
-              {error}:{errors[error]}
+              {errors[error]}
             </li>
           ))}
         </ul>
