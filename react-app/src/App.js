@@ -22,7 +22,6 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -37,6 +36,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/upload">
+            <UploadPage />
+          </Route>
           <Route path="/songs/:songId/likes">
             <AllSongLikes />
           </Route>
@@ -45,9 +47,6 @@ function App() {
           </Route>
           <Route path="/songs">
             <AllSongs />
-          </Route>
-          <Route path="/upload">
-            <UploadPage />
           </Route>
           <Route path="/users/:userId/likes">
             <AllUserLikes />
