@@ -30,11 +30,12 @@
 
 .up-likes-song-item-container {
   /* border: 1px solid purple; */
-  margin: 0.25rem 0;
+  /* margin: 0.25rem 0; */
   width: 100%;
   /* height: 3.25rem; */
   display: flex;
   justify-content: space-between;
+  margin: 0.90rem 0;
 }
 
 .up-likes-song-image-play-container {
@@ -115,6 +116,7 @@
   align-items: center;
   margin: 0;
   padding: 0;
+  height: 22px;
 }
 
 .up-likes-like-button {
@@ -122,3 +124,7 @@
   margin: 0;
   padding: 0;
 }
+
+/* .up-likes-comment-count {
+  margin-top: 2.5px;
+} */

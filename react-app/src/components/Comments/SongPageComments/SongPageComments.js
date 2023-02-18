@@ -25,7 +25,7 @@ const SongPageComments = () => {
 
 
     const commentItems = songCommentsArr.map((comment) => {
-        return <SongCommentItem key={comment.id} comment={comment} song={song}/>
+        return <SongCommentItem key={comment.id} comment={comment} song={song} />
     })
 
     if (!Object.values(songComments).length || !Object.values(song).length) return null;
@@ -33,8 +33,10 @@ const SongPageComments = () => {
     return (
         <div className='song-comments-container'>
             <div className='song-comments-header'>
-                <img src={commentBox} className="comment-box" alt=""/>
-                <p>{songCommentsArr.length} comments</p>
+                <img src={commentBox} className="comment-box" alt="" />
+                <div className='song-comments-length'>
+                    {songCommentsArr.length} comments
+                </div>
             </div>
             <div className='song-comments-area'>
                 <ul className='song-comment-wrapper'>

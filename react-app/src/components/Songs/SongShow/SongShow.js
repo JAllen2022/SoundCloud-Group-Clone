@@ -166,34 +166,32 @@ const SongShow = () => {
         </div>
         <div className="right-under-container">
           <div className="show-song-likes-container">
-            <div className="song-likes-header">
-              <Link className="show-likes-link link" to={`/songs/${song.id}/likes`}>
-                <div className="show-likes-view-all">
-                  <div className="show-likes-likes">
-                    <i className="fa-solid fa-heart"></i>
-                    <p>{song.like_count} likes</p>
-                  </div>
-                  <div className="show-view-all">
-                    <p>View all</p>
-                  </div>
+            <Link className="show-likes-link link" to={`/songs/${song.id}/likes`}>
+              <div className="show-likes-view-all">
+                <div className="show-likes-likes">
+                  <i className="fa-solid fa-heart show"></i>
+                  <div>{song.like_count} likes</div>
                 </div>
-              </Link>
-            </div>
+                <div className="show-view-all">
+                  <p>View all</p>
+                </div>
+              </div>
+            </Link>
             {/* <div className="users-liked">
                             <AllLikes />
                         </div> */}
           </div>
           <div className="disclaimers-lang">
-            <div className="disclamers">
-              <p>
+            <div className="disclaimers-container">
+              <div className="disclaimers">
                 Legal &#x2022; Do Not Sell or Share My Personal Information
                 &#x2022; Privacy &#x2022; Cookie Policy &#x2022; Cookie Manager
                 &#x2022; Imprint &#x2022; Artist Resources &#x2022; Blog
                 &#x2022; Charts &#x2022;
-              </p>
+              </div>
             </div>
-            <div className="lang">
-              <p>Language: English (US)</p>
+            <div className="lang-cont">
+              <div className="lang">Language: </div><p> English (US)</p>
             </div>
           </div>
         </div>

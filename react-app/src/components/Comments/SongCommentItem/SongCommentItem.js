@@ -33,7 +33,6 @@ const SongCommentItem = ({ comment, song }) => {
               {comment.user?.username} at {comment?.time}
             </div>
           </div>
-          <div className="comment-created-at">{comment?.created_at}</div>
         </div>
         <div className="comment-body">
           {editing ? (
@@ -43,26 +42,29 @@ const SongCommentItem = ({ comment, song }) => {
           )}
         </div>
       </div>
-      {currentUser && currentUser.id == comment.user_id && (
-        <div className="edit-delete-container">
-          <div className="edit-comment-container">
-            <button
-              onClick={(e) => setEditing((prev) => !prev)}
-              className="edit-comment-button"
-            >
-              <i className="fa-solid fa-pencil fa-sm"></i>
-            </button>
+      <div className="created-at-edit-delete">
+        <div className="comment-created-at">{comment?.created_at}</div>
+        {currentUser && currentUser.id == comment.user_id && (
+          <div className="edit-delete-container">
+            <div className="edit-comment-container">
+              <button
+                onClick={(e) => setEditing((prev) => !prev)}
+                className="edit-comment-button"
+              >
+                <i className="fa-solid fa-pencil fa-sm"></i>
+              </button>
+            </div>
+            <div className="delete-comment-container">
+              <button
+                onClick={() => dispatch(deleteCommentThunk(comment.id))}
+                className="delete-comment-button"
+              >
+                <i className="fa-solid fa-trash fa-sm"></i>
+              </button>
+            </div>
           </div>
-          <div className="delete-comment-container">
-            <button
-              onClick={() => dispatch(deleteCommentThunk(comment.id))}
-              className="delete-comment-button"
-            >
-              <i className="fa-solid fa-trash fa-sm"></i>
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

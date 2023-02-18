@@ -171,7 +171,7 @@ button:hover {
     align-items: center;
     /* border: 1px solid blue; */
     width: fit-content;
-    opacity: .5;
+    opacity: .55;
 }
 
 .show-likes-link.link {
@@ -257,4 +257,59 @@ button.delete-song-button {
 
 .like-count {
     margin-top: 2.5px;
+}
+
+.disclaimers {
+    color: rgb(0, 0, 0, 0.3);
+    margin-top: 50px;
+}
+
+.lang-cont {
+    display: flex;
+    align-items: center;
+
+}
+.lang {
+    color: blue;
+    margin-right: 3.5px;
+}
+
+.show-song-likes-container {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.show-likes-view-all {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    opacity: .55;
+    /* border: 1px solid blue; */
+    font-size: 13px;
+    height: 30px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.08);
+}
+
+.show-likes-likes {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid green; */
+    margin-right: 197px;
+}
+
+.fa-heart.show {
+    margin-bottom: 2.5px;
+
+}
+
+.show-likes-link {
+    padding: 0px;
+}
+
+.show-view-all {
+    display: flex;
+    align-items: center;
 }
