@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 // import UploadPage from './Upload/UploadPage';

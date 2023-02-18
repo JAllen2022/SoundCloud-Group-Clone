@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -56,7 +56,7 @@ const SongShow = () => {
     }
   }
 
-  console.log(song?.created_at)
+  // console.log(song?.created_at)
 
   if (!Object.values(song).length) return null;
 
@@ -149,7 +149,7 @@ const SongShow = () => {
             <div className="left-user-container">
               <div className="user-pic-display-name">
                 <div className="user-pic">
-                  <img src={user?.profile_image_url ? user.profile_image_url : profPic} alt="profile picture" />
+                  <img className="song-user-img" src={user?.profile_image_url ? user.profile_image_url : profPic} alt="user profile" />
                 </div>
                 <div className="user-page-disName">
                   {user?.display_name ? user.display_name : "No display name"}

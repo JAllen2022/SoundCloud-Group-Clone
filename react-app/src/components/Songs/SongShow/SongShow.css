@@ -190,15 +190,23 @@ button:hover {
     flex-direction: row;
 }
 
+
+
 .user-page-disName {
     display: flex;
-    margin-left: 10px;
+    justify-content: center;
+    /* text-align: center; */
+    margin-left: -14px;
     margin-top: 7px;
+
 }
+
 .user-pic img {
     height: 120px;
     width: 120px;
     margin-left: -14px;
+    border-radius: 50%;
+
 }
 
 .user-info-comments-container {
@@ -208,6 +216,7 @@ button:hover {
 .right-info-comments-container {
     /* border: 1px solid red; */
     width: 100%;
+    margin-left: 20px;
 }
 
 .song-comments-header {

@@ -62,7 +62,7 @@ function ProfileButton({ user }) {
             <>
               <Link onClick={closeMenu} className="link" to={`/users/${user?.id}`} ><p className='profile-dropdown-link link'><img className="drop-user-pic" src={dropUserPic} alt="" />Profile</p></Link>
               <Link onClick={closeMenu} className="link" to={`/users/${user?.id}/likes`} ><p className='profile-dropdown-link link'><i id="dropdown-heart" className="fa-solid fa-heart"></i>Likes</p></Link>
-              <Link onClick={closeMenu} className="link" to={`/users/${user?.id}/songs`} ><p className='profile-dropdown-link link'><img className="drop-tracks" src={waveForm} />Tracks</p></Link>
+              <Link onClick={closeMenu} className="link" to={`/users/${user?.id}/songs`} ><p className='profile-dropdown-link link'><img className="drop-tracks" src={waveForm} alt='' />Tracks</p></Link>
               <p className='profile-dropdown-logout' onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i>Log Out</p>
             </>
           ) : (

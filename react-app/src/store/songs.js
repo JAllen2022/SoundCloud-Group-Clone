@@ -288,7 +288,7 @@ const songsReducer = (state = initialState, action) => {
         newState.allSongs[songId].like_count++;
       }
       if (Object.values(newState.singleSong).length) {
-        console.log("newState.singleSongs", newState.singleSong);
+        // console.log("newState.singleSongs", newState.singleSong);
         newState.singleSong = { ...state.singleSong };
         if (newState.singleSong.id == songId) {
           newState.singleSong.like_count++;
@@ -344,18 +344,18 @@ const songsReducer = (state = initialState, action) => {
       if (Object.values(newState.userSongs).length) {
         newState.userSongs = { ...state.userSongs };
         if (newState.userSongs[songId]) {
-          console.log("newState.userSongs", newState.userSongs);
+          // console.log("newState.userSongs", newState.userSongs);
           newState.userSongs[songId] = { ...state.userSongs[songId] };
           newState.userSongs[songId].like_count--;
           delete newState.userSongs[songId].song_likes[current_user.id];
         }
       }
       if (Object.values(newState.userLikedSongs).length) {
-        console.log("newState.userSongs", newState.userLikedSongs);
+        // console.log("newState.userSongs", newState.userLikedSongs);
         newState.userLikedSongs = { ...state.userLikedSongs };
         if (newState.userLikedSongs[songId]) {
           newState.userLikedSongs[songId] = { ...state.userLikedSongs[songId] };
-          console.log("current user id vs user id", current_user.id, userId);
+          // console.log("current user id vs user id", current_user.id, userId);
           if (current_user.id == userId) delete newState.userLikedSongs[songId];
           else {
             newState.userLikedSongs[songId].like_count--;

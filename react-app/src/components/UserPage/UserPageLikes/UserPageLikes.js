@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserSongsThunk } from "../../../store/songs";
-import SongItem from "../../Songs/SongItem/SongItem";
+// import { getUserSongsThunk } from "../../../store/songs";
+// import SongItem from "../../Songs/SongItem/SongItem";
 import { playSong } from "../../../store/songs";
 import "./UserPageLikes.css";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const UserPageLikes = () => {
   const dispatch = useDispatch();
   // const userLikes = useSelector(state => state.UserPage.userProfile.user_likes);
 
-  const user = useSelector((state) => state.UserPage.userProfile);
+  // const user = useSelector((state) => state.UserPage.userProfile);
   const userLikedSongs = useSelector((state) => state.Songs.userLikedSongs);
   // console.log(userLikedSongs);
 
@@ -78,7 +78,7 @@ const UserPageLikeItem = ({ song }) => {
   const playS = useSelector(state => state.Songs.playSong)
   const playerRef = useSelector(state => state.Songs.playerRef)
 
-  console.log("checking current user", currentUser);
+  // console.log("checking current user", currentUser);
 
   function songAction() {
     if (playS.id !== song.id) {

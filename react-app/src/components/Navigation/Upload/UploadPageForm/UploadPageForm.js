@@ -44,7 +44,7 @@ const UploadPageForm = ({
   setErrors,
 }) => {
   const updateImage = (e) => {
-    console.log("updating image");
+    // console.log("updating image");
     const file = e.target.files[0];
     if (file.size > 1000000) {
       const newError = { ...errors };
@@ -89,8 +89,8 @@ const UploadPageForm = ({
               className="song-input-field"
               required
               name="form-song-artist"
-              minlength="4"
-              maxlength="20"
+              minLength="4"
+              maxLength="20"
               value={artist}
               onChange={(e) => setArtist(e.target.value)}
             />

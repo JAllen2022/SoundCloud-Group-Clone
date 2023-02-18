@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+// import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { editUserThunk } from "../../../store/session";
@@ -17,7 +17,7 @@ const EditUserPageForm = () => {
   // const [user, setUser] = useState({});
 
   const currentUser = useSelector((state) => state.session.user);
-  const user = useSelector((state) => state.UserPage.user);
+  // const user = useSelector((state) => state.UserPage.user);
 
   // useEffect(() => {
   //     if (!userId) {
@@ -89,7 +89,7 @@ const EditUserPageForm = () => {
       const newError = { ...errors };
       newError["ImageSize"] = "File size too large. Maximum image size: 1MB.";
       setErrors(newError);
-      console.log("checking errors", newError, errors);
+      // console.log("checking errors", newError, errors);
       e.target.value = "";
       return;
     }

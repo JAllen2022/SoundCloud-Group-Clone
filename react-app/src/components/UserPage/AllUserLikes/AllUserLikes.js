@@ -15,8 +15,8 @@ const AllUserLikes = () => {
     const dispatch = useDispatch();
     const {userId} = useParams();
 
-    console.log("userPage :", user);
-    console.log("userLikedSong, AllUserlikes :", userLikedSongs)
+    // console.log("userPage :", user);
+    // console.log("userLikedSong, AllUserlikes :", userLikedSongs)
 
     let userLikeArray;
     if(Object.values(userLikedSongs).length) {
@@ -24,7 +24,7 @@ const AllUserLikes = () => {
         )
     }
 
-    console.log("userLikeArray", userLikeArray)
+    // console.log("userLikeArray", userLikeArray)
 
     useEffect(() => {
         // If User is not loaded into state, dispatch for it

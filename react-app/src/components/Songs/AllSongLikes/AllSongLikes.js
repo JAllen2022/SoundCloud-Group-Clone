@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk } from "../../../store/songs";
 import './AllSongLikes.css'
@@ -9,7 +9,7 @@ const AllSongLikes = () => {
     const { songId } = useParams();
     const songLikes = useSelector((state) => state.Songs.singleSong.song_likes);
     const song = useSelector(state => state.Songs.singleSong)
-    console.log("songLikes: ", songLikes)
+    // console.log("songLikes: ", songLikes)
 
     useEffect(() => {
         if (!Object.values(song).length) dispatch(getSongThunk(songId));
@@ -21,7 +21,7 @@ const AllSongLikes = () => {
         const songLikesArr = Object.values(songLikes);
         songLikeItems = songLikesArr.map((user) => (
             <div className="song-likes-user-prof-container">
-                <Link to={`/users/${user.id}`}>
+                <Link to={`/users/${user?.id}`}>
                     <div className="asl-user-pic">
                         <img className='asl-user-image' alt={user?.display_name} src={user?.profile_image_url}/>
                     </div>

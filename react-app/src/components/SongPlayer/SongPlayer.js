@@ -7,12 +7,12 @@ import "./SongPlayer.css";
 
 export default function SongPlayer() {
   const playSong = useSelector(state => state.Songs.playSong)
-  const isPlaying = useSelector(state => state.Songs.isPlaying)
+  // const isPlaying = useSelector(state => state.Songs.isPlaying)
   const playerRef = useRef(null)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log("what is ref", playerRef)
+    // console.log("what is ref", playerRef)
     dispatch(setPlayerReference(playerRef))
   },[dispatch])
   const buffer = {
@@ -22,7 +22,7 @@ export default function SongPlayer() {
     width: '100%',
   }
 
-  console.log("checking state isPlaying ~~~~~~~~~~~~~~~~~~", isPlaying)
+  // console.log("checking state isPlaying ~~~~~~~~~~~~~~~~~~", isPlaying)
   return (
     <div>
       <div style={buffer} />
@@ -81,13 +81,13 @@ export default function SongPlayer() {
 //           )}
 //       </IconButton>
 
-{/* <IconButton size="small">
+/* <IconButton size="small">
             {playing? (
               <PauseIcon onClick={() => setPlaying(false)}/>
             ) : (
               <PlayArrowIcon onClick={() => setPlaying(true)}/>
             )}
-        </IconButton> */}
+        </IconButton> */
 //   </div>
 //   )
 // }

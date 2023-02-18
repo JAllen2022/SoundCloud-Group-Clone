@@ -9,7 +9,7 @@ const SongCommentItem = ({ comment, song }) => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
-  const user = useSelector((state) => state.UserPage.user);
+  // const user = useSelector((state) => state.UserPage.user);
 
   const [editing, setEditing] = useState(false);
 

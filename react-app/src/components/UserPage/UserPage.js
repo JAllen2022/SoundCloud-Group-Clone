@@ -23,7 +23,7 @@ const UserPage = () => {
   // const userLikedSongs = useSelector((state) => state.Songs.userLikedSongs);
   // const userSongs = useSelector((state) => state.Songs.userSongs);
 
-  const [headerImage, setHeaderImage] = useState("");
+  // const [headerImage, setHeaderImage] = useState("");
   // console.log(user)
 
   // useEffect(() => {
@@ -41,18 +41,18 @@ const UserPage = () => {
   //     return null;
   // }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("we are submitting header 2");
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // console.log("we are submitting header 2");
 
-    const data = new FormData();
+  //   const data = new FormData();
 
-    data.append("header_picture", headerImage);
+  //   data.append("header_picture", headerImage);
 
-    dispatch(setHeaderImageThunk(data, currentUser.id)).catch(async (res) => {
-      const data = await res.json();
-    });
-  };
+  //   dispatch(setHeaderImageThunk(data, currentUser.id)).catch(async (res) => {
+  //     const data = await res.json();
+  //   });
+  // };
 
   const colorPicker = () => {
     let colors = [
@@ -88,7 +88,7 @@ const UserPage = () => {
   }, [dispatch, userId]);
 
   const updateHeaderImage = (e) => {
-    console.log("inside our header image on change");
+    // console.log("inside our header image on change");
     const file = e.target.files[0];
     // setHeaderImage(file);
 
@@ -99,7 +99,7 @@ const UserPage = () => {
     dispatch(setHeaderImageThunk(data, currentUser.id))
       .then((data) => dispatch(headerUserPage(data)))
       .catch(async (res) => {
-        console.log("error is ", res);
+        // console.log("error is ", res);
       });
   };
 
@@ -123,7 +123,7 @@ const UserPage = () => {
               <img
                 className="user-page-header-image"
                 src={user?.header_image_url}
-                alt="header image"
+                alt="header"
               />
             </div>
           )}
@@ -132,7 +132,7 @@ const UserPage = () => {
               <img
                 className="user-prof-img"
                 src={user?.profile_image_url ? user.profile_image_url : profPic}
-                alt="profile picture"
+                alt="profile"
               />
             </div>
             <div className="user-page-profile-header-name-details-container">

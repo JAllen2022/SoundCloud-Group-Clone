@@ -21,7 +21,7 @@ const AllSongs = () => {
     });
   }
 
-  console.log("checking song items", allSongsArr);
+  // console.log("checking song items", allSongsArr);
 
   if (!Object.values(allSongs).length) return null;
   return (

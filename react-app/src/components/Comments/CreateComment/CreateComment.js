@@ -31,13 +31,13 @@ const CreateComment = ({ currentComment, setEditing }) => {
         };
 
         if (body.length) {
-            console.log("what is the comment", body)
+            // console.log("what is the comment", body)
             if (currentComment) {
                 // dispatch update thunk
                 currentComment.body = body;
                 dispatch(editCommentThunk(currentComment))
                 setEditing(false)
-                console.log("we dispatched the comment")
+                // console.log("we dispatched the comment")
 
             } else {
                 dispatch(createCommentThunk(songId, newComment))
@@ -45,7 +45,7 @@ const CreateComment = ({ currentComment, setEditing }) => {
                         const data = await res.json();
                         if (data && data.errors) setErrors(Object.values(data.errors))
                     });
-                console.log("we dispatched the comment")
+                // console.log("we dispatched the comment")
             }
             setBody("")
         }

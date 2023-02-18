@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import UserPageComments from "../UserPageComments/UserPageComments";
+// import UserPageComments from "../UserPageComments/UserPageComments";
 import profPic from "../../../assets/profPic.jpeg";
 import { useParams } from "react-router-dom";
 // import commentBox from "../../../assets/icons8-comments-30.png";

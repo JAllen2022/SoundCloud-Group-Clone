@@ -26,7 +26,7 @@ const UserPageComments = () => {
     // if (Object.values(userComments).length) {
         dispatch(loadUserThunk(userId));
         dispatch(loadUserCommentsThunk(userId));
-        console.log('here')
+        // console.log('here')
     // }
   }, [dispatch, userId]);
 
@@ -37,7 +37,7 @@ const UserPageComments = () => {
       <div className="user-page-comment-header-container">
       <Link
         className="user-page-comment-header-link-container"
-        to={`/users/${user.id}/comments`}
+        to={`/users/${user?.id}/comments`}
       >
 
           <div className="user-page-comment-box-container">

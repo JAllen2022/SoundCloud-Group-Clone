@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
-import { editSongThunk, getSongThunk } from "../../../../store/songs";
+import { editSongThunk } from "../../../../store/songs";
 import { useModal } from "../../../../context/Modal.js";
 // let jsmediatags = require("jsmediatags");
 
@@ -34,9 +34,9 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   const [songLoading, setSongLoading] = useState(false);
   const [uploadedSong, setUploadedSong] = useState(editSong ? true : false);
   const [errors, setErrors] = useState({});
-  console.log("checking errors", errors);
+  // console.log("checking errors", errors);
 
-  const currentUser = useSelector((state) => state.session.user);
+  // const currentUser = useSelector((state) => state.session.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,8 +54,8 @@ const UploadPage = ({ editSong = false, songEdit }) => {
     data.append("length", length);
     data.append("description", description);
 
-    console.log("checking song image", songImage);
-    console.log("checking our package", data);
+    // console.log("checking song image", songImage);
+    // console.log("checking our package", data);
 
     setSongLoading(true);
 
@@ -163,7 +163,7 @@ function UploadSong({
 
   const updateSong = (e) => {
     const file = e.target.files[0];
-    console.log("checking file size", file.size);
+    // console.log("checking file size", file.size);
 
     // File size validation. Add error if bytes is bigger than 10mb
     if (file.size > 10000000) {
@@ -174,7 +174,7 @@ function UploadSong({
     const reader = new FileReader();
     const audio = document.createElement("audio");
     if (e.target.files && file) {
-      console.log("checking our file", file);
+      // console.log("checking our file", file);
       reader.onload = function (e) {
         audio.src = e.target.result;
         audio.addEventListener(
@@ -193,9 +193,9 @@ function UploadSong({
           "loadedmetadata",
           function () {
             const duration = toMinutes(audio.duration);
-            console.log(
-              "The duration of the song is of: " + duration + " seconds"
-            );
+            // console.log(
+            //   "The duration of the song is of: " + duration + " seconds"
+            // );
             setLength(duration);
           },
           false
