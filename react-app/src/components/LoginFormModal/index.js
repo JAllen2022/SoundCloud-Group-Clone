@@ -25,45 +25,50 @@ function LoginFormModal() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-        <button
-            // id="modal-btns"
-            type="submit"
-            onClick={(e) => {
-              setEmail("demo@aa.io");
-              setPassword("password");
-            }}
-          >
-            Demo User
-          </button>
-      </form>
-    </>
+    <div className='modal-container'>
+      <div className='modal-form-container'>
+        <h1 className='modal-form-title'>Log In</h1>
+        <form onSubmit={handleSubmit}>
+          <ul className='errors'>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label className='input-label'>
+            Email
+            <input
+              className='input-item'
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder='Your email address'
+            />
+          </label>
+          <label className='input-label'>
+            Password
+            <input
+              className='input-item'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button id='modal-btns' type="submit">Log In</button>
+          <button
+              id="modal-btns"
+              type="submit"
+              onClick={(e) => {
+                setEmail("demo@aa.io");
+                setPassword("password");
+              }}
+            >
+              Demo User
+            </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

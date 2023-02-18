@@ -75,8 +75,23 @@ export default UserPageLikes;
 const UserPageLikeItem = ({ song }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
+  const playS = useSelector(state => state.Songs.playSong)
+  const playerRef = useSelector(state => state.Songs.playerRef)
 
   console.log("checking current user", currentUser);
+
+  function songAction() {
+    if (playS.id !== song.id) {
+      dispatch(playSong(song))
+    } else if (playerRef) {
+      // We want to try and pause it here
+      if (!playerRef.current.audio.current.paused) {
+        playerRef.current.audio.current.pause();
+      }
+      else playerRef.current.audio.current.play();
+      // dispatch(isPlaying())
+    }
+  }
 
   return (
     <div className="up-likes-song-item-container">
@@ -88,7 +103,7 @@ const UserPageLikeItem = ({ song }) => {
         />
         <div
           className="up-likes-song-play-container"
-          onClick={() => dispatch(playSong(song))}
+          onClick={songAction}
         >
           <img
             className="up-likes-song-play-button-image"
@@ -116,7 +131,7 @@ const UserPageLikeItem = ({ song }) => {
           </Link>
         </div>
         <div className="up-likes-bottom-right-container">
-          <Link to={`/songs/${song.Id}/likes`}>
+          <Link to={`/songs/${song.id}/likes`}>
             <div className="up-likes-like-button">
               <i className="fa-solid fa-heart"></i>
               {song.like_count}

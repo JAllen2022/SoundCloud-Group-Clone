@@ -14,8 +14,7 @@ import SongPageComments from "../../Comments/SongPageComments/SongPageComments";
 import OpenModalButton from "../../OpenModalButton";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { deleteSongThunk } from "../../../store/songs";
-// import AllLikes from "../Likes/AllLikes";
-
+import moment from 'moment'
 import "./SongShow.css";
 
 const SongShow = () => {
@@ -25,71 +24,12 @@ const SongShow = () => {
   const song = useSelector((state) => state.Songs.singleSong);
   const currentUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.UserPage.userProfile);
-  console.log('song', song)
-  console.log('song likes', song.song_likes)
-  console.log('curr user', currentUser)
-  // const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id])
+  const playS = useSelector(state => state.Songs.playSong)
+  const playerRef = useSelector(state => state.Songs.playerRef)
 
   useEffect(() => {
     dispatch(getSongThunk(songId));
   }, [dispatch, songId]);
-
-  // Determining Display Time
-  const song_date = new Date(song.created_at);
-  const current_date = new Date();
-
-  console.log("day", song.created_at)
-  console.log(current_date)
-  // const difference = current_date - song_date;
-  // console.log(difference)
-  // const seconds = (difference / 1000) % 60
-  // console.log('seconds', seconds)
-
-  // const minutes = Math.floor((difference / (60 * 1000)) % 60)
-  // console.log('minutes', minutes)
-
-  // const hours = Math.floor((difference / (1000 * 60 * 60)) % 24 );
-  // console.log('hours', hours)
-
-  // const days = Math.floor((difference / (1000 * 60 * 60 * 24) ))
-  // console.log('days', days)
-  // // console.log(hours / 24)
-  // const months = Math.floor((difference / (1000 * 60 * 60 * 24 * 30) ))
-
-  const display_time = (difference) => {
-    let seconds = Math.floor(((current_date - song_date) / 1000) * 60)
-    switch(seconds) {
-      case (seconds < 60):
-        return `${seconds} seconds ago`
-      case (seconds < (60 * 60)):
-        return `${seconds * 60} minutes ago`
-      case (seconds = (60 * 60 * 24)):
-        return `${seconds * 60 * 60} hour ago`
-      case (seconds < (60 * 60 * 24)):
-        return `${seconds * 60 * 60} hours ago`
-      case (seconds < (60 * 60 * 24 * 30)):
-        return `${seconds * 60 * 60 * 24} days ago`
-      case (seconds < (60 * 60 * 24 * 30 * 12)):
-        return `${seconds * 60 * 60 * 24 * 30} months ago`
-      case (seconds >= (60 * 60 * 24 * 30 * 12)):
-        return `${seconds * 60 * 60 * 24 * 30 * 12} years ago`
-    }
-  }
-
-
-
-  // if (minutes < 1) {
-  //   display_time = `${Math.floor(difference / 1000)} seconds ago`;
-  // } else if (hours < 1) {
-  //   if (minutes === 1) display_time = `${minutes} minute ago`;
-  //   else display_time = `${minutes} minutes ago`;
-  // } else if (hours < 24) {
-  //   if (hours === 1) display_time = `${hours} hour ago`;
-  //   else display_time = `${hours} hours ago`;
-  // } else {
-  //   if (hours < 48) display_time = `1 day ago`;
-  //   else display_time = `${Math.floor(hours / 24)} days ago`;
-  // }
 
   const clickToLike = () => {
     const song_likes = song.song_likes;
@@ -103,6 +43,21 @@ const SongShow = () => {
     }
   };
 
+  function songAction() {
+    if (playS.id !== song.id) {
+      dispatch(playSong(song))
+    } else if (playerRef) {
+      // We want to try and pause it here
+      if (!playerRef.current.audio.current.paused) {
+        playerRef.current.audio.current.pause();
+      }
+      else playerRef.current.audio.current.play();
+      // dispatch(isPlaying())
+    }
+  }
+
+  console.log(song?.created_at)
+
   if (!Object.values(song).length) return null;
 
   return (
@@ -111,7 +66,7 @@ const SongShow = () => {
         <div className="left-header-container">
           <div className="play-artist-title-name-created">
             <div className="play-artist-title-name">
-              <div className="show-play play" onClick={() => dispatch(playSong(song))}>
+              <div className="show-play play" onClick={songAction}>
                 {/* <button
                   className="show-play-button"
                   onClick={() => dispatch(playSong(song))}
@@ -130,7 +85,7 @@ const SongShow = () => {
                 <Link to={`/users/${song?.user_id}`} className="show-name">{song.user?.display_name}</Link>
               </div>
             </div>
-            <div className="created">{display_time}</div>
+            <div className="created">{moment(song?.created_at).fromNow()}</div>
           </div>
           <div className="song-player"></div>
         </div>
@@ -146,48 +101,55 @@ const SongShow = () => {
             <CreateComment />
           </div>
           <div className="song-interact-container">
-            <button className={song.song_likes[currentUser?.id] ? "liked show-like-button" : "show-like-button"} onClick={clickToLike}>
-              <i className="fa-solid fa-heart"></i>
-            </button>
+            <div className="liked-edit-delete">
+              <button className={song.song_likes[currentUser?.id] ? "liked show-like-button" : "show-like-button"} onClick={clickToLike}>
+                <i className="fa-solid fa-heart"></i>
+                <div className="like">
+                  {song.song_likes[currentUser?.id] ? "Liked" : "Like"}
+                </div>
+              </button>
+              {currentUser && currentUser.id == song.user_id ? (
+                <div className="edit-song-button">
+                  <OpenModalButton
+                    className="edit-user-modal-button"
+                    modalComponent={<UploadPage editSong={true} />}
+                    buttonText={<i className="fa-solid fa-pencil fa-sm"></i>}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+              {currentUser && currentUser.id == song.user_id ? (
+                <div className="delete-song-button-container">
+                  <button
+                    onClick={() =>
+                      dispatch(deleteSongThunk(song.id)).then(() =>
+                        history.push("/songs")
+                      )
+                    }
+                    className="delete-song-button"
+                  >
+                    <i className="fa-solid fa-trash fa-sm"></i>
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
             <div className="show-likes-count link">
               <Link className="show-likes-link link" to={`/songs/${songId}/likes`}>
                 <i className="fa-solid fa-heart link"></i>
-                <p>{song.like_count}</p>
+                <div className="like-count">
+                  <p>{song.like_count}</p>
+                </div>
               </Link>
             </div>
-            {currentUser && currentUser.id == song.user_id ? (
-              <div className="edit-song-button">
-                <OpenModalButton
-                  className="edit-user-modal-button"
-                  modalComponent={<UploadPage editSong={true} />}
-                  buttonText={<i className="fa-regular fa-pen-to-square"></i>}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {currentUser && currentUser.id == song.user_id ? (
-              <div className="delete-song-button-container">
-                <button
-                  onClick={() =>
-                    dispatch(deleteSongThunk(song.id)).then(() =>
-                      history.push("/songs")
-                    )
-                  }
-                  className="delete-song-button"
-                >
-                  <i className="fa-solid fa-trash"></i>
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
           </div>
           <div className="user-info-comments-container">
             <div className="left-user-container">
               <div className="user-pic-display-name">
                 <div className="user-pic">
-                  <img src={user?.profile_image_url ? user.profile_image_url : profPic} alt="profile picture"/>
+                  <img src={user?.profile_image_url ? user.profile_image_url : profPic} alt="profile picture" />
                 </div>
                 <div className="user-page-disName">
                   {user?.display_name ? user.display_name : "No display name"}

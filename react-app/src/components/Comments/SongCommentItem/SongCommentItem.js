@@ -50,7 +50,7 @@ const SongCommentItem = ({ comment, song }) => {
               onClick={(e) => setEditing((prev) => !prev)}
               className="edit-comment-button"
             >
-              <i className="fa-regular fa-pen-to-square"></i>
+              <i className="fa-solid fa-pencil fa-sm"></i>
             </button>
           </div>
           <div className="delete-comment-container">
@@ -58,7 +58,7 @@ const SongCommentItem = ({ comment, song }) => {
               onClick={() => dispatch(deleteCommentThunk(comment.id))}
               className="delete-comment-button"
             >
-              <i className="fa-solid fa-trash"></i>
+              <i className="fa-solid fa-trash fa-sm"></i>
             </button>
           </div>
         </div>

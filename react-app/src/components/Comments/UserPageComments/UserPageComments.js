@@ -33,21 +33,23 @@ const UserPageComments = () => {
   if (!Object.values(userComments).length) return null;
 
   return (
-    <div className="user-comments-header">
+    <div className="user-page-comments-container">
+      <div className="user-page-comment-header-container">
       <Link
-        className="view-all-comments-link"
+        className="user-page-comment-header-link-container"
         to={`/users/${user.id}/comments`}
       >
-        <div className="latest-view-all">
-          <div className="latest-comments">
-            <img src={commentBox} className="comment-box" alt="" />
-            <p>Latest Comments</p>
+
+          <div className="user-page-comment-box-container">
+            <img src={commentBox} className="user-page-comment-box" alt="comment tag" />
+            <p className="user-page-comment-header-ptags">Latest Comments</p>
           </div>
-          <p>View all</p>
-        </div>
+          <p className="user-page-comment-header-ptags">View all</p>
       </Link>
+
+        </div>
       <div className="user-comments-area">
-        <ul className="user-comment-wrapper">{userCommentItems}</ul>
+        {userCommentItems}
       </div>
     </div>
   );

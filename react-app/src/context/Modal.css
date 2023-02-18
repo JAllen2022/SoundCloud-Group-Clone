@@ -15,10 +15,69 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(242, 242, 242, .6);
 }
 
 #modal-content {
   position: absolute;
   background-color:white;
+  overflow: scroll;
+  max-height: 80%;
+}
+
+form {
+  display: block;
+  width: 100%;
+}
+
+.modal-form-title {
+  text-align: center;
+  font-size: 28px;
+}
+
+
+.modal-form-container {
+  padding: 20px 40px;
+  width: 400px;
+  /* margin-left: -10px; */
+}
+
+.input-label {
+  font-size: 16px;
+  font-weight: 500;
+  /* margin-bottom: 15px; */
+}
+
+.input-item {
+  padding: 7px 9px;
+  display: block;
+  height: 25px;
+  width: 380px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+
+.input-item:focus {
+  outline: 1px solid rgba(128, 128, 128, 0.817);
+  border: none;
+}
+
+#modal-btns {
+  display: block;
+  height: 40px;
+  width: 400px;
+  font-size: 16px;
+  font-weight: 100;
+  /* padding: 7px 8px; */
+  background-color: #ff5500;
+  color: #fff;
+  border: none;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  border-radius: 5px;
+  /* border: 1px solid red; */
 }

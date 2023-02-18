@@ -14,7 +14,6 @@
     min-width: 163px;
     margin-right: 15px;
     position: fixed
-
 }
 
 .song-image {
@@ -38,8 +37,10 @@
     flex-direction: row;
     width: 100%;
     align-items: center;
-    padding: 10px 0;
-    height: 30px;
+    padding: 0;
+    height: 50px;
+    /* margin-top: 30px; */
+    /* border: 1px solid red; */
 }
 
 .play {
@@ -66,28 +67,44 @@
     cursor: pointer;
 }
 
-.displayName-title{
+/* .displayName-title > p {
+    margin: 0;
+} */
+
+.displayName-title {
     margin-left: .5rem;
+    margin-top: 2px;
     display: flex;
     flex-direction: column;
-    max-height: 40px;
+    max-height: 50px;
+    line-height: 15px;
+    /* border: 1px solid red; */
 }
 
-.displayName, .displayName.link {
+.displayName-link.link {
+    margin-bottom: 0;
+}
+
+.displayName,
+.displayName.link {
     margin: 0;
     font-size: 13px;
     opacity: .5;
     width: fit-content;
+    /* margin-bottom: 0; */
     /* font-weight: 400; */
 }
 
 .artist-title {
-    margin: 0;
-    font-size: 16px;
-
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    padding: 0;
+    /* border: 1px solid blue; */
 }
 
-.link, .link:visited {
+.link,
+.link:visited {
     color: inherit
 }
 
@@ -100,28 +117,52 @@
     align-items: center;
     position: absolute;
     bottom: 0;
+    top: 135.04px;
 }
 
-.like-button-container, .comment-link{
+.like-button-container,
+.comment-link {
     /* border: 1px red solid; */
-    display:flex;
+    display: flex;
     height: 25px;
     width: 40px;
 }
 
+/* .comment-link {
+    padding-bottom: 2px;
+} */
 
-.like-button, .delete-song-button, div.edit-song-button > button {
-    display:flex;
+.like-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.song-like-count {
+    font-size: 11px;
+    margin-top: 2.3px;
+}
+
+.like-button,
+.delete-song-button,
+div.edit-song-button>button {
+    display: flex;
     flex-direction: row;
-    height: 25px;
+    height: 20px;
     width: fit-content;
     padding: 5px 5px;
     background: none;
-    border: 1px solid rgba(211, 211, 211, 65%);
+    border: 1px solid rgb(220,220,220);
     border-radius: 3px;
     align-items: center;
     font-weight: 100;
     margin-right: 5px;
+}
+
+.delete-song-button:hover,
+div.edit-song-button>button:hover,
+.like-button:hover {
+    cursor: pointer;
+    border: 1px solid rgb(170, 170, 170);
 }
 
 .liked {
@@ -134,16 +175,16 @@
 
 }
 
-.like-button:hover {
-    cursor: pointer;
-    border: 1px solid rgba(211, 211, 211, 100%);
-}
+/* .like-button {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(242,242,242);
+} */
 
 .fa-solid.fa-heart {
     font-size: 11px;
     margin-right: 6px;
 }
-
 
 .comment-box-container {
     display: flex;
@@ -160,6 +201,11 @@
     width: 12px;
     height: 12px;
     margin-right: 6px;
+    padding-bottom: 1px;
+}
+
+.comment-count {
+    margin-top: 4px;
 }
 
 a {

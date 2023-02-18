@@ -1,0 +1,50 @@
+.user-page-comments-container {
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.user-page-comment-header-link-container {
+    text-decoration: none;
+    justify-content: space-between;
+    margin-bottom: 0;
+    color: #999999;
+    font-size: 0.8rem;
+    border-bottom: 2px solid #f2f2f2;
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.user-page-comment-header-comments {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.user-page-comment-box-container {
+    display: flex;
+    align-items: center;
+    opacity: .5;
+    /* border: 1px solid red; */
+    margin-bottom: 0.15rem;
+
+
+}
+
+.user-page-comment-box-container:hover{
+    opacity: .8;
+}
+
+.user-page-comment-box {
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    /* border: 1px solid red; */
+    margin-top:.5rem;
+}
+
+.user-page-comment-header-ptags{
+    margin-bottom: 0.15rem;
+    color: #999999;
+    /* border: 1px solid red; */
+
+}

@@ -37,7 +37,7 @@ function Navigation({ isLoaded }) {
                   Upload
                 </NavLink>
               </div>
-              <div className="profile-button-container">
+              <div className={sessionUser ? "profile-button-container" : "prof-butt-cont-loggedOut"}>
                 <ProfileButton user={sessionUser} />
               </div>
             </div>

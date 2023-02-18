@@ -7,8 +7,10 @@ import "./SongItem.css";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { deleteSongThunk, playSong } from "../../../store/songs";
+import { deleteSongThunk, playSong, isPlaying } from "../../../store/songs";
 import { useModal } from "../../../context/Modal";
+import pencil from "../../../assets/sc-pencil.png";
+
 import {
   getSongThunk,
   addLikeThunk,
@@ -19,6 +21,8 @@ import { deleteUserLike } from "../../../store/userPage";
 const SongItem = ({ song }) => {
   const currentUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.UserPage.userProfile);
+  const playS = useSelector(state => state.Songs.playSong)
+  const playerRef = useSelector(state => state.Songs.playerRef)
   const dispatch = useDispatch();
   const { userId } = useParams();
   const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id])
@@ -41,6 +45,19 @@ const SongItem = ({ song }) => {
     }
   };
 
+  function songAction() {
+    if (playS.id !== song.id) {
+      dispatch(playSong(song))
+    } else if (playerRef) {
+      // We want to try and pause it here
+      if (!playerRef.current.audio.current.paused) {
+        playerRef.current.audio.current.pause();
+      }
+      else playerRef.current.audio.current.play();
+      // dispatch(isPlaying())
+    }
+  }
+
   return (
     <div className="song-item-container">
       <div className="song-image-container">
@@ -54,12 +71,14 @@ const SongItem = ({ song }) => {
       </div>
       <div className="right-item-info-container">
         <div className="play-displayName-title">
-          <div className="play" onClick={()=> dispatch( playSong(song))}>
-            <img
+          <div className="play" onClick={songAction}>
+            {/* {playerRef.current.audio.current.paused ?  ADD THE PAUSE BUTTON BELOW AFTER THE TURNARY ':' BELOW. THEN COMMENT THIS OUT */}
+              <img
               className="play-button-image"
               src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
               alt="orange play button"
             />
+            {/* : "ADD THE PAUSE BUTTON HERE"} */}
           </div>
           <div className="displayName-title">
             <Link
@@ -86,7 +105,9 @@ const SongItem = ({ song }) => {
           <div className="like-button-container">
             <button className={isLiked ? "liked like-button" : "not-liked like-button"} onClick={clickToLike}>
               <i className="fa-solid fa-heart"></i>
-              {song.like_count}
+              <div className="song-like-count">
+                {song.like_count}
+              </div>
             </button>
             {currentUser && currentUser.id == song.user_id ? (
               <div className="edit-song-button">
@@ -95,7 +116,8 @@ const SongItem = ({ song }) => {
                   modalComponent={
                     <UploadPage editSong={true} songEdit={song} />
                   }
-                  buttonText={<i className="fa-regular fa-pen-to-square"></i>}
+                  // buttonText={<img className="pencil" src={pencil}/>}
+                  buttonText={<i className="fa-solid fa-pencil fa-sm"></i>}
                 />
               </div>
             ) : (
@@ -107,7 +129,7 @@ const SongItem = ({ song }) => {
                   onClick={() => dispatch(deleteSongThunk(song.id))}
                   className="delete-song-button"
                 >
-                  <i className="fa-solid fa-trash"></i>
+                  <i className="fa-solid fa-trash fa-sm"></i>
                 </button>
               </div>
             ) : (
@@ -121,7 +143,9 @@ const SongItem = ({ song }) => {
             <Link className="comment-link link" to={`/songs/${song.id}`}>
               <div className="comment-box-container">
                 <img src={commentBox} className="comment-box" alt="" />
-                {song.comment_count}
+                <div className="comment-count">
+                  {song.comment_count}
+                </div>
               </div>
               {/* <p className="bottom-right-container-p link"></p> */}
             </Link>

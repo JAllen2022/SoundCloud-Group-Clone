@@ -180,9 +180,9 @@ const UserPage = () => {
               {currentUser && currentUser.id == userId ? (
                 <div className="edit-user-profile-button">
                   <OpenModalButton
-                    className="edit-user-modal-button"
+                    className="edit-song-modal-button"
                     modalComponent={<EditUserPageForm />}
-                    buttonText={<i className="fa-regular fa-pen-to-square"></i>}
+                    buttonText={<i className="fa-solid fa-pencil"></i>}
                   />
                 </div>
               ) : (

@@ -6,8 +6,8 @@
   background-color: white;
   list-style: none;
   border: solid 1px #ccc;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   height: auto;
   /* width: 100px; */
   padding: 7px;
@@ -32,18 +32,24 @@ ul.profile-dropdown {
 }
 
 .profile-dropdown.logged-out {
-  margin-left: -70px;
-  margin-top: -7px;
+  /* margin-left: -70px;
+  margin-top: -7px; */
   /* width: 220px; */
+  position: absolute;
+  top: 0px;
+  right: -1px;
+  width: 65.7px;
 }
 
+.profile-dropdown.loggedOut {
+  width: 65.7px;
+}
+
+
 .profile-dropdown.logged-out > button {
-  background-color: white;
   border: none;
-  margin: 7px;
-  font-weight: 600;
-  font-size: 13px;
-  text-align: left;
+  background-color: white;
+  padding: 5px 0;
 }
 
 .profile-dropdown-link,
@@ -53,14 +59,19 @@ ul.profile-dropdown {
   /* margin-left: -25px; */
   font-weight: 600;
   font-size: 11.5px;
+
 }
 
 .profile-dropdown-link {
-  margin-bottom: 0;
+  margin-bottom: 4px;
   color: black;
-  margin-top: 0;
+  margin-top: 4px;
   display: flex;
   align-items: center;
+}
+
+.profile-dropdown-logout {
+  padding: 3px 0px;
 }
 
 .drop-user-pic {
@@ -257,4 +268,11 @@ i.fas.fa-user-circle {
 
 .profile-button-container:active {
   background-color: #111;
+}
+
+.prof-butt-cont-loggedOut {
+  margin-right: 28px;
+  padding: 11px 28px;
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
 }

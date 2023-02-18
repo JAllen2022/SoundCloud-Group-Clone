@@ -118,6 +118,7 @@
 .add-comment-form {
     margin-bottom: 12px;
 }
+
 .song-interact-container {
     /* border: 1px solid red; */
     /* background-color: red; */
@@ -125,10 +126,15 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-top: -7px;
+    margin-top: -9px;
     border-bottom: 1px solid rgb(0, 0, 0, 0.06)
 }
 
+.liked-edit-delete {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
 .right-under-container {
     width: 30%;
@@ -138,13 +144,19 @@
 .show-like-button {
     display:flex;
     flex-direction: row;
-    height: 25px;
-    width: 29px;
-    padding: 5px 3px 5px 8px;
+    height: 23px;
+    width: fit-content;
+    padding: 5px 7px 5px 7px;
     background: none;
     border: 1px solid rgba(211, 211, 211, 65%);
     border-radius: 3px;
     align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.like {
+    margin-top: 2px;
 }
 
 button:hover {
@@ -162,8 +174,9 @@ button:hover {
     opacity: .5;
 }
 
-.show-likes-link {
+.show-likes-link.link {
     display: flex;
+    margin: 0;
 }
 
 .fa-heart.link {
@@ -200,4 +213,39 @@ button:hover {
 .song-comments-header {
     display: flex;
     align-items: center;
+}
+
+.pencil {
+    height: 20px;
+    width: 22px;
+    border: none;
+}
+
+button.delete-song-button {
+    padding: 9px 5px;
+}
+
+/* button.fa-pencil.fa-sm {
+    margin: 25px 5px;
+} */
+
+.OpenModalButton.edit-user-modal-button {
+    padding: 9px 5px;
+}
+
+.OpenModalButton.edit-song-modal-button {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    width: fit-content;
+    padding: 11px 6px;
+    background: none;
+    border: 1px solid rgb(220,220,220);
+    border-radius: 3px;
+    align-items: center;
+    font-weight: 100;
+}
+
+.like-count {
+    margin-top: 2.5px;
 }
