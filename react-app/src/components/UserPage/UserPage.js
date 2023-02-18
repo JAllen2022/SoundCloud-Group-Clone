@@ -55,15 +55,24 @@ const UserPage = () => {
   };
 
   const colorPicker = () => {
-    let colors = ['h-pink', 'h-purple', 'h-yellow', 'h-bluegreen', 'h-hotpink', 'h-purpleblue', 'h-orange', 'h-darkblue']
+    let colors = [
+      "h-pink",
+      "h-purple",
+      "h-yellow",
+      "h-bluegreen",
+      "h-hotpink",
+      "h-purpleblue",
+      "h-orange",
+      "h-darkblue",
+    ];
     let randoNum;
     // for (let i in colors) {
-      randoNum = Math.floor(Math.random() * 9)
+    randoNum = Math.floor(Math.random() * 9);
     // }
-    console.log(randoNum)
-    return colors[randoNum]
-  }
-  console.log('colors', colorPicker())
+    console.log(randoNum);
+    return colors[randoNum];
+  };
+  console.log("colors", colorPicker());
 
   //   useEffect(() => {
   //     if (headerImage) {
@@ -104,15 +113,22 @@ const UserPage = () => {
     <div className="user-page-outer-container">
       <div className="user-page-container">
         {/* <div className={user.header_image_url ? "" : "user-page-header"}> */}
-        <div className={user?.header_image_url ?
-          "user-page-header" : `${colorPicker()} user-page-header`}>
-          {user?.header_image_url && (<div className="header-image-container">
-            <img
-              className="user-page-header-image"
-              src={user?.header_image_url}
-              alt="header image"
-            />
-          </div>)}
+        <div
+          className={
+            user?.header_image_url
+              ? "user-page-header"
+              : `${colorPicker()} user-page-header`
+          }
+        >
+          {user?.header_image_url && (
+            <div className="header-image-container">
+              <img
+                className="user-page-header-image"
+                src={user?.header_image_url}
+                alt="header image"
+              />
+            </div>
+          )}
           <div className="user-page-profile-header-info-container">
             <div className="user-page-profile-header-info-left">
               <img
@@ -153,12 +169,14 @@ const UserPage = () => {
         </div>
         <div className="user-page-nav-body-container">
           <div className="user-page-nav-container">
-            <div className="user-page-nav">
+            <div className="user-page-nav-links-left">
               <Link className="user-page-nav-links">Tracks</Link>
               <Link className="user-page-nav-links">
                 Playlist
                 {/* this is a future feature - will pop-up modal that shows "Feature Pending" */}
               </Link>
+            </div>
+            <div className="user-page-nav-links-right">
               {currentUser && currentUser.id == userId ? (
                 <div className="edit-user-profile-button">
                   <OpenModalButton
@@ -170,7 +188,6 @@ const UserPage = () => {
               ) : (
                 ""
               )}
-              <div className="edit-user-page-"></div>
             </div>
           </div>
           <div className="user-page-body-container">
@@ -178,11 +195,22 @@ const UserPage = () => {
               <UserSongs />
             </div>
             <div className="right-user-page-body-container">
-              <div className="UserPageLikes-component">
-                <UserPageLikes />
-              </div>
-              <div className="userPagecomments-component">
-                <UserPageComments />
+              <div className="right-user-page-body-inner-container">
+                <div className="right-user-page-body-track-count">
+                  <div className="right-user-page-body-track">Tracks</div>
+                  <div className="right-user-page-body-track-count">0</div>
+                </div>
+                <div className="right-user-page-body-user-bio-container">
+                  <div className="right-user-page-body-user-bio">
+                    User Bio. Something interesting about a person who is interesting.
+                  </div>
+                </div>
+                <div className="UserPageLikes-component">
+                  <UserPageLikes />
+                </div>
+                <div className="userPagecomments-component">
+                  <UserPageComments />
+                </div>
               </div>
             </div>
           </div>
