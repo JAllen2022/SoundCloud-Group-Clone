@@ -67,12 +67,10 @@ const UserPage = () => {
     ];
     let randoNum;
     // for (let i in colors) {
-    randoNum = Math.floor(Math.random() * 9);
+    randoNum = Math.floor(Math.random() * 8);
     // }
-    console.log(randoNum);
     return colors[randoNum];
   };
-  console.log("colors", colorPicker());
 
   //   useEffect(() => {
   //     if (headerImage) {

@@ -1,0 +1,79 @@
+/* .user-likes-prof-pic {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-top: 30px;
+} */
+
+
+.aul-header {
+  display: flex;
+  flex-direction: column;
+  /* margin: 0 20px; */
+  padding: 70px 20px 0;
+  height: 150px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  /* align-items: flex-start; */
+  border-bottom: 1px solid rgb(0, 0, 0, 0.06);
+  z-index: 10;
+}
+
+.aul-image-title-container {
+  display: flex;
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 110px;
+  margin-right: 20px;
+}
+
+.aul-prof-image {
+  width: 105px;
+  height: 105px;
+}
+
+/* .aul-title-container {
+    border: 1px solid red;
+
+} */
+
+.aul-likes-name {
+  /* border: 1px solid red; */
+  font-size: 32px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-left: 25px;
+  width: 100%;
+  color: black;
+  /* font-family: 'Highway'; */
+}
+
+.aul-tab-container {
+  width: 100%;
+}
+
+.aul-tab-title {
+  border-bottom: 2px solid #ff5500;
+  width: fit-content;
+  /* margin-left: 0; */
+  color: #ff5500;
+  font-weight: 500;
+}
+
+.aul-body {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  margin: 190px 10px;
+  z-index: -10;
+}
+
+/* .song-likes-user-prof-container {
+  display: flex;
+  flex-direction: column;
+  margin: 13px;
+  justify-content: center;
+  align-items: space-around;
+} */
