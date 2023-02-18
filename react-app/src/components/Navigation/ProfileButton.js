@@ -6,6 +6,9 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import dropUserPic from "../../assets/icons8-customer-50.png";
+import waveForm from "../../assets/waveform.232x256.png";
+
+// import { BsSoundwave } from 'react-icons/bs';
 
 import "./Navigation.css";
 
@@ -45,41 +48,43 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    <div className="prof-pic-and-displayName">
-      <button className="profile-pic-button" onClick={openMenu}>
-        <i className="fas fa-user-circle fa-lg" />
-      </button>
-      <div className="navbar-display-name">
-        {user?.display_name}
+      <div className="prof-pic-and-displayName">
+        <button className="profile-pic-button" onClick={openMenu}>
+          <i className="fas fa-user-circle fa-lg" />
+        <div className="navbar-display-name">
+          {user?.display_name}
+        </div>
+        </button>
       </div>
-    </div>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <Link className="link" to={`/users/${user?.id}`} ><p className='profile-dropdown-link link'><img className="drop-user-pic" src={dropUserPic} alt=""/>Profile</p></Link>
-            <Link className="link" to={`/users/${user?.id}/likes`} ><p className='profile-dropdown-link link'><i className="fa-solid fa-heart"></i>Likes</p></Link>
-            <Link className="link" to={`/users/${user?.id}/songs`} ><p className='profile-dropdown-link link'>Tracks</p></Link>
-            {/* <p className='profile-dropdown-username'>{user.username}</p>
+      <div className="dropdown-container">
+        <ul className={ulClassName} ref={ulRef}>
+          {user ? (
+            <>
+              <Link className="link" to={`/users/${user?.id}`} ><p className='profile-dropdown-link link'><img className="drop-user-pic" src={dropUserPic} alt="" />Profile</p></Link>
+              <Link className="link" to={`/users/${user?.id}/likes`} ><p className='profile-dropdown-link link'><i id="dropdown-heart" className="fa-solid fa-heart"></i>Likes</p></Link>
+              <Link className="link" to={`/users/${user?.id}/songs`} ><p className='profile-dropdown-link link'><img className="drop-tracks" src={waveForm} />Tracks</p></Link>
+              {/* <p className='profile-dropdown-username'>{user.username}</p>
             <p className='profile-dropdown-email'>{user.email}</p> */}
-            <p className='profile-dropdown-logout' onClick={handleLogout}>Log Out</p>
-          </>
-        ) : (
-          <div className="profile-dropdown logged-out">
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+              <p className='profile-dropdown-logout' onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i>Log Out</p>
+            </>
+          ) : (
+            <div className="profile-dropdown logged-out">
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
 
-          </div>
-        )}
-      </ul>
+            </div>
+          )}
+        </ul>
+      </div>
     </>
   );
 }

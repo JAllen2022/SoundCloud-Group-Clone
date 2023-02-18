@@ -37,23 +37,59 @@ const SongShow = () => {
   // Determining Display Time
   const song_date = new Date(song.created_at);
   const current_date = new Date();
-  const difference = current_date - song_date;
-  const minutes = difference / (1000 * 60);
-  const hours = Math.floor(difference / (1000 * 360));
-  let display_time;
 
-  if (minutes < 1) {
-    display_time = `${Math.floor(difference / 1000)} seconds ago`;
-  } else if (hours < 1) {
-    if (minutes === 1) display_time = `${minutes} minute ago`;
-    else display_time = `${minutes} minutes ago`;
-  } else if (hours < 24) {
-    if (hours === 1) display_time = `${hours} hour ago`;
-    else display_time = `${hours} hours ago`;
-  } else {
-    if (hours < 48) display_time = `1 day ago`;
-    else display_time = `${Math.floor(hours / 24)} days ago`;
+  console.log("day", song.created_at)
+  console.log(current_date)
+  // const difference = current_date - song_date;
+  // console.log(difference)
+  // const seconds = (difference / 1000) % 60
+  // console.log('seconds', seconds)
+
+  // const minutes = Math.floor((difference / (60 * 1000)) % 60)
+  // console.log('minutes', minutes)
+
+  // const hours = Math.floor((difference / (1000 * 60 * 60)) % 24 );
+  // console.log('hours', hours)
+
+  // const days = Math.floor((difference / (1000 * 60 * 60 * 24) ))
+  // console.log('days', days)
+  // // console.log(hours / 24)
+  // const months = Math.floor((difference / (1000 * 60 * 60 * 24 * 30) ))
+
+  const display_time = (difference) => {
+    let seconds = Math.floor(((current_date - song_date) / 1000) * 60)
+    switch(seconds) {
+      case (seconds < 60):
+        return `${seconds} seconds ago`
+      case (seconds < (60 * 60)):
+        return `${seconds * 60} minutes ago`
+      case (seconds = (60 * 60 * 24)):
+        return `${seconds * 60 * 60} hour ago`
+      case (seconds < (60 * 60 * 24)):
+        return `${seconds * 60 * 60} hours ago`
+      case (seconds < (60 * 60 * 24 * 30)):
+        return `${seconds * 60 * 60 * 24} days ago`
+      case (seconds < (60 * 60 * 24 * 30 * 12)):
+        return `${seconds * 60 * 60 * 24 * 30} months ago`
+      case (seconds >= (60 * 60 * 24 * 30 * 12)):
+        return `${seconds * 60 * 60 * 24 * 30 * 12} years ago`
+    }
   }
+
+
+
+  // if (minutes < 1) {
+  //   display_time = `${Math.floor(difference / 1000)} seconds ago`;
+  // } else if (hours < 1) {
+  //   if (minutes === 1) display_time = `${minutes} minute ago`;
+  //   else display_time = `${minutes} minutes ago`;
+  // } else if (hours < 24) {
+  //   if (hours === 1) display_time = `${hours} hour ago`;
+  //   else display_time = `${hours} hours ago`;
+  // } else {
+  //   if (hours < 48) display_time = `1 day ago`;
+  //   else display_time = `${Math.floor(hours / 24)} days ago`;
+  // }
 
   const clickToLike = () => {
     const song_likes = song.song_likes;
@@ -91,7 +127,7 @@ const SongShow = () => {
                 <div className="show-artist-title">
                   {song.artist} - {song.title}
                 </div>
-                <div className="show-name">{song.user?.display_name}</div>
+                <Link to={`/users/${song?.user_id}`} className="show-name">{song.user?.display_name}</Link>
               </div>
             </div>
             <div className="created">{display_time}</div>
