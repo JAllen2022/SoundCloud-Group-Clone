@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./UploadPageForm.css";
 
 const genres = [
@@ -64,6 +65,7 @@ const UploadPageForm = ({
   };
 
   return (
+
     <div className="upload-page-form-container">
       <div className="tab-container">
         <h2 className="basic-info-tab">Basic Info</h2>
@@ -155,7 +157,12 @@ const UploadPageForm = ({
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className="up-submit-button">
+        </div>
+      </div>
+          <div className="up-buttons">
+            <Link id='modal-btns' to='/songs' className=" edit-user-page-button cancel" >
+              Cancel
+            </Link>
             <button
               id="modal-btns"
               className="upload edit-user-page-button submit"
@@ -164,8 +171,6 @@ const UploadPageForm = ({
               Save
             </button>
           </div>
-        </div>
-      </div>
     </div>
   );
 };

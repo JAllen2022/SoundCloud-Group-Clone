@@ -1,9 +1,15 @@
 
-
+.upload-page-form-container {
+    /* border: 1px solid red; */
+    margin: 50px 80px;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 5px;
+    box-shadow: 0 0 3px #cccccc6a;
+}
 .up-song-image-container {
     width: 250px;
     height: 250px;
-    /* border: 1px solid black; */
+    border: 1px solid black;
     position: relative;
     margin-top: 17px;
 }
@@ -33,8 +39,8 @@ img.up-song-image {
 }
 
 .tab-container {
-    border-bottom: 1px solid rgb(242, 242, 242);
-    padding: 0 30px;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    padding: 20px 40px 0;
 
 }
 
@@ -48,11 +54,11 @@ img.up-song-image {
 
 .form-container {
     /* position: relative; */
-    padding: 30px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-
+    justify-content: space-around;
+    margin-top: 80px;
 }
 
 .input-item.select {
@@ -64,17 +70,30 @@ img.up-song-image {
     height: 50px;
 }
 
-.up-submit-button {
-    position: relative;
-    /* border: 1px solid red; */
+.up-buttons {
+    position: static;
+    border-top: 1px solid rgb(240, 240, 240);
     height: 30px;
-    margin-top: 40px;
+    margin-top: 60px;
+    width: 95%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    right: 100px;
+    padding-right: 40px;
+
 }
 
-.upload {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+a#modal-btns.edit-user-page-button.cancel {
+    /* position: absolute;
+    right: 40px;
+    bottom: 20px; */
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+
+
 }
 
 
