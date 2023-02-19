@@ -55,7 +55,7 @@ const CreateComment = ({ currentComment, setEditing }) => {
     let defaultCommentPic = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     return (
         <div className="create-comment-container">
-            <div className="create-comment-user-container">
+            {!currentComment && <div className="create-comment-user-container">
                 <img
                     className="create-comment-user-image"
                     src={
@@ -66,25 +66,20 @@ const CreateComment = ({ currentComment, setEditing }) => {
                     alt={currentUser.display_name}
                 />
                 {/* <img className="create-comment-user-image" src={currentUser.profile_image_url} alt={currentUser.display_name} /> */}
-            </div>
+            </div>}
+            <div className="comment-form-outer-container">
             <form className="comment-form" onSubmit={handleSubmit} type='submit'>
-                <ul className="errors-comment">
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <div className="create-comment-container">
-                    <div className="create-comment-input-container">
-                        <input
-                            className="create-comment-input-field"
-                            placeholder="Write a comment"
-                            type="text"
-                            maxlength="100"
-                            value={body}
-                            onChange={(e) => setBody(e.target.value)}
-                        />
-                    </div>
-                    <input type="submit" style={{ display: 'none' }} />
-                </div>
-            </form>
+                <input
+                    className="create-comment-input-field"
+                    placeholder="Write a comment"
+                    type="text"
+                    maxlength="100"
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                />
+                <input type="submit" style={{ position:"absolute", display: 'none' }} />
+                </form>
+            </div>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import profPic from "../../../assets/profPic.jpeg";
 import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
+import moment from 'moment'
 
 const SongCommentItem = ({ comment, song }) => {
   const dispatch = useDispatch();
@@ -26,13 +27,16 @@ const SongCommentItem = ({ comment, song }) => {
           alt=""
         />
       </div>
-      <div className="user-name-time-created-at-body">
-        <div className="username-time-created-at">
-          <div className="username-time">
-            <div className="creator-name">
-              {comment.user?.username} at {comment?.time}
-            </div>
+      <div className="user-name-time-and-edit-body-outer-container">
+
+        <div className="user-name-time-created-at-body">
+
+
+          <div className="creator-name">
+            {comment.user?.username} at {comment?.time}
           </div>
+          <div className="comment-created-at">{moment(comment?.created_at).fromNow()}</div>
+
         </div>
         <div className="comment-body">
           {editing ? (
@@ -41,9 +45,8 @@ const SongCommentItem = ({ comment, song }) => {
             comment?.body
           )}
         </div>
-      </div>
-      <div className="created-at-edit-delete">
-        <div className="comment-created-at">{comment?.created_at}</div>
+        <div className="created-at-edit-delete">
+
         {currentUser && currentUser.id == comment.user_id && (
           <div className="edit-delete-container">
             <div className="edit-comment-container">
@@ -64,7 +67,8 @@ const SongCommentItem = ({ comment, song }) => {
             </div>
           </div>
         )}
-      </div>
+        </div>
+        </div>
     </div>
   );
 };

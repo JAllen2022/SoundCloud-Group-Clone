@@ -85,50 +85,52 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   };
 
   return (
-    <div className="upload-page-container">
-      <div className="upload-form-container">
-        <ul>
-          {Object.keys(errors).map((error) => (
-            <li
-              style={{ color: "red" }}
-              key={error}
-              className="upload-page-errors"
-            >
-              {errors[error]}
-            </li>
-          ))}
-        </ul>
-        {songLoading ? (
-          "Song Loading"
-        ) : (
-          <form action="/songs" method="post" onSubmit={handleSubmit}>
-            {uploadedSong ? (
-              <>
-                <UploadPageForm
-                  title={title}
-                  setTitle={setTitle}
-                  genre={genre}
-                  setGenre={setGenre}
-                  artist={artist}
-                  setArtist={setArtist}
-                  description={description}
-                  setDescription={setDescription}
-                  setSongImage={setSongImage}
+    <div className="page-outer-container">
+      <div className="page-container">
+        <div className="upload-form-container">
+          <ul>
+            {Object.keys(errors).map((error) => (
+              <li
+                style={{ color: "red" }}
+                key={error}
+                className="upload-page-errors"
+              >
+                {errors[error]}
+              </li>
+            ))}
+          </ul>
+          {songLoading ? (
+            "Song Loading"
+          ) : (
+            <form action="/songs" method="post" onSubmit={handleSubmit}>
+              {uploadedSong ? (
+                <>
+                  <UploadPageForm
+                    title={title}
+                    setTitle={setTitle}
+                    genre={genre}
+                    setGenre={setGenre}
+                    artist={artist}
+                    setArtist={setArtist}
+                    description={description}
+                    setDescription={setDescription}
+                    setSongImage={setSongImage}
+                    errors={errors}
+                    setErrors={setErrors}
+                  />
+                </>
+              ) : (
+                <UploadSong
+                  setSong={setSong}
+                  setUploadedSong={setUploadedSong}
+                  setLength={setLength}
                   errors={errors}
                   setErrors={setErrors}
                 />
-              </>
-            ) : (
-              <UploadSong
-                setSong={setSong}
-                setUploadedSong={setUploadedSong}
-                setLength={setLength}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            )}
-          </form>
-        )}
+              )}
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -11,26 +11,30 @@
     padding-bottom: 8px;
     padding-right: 8px;
     display: flex;
+    /* border:1px solid red; */
+
 }
+
+.user-name-time-and-edit-body-outer-container{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    justify-content: space-between;
+    margin-top:3px;
+    /* border:1px solid red; */
+
+}
+
+
 
 .user-name-time-created-at-body {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 3px;
-
-}
-
-.username-time-created-at {
-    display: flex;
-    flex-direction: row;
-    /* border: 1px solid blue; */
-    justify-content: space-between;
-}
-
-.username-time {
-    display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
+    /* width: 100%; */
+    /* margin-top: 3px; */
+    /* border:1px solid red; */
+    width:100%;
 }
 
 .song-comments-header {
@@ -38,9 +42,20 @@
 }
 
 .created-at-edit-delete {
+    position:absolute;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    /* width:100%; */
+    margin-left:90%;
+    margin-top:1rem;
+    opacity:0;
+    /* border:1px solid red; */
+}
+.song-comment-item-container:hover .created-at-edit-delete {
+    opacity:1;
+
+    /* border:1px solid red; */
 }
 .edit-delete-container {
     display: flex;

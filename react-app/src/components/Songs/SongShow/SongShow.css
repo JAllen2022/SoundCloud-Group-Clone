@@ -14,21 +14,26 @@
 
 .song-header-container {
     background-image: linear-gradient(to right, gray, rgb(51,51,51));
-    margin-top: 40px;
+    box-sizing: border-box;
+    width:100%;
     padding: 30px 25px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     /* border: 1px solid red; */
-    min-width: 1000px;
+    /* min-width: 1000px; */
     /* position: relative; */
 
+}
+.left-header-container{
+    /* border:1px solid red; */
+    width:70%;
 }
 
 .play-artist-title-name-created {
     display: flex;
     /* border: 1px solid red; */
     justify-content: space-between;
-    width: 700px;
+    width: 100%;
 }
 
 .play-artist-title-name {
@@ -87,7 +92,9 @@
 .created {
     font-size: 15px;
     color: white;
-    width: fit-content;
+    width: 20%;
+    margin:0;
+    padding:0;
 }
 
 /* .show-song-image-container {
@@ -100,20 +107,18 @@
     width: 340px;
 }
 
-.under-header-container {
-    width: 1034px;
-    padding: 18px 27px;
+.page-body-container {
+    width: 95%;
+    margin:auto;
+    /* padding: 18px 27px; */
     display: flex;
+    /* border:1px solid red; */
+    margin-top:1rem;
+
     /* justify-content: space-between; */
-    border: 1px solid rgb(0, 0, 0, 0.08);
+    /* border: 1px solid rgb(0, 0, 0, 0.08); */
 }
 
-.left-under-container {
-    /* border: 1px solid red; */
-    width: 70%;
-    padding-right: 25px;
-    border-right: 1px solid rgb(0, 0, 0, 0.06)
-}
 
 .add-comment-form {
     margin-bottom: 12px;
@@ -122,6 +127,8 @@
 .song-interact-container {
     /* border: 1px solid red; */
     /* background-color: red; */
+    box-sizing: border-box;
+    /* padding:10px; */
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -137,6 +144,8 @@
 }
 
 .right-under-container {
+    box-sizing: border-box;
+
     width: 30%;
     padding-left: 25px;
 }
@@ -211,6 +220,7 @@ button:hover {
 
 .user-info-comments-container {
     display: flex;
+    padding-top:1rem;
 }
 
 .right-info-comments-container {
@@ -279,6 +289,7 @@ button.delete-song-button {
     width: fit-content;
     align-items: center;
     /* border: 1px solid red; */
+    width:100%;
 }
 
 .show-likes-view-all {
@@ -292,12 +303,17 @@ button.delete-song-button {
     height: 30px;
     border-bottom: 1px solid rgb(0, 0, 0, 0.08);
 }
+.show-song-like-link-cont{
+    width:100%;
+    /* border: 1px solid green; */
+
+}
 
 .show-likes-likes {
     display: flex;
     align-items: center;
     /* border: 1px solid green; */
-    margin-right: 197px;
+    /* margin-right: 197px; */
 }
 
 .fa-heart.show {

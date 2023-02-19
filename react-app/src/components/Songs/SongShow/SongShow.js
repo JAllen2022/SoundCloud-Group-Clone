@@ -61,7 +61,9 @@ const SongShow = () => {
   if (!Object.values(song).length) return null;
 
   return (
-    <div className="song-show-page">
+    // <div className="song-show-page">
+    <div className="page-outer-container">
+        <div className="page-container">
       <div className="song-header-container">
         <div className="left-header-container">
           <div className="play-artist-title-name-created">
@@ -95,8 +97,9 @@ const SongShow = () => {
           </div>
         </div>
       </div>
-      <div className="under-header-container">
-        <div className="left-under-container">
+        <div className="page-body-container">
+
+        <div className="left-user-page-body-container">
           <div className="add-comment-form">
             <CreateComment />
           </div>
@@ -149,10 +152,10 @@ const SongShow = () => {
             <div className="left-user-container">
               <div className="user-pic-display-name">
                 <div className="user-pic">
-                  <img className="song-user-img" src={user?.profile_image_url ? user.profile_image_url : profPic} alt="user profile" />
+                  <img className="song-user-img" src={song.user?.profile_image_url ? song.user.profile_image_url : profPic} alt="user profile" />
                 </div>
                 <div className="user-page-disName">
-                  {user?.display_name ? user.display_name : "No display name"}
+                  {song.user?.display_name ? song.user.display_name : "No display name"}
                 </div>
               </div>
             </div>
@@ -164,9 +167,9 @@ const SongShow = () => {
             </div>
           </div>
         </div>
-        <div className="right-under-container">
+        <div className="right-user-page-body-container">
           <div className="show-song-likes-container">
-            <Link className="show-likes-link link" to={`/songs/${song.id}/likes`}>
+            <Link className="show-likes-link link show-song-like-link-cont" to={`/songs/${song.id}/likes`}>
               <div className="show-likes-view-all">
                 <div className="show-likes-likes">
                   <i className="fa-solid fa-heart show"></i>
@@ -195,7 +198,10 @@ const SongShow = () => {
             </div>
           </div>
         </div>
-      </div>
+
+
+        </div>
+        </div>
     </div>
   );
 };

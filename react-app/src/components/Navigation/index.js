@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
               <div className="upload-button-container">
                 <NavLink
                   exact
-                  to={sessionUser ? '/upload' : '/login'}
+                  to={sessionUser ? '/upload' : '/'}
                   className="upload-button"
                   onClick={() => dispatch(resetSingleSong())}
                 >

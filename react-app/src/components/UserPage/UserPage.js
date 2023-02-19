@@ -108,8 +108,8 @@ const UserPage = () => {
   // };
 
   return (
-    <div className="user-page-outer-container">
-      <div className="user-page-container">
+    <div className="page-outer-container">
+      <div className="page-container">
         {/* <div className={user.header_image_url ? "" : "user-page-header"}> */}
         <div
           className={

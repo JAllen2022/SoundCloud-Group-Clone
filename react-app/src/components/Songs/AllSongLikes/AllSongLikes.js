@@ -37,24 +37,26 @@ const AllSongLikes = () => {
 
     // asl = all song likes
     return (
-        <div className="asl-page">
-            <div className="asl-header">
-                <Link to={`songs/${song.id}`}>
-                    <div className="asl-image-title-container">
-                        <img className="asl-song-image" src={song?.song_image_url} alt={song?.title} />
-                        <h1 className="asl-title">{song?.title}</h1>
+        <div className="page-outer-container">
+            <div className="page-container">
+                <div className="asl-header">
+                    <Link to={`songs/${song.id}`}>
+                        <div className="asl-image-title-container">
+                            <img className="asl-song-image" src={song?.song_image_url} alt={song?.title} />
+                            <h1 className="asl-title">{song?.title}</h1>
+                        </div>
+                    </Link >
+                    <div className="asl-tab-container">
+                        <h2 className='asl-tab-title'>Likes</h2>
                     </div>
-                </Link >
-                <div className="asl-tab-container">
-                    <h2 className='asl-tab-title'>Likes</h2>
                 </div>
-            </div>
-            <div className='asl-main-title'>
-                <div className="asl-body">
-                    {songLikeItems}
+                <div className='asl-main-title'>
+                    <div className="asl-body">
+                        {songLikeItems}
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     )
 

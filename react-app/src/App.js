@@ -30,12 +30,12 @@ function App() {
           <Route exact path="/">
               <SplashPage />
           </Route>
-          <Route path="/login" >
+          {/* <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route path="/upload">
             <UploadPage />
           </Route>

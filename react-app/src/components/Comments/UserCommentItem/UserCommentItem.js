@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
 import "./UserCommentItem.css";
-
+import moment from "moment";
 
 const UserCommentItem = ({ comment }) => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const UserCommentItem = ({ comment }) => {
                     on <span className="user-comment-on-song-title">{comment?.song.title}</span>
                 </div>
                 <div className="user-comment-created-at">
-                    {comment?.created_at}
+                    {moment(comment?.created_at).fromNow()}
                 </div>
             </div>
             <div className="user-comment-item-body">

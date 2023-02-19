@@ -17,8 +17,8 @@ export default function SongPlayer() {
   },[dispatch])
   const buffer = {
     display: 'block',
-    padding: '20px',
-    height: '60px',
+    // padding: '20px',
+    // height: '60px',
     width: '100%',
   }
 

@@ -33,42 +33,24 @@ const AllUserLikes = () => {
         dispatch(getUserLikedSongsThunk(userId));
     },[dispatch, userId])
 
-    // return (
-    //     <div className="asl-page">
-    //         <div className="asl-header">
-    //             <Link to={`songs/${song.id}`}>
-    //                 <div className="asl-image-title-container">
-    //                     <img className="asl-song-image" src={song?.song_image_url} alt={song?.title} />
-    //                     <h1 className="asl-title">{song?.title}</h1>
-    //                 </div>
-    //             </Link >
-    //             <div className="asl-tab-container">
-    //                 <h2 className='asl-tab-title'>Likes</h2>
-    //             </div>
-    //         </div>
-    //         <div className='asl-main-title'>
-    //             <div className="asl-body">
-    //                 {songLikeItems}
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
     return (
-        <div className="aul-page">
-            <div className="aul-header">
-                <Link to={`users/${user.id}`}>
-                    <div className="aul-image-title-container">
-                        <img className="aul-prof-image" src={user?.profile_image_url ? user.profile_image_url : profPic} alt={user?.display_name} />
-                        <h1 className="aul-likes-name">Likes by {user.display_name}</h1>
+        <div className="page-outer-container">
+            <div className="page-container">
+                <div className="aul-header">
+                    <Link to={`/users/${user.id}`}>
+                        <div className="aul-image-title-container">
+                            <img className="aul-prof-image" src={user?.profile_image_url ? user.profile_image_url : profPic} alt={user?.display_name} />
+                            <h1 className="aul-likes-name">Likes by {user.display_name}</h1>
+                        </div>
+                    </Link >
+                    <div className="aul-tab-container">
+                        <h2 className='aul-tab-title'>Likes</h2>
                     </div>
-                </Link >
-                <div className="aul-tab-container">
-                    <h2 className='aul-tab-title'>Likes</h2>
                 </div>
-            </div>
-            <div className="aul-main-title">
-                <div className="aul-body">
-                    {userLikeArray}
+                <div className="aul-main-title">
+                    <div className="aul-body">
+                        {userLikeArray}
+                    </div>
                 </div>
             </div>
         </div>

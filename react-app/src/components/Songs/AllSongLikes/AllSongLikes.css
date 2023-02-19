@@ -7,22 +7,24 @@
   display: flex;
   flex-direction: column;
   /* margin: 0 20px; */
-  padding: 70px 20px 0;
-  height: 150px;
+  padding: 20px 0;
+  height: 131px;
   width: 100%;
-  position: fixed;
+  position: sticky;
   top: 0;
   background-color: white;
   /* align-items: flex-start; */
   border-bottom: 1px solid rgb(0, 0, 0, 0.06);
+  z-index: 10;
+
 }
 
 .asl-image-title-container {
   display: flex;
   /* border: 1px solid red; */
-  width: 100%;
+  width: fit-content;
   height: 110px;
-  margin-right: 20px;
+  margin: 0 20px;
 }
 
 .asl-song-image {
@@ -41,13 +43,14 @@
   font-weight: 500;
   margin-top: 0;
   margin-left: 25px;
-  width: 100%;
+  width: fit-content;
   color: black;
   /* font-family: 'Highway'; */
 }
 
 .asl-tab-container {
   width: 100%;
+  margin: 0 20px;
 }
 
 .asl-tab-title {
@@ -61,8 +64,12 @@
 .asl-body {
   display: flex;
   flex-direction: row;
+  padding: 10px;
+
   /* justify-content: space-evenly; */
-  margin: 190px 10px;
+  margin: 0 10px;
+  z-index: -10;
+
 }
 
 .song-likes-user-prof-container {
