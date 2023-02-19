@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,8 +6,9 @@ import {
   addLikeThunk,
   deleteLikeThunk,
   playSong,
+  isPlaying
 } from "../../../store/songs";
-import profPic from "../../../assets/profPic.jpeg";
+// import profPic from "../../../assets/profPic.jpeg";
 import { Link } from "react-router-dom";
 import CreateComment from "../../Comments/CreateComment/CreateComment";
 import SongPageComments from "../../Comments/SongPageComments/SongPageComments";
@@ -24,8 +25,29 @@ const SongShow = () => {
   const song = useSelector((state) => state.Songs.singleSong);
   const currentUser = useSelector((state) => state.session.user);
   const user = useSelector((state) => state.UserPage.userProfile);
+  const playing = useSelector(state => state.Songs.isPlaying)
   const playS = useSelector(state => state.Songs.playSong)
   const playerRef = useSelector(state => state.Songs.playerRef)
+   const pauseButton = "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+  const playButton = "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
+
+  const showPlayButton = (
+    <img
+      className="show-play-button-image"
+      src={playButton}
+      alt="orange play button"
+    />
+  )
+
+  const showPauseButton = (
+    <img
+      className="show-play-button-image"
+      src={pauseButton}
+      alt="orange play button"
+    />
+  )
+  const [showButton, setShowButton] = useState(showPlayButton)
+
 
   useEffect(() => {
     dispatch(getSongThunk(songId));
@@ -46,19 +68,40 @@ const SongShow = () => {
   function songAction() {
     if (playS.id !== song.id) {
       dispatch(playSong(song))
-    } else if (playerRef) {
+      setShowButton(showPauseButton)
+      dispatch(isPlaying(true))
+    } else if (playS.id == song.id) {
       // We want to try and pause it here
       if (!playerRef.current.audio.current.paused) {
         playerRef.current.audio.current.pause();
+        setShowButton(showPlayButton)
       }
-      else playerRef.current.audio.current.play();
-      // dispatch(isPlaying())
+      else {
+        playerRef.current.audio.current.play();
+        setShowButton(showPauseButton)
+      }
     }
   }
 
-  // console.log(song?.created_at)
+  useEffect(() => {
+    console.log(playerRef.current.audio.current.play)
+    if (playS.id !== song.id) {
+      setShowButton(showPlayButton)
+    }
+     if (playS.id === song.id && playerRef.current.audio.current.play) {
+       setShowButton(showPauseButton)
+     }
+  }, [playS.id, song])
+
+  useEffect(() => {
+    if (playS.id == song.id) {
+      if (!playing) setShowButton(showPlayButton)
+      else setShowButton(showPauseButton)
+    }
+  },[playing])
 
   if (!Object.values(song).length) return null;
+  const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
   return (
     // <div className="song-show-page">
@@ -69,16 +112,12 @@ const SongShow = () => {
           <div className="play-artist-title-name-created">
             <div className="play-artist-title-name">
               <div className="show-play play" onClick={songAction}>
-                {/* <button
-                  className="show-play-button"
-                  onClick={() => dispatch(playSong(song))}
-                > */}
-                <img
+                {showButton}
+                {/* <img
                   className="show-play-button-image"
                   src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
                   alt="orange play button"
-                />
-                {/* </button> */}
+                /> */}
               </div>
               <div className="show-artist-title-name">
                 <div className="show-artist-title">

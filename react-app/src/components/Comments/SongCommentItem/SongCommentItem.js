@@ -1,7 +1,7 @@
 import "./SongCommentItem.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import profPic from "../../../assets/profPic.jpeg";
+// import profPic from "../../../assets/profPic.jpeg";
 import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
 import moment from 'moment'
@@ -13,6 +13,7 @@ const SongCommentItem = ({ comment, song }) => {
   // const user = useSelector((state) => state.UserPage.user);
 
   const [editing, setEditing] = useState(false);
+  const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
   return (
     <div className="song-comment-item-container">

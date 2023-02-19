@@ -119,14 +119,36 @@
 }
 
 .user-page-header-upload-container {
-  width: 15%;
+  width: 20%;
+  position: relative;
   /* border: 1px red solid; */
+}
+
+.header-pic-file-label {
+  position: absolute;
+  top: 15px;
+  /* bottom: 25px; */
+  /* left: 63px; */
+  border-radius: 2px;
+  padding: 3px 4px 3px;
+  font-size: 14px;
+  display: flex;
+  text-align: center;
+  width: 165px;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.header-pic-file-label:hover {
+  cursor: pointer;
+  opacity: .95;
 }
 
 .user-page-nav-body-container {
   width: 95%;
   /* border: 1px red solid; */
-  margin: auto;
+  margin: 0 auto;
+  /* min-height:100vh; */
 }
 
 .user-page-nav-container {

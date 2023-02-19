@@ -4,7 +4,7 @@ import { useParams, Link  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUserThunk } from "../../../store/userPage";
 import { getUserLikedSongsThunk } from "../../../store/songs";
-import profPic from "../../../assets/profPic.jpeg";
+// import profPic from "../../../assets/profPic.jpeg";
 import './AllUserLikes.css'
 
 
@@ -32,6 +32,7 @@ const AllUserLikes = () => {
         // If User Liked Songs is not loaded into state, dispatch for it
         dispatch(getUserLikedSongsThunk(userId));
     },[dispatch, userId])
+    const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
     return (
         <div className="page-outer-container">

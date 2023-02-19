@@ -158,11 +158,20 @@ div.edit-song-button>button {
     margin-right: 5px;
 }
 
+.delete-song-button,
+div.edit-song-button>button {
+    opacity: 0;
+}
 .delete-song-button:hover,
 div.edit-song-button>button:hover,
 .like-button:hover {
     cursor: pointer;
     border: 1px solid rgb(170, 170, 170);
+}
+
+.delete-song-button:hover,
+div.edit-song-button>button:hover {
+    opacity: 1;
 }
 
 .liked {

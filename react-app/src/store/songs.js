@@ -71,8 +71,9 @@ export const resetSingleSong = () => ({
   type: RESET_SINGLE_SONG,
 });
 
-export const isPlaying = () => ({
+export const isPlaying = (bool) => ({
   type: IS_PLAYING,
+  bool
 });
 
 export const setPlayerReference = (ref) => ({
@@ -374,7 +375,7 @@ const songsReducer = (state = initialState, action) => {
       return { ...state, singleSong: {} };
 
     case IS_PLAYING:
-      newState.isPlaying = !state.isPlaying;
+      newState.isPlaying = action.bool;
       return newState;
     case SET_PLAYER_REF:
       newState["playerRef"] = action.ref;

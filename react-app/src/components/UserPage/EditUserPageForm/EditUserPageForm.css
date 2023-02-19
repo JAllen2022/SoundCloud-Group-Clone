@@ -93,6 +93,7 @@
   padding-right: 4px;
   margin-top: -2px;
 }
+
 .profile-pic-file-label {
   position: absolute;
   bottom: 25px;
@@ -109,6 +110,8 @@
 
 .profile-pic-file-label:hover {
   cursor: pointer;
+  opacity: .95;
+
 }
 
 input[type='file'] {

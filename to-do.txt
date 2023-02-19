@@ -1,17 +1,20 @@
 To-Do:
-play and pause button change
-upload form
-fix input file buttons
-splash page/ maybe logged out upload page
+roysa - upload form
+roysa - fix input file buttons
+lilly - splash page/ maybe logged out upload page
 fotter with git and linked in links
-set default user pic everywhere
-fix songshow page creator diplay box
 make feed/home page
-favicon
-nav-bar margin
 404 page
+user page edit - border/padding fix
+lilly - favicon
 
 Done:
+fix user page
+nav-bar margin
+fix songshow page creator diplay box
 user comments page
 login and signup pages removal
 change margins on all pages
+set default user pic everywhere
+play and pause button change
+jason - play and pause button sync with different pages

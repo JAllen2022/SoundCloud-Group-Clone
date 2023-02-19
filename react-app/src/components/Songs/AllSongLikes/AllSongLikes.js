@@ -16,6 +16,7 @@ const AllSongLikes = () => {
     }, [dispatch, songId]);
 
     let songLikeItems;
+    const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
     if (songLikes && Object.values(songLikes).length) {
         const songLikesArr = Object.values(songLikes);
@@ -23,7 +24,7 @@ const AllSongLikes = () => {
             <div className="song-likes-user-prof-container">
                 <Link to={`/users/${user?.id}`}>
                     <div className="asl-user-pic">
-                        <img className='asl-user-image' alt={user?.display_name} src={user?.profile_image_url}/>
+                        <img className='asl-user-image' alt={user?.display_name} src={user.profile_image_url ? user.profile_image_url : profPic}/>
                     </div>
                     <div className="asl-user-display-name">
                         <p className='asl-display-name'>{user?.display_name}</p>

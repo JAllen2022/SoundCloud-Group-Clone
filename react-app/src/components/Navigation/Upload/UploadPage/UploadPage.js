@@ -5,7 +5,7 @@ import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
 import { editSongThunk } from "../../../../store/songs";
 import { useModal } from "../../../../context/Modal.js";
 // let jsmediatags = require("jsmediatags");
-
+import './UploadPage.css'
 import { createSongThunk } from "../../../../store/songs";
 
 const UploadPage = ({ editSong = false, songEdit }) => {
@@ -217,18 +217,30 @@ function UploadSong({
   };
 
   return (
-    <>
-      <p>Upload Your Song Here</p>
-      <label htmlFor="upload-song-file">Click Here To Choose A File</label>
-      <input
-        required
-        id="upload-song-file"
-        name="upload-song-file"
-        type="file"
-        accept="audio/*"
-        onChange={updateSong}
-      />
-    </>
+    <div className="up-box-outer-contianer">
+      <div className="up-tab-container">
+        <p className="up-tab-name">Upload</p>
+      </div>
+      <div className="up-box-contianer">
+        <div className="up-field-contianer">
+          <h1>Upload Your Song Here</h1>
+          <div className="up-upload-container">
+            <label className="up-upload-label" htmlFor="upload-song-file">
+              Click Here To Choose A File
+            </label>
+            <input
+              required
+              className='input-item file-input'
+              id="upload-song-file"
+              name="upload-song-file"
+              type="file"
+              accept="audio/*"
+              onChange={updateSong}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

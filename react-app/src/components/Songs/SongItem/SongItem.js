@@ -1,12 +1,11 @@
 import { Link, useParams } from "react-router-dom";
-// import playButton from "../../../assets/orange-play-btn.png";
 import commentBox from "../../../assets/icons8-comments-30.png";
 import OpenModalButton from "../../OpenModalButton";
 import "./SongItem.css";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { deleteSongThunk, playSong, addLikeThunk, deleteLikeThunk } from "../../../store/songs";
+import { useState, useEffect } from "react";
+import { deleteSongThunk, playSong, addLikeThunk, deleteLikeThunk, isPlaying } from "../../../store/songs";
 // import { useModal } from "../../../context/Modal";
 // import pencil from "../../../assets/sc-pencil.png";
 
@@ -18,9 +17,29 @@ const SongItem = ({ song }) => {
   // const user = useSelector((state) => state.UserPage.userProfile);
   const playS = useSelector(state => state.Songs.playSong)
   const playerRef = useSelector(state => state.Songs.playerRef)
+  const playing = useSelector(state => state.Songs.isPlaying)
   const dispatch = useDispatch();
   const { userId } = useParams();
   const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id])
+  const pauseButton = "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+  const playButton = "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
+
+  const showPlayButton = (
+    <img
+      className="play-button-image"
+      src={playButton}
+      alt="orange play button"
+    />
+  )
+
+  const showPauseButton = (
+    <img
+      className="play-button-image"
+      src={pauseButton}
+      alt="orange play button"
+    />
+  )
+  const [showButton, setShowButton] = useState(showPlayButton)
 
   const clickToLike = () => {
     const song_likes = song.song_likes;
@@ -43,15 +62,36 @@ const SongItem = ({ song }) => {
   function songAction() {
     if (playS.id !== song.id) {
       dispatch(playSong(song))
-    } else if (playerRef) {
+      setShowButton(showPauseButton)
+      dispatch(isPlaying(true))
+    } else if (playS.id == song.id) {
       // We want to try and pause it here
       if (!playerRef.current.audio.current.paused) {
         playerRef.current.audio.current.pause();
+        setShowButton(showPlayButton)
       }
-      else playerRef.current.audio.current.play();
-      // dispatch(isPlaying())
+      else {
+        playerRef.current.audio.current.play();
+        setShowButton(showPauseButton)
+      }
     }
   }
+
+  useEffect(() => {
+    if (playS.id !== song.id) {
+      setShowButton(showPlayButton)
+    }
+     if (playS.id === song.id && playerRef.current.audio.current.play) {
+       setShowButton(showPauseButton)
+     }
+  }, [playS.id])
+
+  useEffect(() => {
+    if (playS.id == song.id) {
+      if (!playing) setShowButton(showPlayButton)
+      else setShowButton(showPauseButton)
+    }
+  },[playing])
 
   return (
     <div className="song-item-container">
@@ -67,13 +107,7 @@ const SongItem = ({ song }) => {
       <div className="right-item-info-container">
         <div className="play-displayName-title">
           <div className="play" onClick={songAction}>
-            {/* {playerRef.current.audio.current.paused ?  ADD THE PAUSE BUTTON BELOW AFTER THE TURNARY ':' BELOW. THEN COMMENT THIS OUT */}
-              <img
-              className="play-button-image"
-              src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
-              alt="orange play button"
-            />
-            {/* : "ADD THE PAUSE BUTTON HERE"} */}
+            {showButton}
           </div>
           <div className="displayName-title">
             <Link

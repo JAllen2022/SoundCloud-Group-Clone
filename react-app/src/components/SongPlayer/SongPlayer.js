@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRef, useEffect } from "react";
 import AudioPlayer from "react-h5-audio-player";
 // import "react-h5-audio-player/lib/styles.css";
-import { setPlayerReference } from "../../store/songs"
+import { setPlayerReference, isPlaying } from "../../store/songs"
 import "./SongPlayer.css";
 
 export default function SongPlayer() {
@@ -36,19 +36,20 @@ export default function SongPlayer() {
           ref={playerRef}
           layout='horizontal-reverse'
           // customIcons={
-          //    play?: ReactNode
-          //     pause?: ReactNode
-          //     rewind?: ReactNode
-          //     forward?: ReactNode
-          //     previous?: ReactNode
-          //     next?: ReactNode
-          //     loop?: ReactNode
-          //     loopOff?: ReactNode
-          //     volume?: ReactNode
-          //     volumeMute?: ReactNode
-          // }
-          src={playSong?.song_url || ''}
-          onPlay={(e) => console.log("onPlay")}
+            //    play?: ReactNode
+            //     pause?: ReactNode
+            //     rewind?: ReactNode
+            //     forward?: ReactNode
+            //     previous?: ReactNode
+            //     next?: ReactNode
+            //     loop?: ReactNode
+            //     loopOff?: ReactNode
+            //     volume?: ReactNode
+            //     volumeMute?: ReactNode
+            // }
+            src={playSong?.song_url || ''}
+            onPlay={(e) => dispatch(isPlaying(true))}
+            onPause={(e) => dispatch(isPlaying(false))}
         // other props here
         />
       </div>

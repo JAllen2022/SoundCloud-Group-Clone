@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 // import UserPageComments from "../UserPageComments/UserPageComments";
-import profPic from "../../../assets/profPic.jpeg";
 import { Link, useParams } from "react-router-dom";
 // import commentBox from "../../../assets/icons8-comments-30.png";
 import "./AllUserPageComments.css";
@@ -14,6 +13,7 @@ const AllUserPageComments = () => {
   const { userId } = useParams();
   const user = useSelector((state) => state.UserPage.userProfile);
   const userComments = useSelector((state) => state.Comments.user);
+  const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
   let userCommentItems;
   if (Object.values(userComments).length) {

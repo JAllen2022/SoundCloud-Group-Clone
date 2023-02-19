@@ -148,10 +148,14 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
+  min-width: 950px;
+  width: 80%;
+  max-width: 1000px;
+  margin:0 auto;
   height: 43px;
   justify-content: space-between;
   position: sticky;
+  /* border:1px solid red; */
 
 }
 
@@ -177,7 +181,7 @@ body {
 
 .header-left {
   display: flex;
-  padding: 0px 28px;
+  /* padding: 0px 28px; */
   align-items: center;
   height: 43px;
 }
@@ -208,6 +212,7 @@ body {
   display: flex;
   align-items: center;
   height: 43px;
+  /* border:4px solid purple; */
 }
 
 .upload-button-container {
@@ -262,7 +267,7 @@ i.fas.fa-user-circle {
   margin: 0px;
   padding: 11px 28px;
   width: fit-content;
-  margin-right: 28px;
+  /* margin-right: 28px; */
   border-left: 1px solid #111;
   border-right: 1px solid #111;
 }

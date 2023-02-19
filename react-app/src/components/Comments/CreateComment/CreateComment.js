@@ -6,7 +6,6 @@ import "./CreateComment.css";
 
 const CreateComment = ({ currentComment, setEditing }) => {
     const dispatch = useDispatch();
-
     const [body, setBody] = useState(currentComment?.body || '')
     const [errors, setErrors] = useState([]);
     const currentUser = useSelector(state => state.session.user);
@@ -30,6 +29,7 @@ const CreateComment = ({ currentComment, setEditing }) => {
             body
         };
 
+
         if (body.length) {
             // console.log("what is the comment", body)
             if (currentComment) {
@@ -51,8 +51,8 @@ const CreateComment = ({ currentComment, setEditing }) => {
         }
 
     }
+    const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
-    let defaultCommentPic = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     return (
         <div className="create-comment-container">
             {!currentComment && <div className="create-comment-user-container">
@@ -61,7 +61,7 @@ const CreateComment = ({ currentComment, setEditing }) => {
                     src={
                         currentUser.profile_image_url
                             ? currentUser.profile_image_url
-                            : defaultCommentPic
+                            : profPic
                     }
                     alt={currentUser.display_name}
                 />
