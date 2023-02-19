@@ -1,14 +1,21 @@
 To-Do:
-roysa - upload form
-roysa - fix input file buttons
 lilly - splash page/ maybe logged out upload page
-fotter with git and linked in links
+footer with git and linked in links
 make feed/home page
 404 page
-user page edit - border/padding fix
-lilly - favicon
+preview image for profile image and upload song
+
+IMPORTANT:
+Get favicon to work
+fix timestamps on comments and songs
+
+continuous play
+modifying our player?
+timestamps on comments
 
 Done:
+roysa - fix input file buttons
+roysa - upload form
 fix user page
 nav-bar margin
 fix songshow page creator diplay box
@@ -18,3 +25,9 @@ change margins on all pages
 set default user pic everywhere
 play and pause button change
 jason - play and pause button sync with different pages
+lilly - favicon
+jason- nav bar navlink active class
+jason-user page edit - border/padding fix
+jason- sign up - require display name on sign up
+comment - click on user-profile display name
+comments- all spaces - prevent from happening
