@@ -156,32 +156,62 @@ body {
   justify-content: space-between;
   position: sticky;
   /* border:1px solid red; */
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
 
-}
-
-
-.fa-soundcloud {
-  color: white;
-  padding: 0 28px;
 }
 
 .logo {
-  border-left: 1px solid #111;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: #111111;
+  padding: 0 28px;
+  height: 43px;
 }
 
-.home-link {
+.fa-soundcloud {
+  color: white;
+}
+
+
+.nav-bar-button-container{
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
+  height:100%;
+  display:flex;
+  align-items: center;
+  /* border:1px solid red; */
+}
+
+.nav-bar-nav-link {
   text-decoration: none;
   color: #ccc;
   font-weight: 400;
   font-size: 14px;
-  padding-left: 28px;
+  width:70px;
+  height:100%;
+  /* border:1px solid red; */
+  padding:0 1rem;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-bar-nav-link.active, .nav-bar-prof-button-active {
+  background-color: #111111;
+  color:white;
+}
+
+.upload-button {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .header-left {
   display: flex;
-  /* padding: 0px 28px; */
   align-items: center;
   height: 43px;
 }
@@ -196,14 +226,15 @@ body {
   border-right: 1px solid #111;
 }
 
-.home-tab:active {
-  background-color: #111;
+.dropdown-container{
+  color:#111;
 }
+
+
 .header-right {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-left: 1px solid #111;
   position: relative;
   height: 43px;
 }
@@ -215,21 +246,8 @@ body {
   /* border:4px solid purple; */
 }
 
-.upload-button-container {
-  margin: 0px;
-  padding: 11px 28px;
-}
 
-.upload-button-container:active {
-  background: #111;
-}
 
-.upload-button {
-  color: #ccc;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 14px;
-}
 
 .prof-pic-and-displayName {
   display: flex;
@@ -252,6 +270,7 @@ body {
   align-items: center;
   border: none;
   padding: 0;
+  color:#ccc;
 }
 
 i.fas.fa-user-circle {
@@ -268,17 +287,9 @@ i.fas.fa-user-circle {
   padding: 11px 28px;
   width: fit-content;
   /* margin-right: 28px; */
-  border-left: 1px solid #111;
-  border-right: 1px solid #111;
-}
-
-.profile-button-container:active {
-  background-color: #111;
 }
 
 .prof-butt-cont-loggedOut {
   margin-right: 28px;
   padding: 11px 28px;
-  border-left: 1px solid #111;
-  border-right: 1px solid #111;
 }

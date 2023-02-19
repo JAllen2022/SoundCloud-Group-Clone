@@ -1,38 +1,98 @@
-.upload-page-form-container {
-    display: block;
+
+
+.up-song-image-container {
+    width: 250px;
+    height: 250px;
+    /* border: 1px solid black; */
+    position: relative;
+    margin-top: 17px;
+}
+img.up-song-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    position: absolute;
+}
+.up-song-img-label {
+    /* left: 0px; */
+    position: absolute;
+    bottom: 15px;
+    left: 68px;
+    border-radius: 2px;
+    padding: 3px 4px 2px;
+    font-size: 14px;
+    display: flex;
+    text-align: center;
+    width: 115px;
+    z-index: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.up-song-img-label:hover {
+    cursor: pointer;
+}
+
+.tab-container {
+    border-bottom: 1px solid rgb(242, 242, 242);
+    padding: 0 30px;
+
 }
 
 .basic-info-tab {
-    border-color: #f50;
+    border-bottom: 2px solid #f50;
+    width: fit-content;
     color: #f50;
-    padding: 0;
+    font-weight: 500;
+    margin-bottom: 0;
 }
 
 .form-container {
-    position: relative;
-    padding-left: 270px;
+    /* position: relative; */
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
 }
 
-.song-image-container {
-    left: 0;
-    position: absolute;
+.input-item.select {
+    width: 100%;
+    height: 35px;
 }
+.input-item.text-area {
+    padding-top: 8px;
+    height: 50px;
+}
+
+.up-submit-button {
+    position: relative;
+    /* border: 1px solid red; */
+    height: 30px;
+    margin-top: 40px;
+}
+
+.upload {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
 
 body {
     font: 12px/1.4 Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda,
         Verdana, Tahoma, sans-serif;
     color: #333;
 }
-
+/*
 .label-description {
     display: flex;
     flex-direction: row;
     align-items: center;
-}
+} */
 
-.song-input-field {
+/* .song-input-field {
     position: relative;
     width: 100%;
     font-weight: 100%;
     font-size: 14px;
-}
+} */

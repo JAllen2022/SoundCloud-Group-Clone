@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
 import moment from 'moment'
+import { Link } from "react-router-dom";
 
 const SongCommentItem = ({ comment, song }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const SongCommentItem = ({ comment, song }) => {
   return (
     <div className="song-comment-item-container">
       <div className="creator-pic">
-        <img
+      <Link className="link" to={`/users/${comment.user_id}`}><img
           className="prof-pic"
           src={
             comment.user?.profile_image_url
@@ -27,6 +28,7 @@ const SongCommentItem = ({ comment, song }) => {
           }
           alt=""
         />
+        </Link>
       </div>
       <div className="user-name-time-and-edit-body-outer-container">
 
@@ -34,7 +36,7 @@ const SongCommentItem = ({ comment, song }) => {
 
 
           <div className="creator-name">
-            {comment.user?.username} at {comment?.time}
+          <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link> at {comment?.time}
           </div>
           <div className="comment-created-at">{moment(comment?.created_at).fromNow()}</div>
 

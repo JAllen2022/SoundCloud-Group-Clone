@@ -191,10 +191,10 @@ const SongShow = () => {
             <div className="left-user-container">
               <div className="user-pic-display-name">
                 <div className="user-pic">
-                  <img className="song-user-img" src={song.user?.profile_image_url ? song.user.profile_image_url : profPic} alt="user profile" />
+                  <Link to={`/users/${song.user_id}`}><img className="song-user-img" src={song.user?.profile_image_url ? song.user.profile_image_url : profPic} alt="user profile" /></Link>
                 </div>
                 <div className="user-page-disName">
-                  {song.user?.display_name ? song.user.display_name : "No display name"}
+                <Link className="link" to={`/users/${song.user_id}`}>{song.user?.display_name ? song.user.display_name : "No display name"}</Link>
                 </div>
               </div>
             </div>

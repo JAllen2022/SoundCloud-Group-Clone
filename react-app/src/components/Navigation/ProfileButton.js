@@ -12,7 +12,7 @@ import waveForm from "../../assets/waveform.232x256.png";
 
 import "./Navigation.css";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, setProfileActive }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -21,6 +21,7 @@ function ProfileButton({ user }) {
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+    setProfileActive(true);
   };
 
   useEffect(() => {
@@ -29,6 +30,7 @@ function ProfileButton({ user }) {
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
+        setProfileActive(false);
       }
     };
 
@@ -44,7 +46,10 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden") + (user ? "" : " loggedOut");
-  const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => {
+    setShowMenu(false);
+    setProfileActive(false);
+  };
 
   return (
     <>

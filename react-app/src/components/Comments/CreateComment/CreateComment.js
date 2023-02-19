@@ -29,8 +29,10 @@ const CreateComment = ({ currentComment, setEditing }) => {
             body
         };
 
+        // Quick validation for edge case that body is ALL space characters
+        const emptyStringCheck = body.split(" ").join("")
 
-        if (body.length) {
+        if (body.length && emptyStringCheck) {
             // console.log("what is the comment", body)
             if (currentComment) {
                 // dispatch update thunk
@@ -73,7 +75,7 @@ const CreateComment = ({ currentComment, setEditing }) => {
                     className="create-comment-input-field"
                     placeholder="Write a comment"
                     type="text"
-                    maxlength="100"
+                    maxLength="100"
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />

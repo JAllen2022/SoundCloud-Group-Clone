@@ -134,10 +134,11 @@ const EditUserPageForm = () => {
         <div className="edit-user-page-body">
           <div className="edit-user-page-body-left">
             <div className="custom-upload">
-              <img className="edit-prof-image" alt='' src={currentUser.profile_image_url ? currentUser.profile_image_url : profPic} />
-              {/* <div className="input-image-containe"> */}
-
-                <label className='profile-pic-file-label' htmlFor="profile-pic-file"><img className='cam' src='https://user-images.githubusercontent.com/110946315/219857807-5feb84a5-23c2-4cb4-b4bf-fc6f78c277f1.png' alt='' />Upload Image</label>
+                <img className="edit-prof-image" alt='' src={currentUser.profile_image_url ? currentUser.profile_image_url : profPic} />
+                <label className='profile-pic-file-label' htmlFor="profile-pic-file">
+                  <img className='cam' src='https://user-images.githubusercontent.com/110946315/219857807-5feb84a5-23c2-4cb4-b4bf-fc6f78c277f1.png' alt='' />
+                  Upload Image
+                </label>
               {/* </div> */}
               <input
                 id="profile-pic-file"

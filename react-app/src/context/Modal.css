@@ -24,7 +24,7 @@
 #modal-content {
   position: absolute;
   background-color:white;
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 80%;
   z-index: 1000;
 

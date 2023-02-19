@@ -1,3 +1,124 @@
-.demo-item{
-    background-image: url( 'image.src');
+.splash-page-outer-container {
+  border:1px red solid;
+  width: 100%;
+  background-color: #f2f2f2;
+  z-index: -4;
+}
+
+.splash-page-container {
+  border: 1px red solid;
+  min-width: 950px;
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  background-color: white;
+  z-index: -3;
+  flex-direction: column;
+  min-height:150vh;
+}
+
+.splash-page-carousel-container {
+  border: 1px red solid;
+    width:100%;
+    height:375px;
+}
+
+.splash-page-never-stop-listening-container{
+  /* border: 1px red solid; */
+  width:100%;
+  background-color: #f2f2f2;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-page-never-stop-listening-left{
+  /* border: 1px red solid; */
+  width:60%;
+  display:flex;
+  justify-content: center;
+
+}
+
+.splash-page-never{
+    width:85%;
+    margin-top:3rem;
+}
+
+.splash-page-never-stop-listening-right{
+  /* border: 1px red solid; */
+  width:32%;
+  margin: 0 auto;
+}
+
+.splash-page-never-stop-listening-text{
+    font-size: 2rem;
+    margin-bottom:.5rem;
+}
+
+.splash-page-never-stop-gradient{
+    /* border: 1px red solid; */
+    background-image:linear-gradient(90deg,#7d01a1,#f30 50%,#f50);
+    width:20%;
+    height:.2rem;
+}
+
+.splash-page-never-stop-listening-body-text{
+    font-size: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.app-store-button-image{
+    height:2rem;
+}
+
+.app-store-container{
+    display:flex;
+}
+
+.splash-page-calling-all-creators-container {
+    background-image:url("https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists-798050ae.jpg");
+    background-color: #141414;
+    background-size: cover;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    /* border: 1px solid red; */
+    width:100%;
+    height:300px;
+    -webkit-font-smoothing: antialiased;
+    display:flex;
+    align-items: center;
+}
+
+.splash-page-calling-all-creators-text-container {
+    color:white;
+    /* border: 1px solid red; */
+    width:40%;
+    margin-left:3rem;
+}
+
+.splash-page-calling-all-creators-header{
+    color:white;
+    font-size:1.75rem;
+}
+
+.splash-page-calling-all-creators-inner-text {
+    font-size: 1rem;
+    margin:.5rem 0;
+}
+
+.splash-page-calling-all-creators-fill-out-more{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:.5rem;
+    font-size: .85rem;
+    width:25%;
+    border-radius: 3px;
+    border:1px solid white;
+    margin-top:1rem;
+    text-decoration: none;
+    color:white;
 }

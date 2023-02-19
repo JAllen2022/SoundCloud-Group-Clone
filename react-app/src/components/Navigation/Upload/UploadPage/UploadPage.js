@@ -100,7 +100,7 @@ const UploadPage = ({ editSong = false, songEdit }) => {
             ))}
           </ul>
           {songLoading ? (
-            "Song Loading"
+            <h1 className="loading-text">Song Loading...</h1>
           ) : (
             <form action="/songs" method="post" onSubmit={handleSubmit}>
               {uploadedSong ? (
