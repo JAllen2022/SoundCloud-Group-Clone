@@ -199,8 +199,6 @@ button:hover {
     flex-direction: row;
 }
 
-
-
 .user-page-disName {
     display: flex;
     justify-content: center;
@@ -270,8 +268,11 @@ button.delete-song-button {
 }
 
 .disclaimers {
-    color: rgb(0, 0, 0, 0.3);
-    margin-top: 50px;
+    /* color: rgb(0, 0, 0, 0.3); */
+    margin-top: 4px;
+    border-top: 1px solid rgb(0, 0, 0, 0.1);
+    padding-top: 15px;
+    opacity: .55;
 }
 
 .lang-cont {
@@ -290,6 +291,9 @@ button.delete-song-button {
     align-items: center;
     /* border: 1px solid red; */
     width:100%;
+    flex-direction: column;
+    border: 1px solid red;
+    justify-content: center;
 }
 
 .show-likes-view-all {
@@ -301,7 +305,8 @@ button.delete-song-button {
     /* border: 1px solid blue; */
     font-size: 13px;
     height: 30px;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 .show-song-like-link-cont{
     width:100%;
@@ -328,4 +333,50 @@ button.delete-song-button {
 .show-view-all {
     display: flex;
     align-items: center;
+}
+
+.show-asl-user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.show-song-likes-user-prof-container {
+    /* border: 1px solid red; */
+    height: 40px;
+}
+
+.show-asl-user-pic {
+    margin-left:-5px;
+}
+
+.go-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px 0px;
+    /* border-top: 1px solid rgb(0, 0, 0, 0.1); */
+}
+
+.go-mobile-header {
+    opacity: .55;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    padding-bottom: 4px;
+    margin-bottom: 13px;
+}
+
+.go-mobile-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right-user-page-body-container {
+    padding-left: 20px;
+}
+
+.left-user-page-body-container {
+    padding-right: 20px;
 }

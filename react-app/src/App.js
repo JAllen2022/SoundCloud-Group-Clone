@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -14,6 +14,9 @@ import SongPlayer from "./components/SongPlayer/SongPlayer";
 import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
 import AllUserPageComments from "./components/Comments/AllUserPageComments/AllUserPageComments";
 import AllSongLikes from './components/Songs/AllSongLikes/AllSongLikes'
+import PageNotFound from './components/PageNotFound/PageNotFound'
+// import Footer from "./components/Footer/Footer";
+
 
 function App() {
   const currentUser = useSelector(state=> state.session.user)
@@ -62,10 +65,17 @@ function App() {
           <Route path="/users/:userId">
             <UserPage />
           </Route>
+          <Route path="/404" >
+            <PageNotFound /> </Route >
+          <Route path="*">
+          <Redirect to='/404' />
+
+          </Route>
         </Switch>
       )}
-            <SongPlayer />
-             </div>
+        {/* <Footer /> */}
+        <SongPlayer />
+          </div>
         </>
       }
     </>

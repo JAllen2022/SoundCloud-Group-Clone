@@ -2,13 +2,15 @@ To-Do:
 lilly - splash page/ maybe logged out upload page
 footer with git and linked in links
 make feed/home page
-404 page
+
 preview image for profile image and upload song
 
 IMPORTANT:
-Get favicon to work
-fix timestamps on comments and songs
 
+Get favicon to work (see if it works deployed)
+
+
+fix timestamps on comments and songs
 continuous play
 modifying our player?
 timestamps on comments
@@ -31,3 +33,4 @@ jason-user page edit - border/padding fix
 jason- sign up - require display name on sign up
 comment - click on user-profile display name
 comments- all spaces - prevent from happening
+lilly - 404 page
