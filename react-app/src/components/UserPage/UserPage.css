@@ -155,7 +155,7 @@
   /* border: 1px red solid; */
   width: 100%;
   height: 3rem;
-  border-bottom: 2px solid #f2f2f2;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -178,14 +178,15 @@
 .left-user-page-body-container {
   width: 70%;
   /* border: 1px red solid; */
-  padding-right: 2rem;
+  padding-right: 25px
 }
 
 .right-user-page-body-container {
   width: 30%;
   /* border: 1px red solid; */
-  border-left:2px solid #f2f2f2;
-  padding-left: 1rem;
+  border-left:1px solid rgb(0, 0, 0, 0.1);
+  padding-left: 25px;
+  padding-right: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

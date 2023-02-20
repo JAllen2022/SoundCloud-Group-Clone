@@ -1,19 +1,38 @@
 To-Do:
-lilly - splash page/ maybe logged out upload page
-footer with git and linked in links
+
+splash page/ maybe logged out upload page (need to fic the images and nav)
+preview image for profile image and upload song
+fix timestamps on comments and songs
 make feed/home page
 
-preview image for profile image and upload song
+
+first person
+- intro our project
+- walk through nav page
+- demo log in and sign up
+- all songs
+
+Ryan
+- song song show
+
+roysa
+- upload song
+
+jason
+- user pages
+
+
+Features
+-
+
 
 IMPORTANT:
-
-Get favicon to work (see if it works deployed)
-
-
-fix timestamps on comments and songs
 continuous play
-modifying our player?
 timestamps on comments
+
+
+modifying our player?(optional ??)
+
 
 Done:
 roysa - fix input file buttons
@@ -34,3 +53,6 @@ jason- sign up - require display name on sign up
 comment - click on user-profile display name
 comments- all spaces - prevent from happening
 lilly - 404 page
+footer with git and linked in links
+
+Get favicon to work (see if it works deployed)

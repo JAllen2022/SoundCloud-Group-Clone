@@ -109,12 +109,12 @@
 
 .page-body-container {
     width: 95%;
-    margin:auto;
+    margin: auto;
     /* padding: 18px 27px; */
     display: flex;
     /* border:1px solid red; */
     margin-top:1rem;
-
+    padding: 5px;
     /* justify-content: space-between; */
     /* border: 1px solid rgb(0, 0, 0, 0.08); */
 }
@@ -194,6 +194,12 @@ button:hover {
     align-items: center;
 }
 
+.user-pic-display-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .user-pic-disName {
     display: flex;
     flex-direction: row;
@@ -203,7 +209,7 @@ button:hover {
     display: flex;
     justify-content: center;
     /* text-align: center; */
-    margin-left: -14px;
+    /* margin-left: -20px; */
     margin-top: 7px;
 
 }
@@ -231,6 +237,7 @@ button:hover {
     display: flex;
     align-items: center;
 }
+
 
 .pencil {
     height: 20px;
@@ -292,7 +299,6 @@ button.delete-song-button {
     /* border: 1px solid red; */
     width:100%;
     flex-direction: column;
-    border: 1px solid red;
     justify-content: center;
 }
 
@@ -373,10 +379,24 @@ button.delete-song-button {
     align-items: center;
 }
 
-.right-user-page-body-container {
-    padding-left: 20px;
-}
+.right-show-page-body-container {
+    width: 30%;
+    /* border: 1px red solid; */
+    border-left: 1px solid #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-left: 25px;
+    padding-right: 3px
+  }
 
-.left-user-page-body-container {
-    padding-right: 20px;
-}
+
+  .left-show-page-body-container {
+    width: 70%;
+    /* border: 1px red solid; */
+    padding-right: 25px;
+  }
+
+  .user-pic {
+    margin-left: 14px;
+  }

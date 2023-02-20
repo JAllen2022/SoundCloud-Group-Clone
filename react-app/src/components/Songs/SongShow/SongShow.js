@@ -155,7 +155,7 @@ const SongShow = () => {
         </div>
         <div className="page-body-container">
 
-          <div className="left-user-page-body-container">
+          <div className="left-show-page-body-container">
             <div className="add-comment-form">
               <CreateComment />
             </div>
@@ -223,7 +223,7 @@ const SongShow = () => {
               </div>
             </div>
           </div>
-          <div className="right-user-page-body-container">
+          <div className="right-show-page-body-container">
             <div className="show-song-likes-container">
               <Link className="show-likes-link link show-song-like-link-cont" to={`/songs/${song.id}/likes`}>
                 <div className="show-likes-view-all">

@@ -53,12 +53,12 @@ function ProfileButton({ user, setProfileActive }) {
 
   return (
     <>
-      <div className="prof-pic-and-displayName">
+      <div className="nav-bar-nav-link">
         <button className="profile-pic-button" onClick={openMenu}>
           <i className="fas fa-user-circle fa-lg" />
-        <div className="navbar-display-name">
-          {user?.display_name}
-        </div>
+          <div className="navbar-display-name">
+            {user?.display_name}
+          </div>
         </button>
       </div>
       <div className="dropdown-container">
@@ -70,7 +70,8 @@ function ProfileButton({ user, setProfileActive }) {
               <Link onClick={closeMenu} className="link" to={`/users/${user?.id}/songs`} ><p className='profile-dropdown-link link'><img className="drop-tracks" src={waveForm} alt='' />Tracks</p></Link>
               <p className='profile-dropdown-logout' onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i>Log Out</p>
             </>
-          ) : (
+          )
+          : (
             <div className="profile-dropdown logged-out">
               <OpenModalButton
                 buttonText="Log In"
