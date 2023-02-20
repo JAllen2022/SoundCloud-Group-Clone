@@ -7,8 +7,10 @@ const EDIT_SONG = "songs/EDIT_SONG";
 const DELETE_SONG = "songs/DELETE_SONG";
 const ADD_LIKE = "songs/ADD_LIKE";
 const DELETE_LIKE = "songs/DELETE_LIKE";
-const PLAY_SONG = "songs/PLAY_SONG";
 const RESET_SINGLE_SONG = "songs/RESET_SINGLE_SONG";
+const PLAY_SONG = "songs/PLAY_SONG";
+const IS_PLAYING = "songs/IS_PLAYING";
+const SET_PLAYER_REF = "songs/SET_PLAYER_REF"
 
 // Constants for the User Page
 const GET_USER_SONGS = "songs/GET_USER_SONGS";
@@ -67,6 +69,16 @@ export const getUserLikedSongs = (songs) => ({
 
 export const resetSingleSong = () => ({
   type: RESET_SINGLE_SONG,
+});
+
+export const isPlaying = (bool) => ({
+  type: IS_PLAYING,
+  bool
+});
+
+export const setPlayerReference = (ref) => ({
+  type: SET_PLAYER_REF,
+  ref
 });
 
 // Thunk Action Creators
@@ -206,6 +218,7 @@ const initialState = {
   userSongs: {},
   userLikedSongs: {},
   playSong: {},
+  isPlaying: false,
 };
 
 const songsReducer = (state = initialState, action) => {
@@ -276,7 +289,7 @@ const songsReducer = (state = initialState, action) => {
         newState.allSongs[songId].like_count++;
       }
       if (Object.values(newState.singleSong).length) {
-        console.log("newState.singleSongs", newState.singleSong);
+        // console.log("newState.singleSongs", newState.singleSong);
         newState.singleSong = { ...state.singleSong };
         if (newState.singleSong.id == songId) {
           newState.singleSong.like_count++;
@@ -332,18 +345,18 @@ const songsReducer = (state = initialState, action) => {
       if (Object.values(newState.userSongs).length) {
         newState.userSongs = { ...state.userSongs };
         if (newState.userSongs[songId]) {
-          console.log("newState.userSongs", newState.userSongs);
+          // console.log("newState.userSongs", newState.userSongs);
           newState.userSongs[songId] = { ...state.userSongs[songId] };
           newState.userSongs[songId].like_count--;
           delete newState.userSongs[songId].song_likes[current_user.id];
         }
       }
       if (Object.values(newState.userLikedSongs).length) {
-        console.log("newState.userSongs", newState.userLikedSongs);
+        // console.log("newState.userSongs", newState.userLikedSongs);
         newState.userLikedSongs = { ...state.userLikedSongs };
         if (newState.userLikedSongs[songId]) {
           newState.userLikedSongs[songId] = { ...state.userLikedSongs[songId] };
-          console.log("current user id vs user id", current_user.id, userId);
+          // console.log("current user id vs user id", current_user.id, userId);
           if (current_user.id == userId) delete newState.userLikedSongs[songId];
           else {
             newState.userLikedSongs[songId].like_count--;
@@ -361,6 +374,12 @@ const songsReducer = (state = initialState, action) => {
     case RESET_SINGLE_SONG:
       return { ...state, singleSong: {} };
 
+    case IS_PLAYING:
+      newState.isPlaying = action.bool;
+      return newState;
+    case SET_PLAYER_REF:
+      newState["playerRef"] = action.ref;
+      return newState;
     // Default
     default:
       return state;

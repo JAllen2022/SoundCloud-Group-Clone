@@ -1,6 +1,6 @@
 // Constant Action Variables
 
-import { compose } from "redux";
+// import { compose } from "redux";
 
 const LOAD_SONG_COMMENTS = "comments/LOAD_SONG_COMMENTS";
 const LOAD_USER_COMMENTS = "comments/LOAD_USER_COMMENTS";
@@ -64,11 +64,11 @@ export const loadSongCommentsThunk = (songId) => async (dispatch) => {
 export const loadUserCommentsThunk = (userId) => async (dispatch) => {
   const res = await fetch(`/api/users/${userId}/comments`);
 
-  console.log("checking whats going on", res);
+  // console.log("checking whats going on", res);
   if (res.ok) {
-    console.log("checking res", res);
+    // console.log("checking res", res);
     const comments = await res.json();
-    console.log("checking comments", comments);
+    // console.log("checking comments", comments);
     dispatch(loadUserComments(comments));
     return comments;
   }
@@ -100,7 +100,7 @@ export const editCommentThunk = (comment) => async (dispatch) => {
   });
   if (res.ok) {
     const editedComment = await res.json();
-    console.log("checking edited comment", editedComment);
+    // console.log("checking edited comment", editedComment);
     dispatch(editComment(editedComment));
     // return editedComment;
   }
@@ -157,7 +157,7 @@ export default function commentsReducer(state = initialState, action) {
     // Edit Comment
     case EDIT_COMMENT: {
       let newState = { ...state };
-      console.log("checking prev state", state);
+      // console.log("checking prev state", state);
       if (newState.song[action.comment.id]) {
         newState.song[action.comment.id] = {
           ...newState.song[action.comment.id],
@@ -171,25 +171,25 @@ export default function commentsReducer(state = initialState, action) {
         };
       }
 
-      console.log("checking next state", state);
+      // console.log("checking next state", state);
 
       return newState;
     }
 
     // Delete Comment
     case DELETE_COMMENT:
-      console.log("what is action comment id", action.commentId);
+      // console.log("what is action comment id", action.commentId);
       newState.song = { ...state.song };
-      console.log("what is action comment id", newState.song);
+      // console.log("what is action comment id", newState.song);
       delete newState.song[action.commentId];
-      console.log("song comment guy", newState.song);
+      // console.log("song comment guy", newState.song);
       if (
         Object.values(newState.user).length &&
         newState.user[action.commentId]
       ) {
         newState.user = { ...state.user };
         delete newState.user[action.commentId];
-        console.log("checking new state", newState);
+        // console.log("checking new state", newState);
       }
       return newState;
 

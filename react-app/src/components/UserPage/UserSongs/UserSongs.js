@@ -26,7 +26,7 @@ const UserSongs = () => {
     dispatch(getUserSongsThunk(userId));
   }, [dispatch, userId]);
 
-  console.log("what is user", user, userSongs);
+  // console.log("what is user", user, userSongs);
   if (!Object.values(user).length) return null;
 
   return (

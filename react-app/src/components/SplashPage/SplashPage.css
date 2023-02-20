@@ -1,0 +1,280 @@
+.splash-page-outer-container {
+  width: 100%;
+  background-color: #f2f2f2;
+  z-index: -4;
+}
+
+.splash-page-container {
+  min-width: 950px;
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  background-color: white;
+  z-index: -3;
+  flex-direction: column;
+}
+
+.splash-page-carousel-container {
+  width: 100%;
+  height: 375px;
+}
+
+.splash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.soundcloud-logo-name {
+  display: flex;
+  align-items: center;
+}
+
+.splash-page-never-stop-listening-container {
+  /* border: 1px red solid; */
+  width: 100%;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-page-never-stop-listening-left {
+  /* border: 1px red solid; */
+  width: 60%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.splash-page-never {
+  width: 85%;
+  margin-top: 3rem;
+}
+
+.splash-page-never-stop-listening-right {
+  /* border: 1px red solid; */
+  width: 32%;
+  margin: 0 auto;
+}
+
+.splash-page-never-stop-listening-text {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.splash-page-never-stop-gradient {
+  /* border: 1px red solid; */
+  background-image: linear-gradient(90deg, #7d01a1, #f30 50%, #f50);
+  width: 20%;
+  height: .2rem;
+}
+
+.splash-page-never-stop-listening-body-text {
+  font-size: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.app-store-button-image {
+  height: 2rem;
+}
+
+.app-store-button-image-play {
+  height: 2rem;
+  margin-left: 5px;
+}
+
+.app-store-container {
+  display: flex;
+
+}
+
+.splash-page-calling-all-creators-container {
+  background-image: url("https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists-798050ae.jpg");
+  background-color: #141414;
+  background-size: cover;
+  background-position: 100%;
+  background-repeat: no-repeat;
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 300px;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+}
+
+.splash-page-calling-all-creators-text-container {
+  color: white;
+  /* border: 1px solid red; */
+  width: 40%;
+  margin-left: 3rem;
+}
+
+.splash-page-calling-all-creators-header {
+  color: white;
+  font-size: 1.75rem;
+}
+
+.splash-page-calling-all-creators-inner-text {
+  font-size: 1rem;
+  margin: .5rem 0;
+}
+
+.splash-page-calling-all-creators-fill-out-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  font-size: .85rem;
+  width: 25%;
+  border-radius: 3px;
+  border: 1px solid white;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: white;
+}
+
+.splash-page-nav {
+  margin-top: 13px;
+}
+
+
+.splash-page-thanks-for-listening-container {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.065);
+  width: 100%;
+  height: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0 0 0;
+}
+
+.splash-page-thanks-for-listening {
+  font-size: 2rem;
+}
+
+.splash-page-already-have-account {
+  padding-bottom: 83px;
+}
+.splash-page-save-tracks {
+  font-size: 1.5rem;
+  margin: .25rem;
+}
+
+.splash-page-create-account-div {
+  cursor: pointer;
+  background: #ff5500;
+  color: white;
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  border: none;
+  font-weight: 200;
+}
+
+.splash-page-create-account-bottom {
+  cursor: pointer;
+  background: #ff5500;
+  color: white;
+  padding: 13px 40px;
+  font-size: 18px;
+  border-radius: 3px;
+  border: none;
+  font-weight: 200;
+  margin: 15px 0
+}
+
+
+.splash-page-bottom-sign-in-div {
+  cursor: pointer;
+  margin-right: 10px;
+  border: 1px solid rgb(229, 229, 229, 0.8);
+  padding: 6px 15px;
+  background-color: transparent;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.splash-page-bottom-sign-in-butt {
+  cursor: pointer;
+  margin-right: 10px;
+  border: 1px solid rgb(229, 229, 229, 0.8);
+  padding: 6px 15px;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  border-radius: 3px;
+  font-weight: 200;
+}
+
+.slider-container {
+  width: 100%;
+  height: 455px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tunespace {
+  padding-left: 5px;
+  color: white;
+  font-size: 14px;
+}
+
+.splash-logo {
+  margin-bottom: 3px;
+}
+
+.slider-words {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.whatsnext {
+  font-size: 35px;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+  width: 75%;
+  font-weight: 250;
+  margin-top: 70px;
+}
+
+.upload-your-track {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 150;
+  width: 60%;
+  text-align: center;
+}
+
+/* .disclaimers-lang-splash {
+
+} */
+.disclaimers-splash {
+  /* color: rgb(0, 0, 0, 0.3); */
+  margin-top: 4px;
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
+  opacity: .30;
+  padding: 20px 20px 0px 20px;
+  font-size: 14.5px;
+}
+
+.lang-cont-splash {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px 50px 20px;
+  font-size: 14.5px;
+}
+
+
+.lang-splash {
+  color: blue;
+  margin-right: 3.5px;
+}

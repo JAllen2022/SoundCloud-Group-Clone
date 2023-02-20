@@ -1,5 +1,16 @@
 .song-comment-wrapper {
     padding: 0;
+    margin-left: -5px;
     /* border: 1px solid yellow; */
     /* padding-top: 5px; */
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.song-comments-header {
+    padding: 7px 0;
+}
+
+.song-comments-length {
+    margin-top: 2.5px;
 }

@@ -37,7 +37,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-    console.log("what is happening", data)
+    // console.log("what is happening", data)
     dispatch(setUser(data));
   }
 };
@@ -80,14 +80,14 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (displayname, email, password) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username,
+      displayname,
       email,
       password,
     }),
@@ -113,10 +113,10 @@ export const editUserThunk = (user, userId) => async (dispatch) => {
     body: user,
   });
 
-  console.log("what is res and why is it ok", res.ok, res);
+  // console.log("what is res and why is it ok", res.ok, res);
   if (res.ok) {
     const editedUser = await res.json();
-    console.log("checking edited user", editedUser);
+    // console.log("checking edited user", editedUser);
     dispatch(editUser(editedUser));
     return editedUser;
   } else {

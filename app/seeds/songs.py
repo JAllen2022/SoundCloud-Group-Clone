@@ -8,7 +8,7 @@ def seed_songs():
 
     jasons_song = Song(user_id=3,title="Your mom", artist="Your grandma", genre="Trap", description="Yo mama", length=3.59, song_url="https://appacademymusic.s3.us-west-2.amazonaws.com/R%C3%9CF%C3%9CS+DU+SOL+-+You+Were+Right.mp3",song_image_url="https://cdn.shopify.com/s/files/1/0065/3069/5257/products/webMODYL12121589_2000x.jpg?v=1626183421", song_likes=[roysa,lillyann,jason,demo,ryan])
 
-    ryans_song = Song(user_id=4, title="Roysa Sucks", artist="Leandro's Soup", genre="Dubstep", description="A song about how Roysa sucks so much that there needs to be a song about it", length=3.54, song_url="https://appacademymusic.s3.us-west-2.amazonaws.com/RZRKT_-_ANNIHILATE.mp3", song_image_url="https://admin.itsnicethat.com/images/ESgAg6Y2f2xM_pfPIsyL0pvdQHg=/69898/format-webp%7Cwidth-2880/598196e77fa44cb08200a23e.jpg", song_likes=[jason, demo, lillyann])
+    ryans_song = Song(user_id=4, title="Roysa Sucks", artist="Leandro's Soup", genre="Dubstep", description="A song about how Roysa sucks so much that there needs to be a song about it", length=3.54, song_url="https://appacademymusic.s3.us-west-2.amazonaws.com/Darude+-+Sandstorm.mp3", song_image_url="https://admin.itsnicethat.com/images/ESgAg6Y2f2xM_pfPIsyL0pvdQHg=/69898/format-webp%7Cwidth-2880/598196e77fa44cb08200a23e.jpg", song_likes=[jason, demo, lillyann])
 
     lillyanns_song = Song(user_id=3,title="Kill Bill", artist="SZA", genre="Trap", description="Yo mama", length=4.36, song_url="https://appacademymusic.s3.us-west-2.amazonaws.com/SZA_-_Kill_Bill_Official_Video.mp3",song_image_url="https://i1.sndcdn.com/artworks-y7Tyi9W7mwWNHxMi-uU9FyA-t500x500.jpg", song_likes=[jason, roysa])
 

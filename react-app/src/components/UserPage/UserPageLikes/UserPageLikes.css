@@ -1,8 +1,139 @@
-.up-likes-song-item-container {
-  width: 400px
-}
-
 .up-song-image {
   width: 50px;
   height: 50px;
 }
+
+.user-page-likes-outer-container {
+  width: 100%;
+  /* border: 1px solid green; */
+
+}
+
+.user-page-likes-link-container {
+  /* border:1px orange solid; */
+  display: flex;
+  text-decoration: none;
+  justify-content: space-between;
+  margin-bottom: 0;
+  color: #999999;
+  font-size: 0.8rem;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.05);
+  margin-bottom: 0.5rem;
+}
+
+.user-page-likes-link-container:hover>.user-page-likes-show-view-all {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.user-page-like-p-tags {
+  margin-bottom: 0.15rem;
+}
+
+.up-likes-song-item-container {
+  /* border: 1px solid purple; */
+  /* margin: 0.25rem 0; */
+  width: 100%;
+  /* height: 3.25rem; */
+  display: flex;
+  justify-content: space-between;
+  margin: 0.90rem 0;
+}
+
+.up-likes-song-image-play-container {
+  /* border: 1px solid red; */
+  width: 20%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.up-likes-song-image {
+  position: absolute;
+  z-index: 0;
+  width: 3rem;
+  height: 3rem;
+}
+
+.up-likes-song-play-container {
+  position: absolute;
+  display: inline-block;
+  width: 37px;
+  height: 37px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0;
+  /* border: 1px solid black; */
+}
+
+.up-likes-song-play-button-image {
+  width: 42px;
+  height: 42px;
+  margin-left: -2px;
+  margin-top: -2px;
+  object-fit: cover;
+  opacity: 0;
+  /* display:none; */
+}
+
+.up-likes-song-item-container:hover .up-likes-song-play-button-image {
+  cursor: pointer;
+  opacity: 0.8;
+  background-color: white;
+}
+
+/* .up-likes-song-item-container:hover + .up-likes-song-play-button-image {
+  display: block;
+  opacity: 1;
+  cursor: pointer;
+} */
+
+.up-likes-right-item-info-container {
+  /* border: 1px solid red; */
+  margin-left: 0.75rem;
+  width: 75%;
+}
+
+.up-likes-displayName {
+  text-decoration: none;
+  color: #999999;
+  margin: 0;
+  font-size: 0.7rem;
+  overflow: none;
+}
+
+.up-likes-artist-title {
+  text-decoration: none;
+  color: #333333;
+  font-size: 0.8rem;
+  margin: 0;
+  overflow: hidden;
+}
+
+.up-likes-bottom-right-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 22px;
+}
+
+.up-likes-like-button {
+  color: #999999;
+  margin: 0;
+  padding: 0;
+}
+
+.user-page-likes-item-container {
+  display: flex;
+  flex-direction: column-reverse;
+  /* margin-left: -40px; */
+
+  padding-left: 0;
+}
+
+/* .up-likes-comment-count {
+  margin-top: 2.5px;
+} */

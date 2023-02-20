@@ -1,0 +1,73 @@
+
+.aul-header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  height: 131px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.06);
+  z-index: 10;
+
+}
+
+.aul-image-title-container {
+  display: flex;
+  /* border: 1px solid red; */
+  width: fit-content;
+  height: 110px;
+  margin: 0 20px;
+}
+
+.aul-prof-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+
+.aul-likes-name {
+  /* border: 1px solid red; */
+  font-size: 32px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-left: 25px;
+  width: fit-content;
+  color: black;
+
+  /* font-family: 'Highway'; */
+}
+
+.aul-tab-container {
+  width: 100%;
+  margin: 0 20px;
+
+}
+
+.aul-tab-title {
+  border-bottom: 2px solid #ff5500;
+  width: fit-content;
+  /* margin-left: 0; */
+  color: #ff5500;
+  font-weight: 500;
+}
+
+.aul-body {
+  display: flex;
+  flex-direction: column-reverse;
+  /* justify-content:
+  space-evenly; */
+  padding: 10px;
+  margin: 0 10px;
+  z-index: -10;
+}
+
+/* .song-likes-user-prof-container {
+  display: flex;
+  flex-direction: column;
+  margin: 13px;
+  justify-content: center;
+  align-items: space-around;
+} */

@@ -1,38 +1,20 @@
-import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+// import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { editUserThunk } from "../../../store/session";
 import { loadUser } from "../../../store/userPage";
+import profPic from "../../../assets/profPic.jpeg";
+
+import './EditUserPageForm.css'
 
 const EditUserPageForm = () => {
   const dispatch = useDispatch();
-  // const history = useHistory();
-
   const { closeModal } = useModal();
-  // const { userId } = useParams();
-  // const [user, setUser] = useState({});
-
   const currentUser = useSelector((state) => state.session.user);
-  const user = useSelector((state) => state.UserPage.user);
 
-  // useEffect(() => {
-  //     if (!userId) {
-  //         return;
-  //     }
-  //     (async () => {
-  //         const res = await fetch(`/api/users/${userId}`);
-  //         const user = await res.json();
-  //         setUser(user);
-  //     })();
-  // }, [userId]);
-
-  // if (!user) {
-  //     return null;
-  // }
 
   const [profileImage, setProfileImage] = useState("");
-  //   const [headerImage, setHeaderImage] = useState("");
   const [displayName, setDisplayName] = useState(
     currentUser?.display_name || ""
   );
@@ -42,6 +24,8 @@ const EditUserPageForm = () => {
   const [country, setCountry] = useState(currentUser?.country || "");
   const [bio, setBio] = useState(currentUser?.bio || "");
   const [errors, setErrors] = useState({});
+  const imageRef = useRef(null)
+
 
   useEffect(() => {
     const newErrors = { ...errors };
@@ -86,7 +70,7 @@ const EditUserPageForm = () => {
       const newError = { ...errors };
       newError["ImageSize"] = "File size too large. Maximum image size: 1MB.";
       setErrors(newError);
-      console.log("checking errors", newError, errors);
+      // console.log("checking errors", newError, errors);
       e.target.value = "";
       return;
     }
@@ -101,129 +85,154 @@ const EditUserPageForm = () => {
       delete newErrors.errors;
       setErrors(newErrors);
     }
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imageRef.current.src = e.target.result;
+      }
+      reader.readAsDataURL(file)
+    }
+
     setProfileImage(file);
   };
+  const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
   return (
-    <div className="edit-user-page-container">
+    <div className="modal-container edit-user-page-container">
       <div className="edit-user-page-close-modal">
-        <button onClick={() => closeModal()} className="x">
+        <button onClick={() => closeModal()} className="x-button">
           <i className="fa-solid fa-x"></i>
         </button>
       </div>
       <div className="edit-user-page-header">
-        <h2>Edit your Profile</h2>
+        <h2 className='edit modal-form-title'>Edit your Profile</h2>
       </div>
       {errors.errors && (
-        <ul>
+        <ul className='errors'>
           <li style={{ color: "red" }} className="upload-page-errors">
             {errors.errors}
           </li>
         </ul>
       )}
-      <form
-        className="edit-user-page-form"
-        method="POST"
-        onSubmit={handleSubmit}
-      >
-        <div className="edit-user-page-body">
-          <div className="edit-user-page-body-left">
-            <div>
-              <label htmlFor="profile-pic-file">Update Profile Image</label>
-              <input
-                name="profile-pic-file"
-                type="file"
-                accept="image/*"
-                onChange={updateProfileImage}
-              />
-            </div>
-          </div>
-          {errors.ImageSize && (
-            <p style={{ color: "red" }}>{errors.ImageSize}</p>
-          )}
-          <div className="edit-user-page-body-right">
-            <div className="edit-user-page-displayname-container">
-              <label htmlFor="edit-user-page-displayname">Display name</label>
-              <input
-                name="edit-user-page-displayname"
-                type="text"
-                required
-                maxLength="15"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-              />
-            </div>
-            <div>
-              {errors.DisplayName && (
-                <p style={{ color: "red" }}>{errors.DisplayName}</p>
-              )}
-            </div>
-            <div className="edit-user-page-name-container">
-              <div className="edit-user-page-grid-field">
-                <label htmlFor="first_name">First Name</label>
+      <div className="modal-form-container">
+        <form
+          className="edit-user-page-form"
+          method="POST"
+          onSubmit={handleSubmit}
+        >
+          <div className="edit-user-page-body">
+            <div className="edit-user-page-body-left">
+              <div className="custom-upload">
+                <img ref={imageRef} className="edit-prof-image" alt='' src={currentUser.profile_image_url ? currentUser.profile_image_url : profPic} />
+                <label className='profile-pic-file-label' htmlFor="profile-pic-file">
+                  <img className='cam' src='https://user-images.githubusercontent.com/110946315/219857807-5feb84a5-23c2-4cb4-b4bf-fc6f78c277f1.png' alt='' />
+                  Upload Image
+                </label>
+                {/* </div> */}
                 <input
-                  name="first_name"
-                  type="text"
-                  value={firstName}
-                  maxLength="15"
-                  onChange={(e) => setFirstName(e.target.value)}
-                ></input>
-              </div>
-              <div className="edit-user-page-grid-field">
-                <label htmlFor="first_name">Last Name</label>
-                <input
-                  name="first_name"
-                  type="text"
-                  value={lastName}
-                  maxLength="15"
-                  onChange={(e) => setLastName(e.target.value)}
-                ></input>
+                  id="profile-pic-file"
+                  className='input-item file-input'
+                  name="profile-pic-file"
+                  type="file"
+                  accept="image/*"
+                  onChange={updateProfileImage}
+                />
               </div>
             </div>
-            <div className="edit-user-page-name-container">
-              <div className="edit-user-page-grid-field">
-                <label htmlFor="city">City</label>
+            {errors.ImageSize && (
+              <p style={{ color: "red" }}>{errors.ImageSize}</p>
+            )}
+            <div className="edit-user-page-body-right">
+              <div className="edit-user-page-displayname-container">
+                <label className='input-label display' htmlFor="edit-user-page-displayname">Display name</label>
                 <input
-                  name="city"
+                  className='input-item display'
+                  name="edit-user-page-displayname"
                   type="text"
-                  value={city}
+                  required
                   maxLength="15"
-                  onChange={(e) => setCity(e.target.value)}
-                ></input>
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                />
               </div>
-              <div className="edit-user-page-grid-field">
-                <label htmlFor="country">Country</label>
-                <input
-                  name="country"
-                  type="text"
-                  maxLength="15"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                ></input>
+              <div>
+                {errors.DisplayName && (
+                  <p style={{ color: "red" }}>{errors.DisplayName}</p>
+                )}
               </div>
-            </div>
-            <div className="edit-user-page-bio-container">
-              <label htmlFor="biography">Biography</label>
-              <textarea
-                name="biography"
-                placeholder="Tell the world a little bit about yourself. The shorter the better."
-                value={bio}
-                maxLength="200"
-                onChange={(e) => setBio(e.target.value)}
-              ></textarea>
+              <div className="edit-user-page-name-container">
+                <div className="edit-user-page-grid-field">
+                  <label className='input-label' htmlFor="first_name">First Name</label>
+                  <input
+                    className='input-item double'
+                    name="first_name"
+                    type="text"
+                    value={firstName}
+                    maxLength="15"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  ></input>
+                </div>
+                <div className="edit-user-page-grid-field">
+                  <label className='input-label' htmlFor="first_name">Last Name</label>
+                  <input
+                    className='input-item double'
+                    name="first_name"
+                    type="text"
+                    value={lastName}
+                    maxLength="15"
+                    onChange={(e) => setLastName(e.target.value)}
+                  ></input>
+                </div>
+              </div>
+              <div className="edit-user-page-name-container">
+                <div className="edit-user-page-grid-field">
+                  <label className='input-label' htmlFor="city">City</label>
+                  <input
+                    className='input-item double'
+                    name="city"
+                    type="text"
+                    value={city}
+                    maxLength="15"
+                    onChange={(e) => setCity(e.target.value)}
+                  ></input>
+                </div>
+                <div className="edit-user-page-grid-field">
+                  <label className='input-label' htmlFor="country">Country</label>
+                  <input
+                    className='input-item double'
+                    name="country"
+                    type="text"
+                    maxLength="15"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  ></input>
+                </div>
+              </div>
+              <div className="edit-user-page-bio-container">
+                <label className='input-label text' htmlFor="biography">Biography</label>
+                <textarea
+                  className='input-item text-big'
+                  name="biography"
+                  placeholder="Tell the world a little bit about yourself. The shorter the better."
+                  value={bio}
+                  maxLength="200"
+                  onChange={(e) => setBio(e.target.value)}
+                ></textarea>
+              </div>
             </div>
           </div>
           <div className="edit-user-page-footer">
-            <div className="edit-user-page-cancel" onClick={() => closeModal()}>
-              Cancel
-            </div>
-            <button className="edit-user-page-save-changes">
+            <button id='modal-btns' type='button' className="edit-user-page-button cancel" onClick={() => closeModal()}>
+              {" "}Cancel{" "}
+            </button>
+            <button id='modal-btns' className="edit-user-page-button submit">
               {" "}
               Save Changes{" "}
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

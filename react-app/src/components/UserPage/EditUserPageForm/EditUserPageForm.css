@@ -1,0 +1,207 @@
+
+.edit-user-page-container {
+  width: 900px;
+  /* height: 90%; */
+  /* max-width: 1000px; */
+  /* border: 1px solid red; */
+
+}
+
+.modal-form-container {
+  width: fit-content;
+  position: relative;
+}
+.edit-user-page-close-modal {
+  position: relative;
+}
+
+.x-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border: none;
+  margin-right: 10px;
+  opacity: .5;
+}
+
+.edit {
+  text-align: left;
+  padding-left: 40px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  font-size: 22px;
+  font-weight: 400;
+
+}
+
+.edit-user-page-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+  /* border: 1px solid blue; */
+  justify-content: space-evenly;
+}
+
+.edit-user-page-body-right {
+  /* border: 1px solid blue; */
+  width: 500px;
+  float: right;
+}
+
+.edit-user-page-body-left {
+  /* border: 1px solid blue; */
+  width: 250px;
+  margin-right: 46px;
+  float: left;
+
+  /* width: 250px;
+  height: 250px;
+  margin-left: 0;
+  border-radius: 50%;
+  margin-top: 20px;
+  border-bottom: 1px solid rgb(230, 230, 230); */
+
+  position: static;
+}
+
+.custom-upload {
+  /* border: 1px solid red; */
+  position: relative;
+  height: 250px;
+}
+
+.edit-prof-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: -10;
+  position: absolute;
+
+}
+/* .input-image-container {
+  position: inherit;
+  border: 1px solid blue;
+
+} */
+
+.cam {
+  width: 20px;
+  height: 20px;
+  /* bottom: 0; */
+  padding-right: 4px;
+  margin-top: -2px;
+}
+
+.profile-pic-file-label {
+  position: absolute;
+  bottom: 25px;
+  left: 63px;
+  border-radius: 2px;
+  padding: 3px 4px 2px;
+  font-size: 14px;
+  display: flex;
+  text-align: center;
+  width: 115px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.profile-pic-file-label:hover {
+  cursor: pointer;
+  opacity: .95;
+
+}
+
+input[type='file'] {
+ display: none;
+}
+
+
+.edit-user-page-name-container {
+  display: flex;
+  flex-direction: row;
+  /* align-items: space-between; */
+  width: 100%;
+  padding: auto;
+  /* border: 1px solid blue; */
+
+}
+
+.input-label.display,
+.input-label.text{
+  margin: 10px;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input-item.display {
+  width: 97%;
+  display: flex;
+  padding: 0;
+  margin: 0 10px 10px;
+
+  /* margin-right: 10px; */
+}
+
+.edit-user-page-grid-field {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  padding: 0;
+  margin: 10px;
+  /* border: 1px solid yellow; */
+  /* padding: auto; */
+  /* padding-right: 20px; */
+}
+
+.input-item, .input-item.display {
+  padding: 4px 8px;
+  font-size: 16px;
+}
+
+.input-item.double {
+  width: 225px;
+  margin-right: 10px;
+  margin: 0;
+}
+
+.edit-user-page-bio-container {
+  width: 100%;
+  height: fit-content;
+  margin-top: 10px;
+}
+
+.input-item.text-big {
+  width: 97%;
+  height: 30%;
+  margin: 0 10px;
+
+}
+
+.edit-user-page-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  /* border: 1px solid yellow; */
+  margin-top: 30px;
+}
+
+
+#modal-btns.edit-user-page-button {
+  width: fit-content;
+  margin: 0 0 0 24px;
+  padding: 0 20px;
+  height: 30px;
+
+}
+
+#modal-btns.edit-user-page-button.cancel {
+  background-color: white;
+  color: black;
+}

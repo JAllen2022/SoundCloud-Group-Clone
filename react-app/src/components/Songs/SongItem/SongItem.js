@@ -1,27 +1,45 @@
-import { Link } from "react-router-dom";
-import playButton from "../../../assets/orange-play-btn.png";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import commentBox from "../../../assets/icons8-comments-30.png";
 import OpenModalButton from "../../OpenModalButton";
 import "./SongItem.css";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { deleteSongThunk, playSong } from "../../../store/songs";
-import { useModal } from "../../../context/Modal";
-import {
-  getSongThunk,
-  addLikeThunk,
-  deleteLikeThunk,
-} from "../../../store/songs";
-import { deleteUserLike } from "../../../store/userPage";
+import { useState, useEffect } from "react";
+import { deleteSongThunk, playSong, addLikeThunk, deleteLikeThunk, isPlaying } from "../../../store/songs";
+// import { useModal } from "../../../context/Modal";
+// import pencil from "../../../assets/sc-pencil.png";
+
+
+// import { deleteUserLike } from "../../../store/userPage";
 
 const SongItem = ({ song }) => {
   const currentUser = useSelector((state) => state.session.user);
-  const user = useSelector((state) => state.UserPage.userProfile);
+  // const user = useSelector((state) => state.UserPage.userProfile);
+  const playS = useSelector(state => state.Songs.playSong)
+  const playerRef = useSelector(state => state.Songs.playerRef)
+  const playing = useSelector(state => state.Songs.isPlaying)
   const dispatch = useDispatch();
   const { userId } = useParams();
   const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id])
+  const pauseButton = "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+  const playButton = "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
+
+  const showPlayButton = (
+    <img
+      className="play-button-image"
+      src={playButton}
+      alt="orange play button"
+    />
+  )
+
+  const showPauseButton = (
+    <img
+      className="play-button-image"
+      src={pauseButton}
+      alt="orange play button"
+    />
+  )
+  const [showButton, setShowButton] = useState(showPlayButton)
 
   const clickToLike = () => {
     const song_likes = song.song_likes;
@@ -41,6 +59,40 @@ const SongItem = ({ song }) => {
     }
   };
 
+  function songAction() {
+    if (playS.id !== song.id) {
+      dispatch(playSong(song))
+      setShowButton(showPauseButton)
+      dispatch(isPlaying(true))
+    } else if (playS.id == song.id) {
+      // We want to try and pause it here
+      if (!playerRef.current.audio.current.paused) {
+        playerRef.current.audio.current.pause();
+        setShowButton(showPlayButton)
+      }
+      else {
+        playerRef.current.audio.current.play();
+        setShowButton(showPauseButton)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (playS.id !== song.id) {
+      setShowButton(showPlayButton)
+    }
+     if (playS.id === song.id && playerRef.current.audio.current.play) {
+       setShowButton(showPauseButton)
+     }
+  }, [playS.id])
+
+  useEffect(() => {
+    if (playS.id == song.id) {
+      if (!playing) setShowButton(showPlayButton)
+      else setShowButton(showPauseButton)
+    }
+  },[playing])
+
   return (
     <div className="song-item-container">
       <div className="song-image-container">
@@ -54,12 +106,8 @@ const SongItem = ({ song }) => {
       </div>
       <div className="right-item-info-container">
         <div className="play-displayName-title">
-          <div className="play" onClick={()=> dispatch( playSong(song))}>
-            <img
-              className="play-button-image"
-              src="https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg"
-              alt="orange play button"
-            />
+          <div className="play" onClick={songAction}>
+            {showButton}
           </div>
           <div className="displayName-title">
             <Link
@@ -72,12 +120,12 @@ const SongItem = ({ song }) => {
               <p className="displayName link">
                 {currentUser.id == song.user_id
                   ? currentUser.display_name
-                  : song.user_display_name}
+                  : song?.user_display_name}
               </p>
             </Link>
-            <Link className="title-link link" to={`/songs/${song.id}`}>
+            <Link className="title-link link" to={`/songs/${song?.id}`}>
               <p className="artist-title">
-                {song.artist} - {song.title}
+                {song?.artist} - {song?.title}
               </p>
             </Link>
           </div>
@@ -86,28 +134,31 @@ const SongItem = ({ song }) => {
           <div className="like-button-container">
             <button className={isLiked ? "liked like-button" : "not-liked like-button"} onClick={clickToLike}>
               <i className="fa-solid fa-heart"></i>
-              {song.like_count}
+              <div className="song-like-count">
+                {song?.like_count}
+              </div>
             </button>
-            {currentUser && currentUser.id == song.user_id ? (
+            {currentUser && currentUser.id == song?.user_id ? (
               <div className="edit-song-button">
                 <OpenModalButton
                   className="edit-user-modal-button"
                   modalComponent={
                     <UploadPage editSong={true} songEdit={song} />
                   }
-                  buttonText={<i className="fa-regular fa-pen-to-square"></i>}
+                  // buttonText={<img className="pencil" src={pencil}/>}
+                  buttonText={<i className="fa-solid fa-pencil fa-sm"></i>}
                 />
               </div>
             ) : (
               ""
             )}
-            {currentUser && currentUser.id == song.user_id ? (
+            {currentUser && currentUser.id == song?.user_id ? (
               <div className="delete-song-button-container">
                 <button
-                  onClick={() => dispatch(deleteSongThunk(song.id))}
+                  onClick={() => dispatch(deleteSongThunk(song?.id))}
                   className="delete-song-button"
                 >
-                  <i className="fa-solid fa-trash"></i>
+                  <i className="fa-solid fa-trash fa-sm"></i>
                 </button>
               </div>
             ) : (
@@ -118,10 +169,12 @@ const SongItem = ({ song }) => {
                         </div> */}
           </div>
           <div className="comment-button-container">
-            <Link className="comment-link link" to={`/songs/${song.id}`}>
+            <Link className="comment-link link" to={`/songs/${song?.id}`}>
               <div className="comment-box-container">
                 <img src={commentBox} className="comment-box" alt="" />
-                {song.comment_count}
+                <div className="comment-count">
+                  {song?.comment_count}
+                </div>
               </div>
               {/* <p className="bottom-right-container-p link"></p> */}
             </Link>

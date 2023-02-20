@@ -1,79 +1,124 @@
-
-.isFocused {
-
-}
-
 .profile-dropdown {
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   text-align: left;
   background-color: white;
   list-style: none;
-  position: absolute;
-  right: 80;
-  /* top: 50; */
   border: solid 1px #ccc;
-  /* border: solid 1px rgba(0, 0, 0, 0.15); */
-  border-radius: 3px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   height: auto;
-  width: 75px;
-  padding-top: 7px;
+  /* width: 100px; */
+  padding: 7px;
+  align-items: flex-start;
+  position: absolute;
 }
 
 ul.profile-dropdown {
   /* border: none; */
   background-color: white;
-  margin-left: -80px;
+  /* margin-left: -80px; */
+  /* border: 1px solid red; */
+  border-bottom: solid 1px rgba(0, 0, 0, 0.25);
+  border-right: solid 1px rgba(0, 0, 0, 0.25);
+  border-left: solid 1px rgba(0, 0, 0, 0.25);
+  border-top: none;
+  /* padding: 3px; */
+  /* padding-right: 0px; */
+  /* margin-right: 60px; */
+  width: 87px;
+  /* width: 112.5px; */
+  position: relative;
+  margin: 0;
 
+  /* top: -103px; */
 }
 
 .profile-dropdown.logged-out {
-  margin-left: -70px;
-  margin-top: -7px;
-  width: 143px;
-
+  /* margin-left: -70px;
+  margin-top: -7px; */
+  /* width: 220px; */
+  position: absolute;
+  top: 0px;
+  right: -1px;
+  width: 65.7px;
 }
 
-.profile-dropdown.logged-out > button {
-  background-color: white;
+.profile-dropdown.loggedOut {
+  width: 65.7px;
+}
+
+
+.profile-dropdown.logged-out>button {
   border: none;
-  margin: 7px;
-  font-weight: 600;
-  font-size: 13px;
-  text-align: left;
+  background-color: white;
+  padding: 5px 0;
 }
 
 .profile-dropdown-link,
 .profile-dropdown-username,
 .profile-dropdown-email,
 .profile-dropdown-logout {
-  margin-left: -25px;
+  /* margin-left: -25px; */
   font-weight: 600;
-  font-size: 13px;
+  font-size: 11.5px;
+
 }
 
 .profile-dropdown-link {
-  margin-bottom: 0;
-  color: black;
-}
-
-.profile-dropdown-username {
-  margin-top: 13px;
-}
-
-.profile-dropdown-email {
-  margin-top: 0;
-
+  margin-bottom: 4px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .profile-dropdown-logout {
-  margin-top: 0;
-
+  padding: 3px 0px;
 }
-.profile-dropdown-link:hover,
+
+.drop-user-pic {
+  height: 12px;
+  width: 13px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  margin-left: 0.5px;
+}
+
+#dropdown-heart {
+  margin-bottom: 4px;
+  margin-left: 1.5px;
+}
+
+.drop-tracks {
+  height: 11px;
+  width: 11px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-left: 2px;
+}
+
+.fa-right-from-bracket {
+  margin-left: 2px;
+  margin-right: 5.5px;
+}
+
+a.link {
+  margin: 5px;
+}
+
+.profile-dropdown-logout {
+  margin: 5px;
+}
+
+.drop-user-pic:hover,
+.drop-tracks:hover {
+  color: #ff5500;
+  cursor: pointer;
+}
+
+/* .profile-dropdown-link:hover, */
 .profile-dropdown-logout:hover,
-.profile-dropdown.logged-out > button:hover {
+.profile-dropdown.logged-out>button:hover {
   /* margin-top: 0; */
   color: #ff5500;
   cursor: pointer;
@@ -87,10 +132,10 @@ ul.profile-dropdown {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #383838;
+  background-color: #333333;
   /* font-family: Interstate, Lucida Grande, Arial, sans-serif; */
   font-weight: 100;
-  height: 43px;
+  height: 40px;
   width: 100%;
   margin-bottom: 30px;
 }
@@ -104,50 +149,112 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-
+  min-width: 950px;
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 40px;
   justify-content: space-between;
+  position: sticky;
+  /* border:1px solid red; */
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
+
 }
 
-.home-link {
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111111;
+  padding: 0 28px;
+  height: 40px;
+}
+
+.fa-soundcloud {
+  color: white;
+}
+
+
+.nav-bar-button-container {
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* border:1px solid red; */
+}
+
+.nav-bar-nav-link {
   text-decoration: none;
   color: #ccc;
+  font-weight: 400;
+  font-size: 14px;
+  width: 70px;
+  max-width: 70px;
+  height: 40px;
+  /* border:1px solid red; */
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+.nav-bar-nav-link.active,
+.nav-bar-prof-button-active, .prof-active {
+  background-color: #111111;
+  color: white;
+}
+
+#nav-display-name {
+  margin: 0;
+  padding-left: 4px;
+  font-size: .85rem;
+}
+
+.upload-button {
+  text-decoration: none;
   font-weight: 400;
   font-size: 14px;
 }
 
 .header-left {
   display: flex;
-  padding: 12px 28px;
+  align-items: center;
+  height: 40px;
+}
+
+.home-tab {
+  margin: 0px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #111;
+  padding-right: 28px;
   border-right: 1px solid #111;
 }
+
+.dropdown-container {
+  color: #111;
+  position: absolute;
+}
+
 
 .header-right {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-left: 1px solid #111;
+  position: relative;
+  height: 40px;
 }
 
 .upload-prof-pic {
   display: flex;
   align-items: center;
-}
-
-.upload-button-container {
-  margin: 0px;
-  padding: 12px 28px;
-}
-
-.upload-button-container:active {
-  background: #111;
-}
-
-.upload-button {
-  color: #ccc;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 14px;
+  height: 40px;
+  /* border:4px solid purple; */
 }
 
 .prof-pic-and-displayName {
@@ -160,13 +267,15 @@ body {
 }
 
 .navbar-display-name {
-  color: #ccc;
   margin-left: 7px;
   margin-bottom: 2px;
 }
 
 .profile-pic-button {
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   padding: 0;
 }
@@ -181,11 +290,10 @@ i.fas.fa-user-circle {
 }
 
 .profile-button-container {
-  margin: 0px;
-  padding: 12px 28px;
-  width: fit-content;
+  position: relative;
 }
 
-.profile-button-container:active {
-  background-color: #111;
+.prof-butt-cont-loggedOut {
+  margin-right: 28px;
+  padding: 11px 28px;
 }
