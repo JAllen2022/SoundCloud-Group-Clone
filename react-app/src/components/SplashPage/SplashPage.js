@@ -10,24 +10,27 @@ import { Link, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import splashheader1 from "../../assets/splash-header-1.jpeg";
+import splashheader2 from "../../assets/splash-header-2.jpeg";
+import SplashSlider from "../SplashSlider/SplashSlider";
 import { Carousel } from 'react-carousel-minimal';
 // import '../../assets/splash-header-1.jpeg'
 import './SplashPage.css'
 
 
 export default function SplashPage() {
-    const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-    const history = useHistory();
-    const images = [
-        { image: '../../assets/splash-header-1.jpeg' }
-    ];
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
     };
+
+    const slides = [
+        { url: `${splashheader1}`, title: 'splash-1' },
+        { url: `${splashheader2}`, title: 'splash-2' }
+    ]
 
     useEffect(() => {
         if (!showMenu) return;
@@ -48,25 +51,11 @@ export default function SplashPage() {
     };
 
     return (
+
         <div className="splash-page-outer-container">
             <div className="splash-page-container">
-                <div className="splash-page-carousel-container">
-                    <i className="fa-brands fa-soundcloud fa-3x "></i>
-                    <h3> SOUNDCLOUD </h3>
-                    <div className="splash-page-nav">
-                        <OpenModalButton
-                            buttonText="Log In"
-                            onItemClick={closeMenu}
-                            className="splash-page-login-button"
-                            modalComponent={<LoginFormModal />}
-                        />
-                        <OpenModalButton
-                            buttonText="Sign Up"
-                            onItemClick={closeMenu}
-                            className="splash-page-login-button"
-                            modalComponent={<SignupFormModal />}
-                        />
-                    </div>
+                <div className="slider-container">
+                    <SplashSlider slides={slides} />
                 </div>
                 <div className="splash-page-never-stop-listening-container">
                     <div className="splash-page-never-stop-listening-left">
@@ -80,7 +69,7 @@ export default function SplashPage() {
                         </div>
                         <div className="app-store-container">
                             <div className="app-store-button"><a href="https://apps.apple.com/us/app/soundcloud/id336353151"><img className="app-store-button-image" src="https://a-v2.sndcdn.com/assets/images/appstore_badge@en-9e7292e6.png" alt="apple store link" /></a></div>
-                            <div className="app-store-button"><a href="https://play.google.com/store/apps/details?id=com.soundcloud.android&hl=us"><img className="app-store-button-image" src="https://a-v2.sndcdn.com/assets/images/google_play_badge@en-51d52194.png" alt="google store link" /></a></div>
+                            <div className="app-store-button"><a href="https://play.google.com/store/apps/details?id=com.soundcloud.android&hl=us"><img className="app-store-button-image-play" src="https://a-v2.sndcdn.com/assets/images/google_play_badge@en-51d52194.png" alt="google store link" /></a></div>
                         </div>
                     </div>
                 </div>
@@ -91,16 +80,36 @@ export default function SplashPage() {
                         <a href="https://community.soundcloud.com/playbook-articles/introducing-the-new-dashboard-on-soundcloud-for-artists"><div className="splash-page-calling-all-creators-fill-out-more">Find out more</div></a>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <div>Thanks for listening. Now join in. </div>
-                        <p>Save tracks, follow artists and build playlists. All for free.</p>
-                        <div>Create an account</div>
-                        <div> Already have an account? Sign in</div>
+                <div className="splash-page-thanks-for-listening-container">
+                    <div className="splash-page-thanks-for-listening">Thanks for listening. Now join in. </div>
+                    <p className="splash-page-save-tracks">Save tracks, follow artists and build playlists. All for free.</p>
+                    <OpenModalButton
+                        buttonText="Create an account"
+                        onItemClick={closeMenu}
+                        className="splash-page-create-account-bottom"
+                        modalComponent={<SignupFormModal />}
+                    />
+                    <div className="splash-page-already-have-account"> Already have an account? <span>  <OpenModalButton
+                        buttonText="Sign in"
+                        onItemClick={closeMenu}
+                        className="splash-page-bottom-sign-in-div"
+                        modalComponent={<LoginFormModal />}
+                    /></span>
+                    </div>
+                    <div className="disclaimers-lang-splash">
+                        <div className="disclaimers-container">
+                            <div className="disclaimers-splash">
+                                Directory &#x2022; About us &#x2022; Artist Resources &#x2022; Blog &#x2022; Jobs &#x2022; Developers &#x2022; Help &#x2022; Legal &#x2022; Do Not Sell or Share My Personal Information
+                                &#x2022; Privacy &#x2022; Cookie Policy &#x2022; Cookie Manager
+                                &#x2022; Imprint &#x2022; Charts &#x2022;
+                            </div>
+                        </div>
+                        <div className="lang-cont-splash">
+                            <div className="lang-splash">Language: </div><p> English (US)</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     )

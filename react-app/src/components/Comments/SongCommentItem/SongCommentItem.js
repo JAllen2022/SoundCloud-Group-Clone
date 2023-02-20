@@ -16,10 +16,15 @@ const SongCommentItem = ({ comment, song }) => {
   const [editing, setEditing] = useState(false);
   const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
+
+  console.log("checking what the hell this time is~~~~`", moment(comment?.created_at).fromNow())
+
+  console.log("what is created at", comment?.created_at)
+
   return (
     <div className="song-comment-item-container">
       <div className="creator-pic">
-      <Link className="link" to={`/users/${comment.user_id}`}><img
+        <Link className="link" to={`/users/${comment.user_id}`}><img
           className="prof-pic"
           src={
             comment.user?.profile_image_url
@@ -36,7 +41,7 @@ const SongCommentItem = ({ comment, song }) => {
 
 
           <div className="creator-name">
-          <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link> at {comment?.time}
+            <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link> at {comment?.time}
           </div>
           <div className="comment-created-at">{moment(comment?.created_at).fromNow()}</div>
 
@@ -50,28 +55,28 @@ const SongCommentItem = ({ comment, song }) => {
         </div>
         <div className="created-at-edit-delete">
 
-        {currentUser && currentUser.id == comment.user_id && (
-          <div className="edit-delete-container">
-            <div className="edit-comment-container">
-              <button
-                onClick={(e) => setEditing((prev) => !prev)}
-                className="edit-comment-button"
-              >
-                <i className="fa-solid fa-pencil fa-sm"></i>
-              </button>
+          {currentUser && currentUser.id == comment.user_id && (
+            <div className="edit-delete-container">
+              <div className="edit-comment-container">
+                <button
+                  onClick={(e) => setEditing((prev) => !prev)}
+                  className="edit-comment-button"
+                >
+                  <i className="fa-solid fa-pencil fa-sm"></i>
+                </button>
+              </div>
+              <div className="delete-comment-container">
+                <button
+                  onClick={() => dispatch(deleteCommentThunk(comment.id))}
+                  className="delete-comment-button"
+                >
+                  <i className="fa-solid fa-trash fa-sm"></i>
+                </button>
+              </div>
             </div>
-            <div className="delete-comment-container">
-              <button
-                onClick={() => dispatch(deleteCommentThunk(comment.id))}
-                className="delete-comment-button"
-              >
-                <i className="fa-solid fa-trash fa-sm"></i>
-              </button>
-            </div>
-          </div>
-        )}
+          )}
         </div>
-        </div>
+      </div>
     </div>
   );
 };

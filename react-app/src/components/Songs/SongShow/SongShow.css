@@ -13,9 +13,9 @@
 }
 
 .song-header-container {
-    background-image: linear-gradient(to right, gray, rgb(51,51,51));
+    background-image: linear-gradient(to right, gray, rgb(51, 51, 51));
     box-sizing: border-box;
-    width:100%;
+    width: 100%;
     padding: 30px 25px;
     display: flex;
     /* justify-content: space-between; */
@@ -24,9 +24,10 @@
     /* position: relative; */
 
 }
-.left-header-container{
+
+.left-header-container {
     /* border:1px solid red; */
-    width:70%;
+    width: 70%;
 }
 
 .play-artist-title-name-created {
@@ -47,6 +48,7 @@
 .show-play {
     width: 63px;
     height: 63px;
+    background-color: white;
     /* border: 1px solid black */
 }
 
@@ -83,7 +85,8 @@
 
 }
 
-.show-artist-title, .show-name {
+.show-artist-title,
+.show-name {
     background-color: black;
     width: fit-content;
     padding: 2px 7px;
@@ -93,8 +96,8 @@
     font-size: 15px;
     color: white;
     width: 20%;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 /* .show-song-image-container {
@@ -113,7 +116,7 @@
     /* padding: 18px 27px; */
     display: flex;
     /* border:1px solid red; */
-    margin-top:1rem;
+    margin-top: 1rem;
     padding: 5px;
     /* justify-content: space-between; */
     /* border: 1px solid rgb(0, 0, 0, 0.08); */
@@ -151,7 +154,7 @@
 }
 
 .show-like-button {
-    display:flex;
+    display: flex;
     flex-direction: row;
     height: 23px;
     width: fit-content;
@@ -190,7 +193,7 @@ button:hover {
 
 .fa-heart.link {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
 
@@ -224,13 +227,14 @@ button:hover {
 
 .user-info-comments-container {
     display: flex;
-    padding-top:1rem;
+    padding-top: 1rem;
 }
 
 .right-info-comments-container {
     /* border: 1px solid red; */
     width: 100%;
     margin-left: 20px;
+    min-height: 75vh;
 }
 
 .song-comments-header {
@@ -264,7 +268,7 @@ button.delete-song-button {
     width: fit-content;
     padding: 11px 6px;
     background: none;
-    border: 1px solid rgb(220,220,220);
+    border: 1px solid rgb(220, 220, 220);
     border-radius: 3px;
     align-items: center;
     font-weight: 100;
@@ -287,6 +291,7 @@ button.delete-song-button {
     align-items: center;
 
 }
+
 .lang {
     color: blue;
     margin-right: 3.5px;
@@ -297,7 +302,7 @@ button.delete-song-button {
     width: fit-content;
     align-items: center;
     /* border: 1px solid red; */
-    width:100%;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
 }
@@ -314,8 +319,9 @@ button.delete-song-button {
     border-bottom: 1px solid rgb(0, 0, 0, 0.1);
     margin-bottom: 15px;
 }
-.show-song-like-link-cont{
-    width:100%;
+
+.show-song-like-link-cont {
+    width: 100%;
     /* border: 1px solid green; */
 
 }
@@ -354,7 +360,7 @@ button.delete-song-button {
 }
 
 .show-asl-user-pic {
-    margin-left:-5px;
+    margin-left: -5px;
 }
 
 .go-mobile {
@@ -388,15 +394,15 @@ button.delete-song-button {
     align-items: flex-end;
     padding-left: 25px;
     padding-right: 3px
-  }
+}
 
 
-  .left-show-page-body-container {
+.left-show-page-body-container {
     width: 70%;
     /* border: 1px red solid; */
     padding-right: 25px;
-  }
+}
 
-  .user-pic {
+.user-pic {
     margin-left: 14px;
-  }
+}

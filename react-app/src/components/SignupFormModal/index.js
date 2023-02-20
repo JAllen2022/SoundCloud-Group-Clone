@@ -32,7 +32,7 @@ function SignupFormModal() {
 
 	return (
 		<div  className="modal-container">
-			<h1 className="modal-form-title">Sign Up</h1>
+			<h1 className="modal-form-title">Create account</h1>
 			<div  className="modal-form-container">
 				<form onSubmit={handleSubmit}>
 					<ul className="errors-container">

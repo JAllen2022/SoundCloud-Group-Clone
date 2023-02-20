@@ -3,6 +3,7 @@ from app.models import Song, User, Comment, db
 from flask_login import login_required, current_user
 from .song_routes import song_routes
 from app.forms import SongForm, CommentForm
+from random import random, uniform
 import datetime
 import json
 
@@ -34,13 +35,14 @@ def create_comment(id):
             body = form.data["body"],
             user_id = current_user.id,
             song_id = id,
-            time = 1.20,
-            created_at = datetime.datetime.now()
+            time = 3,
+            created_at = datetime.datetime.utcnow()
         )
         db.session.add(comment)
         db.session.commit()
         # comments = Comment.query.filter(Comment.song_id == id).all()
         # return [comment.to_dict() for comment in comments]
+
         return comment.to_dict()
     return {"Error": "Could not create comment"}
 

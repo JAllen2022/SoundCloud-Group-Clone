@@ -49,7 +49,7 @@ const UserPageComments = () => {
 
         </div>
       <div className="user-comments-area">
-        {userCommentItems}
+        <ul className="user-page-comment-items-container">{userCommentItems}</ul>
       </div>
     </div>
   );

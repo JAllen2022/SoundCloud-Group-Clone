@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
@@ -34,7 +34,7 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   const [songLoading, setSongLoading] = useState(false);
   const [uploadedSong, setUploadedSong] = useState(editSong ? true : false);
   const [errors, setErrors] = useState({});
-  // console.log("checking errors", errors);
+  const imageRef = useRef(null)
 
   // const currentUser = useSelector((state) => state.session.user);
 
@@ -117,6 +117,7 @@ const UploadPage = ({ editSong = false, songEdit }) => {
                     setSongImage={setSongImage}
                     errors={errors}
                     setErrors={setErrors}
+                    imageRef={imageRef}
                   />
                 </>
               ) : (

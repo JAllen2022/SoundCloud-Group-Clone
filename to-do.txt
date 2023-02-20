@@ -1,12 +1,18 @@
 To-Do:
+ryan finishing - splash page/ maybe logged out upload page (need to fix the images and nav)
+random time for comment
 
-splash page/ maybe logged out upload page (need to fic the images and nav)
-preview image for profile image and upload song
-fix timestamps on comments and songs
+Next :
 make feed/home page
+continuous play
 
 
-first person
+modifying our player?(optional ??)
+
+
+Presentation Order:
+
+Lily person
 - intro our project
 - walk through nav page
 - demo log in and sign up
@@ -22,19 +28,13 @@ jason
 - user pages
 
 
-Features
--
-
-
-IMPORTANT:
-continuous play
-timestamps on comments
-
-
-modifying our player?(optional ??)
-
-
 Done:
+user-page - links to song from comment item
+user page - songs on the right need to show pause button too
+timestamps on comments
+make pause button smaller and white background
+preview image for profile image and upload song
+fix timestamps on comments and songs
 roysa - fix input file buttons
 roysa - upload form
 fix user page

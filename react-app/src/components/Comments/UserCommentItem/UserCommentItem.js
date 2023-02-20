@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCommentThunk } from "../../../store/comments";
 import CreateComment from "../CreateComment/CreateComment";
+import { Link } from "react-router-dom";
 import "./UserCommentItem.css";
 import moment from "moment";
 
@@ -14,9 +15,11 @@ const UserCommentItem = ({ comment }) => {
     return (
         <div className='user-comment-individual-item-container'>
             <div className="user-comment-item-song-title-date-container">
+                <Link className="user-comment-link" to={`/songs/${comment?.song.id}`}>
                 <div className="user-comment-item-song-title-div">
                     on <span className="user-comment-on-song-title">{comment?.song.title}</span>
-                </div>
+                    </div>
+                </Link>
                 <div className="user-comment-created-at">
                     {moment(comment?.created_at).fromNow()}
                 </div>

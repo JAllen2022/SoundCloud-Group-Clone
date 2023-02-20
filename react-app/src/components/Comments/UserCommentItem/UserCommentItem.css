@@ -1,4 +1,4 @@
-.user-comment-individual-item-container{
+.user-comment-individual-item-container {
     /* border:1px red solid; */
     margin: .75rem 0;
     position: relative;
@@ -6,28 +6,35 @@
 
 .user-comment-item-song-title-date-container {
     /* border:1px red solid; */
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
 }
 
+.user-comment-item-song-title-div {
+    text-decoration: none;
+    color: black;
+}
+
 .user-edit-delete-container:hover {
     opacity: 1;
-
-}
-.user-comment-on-song-title,.user-comment-created-at{
-    color:#999999;
 }
 
-.user-edit-delete-container{
- display:flex;
- width:100%;
- justify-content:flex-end;
- position: absolute;
- bottom: 0;
- opacity: 0;
+.user-comment-on-song-title,
+.user-comment-created-at {
+    color: #999999;
+}
+
+.user-edit-delete-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
 
 }
+
 .user-comment-item-body {
     width: fit-content;
     margin: 0;

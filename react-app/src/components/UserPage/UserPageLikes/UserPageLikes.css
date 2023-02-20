@@ -6,6 +6,7 @@
 .user-page-likes-outer-container {
   width: 100%;
   /* border: 1px solid green; */
+
 }
 
 .user-page-likes-link-container {
@@ -20,7 +21,7 @@
   margin-bottom: 0.5rem;
 }
 
-.user-page-likes-link-container:hover > .user-page-likes-show-view-all {
+.user-page-likes-link-container:hover>.user-page-likes-show-view-all {
   color: rgba(0, 0, 0, 0.8);
 }
 
@@ -76,10 +77,10 @@
   /* display:none; */
 }
 
-.up-likes-song-play-button-image:hover {
-  display: block;
+.up-likes-song-item-container:hover .up-likes-song-play-button-image {
   cursor: pointer;
   opacity: 0.8;
+  background-color: white;
 }
 
 /* .up-likes-song-item-container:hover + .up-likes-song-play-button-image {
@@ -123,6 +124,14 @@
   color: #999999;
   margin: 0;
   padding: 0;
+}
+
+.user-page-likes-item-container {
+  display: flex;
+  flex-direction: column-reverse;
+  /* margin-left: -40px; */
+
+  padding-left: 0;
 }
 
 /* .up-likes-comment-count {

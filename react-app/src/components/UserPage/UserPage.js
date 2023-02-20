@@ -22,40 +22,6 @@ const UserPage = () => {
   const user = useSelector((state) => state.UserPage.userProfile);
   const userSongs = useSelector((state) => state.Songs.userSongs);
 
-  // const userLikedSongs = useSelector((state) => state.Songs.userLikedSongs);
-  // const userSongs = useSelector((state) => state.Songs.userSongs);
-
-  // const [headerImage, setHeaderImage] = useState("");
-  // console.log(user)
-
-  // useEffect(() => {
-  //     if (!userId) {
-  //         return;
-  //     }
-  //     (async () => {
-  //         const res = await fetch(`/api/users/${userId}`);
-  //         const user = await res.json();
-  //         setUser(user);
-  //     })();
-  // }, [userId]);
-
-  // if (!user) {
-  //     return null;
-  // }
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   // console.log("we are submitting header 2");
-
-  //   const data = new FormData();
-
-  //   data.append("header_picture", headerImage);
-
-  //   dispatch(setHeaderImageThunk(data, currentUser.id)).catch(async (res) => {
-  //     const data = await res.json();
-  //   });
-  // };
-
   const colorPicker = () => {
     let colors = [
       "h-pink",

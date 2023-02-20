@@ -15,11 +15,11 @@ import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
 import AllUserPageComments from "./components/Comments/AllUserPageComments/AllUserPageComments";
 import AllSongLikes from './components/Songs/AllSongLikes/AllSongLikes'
 import PageNotFound from './components/PageNotFound/PageNotFound'
-import Footer from "./components/Footer/footer";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
-  const currentUser = useSelector(state=> state.session.user)
+  const currentUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -28,53 +28,53 @@ function App() {
 
   return (
     <>
-      { !currentUser?.id ?
-         <Route path="/">
-              <SplashPage isLoaded={isLoaded}/>
+      {!currentUser?.id ?
+        <Route path="/">
+          <SplashPage isLoaded={isLoaded} />
+          <Footer />
         </Route> :
         <>
           <div className="main-body">
 
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          {/* <Route path="/login" >
+            <Navigation isLoaded={isLoaded} />
+            {isLoaded && (
+              <Switch>
+                {/* <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route> */}
-          <Route path="/upload">
-            <UploadPage />
-          </Route>
-          <Route path="/songs/:songId/likes">
-            <AllSongLikes />
-          </Route>
-          <Route path="/songs/:songId">
-            <SongShow />
-          </Route>
-          <Route path="/songs">
-            <AllSongs />
-          </Route>
-          <Route path="/users/:userId/likes">
-            <AllUserLikes />
-          </Route>
-          <Route path="/users/:userId/comments">
-            <AllUserPageComments />
-          </Route>
-          <Route path="/users/:userId">
-            <UserPage />
-          </Route>
-          <Route path="/404" >
-            <PageNotFound /> </Route >
-          <Route path="*">
-          <Redirect to='/404' />
-
-          </Route>
-        </Switch>
-      )}
-        <Footer />
-        <SongPlayer />
+                <Route path="/upload">
+                  <UploadPage />
+                </Route>
+                <Route path="/songs/:songId/likes">
+                  <AllSongLikes />
+                </Route>
+                <Route path="/songs/:songId">
+                  <SongShow />
+                </Route>
+                <Route path="/songs">
+                  <AllSongs />
+                </Route>
+                <Route path="/users/:userId/likes">
+                  <AllUserLikes />
+                </Route>
+                <Route path="/users/:userId/comments">
+                  <AllUserPageComments />
+                </Route>
+                <Route path="/users/:userId">
+                  <UserPage />
+                </Route>
+                <Route path="/404" >
+                  <PageNotFound /> </Route >
+                <Route path="*">
+                  <Redirect to='/songs' />
+                </Route>
+              </Switch>
+            )}
+            <Footer />
+            <SongPlayer />
           </div>
         </>
       }

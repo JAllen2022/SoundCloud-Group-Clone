@@ -30,7 +30,7 @@
 
 }
 
-.user-page-comment-box-container:hover{
+.user-page-comment-header-link-container:hover .user-page-comment-box-container {
     opacity: .8;
 }
 
@@ -39,12 +39,18 @@
     height: 12px;
     margin-right: 6px;
     /* border: 1px solid red; */
-    margin-top:.5rem;
+    margin-top: .5rem;
 }
 
-.user-page-comment-header-ptags{
+.user-page-comment-header-ptags {
     margin-bottom: 0.15rem;
     color: #999999;
     /* border: 1px solid red; */
 
+}
+
+.user-page-comment-items-container {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-left: 0;
 }

@@ -44,6 +44,7 @@ const UploadPageForm = ({
   setSongImage,
   errors,
   setErrors,
+  imageRef,
 }) => {
   const updateImage = (e) => {
     // console.log("updating image");
@@ -61,6 +62,14 @@ const UploadPageForm = ({
       delete newErrors.ImageSize;
       setErrors(newErrors);
     }
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imageRef.current.src = e.target.result;
+      }
+      reader.readAsDataURL(file)
+    }
     setSongImage(file);
   };
 
@@ -73,6 +82,7 @@ const UploadPageForm = ({
       <div className="form-container">
         <div className="up-song-image-container custom-upload">
           <img
+            ref={imageRef}
             className="up-song-image"
             src="https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg"
             alt=""
@@ -159,18 +169,18 @@ const UploadPageForm = ({
           </div>
         </div>
       </div>
-          <div className="up-buttons">
-            <Link id='modal-btns' to='/songs' className=" edit-user-page-button cancel" >
-              Cancel
-            </Link>
-            <button
-              id="modal-btns"
-              className="upload edit-user-page-button submit"
-              type="submit"
-            >
-              Save
-            </button>
-          </div>
+      <div className="up-buttons">
+        <Link id='modal-btns' to='/songs' className=" edit-user-page-button cancel" >
+          Cancel
+        </Link>
+        <button
+          id="modal-btns"
+          className="upload edit-user-page-button submit"
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 };

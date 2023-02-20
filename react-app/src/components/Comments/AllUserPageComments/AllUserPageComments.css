@@ -68,7 +68,7 @@
 
 .auc-body {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   /* justify-content: space-evenly; */
   padding: 10px;
   margin: 0 10px;

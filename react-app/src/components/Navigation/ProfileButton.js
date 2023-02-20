@@ -12,7 +12,7 @@ import waveForm from "../../assets/waveform.232x256.png";
 
 import "./Navigation.css";
 
-function ProfileButton({ user, setProfileActive }) {
+function ProfileButton({ user, setProfileActive, profileActive }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -51,15 +51,13 @@ function ProfileButton({ user, setProfileActive }) {
     setProfileActive(false);
   };
 
+  const style = profileActive ? "prof-active" : "";
+
   return (
     <>
-      <div className="nav-bar-nav-link">
-        <button className="profile-pic-button" onClick={openMenu}>
-          <i className="fas fa-user-circle fa-lg" />
-          <div className="navbar-display-name">
-            {user?.display_name}
-          </div>
-        </button>
+      <div className={`nav-bar-nav-link ${style}`} onClick={openMenu}>
+        <i className="fas fa-user-circle fa-lg" />
+        <p id='nav-display-name'>{user?.display_name}</p>
       </div>
       <div className="dropdown-container">
         <ul className={ulClassName} ref={ulRef}>
@@ -71,22 +69,22 @@ function ProfileButton({ user, setProfileActive }) {
               <p className='profile-dropdown-logout' onClick={handleLogout}><i className="fa-solid fa-right-from-bracket"></i>Log Out</p>
             </>
           )
-          : (
-            <div className="profile-dropdown logged-out">
-              <OpenModalButton
-                buttonText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
+            : (
+              <div className="profile-dropdown logged-out">
+                <OpenModalButton
+                  buttonText="Log In"
+                  onItemClick={closeMenu}
+                  modalComponent={<LoginFormModal />}
+                />
 
-              <OpenModalButton
-                buttonText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
+                <OpenModalButton
+                  buttonText="Sign Up"
+                  onItemClick={closeMenu}
+                  modalComponent={<SignupFormModal />}
+                />
 
-            </div>
-          )}
+              </div>
+            )}
         </ul>
       </div>
     </>

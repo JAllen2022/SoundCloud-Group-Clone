@@ -2,21 +2,14 @@
 .aul-header {
   display: flex;
   flex-direction: column;
-  /* box-sizing: border-box; */
-  /* margin: 0 20px; */
   padding: 20px 0;
   height: 131px;
   width: 100%;
   position: sticky;
   top: 0;
-  /*
-  left: 0;
-  right: 0; */
   background-color: white;
-  /* align-items: flex-start; */
   border-bottom: 1px solid rgb(0, 0, 0, 0.06);
   z-index: 10;
-  /* border: 1px solid red; */
 
 }
 
@@ -34,10 +27,6 @@
   border-radius: 50%;
 }
 
-/* .aul-title-container {
-    border: 1px solid red;
-
-} */
 
 .aul-likes-name {
   /* border: 1px solid red; */
@@ -67,7 +56,7 @@
 
 .aul-body {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   /* justify-content:
   space-evenly; */
   padding: 10px;

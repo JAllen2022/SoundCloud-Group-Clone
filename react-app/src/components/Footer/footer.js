@@ -9,7 +9,7 @@ function Footer() {
       <div className="contact-div">
         <div className="devs">
             <h4 className="dev-name">Roysa Peguero</h4>
-          <div classname="dev-ind-container">
+          <div className="dev-ind-container">
             <button className="contact-btns">
               <a target="_blank" href="https://github.com/roysapeguero">
                 <i class="fa-brands fa-github"></i>
@@ -27,7 +27,7 @@ function Footer() {
         </div>
         <div className="devs">
             <h4 className="dev-name">Jason Allen</h4>
-          <div classname="dev-ind-container">
+          <div className="dev-ind-container">
             <button className="contact-btns">
               <a target="_blank" href="https://github.com/JAllen2022">
                 <i class="fa-brands fa-github"></i>
@@ -45,7 +45,7 @@ function Footer() {
         </div>
         <div className="devs">
             <h4 className="dev-name">Lillyann Hidalgo</h4>
-          <div classname="dev-ind-container">
+          <div className="dev-ind-container">
             <button className="contact-btns">
               <a target="_blank" href="https://github.com/lcelisse">
                 <i class="fa-brands fa-github"></i>
@@ -63,7 +63,7 @@ function Footer() {
         </div>
         <div className="devs">
             <h4 className="dev-name">Ryan Harden</h4>
-          <div classname="dev-ind-container">
+          <div className="dev-ind-container">
             <button className="contact-btns">
               <a target="_blank" href="https://github.com/ryanharden">
                 <i class="fa-brands fa-github"></i>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -8,10 +8,9 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const [profileButtonActive, setProfileButtonActive]= useState("")
   const dispatch = useDispatch();
 
-  console.log("we re-rendering this page", profileButtonActive)
+  const [profileButtonActive, setProfileButtonActive] = useState("")
   let activeProfBackground = "";
   if (profileButtonActive) activeProfBackground = "nav-bar-prof-button-active"
   else activeProfBackground = ""
@@ -46,7 +45,7 @@ function Navigation({ isLoaded }) {
                 </NavLink>
               </div>
               <div className={sessionUser ? `profile-button-container ${activeProfBackground}` : `prof-butt-cont-loggedOut ${activeProfBackground}`}>
-                <ProfileButton user={sessionUser} setProfileActive={ setProfileButtonActive } />
+                <ProfileButton user={sessionUser} setProfileActive={setProfileButtonActive} profileActive={profileButtonActive} />
               </div>
             </div>
           )}

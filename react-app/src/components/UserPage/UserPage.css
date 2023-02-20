@@ -36,6 +36,7 @@
   background-color: #f2f2f2;
   z-index: -4;
 }
+
 .page-container {
   /* border: 1px red solid; */
   min-width: 950px;
@@ -46,7 +47,7 @@
   background-color: white;
   z-index: -3;
   flex-direction: column;
-  min-height:150vh;
+  min-height: 150vh;
 }
 
 .user-page-header {
@@ -184,7 +185,7 @@
 .right-user-page-body-container {
   width: 30%;
   /* border: 1px red solid; */
-  border-left:1px solid rgb(0, 0, 0, 0.1);
+  border-left: 1px solid rgb(0, 0, 0, 0.1);
   padding-left: 25px;
   padding-right: 5px;
   display: flex;
@@ -194,6 +195,7 @@
 
 .right-user-page-body-inner-container {
   width: 99%;
+  min-height: 100vh;
   /* border: 1px red solid; */
 }
 
