@@ -41,7 +41,7 @@ const SongCommentItem = ({ comment, song }) => {
 
 
           <div className="creator-name">
-            <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link> at {comment?.time}
+            <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link>
           </div>
           <div className="comment-created-at">{moment(comment?.created_at).fromNow()}</div>
 
