@@ -15,7 +15,7 @@ import AllUserLikes from "./components/UserPage/AllUserLikes/AllUserLikes";
 import AllUserPageComments from "./components/Comments/AllUserPageComments/AllUserPageComments";
 import AllSongLikes from './components/Songs/AllSongLikes/AllSongLikes'
 import PageNotFound from './components/PageNotFound/PageNotFound'
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/footer.js";
 
 
 function App() {
