@@ -102,10 +102,10 @@ const SplashSlider = ({ slides }) => {
                 </div>
                 <div className='slider-words'>
                     <div className='whatsnext'>
-                        What's next in music is first on SoundCloud
+                        What's next in music is first on TuneSpace
                     </div>
                     <div className='upload-your-track'>
-                        Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.
+                        Upload your first track and begin your journey. TuneSpace gives you space to create, find your fans, and connect with other artists.
                     </div>
                 </div>
                 <div className='dotOne' onClick={(e) => slideOne(e)} style={dotOneColor}></div>

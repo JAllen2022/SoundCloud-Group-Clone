@@ -60,12 +60,12 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
-    print("see what is going on ~~~~~~~~~~~~~~")
+    # print("see what is going on ~~~~~~~~~~~~~~")
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("see what is going on ~~~~~~~~~~~~~~ 123")
+    # print("see what is going on ~~~~~~~~~~~~~~ 123")
 
     if form.validate_on_submit():
-        print("see what is going on ~~~~~~~~~~~~~~ 456")
+        # print("see what is going on ~~~~~~~~~~~~~~ 456")
 
         user = User(
             username=form.data['displayname'],
@@ -74,14 +74,14 @@ def sign_up():
             password=form.data['password']
         )
 
-        print("see what is going on ~~~~~~~~~~~~~~ 789")
+        # print("see what is going on ~~~~~~~~~~~~~~ 789")
 
         db.session.add(user)
         db.session.commit()
-        print("see what is going on ~~~~~~~~~~~~~~ 91011")
+        # print("see what is going on ~~~~~~~~~~~~~~ 91011")
 
         login_user(user)
-        print("see what is going on ~~~~~~~~~~~~~~ 1111")
+        # print("see what is going on ~~~~~~~~~~~~~~ 1111")
 
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

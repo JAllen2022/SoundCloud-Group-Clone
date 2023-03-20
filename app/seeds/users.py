@@ -2,13 +2,13 @@ from app.models import db, User, environment, SCHEMA
 
 
 demo = User(
-    username='Demo', display_name='froggy', email='demo@aa.io', password='password')
+    username='Demo', display_name='Demo', email='demo@aa.io', password='password')
 roysa = User(
-    username='Roysa', display_name='razzledazzel', email='roysa@aa.io', password='password')
+    username='Roysa', display_name='razzle', email='roysa@aa.io', password='password')
 jason = User(
-    username='Jason', display_name='jason-allen', email='jason@aa.io', password='password')
+    username='Jason', display_name='jasona', email='jason@aa.io', password='password')
 ryan = User(
-    username="Ryan", display_name='ryan_is_cool', email="ryan@aa.io", password="password")
+    username="Ryan", display_name='ryanh', email="ryan@aa.io", password="password")
 lillyann = User(
     username="Lillyann", display_name='angrymidgetelf', email="lillyann@aa.io", password="password")
 

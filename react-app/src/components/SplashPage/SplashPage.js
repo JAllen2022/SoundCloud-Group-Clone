@@ -65,7 +65,7 @@ export default function SplashPage() {
                         <div className="splash-page-never-stop-listening-right-inner-container">
                             <div className="splash-page-never-stop-listening-text">Never stop listening</div>
                             <div className="splash-page-never-stop-gradient"></div>
-                            <div className="splash-page-never-stop-listening-body-text">SoundCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</div>
+                            <div className="splash-page-never-stop-listening-body-text">TuneSpace is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</div>
                         </div>
                         <div className="app-store-container">
                             <div className="app-store-button"><a href="https://apps.apple.com/us/app/soundcloud/id336353151"><img className="app-store-button-image" src="https://a-v2.sndcdn.com/assets/images/appstore_badge@en-9e7292e6.png" alt="apple store link" /></a></div>
@@ -76,7 +76,7 @@ export default function SplashPage() {
                 <div className="splash-page-calling-all-creators-container">
                     <div className="splash-page-calling-all-creators-text-container">
                         <div className="splash-page-calling-all-creators-header">Calling all creators </div>
-                        <p className="splash-page-calling-all-creators-inner-text">Get on SoundCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
+                        <p className="splash-page-calling-all-creators-inner-text">Get on TuneSpace to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
                         <a href="https://community.soundcloud.com/playbook-articles/introducing-the-new-dashboard-on-soundcloud-for-artists"><div className="splash-page-calling-all-creators-fill-out-more">Find out more</div></a>
                     </div>
                 </div>

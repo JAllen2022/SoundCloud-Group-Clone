@@ -94,7 +94,7 @@ def edit_user(id):
         profile_picture = request.files["profile_picture"]
 
         if not s3.image_file(profile_picture.filename):
-            print("errrorrr!!!!!!!!!!!!!! ")
+            # print("errrorrr!!!!!!!!!!!!!! ")
             return {"errors": "File type not permitted"}, 400
 
         # We need to first delete the existing image in the database for the song
@@ -108,7 +108,7 @@ def edit_user(id):
         upload_image = s3.upload_image_file_to_s3(profile_picture)
 
         if "url" not in upload_image:
-            print("errrorrr!!!!!!!!!!!!!! 212312312 ")
+            # print("errrorrr!!!!!!!!!!!!!! 212312312 ")
 
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
@@ -151,7 +151,7 @@ def set_header(id):
         header_picture = request.files["header_picture"]
 
         if not s3.image_file(header_picture.filename):
-            print("file type not permitted")
+            # print("file type not permitted")
             return {"errors": "File type not permitted"}, 400
 
         # We need to first delete the existing image in the database for the song
@@ -165,7 +165,7 @@ def set_header(id):
         upload_image = s3.upload_image_file_to_s3(header_picture)
 
         if "url" not in upload_image:
-            print("error upload")
+            # print("error upload")
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message

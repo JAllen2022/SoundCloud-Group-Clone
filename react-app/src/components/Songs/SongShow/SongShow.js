@@ -85,7 +85,7 @@ const SongShow = () => {
   }
 
   useEffect(() => {
-    console.log(playerRef.current.audio.current.play)
+    // console.log(playerRef.current.audio.current.play)
     if (playS.id !== song.id) {
       setShowButton(showPlayButton)
     }

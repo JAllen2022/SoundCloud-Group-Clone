@@ -184,9 +184,9 @@ function UploadSong({
           "loadedmetadata",
           function () {
             const duration = toMinutes(audio.duration);
-            console.log(
-              "The duration of the song is of: " + duration + " seconds"
-            );
+            // console.log(
+            //   "The duration of the song is of: " + duration + " seconds"
+            // );
             setLength(duration);
           },
           false
