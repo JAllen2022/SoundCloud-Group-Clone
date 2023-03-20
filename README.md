@@ -87,20 +87,23 @@ npm start
 
 5. Navigate to the application in your browser
 
+<br/>
+
 ## Contact Information
 
-Roysa Peguero Martinez<br/>
+Jason Allen<br/>
+[LinkedIn](https://www.linkedin.com/in/jasonallen715/)<br/>
+
+Roysa Peguero<br/>
 [LinkedIn](https://www.linkedin.com/in/roysapeguero/)<br/>
 <roysapeguero@outlook.com>
 
-Jason Allen
-- [LinkedIn](https://www.linkedin.com/in/jasonallen715/)<br/>
+Lillyann Hidalgo<br/>
+[LinkedIn](https://www.linkedin.com/in/lillyann-h-55684b249/)<br/>
 
-Lillyann
-- [LinkedIn](https://www.linkedin.com/in/lillyann-h-55684b249/)<br/>
-
-- [LinkedIn](https://www.linkedin.com/in/ryan-harden-0a8b6821a/)<br/>
-- <ryanharden20@gmail.com>
+Ryan Harden<br/>
+[LinkedIn](https://www.linkedin.com/in/ryan-harden-0a8b6821a/)<br/>
+<ryanharden20@gmail.com>
 
 
 [1]:https://tunespace.onrender.com/
