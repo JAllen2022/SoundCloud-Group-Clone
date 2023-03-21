@@ -52,6 +52,13 @@ const Waveform = ({ song, audioFile }) => {
         }
     };
 
+    // const updateWaveform = (time) => {
+    //     if (wave && currentSong.id === song.id) {
+    //         wave.seekTo(time / wave.getDuration());
+    //         animationFrameId.current = requestAnimationFrame(() => updateWaveform(currentTime));
+    //     }
+    // };
+
     useEffect(() => {
         updateWaveform(currentTime);
 
