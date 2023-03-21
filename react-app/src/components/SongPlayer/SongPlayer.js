@@ -3,10 +3,15 @@ import { useRef, useEffect } from "react";
 import AudioPlayer from "react-h5-audio-player";
 // import "react-h5-audio-player/lib/styles.css";
 import { setPlayerReference, isPlaying } from "../../store/songs"
+import { setCurrentTime } from "../../store/songs";
 import "./SongPlayer.css";
 
 export default function SongPlayer() {
   const playSong = useSelector(state => state.Songs.playSong)
+  const time = useSelector(state => state.Songs.currentTime)
+  // const dispatch = useDispatch();
+  // console.log("time", time)
+
   // const isPlaying = useSelector(state => state.Songs.isPlaying)
   const playerRef = useRef(null)
   const dispatch = useDispatch()
@@ -14,12 +19,17 @@ export default function SongPlayer() {
   useEffect(() => {
     // console.log("what is ref", playerRef)
     dispatch(setPlayerReference(playerRef))
-  },[dispatch])
+  }, [dispatch])
   const buffer = {
     display: 'block',
     // padding: '20px',
     // height: '60px',
     width: '100%',
+  }
+
+  const handleListen = () => {
+    // console.log("checking this", playerRef.current.audio.current.currentTime)
+    dispatch(setCurrentTime(playerRef.current.audio.current.currentTime));
   }
 
   // console.log("checking state isPlaying ~~~~~~~~~~~~~~~~~~", isPlaying)
@@ -34,22 +44,23 @@ export default function SongPlayer() {
           // playing={isPlaying}
           // pause={isPlaying}
           ref={playerRef}
+          onListen={handleListen}
           layout='horizontal-reverse'
           // customIcons={
-            //    play?: ReactNode
-            //     pause?: ReactNode
-            //     rewind?: ReactNode
-            //     forward?: ReactNode
-            //     previous?: ReactNode
-            //     next?: ReactNode
-            //     loop?: ReactNode
-            //     loopOff?: ReactNode
-            //     volume?: ReactNode
-            //     volumeMute?: ReactNode
-            // }
-            src={playSong?.song_url || ''}
-            onPlay={(e) => dispatch(isPlaying(true))}
-            onPause={(e) => dispatch(isPlaying(false))}
+          //    play?: ReactNode
+          //     pause?: ReactNode
+          //     rewind?: ReactNode
+          //     forward?: ReactNode
+          //     previous?: ReactNode
+          //     next?: ReactNode
+          //     loop?: ReactNode
+          //     loopOff?: ReactNode
+          //     volume?: ReactNode
+          //     volumeMute?: ReactNode
+          // }
+          src={playSong?.song_url || ''}
+          onPlay={(e) => dispatch(isPlaying(true))}
+          onPause={(e) => dispatch(isPlaying(false))}
         // other props here
         />
       </div>

@@ -10,7 +10,6 @@ all seeds should be seeded in seed file (once jason uploads songs and images to 
 make feed/home page
 continuous play
 add readme gifs
-fix 404 css
 search bar
 pause button on song page smaller
 

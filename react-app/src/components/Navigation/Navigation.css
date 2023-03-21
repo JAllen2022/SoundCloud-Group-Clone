@@ -152,7 +152,7 @@ body {
   align-items: center;
   min-width: 950px;
   width: 80%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   height: 40px;
   justify-content: space-between;
@@ -200,6 +200,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
 }
 
 

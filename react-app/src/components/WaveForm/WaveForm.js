@@ -3,21 +3,13 @@ import { useSelector } from 'react-redux';
 import WaveSurfer from 'wavesurfer.js';
 import "./WaveForm.css";
 
-
-
 const Waveform = ({ song, audioFile }) => {
     const [isLoading, setIsLoading] = useState(true);
-    // const currentSong = useSelector(state => state.songs.playSong)
-    const [wave, setWave] = useState()
+    const [wave, setWave] = useState();
     const waveformRef = useRef(null);
-    console.log("audioFile: ", audioFile);
-    // audioFile ='../..'
-    // const currentWaveformRef = waveformRef.current;
-
-    // const returnDiv = <>
-    //     <div ref={waveformRef} className="waveform" />
-    //     <div id="wave-timeline" />
-    // </>
+    const currentSong = useSelector((state) => state.Songs.playSong);
+    const currentTime = useSelector((state) => state.Songs.currentTime);
+    const animationFrameId = useRef(null);
 
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
@@ -33,9 +25,7 @@ const Waveform = ({ song, audioFile }) => {
             partialRender: true,
             interact: false,
             cursorColor: "transparent"
-
         });
-        console.log("wavesurfer: ", wavesurfer)
 
         wavesurfer.load(audioFile);
 
@@ -43,17 +33,30 @@ const Waveform = ({ song, audioFile }) => {
             setIsLoading(false);
         });
 
-        setWave(wavesurfer)
-
+        setWave(wavesurfer);
 
         return () => {
             wavesurfer.destroy();
         };
-    }, [audioFile, waveformRef.current, isLoading]);
+    }, [audioFile]);
 
-    // useEffect(() => {
-    //     // if(currentSong.id === song.id) setTime ( )
-    // }, [time])
+    let prevTime = 1 / 360;
+
+    const updateWaveform = (time) => {
+        if (wave && currentSong.id === song.id) {
+            const deltaTime = (time + prevTime )/1000;
+            console.log("checking delta time", deltaTime)
+            wave.setCurrentTime(deltaTime);
+
+            animationFrameId.current = requestAnimationFrame(updateWaveform);
+        }
+    };
+
+    useEffect(() => {
+        updateWaveform(currentTime);
+
+        return () => cancelAnimationFrame(animationFrameId.current);
+    }, [wave, currentSong.id, currentTime]);
 
     return (
         <div className="waveform-container" >
@@ -65,11 +68,6 @@ const Waveform = ({ song, audioFile }) => {
                     <div className='wave-bottom-overlay'></div>
                 </div>
             </>
-            {/* {isLoading ? (
-                <p>Loading...</p>
-            ) : (
-                { returnDiv }
-            )} */}
         </div>
     );
 };
