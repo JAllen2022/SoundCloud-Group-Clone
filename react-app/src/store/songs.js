@@ -129,11 +129,6 @@ export const getSongThunk = (songId) => async (dispatch) => {
     const song = await res.json();
     dispatch(loadSong(song));
     return song;
-  } else {
-    const data = await res.json();
-    if (data.errors) {
-      return data;
-    }
   }
 };
 

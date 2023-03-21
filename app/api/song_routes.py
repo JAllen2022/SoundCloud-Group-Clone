@@ -3,6 +3,8 @@ from app.models import Song, User, db,likes
 from flask_login import login_required, current_user
 from app.forms import SongForm
 import app.s3_helpers as s3
+import datetime
+
 # ( upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
 
@@ -85,7 +87,8 @@ def upload_song():
             length = form_data["length"],
             description = form_data["description"],
             song_image_url = url_image,
-            song_url = song_url
+            song_url = song_url,
+            created_at = datetime.datetime.utcnow()
         )
 
     db.session.add(new_song)

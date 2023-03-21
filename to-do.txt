@@ -1,27 +1,30 @@
 To-Do:
-CRON job: ping
 media queries
-404 page
-waveforms
 users likes in chronological Order
 style the player
-pause button on song page smaller
 when uploading song, preview image is automatically the img from file
-song upload time is wrong, and scrunched
-user profile button when a display name is too long
 song description displayed somewhere
 cancel button on edit song does not work
 image on edit form should be the songs current image
 all seeds should be seeded in seed file (once jason uploads songs and images to aws)
 make feed/home page
 continuous play
+add readme gifs
+fix 404 css
+search bar
+pause button on song page smaller
+
 
 
 
 Next:
-roysa readme
+jason and ryan - waveforms
 
 Done:
+song upload time is wrong
+song upload time is scrunched
+404 page when navigating to non-existent user/song/etc.
+user profile button when a display name is too long
+readme
 remove console.logs
-
-modifying our player?(optional ??)
+CRON job: ping

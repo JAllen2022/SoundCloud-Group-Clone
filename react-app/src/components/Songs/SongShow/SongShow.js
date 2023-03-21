@@ -16,6 +16,8 @@ import OpenModalButton from "../../OpenModalButton";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { deleteSongThunk } from "../../../store/songs";
 import moment from 'moment'
+import PageNotFound from "../../PageNotFound/PageNotFound";
+import Waveform from "../../WaveForm/WaveForm";
 import "./SongShow.css";
 
 const SongShow = () => {
@@ -44,7 +46,7 @@ const SongShow = () => {
     <img
       className="show-play-button-image"
       src={pauseButton}
-      alt="orange play button"
+      alt="orange pause button"
     />
   )
   const [showButton, setShowButton] = useState(showPlayButton)
@@ -117,7 +119,7 @@ const SongShow = () => {
     ))
   }
 
-  if (!Object.values(song).length) return null;
+  if (!Object.values(song).length) return <PageNotFound page={"song"} />;
   // const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
   return (
@@ -145,7 +147,8 @@ const SongShow = () => {
               </div>
               <div className="created">{moment(song?.created_at).fromNow()}</div>
             </div>
-            <div className="song-player"></div>
+            <Waveform song={song} audioFile={song?.song_url} />
+
           </div>
           <div className="right-header-container">
             <div className="show-song-image-container">
@@ -154,8 +157,9 @@ const SongShow = () => {
           </div>
         </div>
         <div className="page-body-container">
-
           <div className="left-show-page-body-container">
+
+
             <div className="add-comment-form">
               <CreateComment />
             </div>

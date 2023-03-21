@@ -13,6 +13,7 @@ import { setHeaderImageThunk } from "../../store/session";
 import UserPageLikes from "./UserPageLikes/UserPageLikes";
 import UserPageComments from "../Comments/UserPageComments/UserPageComments";
 import { loadUserCommentsThunk } from "../../store/comments";
+import PageNotFound from "../PageNotFound/PageNotFound";
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -76,6 +77,7 @@ const UserPage = () => {
   // };
   const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
+  if (!user.id) return <PageNotFound page={"user"} />
   return (
     <div className="page-outer-container">
       <div className="page-container">

@@ -54,7 +54,7 @@ function App() {
                 <Route path="/songs/:songId">
                   <SongShow />
                 </Route>
-                <Route path="/songs">
+                <Route exact path="/songs">
                   <AllSongs />
                 </Route>
                 <Route path="/users/:userId/likes">
@@ -66,11 +66,9 @@ function App() {
                 <Route path="/users/:userId">
                   <UserPage />
                 </Route>
-                <Route path="/404" >
-                  <PageNotFound /> </Route >
-                <Route path="*">
-                  <Redirect to='/songs' />
-                </Route>
+                <Route>
+                  <PageNotFound />
+                </Route >
               </Switch>
             )}
             <Footer />
