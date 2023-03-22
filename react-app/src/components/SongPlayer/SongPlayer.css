@@ -5,7 +5,9 @@
   --rhap-time-color: #333;
   --rhap-font-family: inherit;
 } */
-
+.song-player {
+  z-index: 15;
+}
 .buffer {
   display: 'block';
   /* padding: '20px'; */

@@ -1,29 +1,24 @@
 To-Do:
-media queries
 all seeds should be seeded in seed file (once jason uploads songs and images to aws)
-make feed/home page
-continuous play
+users likes in chronological Order
 add readme gifs
 
 
 Hard to do:
-users likes in chronological Order
 when uploading song, preview image is automatically the img from file
 
 
 At Some Point Maybe:
 search bar
 nested comments
-
-waveform stuff:
 store waveforms in database on song upload
-
-
+continuous play
+make feed/home page
 
 Next:
-jason and ryan - waveforms
 
 Done:
+jason and ryan - waveforms
 style the player
 render waveforms for each song item
 pause button on song page smaller
