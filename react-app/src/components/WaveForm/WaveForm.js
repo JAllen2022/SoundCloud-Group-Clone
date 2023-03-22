@@ -3,19 +3,21 @@ import { useSelector } from 'react-redux';
 import WaveSurfer from 'wavesurfer.js';
 import "./WaveForm.css";
 
-const Waveform = ({ song, audioFile }) => {
+const Waveform = ({ song, audioFile, songItem }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [wave, setWave] = useState();
     const waveformRef = useRef(null);
     const currentSong = useSelector((state) => state.Songs.playSong);
     const currentTime = useSelector((state) => state.Songs.currentTime);
+    const isPlaying = useSelector((state) => state.Songs.isPlaying);
+
     const animationFrameId = useRef(null);
 
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
             container: waveformRef.current,
-            height: 90,
-            waveColor: 'white',
+            height: songItem ? 55: 90,
+            waveColor: songItem ? "rgba(130, 130, 130)" : 'white',
             progressColor: '#FF5500',
             barGap: 1,
             barRadius: 0,
@@ -40,30 +42,12 @@ const Waveform = ({ song, audioFile }) => {
         };
     }, [audioFile]);
 
-    let prevTime = 1 / 360;
-
-    const updateWaveform = (time) => {
-        if (wave && currentSong.id === song.id) {
-            const deltaTime = (time + prevTime )/1000;
-            console.log("checking delta time", deltaTime)
-            wave.setCurrentTime(deltaTime);
-
-            animationFrameId.current = requestAnimationFrame(updateWaveform);
-        }
-    };
-
-    // const updateWaveform = (time) => {
-    //     if (wave && currentSong.id === song.id) {
-    //         wave.seekTo(time / wave.getDuration());
-    //         animationFrameId.current = requestAnimationFrame(() => updateWaveform(currentTime));
-    //     }
-    // };
-
     useEffect(() => {
-        updateWaveform(currentTime);
+
+        if(wave && currentSong.id === song.id)wave.setCurrentTime(currentTime)
 
         return () => cancelAnimationFrame(animationFrameId.current);
-    }, [wave, currentSong.id, currentTime]);
+    }, [currentSong, currentTime, isPlaying]);
 
     return (
         <div className="waveform-container" >
@@ -71,8 +55,8 @@ const Waveform = ({ song, audioFile }) => {
                 <div ref={waveformRef} className="waveform" />
                 <div id="wave-timeline" />
                 <div className='wave-bottom'>
-                    <div className='wave-bottom-overlay-bar'></div>
-                    <div className='wave-bottom-overlay'></div>
+                <div className={songItem ? "song-item-overlay-bar" : 'wave-bottom-overlay-bar'}></div>
+                <div className={songItem ? "song-item-bottom-overlay" :'wave-bottom-overlay'}></div>
                 </div>
             </>
         </div>

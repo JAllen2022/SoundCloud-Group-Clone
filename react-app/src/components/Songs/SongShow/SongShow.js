@@ -30,7 +30,7 @@ const SongShow = () => {
   const playing = useSelector(state => state.Songs.isPlaying)
   const playS = useSelector(state => state.Songs.playSong)
   const playerRef = useSelector(state => state.Songs.playerRef)
-  const pauseButton = "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+  const pauseButton = "https://user-images.githubusercontent.com/110946315/226770796-edff1925-616f-4748-8d6c-29b790fe13d6.png";
   const playButton = "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
   const songLikes = useSelector((state) => state.Songs.singleSong.song_likes);
 
@@ -220,7 +220,10 @@ const SongShow = () => {
                 </div>
               </div>
               <div className="right-info-comments-container">
-                <div className="song-info-container"></div>
+                <div className="song-info-container">
+                  <p className="song-show-description">Description:</p>
+                  <p>{song?.description}</p>
+                </div>
                 <div className="show-comments-container">
                   <SongPageComments />
                 </div>

@@ -38,8 +38,6 @@ const SongCommentItem = ({ comment, song }) => {
       <div className="user-name-time-and-edit-body-outer-container">
 
         <div className="user-name-time-created-at-body">
-
-
           <div className="creator-name">
             <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link>
           </div>

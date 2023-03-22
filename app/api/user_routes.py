@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Comment, db
+from app.models import User, Comment, db, likes, Song
 from app.forms import UserForm
 import app.s3_helpers as s3
 

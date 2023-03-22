@@ -195,7 +195,7 @@ body {
   max-width: fit-content;
   height: 40px;
   /* border:1px solid red; */
-  padding: 0 1rem;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: center;

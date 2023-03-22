@@ -59,3 +59,29 @@
     pointer-events: none;
 
 }
+
+
+.song-item-overlay-bar{
+       position: absolute;
+    background: white;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    top: 2.35em;
+    z-index: 11;
+    pointer-events: none;
+}
+
+.song-item-bottom-overlay{
+     /* border: 1px solid red; */
+    position: absolute;
+    opacity: .8;
+    height: 50%;
+    width: 100%;
+    top: 2.35em;
+    left: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgb(255, 255, 255, .5));
+    background-blend-mode: multiply;
+    z-index: 10;
+    pointer-events: none;
+}

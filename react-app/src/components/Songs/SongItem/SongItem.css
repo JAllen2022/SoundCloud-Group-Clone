@@ -1,7 +1,7 @@
 .song-item-container {
   /* border: 1px blue solid; */
   display: flex;
-  margin: 40px 5px;
+  margin: 35px 5px;
   height: 160px;
   width: 100%;
   justify-content: space-evenly;
@@ -137,6 +137,7 @@
 .song-like-count {
   font-size: 11px;
   margin-top: 2.3px;
+  font-weight: 300;
 }
 
 .like-button,
@@ -195,7 +196,7 @@ div.edit-song-button > button.s:hover,
 .comment-box-container {
   display: flex;
   align-items: center;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .comment-box-container:hover,
@@ -210,10 +211,14 @@ div.edit-song-button > button.s:hover,
   padding-bottom: 1px;
 }
 
-.comment-count {
-  margin-top: 4px;
+.song-item-comment-count {
+  margin-top: 2.7px;
 }
 
 a {
   text-decoration: none;
+}
+
+.song-item-waveform{
+  margin-top:1.5rem;
 }

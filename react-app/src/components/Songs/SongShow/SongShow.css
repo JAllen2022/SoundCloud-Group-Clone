@@ -246,6 +246,21 @@ button:hover {
     min-height: 75vh;
 }
 
+.song-show-description {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.song-info-container > p + p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.song-info-container {
+    line-height: 7px;
+}
+
 .song-comments-header {
     display: flex;
     align-items: center;

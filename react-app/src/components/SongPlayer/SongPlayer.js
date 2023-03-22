@@ -5,11 +5,11 @@ import AudioPlayer from "react-h5-audio-player";
 import { setPlayerReference, isPlaying } from "../../store/songs"
 import { setCurrentTime } from "../../store/songs";
 import "./SongPlayer.css";
+// import playButton from "../../assets/play-arrow.202x256.png";
 
 export default function SongPlayer() {
   const playSong = useSelector(state => state.Songs.playSong)
   const time = useSelector(state => state.Songs.currentTime)
-  // const dispatch = useDispatch();
   // console.log("time", time)
 
   // const isPlaying = useSelector(state => state.Songs.isPlaying)
@@ -46,18 +46,15 @@ export default function SongPlayer() {
           ref={playerRef}
           onListen={handleListen}
           layout='horizontal-reverse'
-          // customIcons={
-          //    play?: ReactNode
-          //     pause?: ReactNode
-          //     rewind?: ReactNode
-          //     forward?: ReactNode
-          //     previous?: ReactNode
-          //     next?: ReactNode
-          //     loop?: ReactNode
-          //     loopOff?: ReactNode
-          //     volume?: ReactNode
-          //     volumeMute?: ReactNode
-          // }
+          showFilledVolume={true}
+          customIcons={{
+            play:
+              <div className="rhap_play-pause-button" style={{'background': "url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZmlsbD0iIzMzMyIgZD0iTTggNXYxNGwxMS03eiIvPjwvc3ZnPgo=) no-repeat 55%"}}>
+              </div>
+            ,
+            pause: isPlaying && <div className="rhap_play-pause-button" style={{'background': "url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZmlsbD0iIzMzMyIgZD0iTTYgMTloNFY1SDZ2MTR6bTgtMTR2MTRoNFY1aC00eiIvPjwvc3ZnPgo=)", "background-position": "50%"}}>
+              </div>
+          }}
           src={playSong?.song_url || ''}
           onPlay={(e) => dispatch(isPlaying(true))}
           onPause={(e) => dispatch(isPlaying(false))}
