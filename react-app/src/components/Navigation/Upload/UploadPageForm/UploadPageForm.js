@@ -13,7 +13,7 @@ const genres = [
   "Drum & Bass",
   "Dubstep",
   "Electronic",
-  "Folks & Singer-Songwriter",
+  "Folk & Singer-Songwriter",
   "Hip-hop & Rap",
   "House",
   "Indie",

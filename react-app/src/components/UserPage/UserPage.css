@@ -91,7 +91,7 @@
 .user-prof-img {
   width: 200px;
   height: 200px;
-  object-fit: scale-down;
+  /* object-fit: scale-down; */
   border-radius: 50%;
 }
 

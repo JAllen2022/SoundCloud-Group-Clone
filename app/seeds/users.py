@@ -1,17 +1,16 @@
 from app.models import db, User, environment, SCHEMA
 
 
-demo = User(
-    username='Demo', display_name='Demo', email='demo@aa.io', password='password')
-roysa = User(
-    username='Roysa', display_name='razzle', email='roysa@aa.io', password='password')
-jason = User(
-    username='Jason', display_name='jasona', email='jason@aa.io', password='password')
-ryan = User(
-    username="Ryan", display_name='ryanh', email="ryan@aa.io", password="password")
-lillyann = User(
-    username="Lillyann", display_name='angrymidgetelf', email="lillyann@aa.io", password="password")
-
+demo = User(username='Demo', display_name='Demo', email='demo@aa.io', password='password', profile_image_url='', header_image_url='')
+roysa = User(username='Roysa', display_name='razzledazzle', email='roysa@aa.io', password='password', profile_image_url='', header_image_url='')
+jason = User(username='Jason', display_name='jasona', email='jason@aa.io', password='password', profile_image_url='', header_image_url='')
+ryan = User(username="Ryan", display_name='ryanh', email="ryan@aa.io", password="password", profile_image_url='', header_image_url='')
+lillyann = User(username="Lillyann", display_name='angrymidgetelf', email="lillyann@aa.io", password="password", profile_image_url='', header_image_url='')
+# michael = User(username='Michael', display_name='mike', email='michael@aa.io', password='password')
+# samantha = User(username='Samantha', display_name='sammie', email='samantha@aa.io', password='password')
+# maxwell = User(username='Maxwell', display_name='max', email='maxwell@aa.io', password='password')
+# julie = User(username='Julie', display_name='jules', email='julie@aa.io', password='password')
+# zachary = User(username='Zachary', display_name='zach', email='zachary@aa.io', password='password')
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
