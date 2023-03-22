@@ -16,7 +16,7 @@ const Waveform = ({ song, audioFile, songItem }) => {
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
             container: waveformRef.current,
-            height: songItem ? 55: 90,
+            height: songItem ? 65: 90,
             waveColor: songItem ? "rgba(130, 130, 130)" : 'white',
             progressColor: '#FF5500',
             barGap: 1,

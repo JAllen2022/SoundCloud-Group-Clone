@@ -1,7 +1,7 @@
 
-# Tunespace
+# TuneSpace
 
-`Tunespace` is a `Soundcloud` inspired web application that provides the user with a seemless audio streaming experience.
+[TuneSpace][1] is a [SoundCloud][2] inspired web application that provides the user with a seemless audio streaming experience.
 
 ## Tech Stack
 ---
@@ -93,17 +93,19 @@ npm start
 
 Jason Allen<br/>
 [LinkedIn](https://www.linkedin.com/in/jasonallen715/)<br/>
+<jasonallen715@gmail.com>
 
 Roysa Peguero<br/>
 [LinkedIn](https://www.linkedin.com/in/roysapeguero/)<br/>
 <roysapeguero@outlook.com>
 
-Lillyann Hidalgo<br/>
-[LinkedIn](https://www.linkedin.com/in/lillyann-h-55684b249/)<br/>
 
 Ryan Harden<br/>
 [LinkedIn](https://www.linkedin.com/in/ryan-harden-0a8b6821a/)<br/>
 <ryanharden20@gmail.com>
 
+Lillyann Hidalgo<br/>
+[LinkedIn](https://www.linkedin.com/in/lillyann-h-55684b249/)<br/>
 
 [1]:https://tunespace.onrender.com/
+[2]:https://www.soundcloud.com/

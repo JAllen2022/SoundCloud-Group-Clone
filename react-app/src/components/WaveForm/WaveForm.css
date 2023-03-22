@@ -67,7 +67,7 @@
     height: 1px;
     width: 100%;
     left: 0;
-    top: 2.35em;
+    top: 2.63em;
     z-index: 11;
     pointer-events: none;
 }
@@ -76,9 +76,9 @@
      /* border: 1px solid red; */
     position: absolute;
     opacity: .8;
-    height: 50%;
+    height: 51%;
     width: 100%;
-    top: 2.35em;
+    top: 2.63em;
     left: 0;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgb(255, 255, 255, .5));
     background-blend-mode: multiply;
