@@ -61,7 +61,7 @@
     margin-left: -8px;
     margin-top: -8px;
     object-fit: cover;
-    opacity: .87;
+    opacity: .9;
 }
 
 .show-play-button-image:hover {
@@ -248,8 +248,8 @@ button:hover {
 
 .song-show-description {
     margin-top: 10px;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .song-info-container > p + p {
