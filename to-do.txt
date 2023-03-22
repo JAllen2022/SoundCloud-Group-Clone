@@ -1,58 +1,36 @@
 To-Do:
-ryan finishing - splash page/ maybe logged out upload page (need to fix the images and nav)
-random time for comment
+all seeds should be seeded in seed file (once jason uploads songs and images to aws)
+users likes in chronological Order
+add readme gifs
 
-Next :
-make feed/home page
+
+Hard to do:
+when uploading song, preview image is automatically the img from file
+
+
+At Some Point Maybe:
+search bar
+nested comments
+store waveforms in database on song upload
 continuous play
+make feed/home page
 
-
-modifying our player?(optional ??)
-
-
-Presentation Order:
-
-Lily person
-- intro our project
-- walk through nav page
-- demo log in and sign up
-- all songs
-
-Ryan
-- song song show
-
-roysa
-- upload song
-
-jason
-- user pages
-
+Next:
 
 Done:
-user-page - links to song from comment item
-user page - songs on the right need to show pause button too
-timestamps on comments
-make pause button smaller and white background
-preview image for profile image and upload song
-fix timestamps on comments and songs
-roysa - fix input file buttons
-roysa - upload form
-fix user page
-nav-bar margin
-fix songshow page creator diplay box
-user comments page
-login and signup pages removal
-change margins on all pages
-set default user pic everywhere
-play and pause button change
-jason - play and pause button sync with different pages
-lilly - favicon
-jason- nav bar navlink active class
-jason-user page edit - border/padding fix
-jason- sign up - require display name on sign up
-comment - click on user-profile display name
-comments- all spaces - prevent from happening
-lilly - 404 page
-footer with git and linked in links
-
-Get favicon to work (see if it works deployed)
+jason and ryan - waveforms
+style the player
+render waveforms for each song item
+pause button on song page smaller
+Jason - sync waveform with audio player
+image on edit form should be the songs current image
+cancel button on edit song does not work
+fix comment name and created at color
+song description displayed somewhere
+song upload time is wrong
+song upload time is scrunched
+404 page when navigating to non-existent user/song/etc.
+user profile button when a display name is too long
+readme
+remove console.logs
+CRON job: ping

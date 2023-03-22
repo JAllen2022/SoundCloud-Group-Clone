@@ -17,9 +17,9 @@ const SongCommentItem = ({ comment, song }) => {
   const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
 
-  console.log("checking what the hell this time is~~~~`", moment(comment?.created_at).fromNow())
+  // console.log("checking what the hell this time is~~~~`", moment(comment?.created_at).fromNow())
 
-  console.log("what is created at", comment?.created_at)
+  // console.log("what is created at", comment?.created_at)
 
   return (
     <div className="song-comment-item-container">
@@ -38,8 +38,6 @@ const SongCommentItem = ({ comment, song }) => {
       <div className="user-name-time-and-edit-body-outer-container">
 
         <div className="user-name-time-created-at-body">
-
-
           <div className="creator-name">
             <Link className="link" to={`/users/${comment.user_id}`}>{comment.user?.display_name}</Link>
           </div>

@@ -42,9 +42,9 @@ const UserPageComments = () => {
 
           <div className="user-page-comment-box-container">
             <img src={commentBox} className="user-page-comment-box" alt="comment tag" />
-            <p className="user-page-comment-header-ptags">Latest Comments</p>
+            <p className="user-page-comment-header-ptag">Latest Comments</p>
           </div>
-          <p className="user-page-comment-header-ptags">View all</p>
+          <p className="user-page-comment-header-view">View all</p>
       </Link>
 
         </div>

@@ -11,6 +11,8 @@ const RESET_SINGLE_SONG = "songs/RESET_SINGLE_SONG";
 const PLAY_SONG = "songs/PLAY_SONG";
 const IS_PLAYING = "songs/IS_PLAYING";
 const SET_PLAYER_REF = "songs/SET_PLAYER_REF"
+const SET_CURRENT_TIME = "songs/SET_CURRENT_TIME"
+
 
 // Constants for the User Page
 const GET_USER_SONGS = "songs/GET_USER_SONGS";
@@ -81,6 +83,12 @@ export const setPlayerReference = (ref) => ({
   ref
 });
 
+export const setCurrentTime = (time) => ({
+  type: SET_CURRENT_TIME,
+  time
+})
+
+
 // Thunk Action Creators
 
 // Get Songs
@@ -129,11 +137,6 @@ export const getSongThunk = (songId) => async (dispatch) => {
     const song = await res.json();
     dispatch(loadSong(song));
     return song;
-  } else {
-    const data = await res.json();
-    if (data.errors) {
-      return data;
-    }
   }
 };
 
@@ -211,6 +214,14 @@ export const deleteLikeThunk =
     }
   };
 
+// export const setCurrentTimeThunk =
+//   (time) => async (dispatch) => {
+//     dispatch(setCurrentTime(songId, current_user, userId));
+
+//   };
+
+
+
 // Reducer
 const initialState = {
   allSongs: {},
@@ -219,6 +230,7 @@ const initialState = {
   userLikedSongs: {},
   playSong: {},
   isPlaying: false,
+  currentTime: 0
 };
 
 const songsReducer = (state = initialState, action) => {
@@ -313,7 +325,7 @@ const songsReducer = (state = initialState, action) => {
           newState.userLikedSongs[songId].song_likes[current_user.id] =
             current_user;
         } else {
-            newState.userLikedSongs[songId] = song
+          newState.userLikedSongs[songId] = song
         }
       }
 
@@ -381,6 +393,8 @@ const songsReducer = (state = initialState, action) => {
       newState["playerRef"] = action.ref;
       return newState;
     // Default
+    case SET_CURRENT_TIME:
+      return { ...state, currentTime: action.time };
     default:
       return state;
   }

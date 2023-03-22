@@ -7,7 +7,7 @@
     text-decoration: none;
     justify-content: space-between;
     margin-bottom: 0;
-    color: #999999;
+    color: black;
     font-size: 0.8rem;
     border-bottom: 1px solid rgb(0, 0, 0, 0.05);
     margin-bottom: 0.5rem;
@@ -20,18 +20,19 @@
     /* border: 1px solid red; */
 }
 
+
 .user-page-comment-box-container {
     display: flex;
     align-items: center;
-    opacity: .5;
+    /* opacity: .5; */
     /* border: 1px solid red; */
     margin-bottom: 0.15rem;
 
 
 }
 
-.user-page-comment-header-link-container:hover .user-page-comment-box-container {
-    opacity: .8;
+.user-page-comment-header-link-container:hover > .user-page-comment-header-view{
+    color: black;
 }
 
 .user-page-comment-box {
@@ -40,13 +41,16 @@
     margin-right: 6px;
     /* border: 1px solid red; */
     margin-top: .5rem;
+    opacity: .5;
+
 }
 
-.user-page-comment-header-ptags {
+.user-page-comment-header-ptag,
+.user-page-comment-header-view {
     margin-bottom: 0.15rem;
     color: #999999;
     /* border: 1px solid red; */
-
+    /* opacity: .5; */
 }
 
 .user-page-comment-items-container {

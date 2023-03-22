@@ -25,12 +25,13 @@ ul.profile-dropdown {
   border-top: none;
   /* padding: 3px; */
   /* padding-right: 0px; */
-  /* margin-right: 60px; */
   width: 87px;
   /* width: 112.5px; */
-  position: relative;
+  /* position: relative; */
   margin: 0;
-
+  /* align-items: flex-end; */
+  /* margin-left: 87px; */
+  /* right: 0; */
   /* top: -103px; */
 }
 
@@ -151,7 +152,7 @@ body {
   align-items: center;
   min-width: 950px;
   width: 80%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   height: 40px;
   justify-content: space-between;
@@ -190,20 +191,22 @@ body {
   color: #ccc;
   font-weight: 400;
   font-size: 14px;
-  width: 70px;
-  max-width: 70px;
+  /* width: 70px; */
+  max-width: fit-content;
   height: 40px;
   /* border:1px solid red; */
-  padding: 0 1rem;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
 }
 
 
 .nav-bar-nav-link.active,
-.nav-bar-prof-button-active, .prof-active {
+.nav-bar-prof-button-active,
+.prof-active {
   background-color: #111111;
   color: white;
 }
@@ -212,6 +215,7 @@ body {
   margin: 0;
   padding-left: 4px;
   font-size: .85rem;
+  /* width: fit-content; */
 }
 
 .upload-button {

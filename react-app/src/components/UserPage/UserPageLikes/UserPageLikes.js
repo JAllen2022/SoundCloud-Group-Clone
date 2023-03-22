@@ -66,7 +66,7 @@ const UserPageLikeItem = ({ song }) => {
     const playS = useSelector(state => state.Songs.playSong)
     const playerRef = useSelector(state => state.Songs.playerRef)
     const playing = useSelector(state => state.Songs.isPlaying)
-    const pauseButton = "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+    const pauseButton = "https://user-images.githubusercontent.com/110946315/226770796-edff1925-616f-4748-8d6c-29b790fe13d6.png";
     const playButton = "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
 
     const showPlayButton = (

@@ -9,8 +9,14 @@
 
 .song-comments-header {
     padding: 7px 0;
+    opacity: .6;
+
 }
 
 .song-comments-length {
     margin-top: 2.5px;
+}
+
+.comment-box {
+    opacity: .6;
 }

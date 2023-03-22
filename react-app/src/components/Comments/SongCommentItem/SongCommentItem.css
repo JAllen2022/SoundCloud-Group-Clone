@@ -29,6 +29,10 @@
     margin-left: -5px;
 }
 
+.creator-name,
+.comment-created-at {
+    opacity: .6;
+}
 
 
 .user-name-time-created-at-body {

@@ -1,3 +1,6 @@
+import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
 // Store for visiting user pages that are not the current, logged in user
 
 // constants
@@ -35,7 +38,12 @@ export const loadUserThunk = (userId) => async (dispatch) => {
         const userId = await res.json();
         dispatch(loadUser(userId))
         return userId;
-    }
+    } else {
+        const data = await res.json();
+        if (data.errors) {
+          return data;
+        }
+      }
 };
 
 // export const getUserLikesThunk = (userId) => async (dispatch) => {

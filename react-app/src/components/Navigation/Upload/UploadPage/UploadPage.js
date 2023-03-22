@@ -5,7 +5,7 @@ import UploadPageForm from "../UploadPageForm/UploadPageForm.js";
 import { editSongThunk } from "../../../../store/songs";
 import { useModal } from "../../../../context/Modal.js";
 // let jsmediatags = require("jsmediatags");
-import './UploadPage.css'
+import "./UploadPage.css";
 import { createSongThunk } from "../../../../store/songs";
 
 const UploadPage = ({ editSong = false, songEdit }) => {
@@ -34,7 +34,7 @@ const UploadPage = ({ editSong = false, songEdit }) => {
   const [songLoading, setSongLoading] = useState(false);
   const [uploadedSong, setUploadedSong] = useState(editSong ? true : false);
   const [errors, setErrors] = useState({});
-  const imageRef = useRef(null)
+  const imageRef = useRef(null);
 
   // const currentUser = useSelector((state) => state.session.user);
 
@@ -118,6 +118,7 @@ const UploadPage = ({ editSong = false, songEdit }) => {
                     errors={errors}
                     setErrors={setErrors}
                     imageRef={imageRef}
+                    currentSongImage={currentSong?.song_image_url}
                   />
                 </>
               ) : (
@@ -184,9 +185,9 @@ function UploadSong({
           "loadedmetadata",
           function () {
             const duration = toMinutes(audio.duration);
-            console.log(
-              "The duration of the song is of: " + duration + " seconds"
-            );
+            // console.log(
+            //   "The duration of the song is of: " + duration + " seconds"
+            // );
             setLength(duration);
           },
           false
@@ -203,6 +204,8 @@ function UploadSong({
           },
           false
         );
+
+
       };
       reader.readAsDataURL(file);
     }
@@ -216,6 +219,74 @@ function UploadSong({
     setSong(file);
     setUploadedSong(true);
   };
+  // const updateSong = (e) => {
+  //   const file = e.target.files[0];
+
+  //   if (file.size > 10000000) {
+  //     setErrors({
+  //       FileSize: "File size too large. Maximum file size: 8MB.",
+  //     });
+  //     e.target.value = "";
+  //     return;
+  //   }
+
+  //   const reader = new FileReader();
+  //   const audio = document.createElement("audio");
+
+  //   if (e.target.files && file) {
+  //     reader.onload = function (e) {
+  //       audio.src = e.target.result;
+
+  //       audio.addEventListener(
+  //         "loadedmetadata",
+  //         function () {
+  //           const duration = toMinutes(audio.duration);
+
+  //           setLength(duration);
+
+  //           jsmediatags.read(file, {
+  //             onSuccess: function (tag) {
+  //               // Access the image data in the tag object
+  //               const imageData = tag.tags.picture.data;
+  //               const base64String = imageData.reduce(
+  //                 (data, byte) => data + String.fromCharCode(byte),
+  //                 ""
+  //               );
+  //               const imageUrl = `data:${
+  //                 tag.tags.picture.format
+  //               };base64,${window.btoa(base64String)}`;
+  //               setSongImage(imageUrl);
+  //             },
+  //             onError: function (error) {
+  //               console.log("Error reading tags:", error);
+  //             },
+  //           });
+  //         },
+  //         false
+  //       );
+
+  //       audio.removeEventListener(
+  //         "loadedmetadata",
+  //         function () {
+  //           const duration = toMinutes(audio.duration);
+  //           setLength(duration);
+  //         },
+  //         false
+  //       );
+  //     };
+
+  //     reader.readAsDataURL(file);
+  //   }
+
+  //   if (errors.FileSize) {
+  //     const newErrors = { ...errors };
+  //     delete newErrors.FileSize;
+  //     setErrors(newErrors);
+  //   }
+
+  //   setSong(file);
+  //   setUploadedSong(true);
+  // };
 
   return (
     <div className="up-box-outer-contianer">
@@ -231,7 +302,7 @@ function UploadSong({
             </label>
             <input
               required
-              className='input-item file-input'
+              className="input-item file-input"
               id="upload-song-file"
               name="upload-song-file"
               type="file"

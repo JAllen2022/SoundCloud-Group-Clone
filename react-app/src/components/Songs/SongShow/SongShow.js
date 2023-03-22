@@ -16,6 +16,8 @@ import OpenModalButton from "../../OpenModalButton";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { deleteSongThunk } from "../../../store/songs";
 import moment from 'moment'
+import PageNotFound from "../../PageNotFound/PageNotFound";
+import Waveform from "../../WaveForm/WaveForm";
 import "./SongShow.css";
 
 const SongShow = () => {
@@ -28,7 +30,7 @@ const SongShow = () => {
   const playing = useSelector(state => state.Songs.isPlaying)
   const playS = useSelector(state => state.Songs.playSong)
   const playerRef = useSelector(state => state.Songs.playerRef)
-  const pauseButton = "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+  const pauseButton = "https://user-images.githubusercontent.com/110946315/226770796-edff1925-616f-4748-8d6c-29b790fe13d6.png";
   const playButton = "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
   const songLikes = useSelector((state) => state.Songs.singleSong.song_likes);
 
@@ -44,7 +46,7 @@ const SongShow = () => {
     <img
       className="show-play-button-image"
       src={pauseButton}
-      alt="orange play button"
+      alt="orange pause button"
     />
   )
   const [showButton, setShowButton] = useState(showPlayButton)
@@ -85,7 +87,7 @@ const SongShow = () => {
   }
 
   useEffect(() => {
-    console.log(playerRef.current.audio.current.play)
+    // console.log(playerRef.current.audio.current.play)
     if (playS.id !== song.id) {
       setShowButton(showPlayButton)
     }
@@ -117,7 +119,7 @@ const SongShow = () => {
     ))
   }
 
-  if (!Object.values(song).length) return null;
+  if (!Object.values(song).length) return <PageNotFound page={"song"} />;
   // const profPic = "https://user-images.githubusercontent.com/110946315/219914467-8f897a76-7950-4a7d-a20e-f67537f32254.jpeg";
 
   return (
@@ -145,7 +147,8 @@ const SongShow = () => {
               </div>
               <div className="created">{moment(song?.created_at).fromNow()}</div>
             </div>
-            <div className="song-player"></div>
+            <Waveform song={song} audioFile={song?.song_url} />
+
           </div>
           <div className="right-header-container">
             <div className="show-song-image-container">
@@ -154,8 +157,9 @@ const SongShow = () => {
           </div>
         </div>
         <div className="page-body-container">
-
           <div className="left-show-page-body-container">
+
+
             <div className="add-comment-form">
               <CreateComment />
             </div>
@@ -216,7 +220,10 @@ const SongShow = () => {
                 </div>
               </div>
               <div className="right-info-comments-container">
-                <div className="song-info-container"></div>
+                <div className="song-info-container">
+                  <p className="song-show-description">Description:</p>
+                  <p>{song?.description}</p>
+                </div>
                 <div className="show-comments-container">
                   <SongPageComments />
                 </div>

@@ -3,6 +3,8 @@ from app.models import Song, User, db,likes
 from flask_login import login_required, current_user
 from app.forms import SongForm
 import app.s3_helpers as s3
+import datetime
+
 # ( upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
 
@@ -59,7 +61,7 @@ def upload_song():
     song = request.files['song']
 
     if not s3.audio_file(song.filename):
-        print("file type not permitted")
+        # print("file type not permitted")
         return {"errors": "file type not permitted"}, 400
 
     song.filename = s3.get_unique_filename(song.filename)
@@ -67,7 +69,7 @@ def upload_song():
     upload = s3.upload_file_to_s3(song)
 
     if "url" not in upload:
-        print("error upload")
+        # print("error upload")
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
@@ -85,7 +87,8 @@ def upload_song():
             length = form_data["length"],
             description = form_data["description"],
             song_image_url = url_image,
-            song_url = song_url
+            song_url = song_url,
+            created_at = datetime.datetime.utcnow()
         )
 
     db.session.add(new_song)
@@ -165,9 +168,9 @@ def delete_song(id):
 @login_required
 def add_like(songId):
     song = Song.query.get(songId)
-    print("song likes is this :", song.song_likes)
+    # print("song likes is this :", song.song_likes)
     song.song_likes.append(current_user)
-    print("song likes is this :", song.song_likes)
+    # print("song likes is this :", song.song_likes)
 
     db.session.add(song)
     db.session.commit()
@@ -179,9 +182,9 @@ def add_like(songId):
 @login_required
 def remove_like(songId):
     song = Song.query.get(songId)
-    print("song likes is this :", song.song_likes)
+    # print("song likes is this :", song.song_likes)
     song.song_likes.remove(current_user)
-    print("song likes is this :", song.song_likes)
+    # print("song likes is this :", song.song_likes)
 
     db.session.add(song)
     db.session.commit()

@@ -5,6 +5,7 @@ import "./SongItem.css";
 import UploadPage from "../../Navigation/Upload/UploadPage/UploadPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import Waveform from "../../WaveForm/WaveForm";
 import {
   deleteSongThunk,
   playSong,
@@ -27,7 +28,7 @@ const SongItem = ({ song }) => {
   const { userId } = useParams();
   const [isLiked, setIsLiked] = useState(song.song_likes[currentUser?.id]);
   const pauseButton =
-    "https://user-images.githubusercontent.com/110946315/219910407-770acf18-784f-4015-b12c-dc00450f6162.png";
+    "https://user-images.githubusercontent.com/110946315/226770796-edff1925-616f-4748-8d6c-29b790fe13d6.png";
   const playButton =
     "https://user-images.githubusercontent.com/110946315/218660719-06946dea-1d7d-4d44-a1ff-294b973dc87a.jpg";
 
@@ -136,6 +137,7 @@ const SongItem = ({ song }) => {
             </Link>
           </div>
         </div>
+        <div className="song-item-waveform"><Waveform song={song} audioFile={song.song_url} songItem={true} /></div>
         <div className="bottom-right-container">
           <div className="like-button-container">
             <button
@@ -181,7 +183,7 @@ const SongItem = ({ song }) => {
             <Link className="comment-link link" to={`/songs/${song?.id}`}>
               <div className="comment-box-container">
                 <img src={commentBox} className="comment-box" alt="" />
-                <div className="comment-count">{song?.comment_count}</div>
+                <div className="song-item-comment-count">{song?.comment_count}</div>
               </div>
               {/* <p className="bottom-right-container-p link"></p> */}
             </Link>

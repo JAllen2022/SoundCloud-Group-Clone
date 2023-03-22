@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./UploadPageForm.css";
+import { useModal } from "../../../../context/Modal";
 
 const genres = [
   "Alternative Rock",
@@ -12,7 +13,7 @@ const genres = [
   "Drum & Bass",
   "Dubstep",
   "Electronic",
-  "Folks & Singer-Songwriter",
+  "Folk & Singer-Songwriter",
   "Hip-hop & Rap",
   "House",
   "Indie",
@@ -45,7 +46,10 @@ const UploadPageForm = ({
   errors,
   setErrors,
   imageRef,
+  currentSongImage
 }) => {
+
+  const {closeModal} = useModal();
   const updateImage = (e) => {
     // console.log("updating image");
     const file = e.target.files[0];
@@ -84,7 +88,7 @@ const UploadPageForm = ({
           <img
             ref={imageRef}
             className="up-song-image"
-            src="https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg"
+            src={currentSongImage ? currentSongImage : "https://user-images.githubusercontent.com/110946315/218864866-8fe7c616-38fc-460c-a177-1e2065ea8fca.jpeg"}
             alt=""
           />
           <label className="up-song-img-label" htmlFor="upload-song-image">
@@ -131,7 +135,7 @@ const UploadPageForm = ({
               required
               name="form-song-title"
               minLength="4"
-              maxlength="40"
+              maxLength="40"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -170,7 +174,7 @@ const UploadPageForm = ({
         </div>
       </div>
       <div className="up-buttons">
-        <Link id='modal-btns' to='/songs' className=" edit-user-page-button cancel" >
+        <Link onClick={closeModal} id='modal-btns' to='/songs' className=" edit-user-page-button cancel" >
           Cancel
         </Link>
         <button
