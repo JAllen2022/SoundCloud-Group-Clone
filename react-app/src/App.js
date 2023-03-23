@@ -66,6 +66,9 @@ function App() {
                 <Route path="/users/:userId">
                   <UserPage />
                 </Route>
+                <Route exact path="/">
+                  <AllSongs />
+                </Route>
                 <Route>
                   <PageNotFound />
                 </Route >
