@@ -72,7 +72,7 @@ function Footer() {
             <button className="contact-btns">
               <a
                 target="_blank"
-                href="https://www.linkedin.com/in/ryan-harden-0a8b6821a/"
+                href="https://www.linkedin.com/in/ryanharden-dev"
               >
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
