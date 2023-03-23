@@ -101,7 +101,7 @@ Roysa Peguero<br/>
 
 
 Ryan Harden<br/>
-[LinkedIn](https://www.linkedin.com/in/ryan-harden-0a8b6821a/)<br/>
+[LinkedIn](https://www.linkedin.com/in/ryanharden-dev/)<br/>
 <ryanharden20@gmail.com>
 
 Lillyann Hidalgo<br/>
