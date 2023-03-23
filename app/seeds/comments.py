@@ -93,14 +93,14 @@ def seed_comments():
     comment90 = Comment(song_id = 25, user_id = 4, body = "I can't get enough")
     comment91 = Comment(song_id = 22, user_id = 5, body = "my new jam!!")
     comment92 = Comment(song_id = 14, user_id = 5, body = "I love the beat")
-    comment93 = Comment(song_id = 37, user_id = 5, body = "perfect for when you need to lift your spirits, love it!")
+    comment93 = Comment(song_id = 27, user_id = 5, body = "perfect for when you need to lift your spirits, love it!")
     comment94 = Comment(song_id = 27, user_id = 5, body = "gives me chills")
     comment95 = Comment(song_id = 22, user_id = 2, body = "catchy")
     comment96 = Comment(song_id = 31, user_id = 2, body = "💩")
     comment97 = Comment(song_id = 16, user_id = 1, body = "🥳🔥")
     comment98 = Comment(song_id = 6, user_id = 3, body = "👀👀👀")
     comment99 = Comment(song_id = 23, user_id = 3, body = "noooooooooo")
-    comment100 = Comment(song_id = 32, user_id = 5, body = "wowzerz") # repeating the original comment for variety.
+    comment100 = Comment(song_id = 32, user_id = 5, body = "wowzerz")
 
 
 
